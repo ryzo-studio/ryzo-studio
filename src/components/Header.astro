@@ -1,0 +1,267 @@
+---
+const navItems = [
+  { label: 'Film', href: '/release-the-beast' },
+  { label: 'Game', href: '/rage-fighters' },
+  { label: 'Events', href: '/events' },
+  { label: 'Activations', href: '/activations' },
+  { label: 'About', href: '/about' },
+  { label: 'Connect', href: '/connect' },
+];
+
+const { pathname } = Astro.url;
+---
+
+<header class="site-header" id="site-header">
+  <div class="header-inner container">
+    <a href="/" class="logo" aria-label="Ryzo Studios home">
+      <img
+        src="/images/RyzoLogo_Brigher_WordsOnly.png"
+        alt="Ryzo Studios"
+        class="logo-img"
+        width="120"
+        height="60"
+      />
+    </a>
+
+    <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        {navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={['nav-link', { 'is-active': pathname === item.href || pathname.startsWith(item.href + '/') }]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile nav -->
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <ul>
+      {navItems.map((item) => (
+        <li>
+          <a href={item.href} class="mobile-nav-link">
+            {item.label}
+          </a>
+        </li>
+      ))}
+      <li><a href="/supporters" class="mobile-nav-link">Supporters</a></li>
+      <li><a href="/activations" class="mobile-nav-link">Activations</a></li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  const toggle = document.getElementById('menu-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  // Scroll behavior
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const current = window.scrollY;
+    if (current > 80) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+    lastScroll = current;
+  }, { passive: true });
+
+  // Menu toggle
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    mobileNav?.classList.toggle('is-open');
+    toggle.classList.toggle('is-active');
+    document.body.classList.toggle('menu-open');
+  });
+
+  // Close on link click
+  mobileNav?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle?.setAttribute('aria-expanded', 'false');
+      mobileNav.classList.remove('is-open');
+      toggle?.classList.remove('is-active');
+      document.body.classList.remove('menu-open');
+    });
+  });
+</script>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding-block: 1.25rem;
+    transition: background 0.3s ease, padding 0.3s ease, border-color 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+
+  .site-header.scrolled {
+    background: rgba(8, 8, 8, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom-color: var(--border);
+    padding-block: 0.875rem;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .logo-img {
+    height: 72px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .main-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--fg-2);
+    border-radius: var(--radius);
+    transition: var(--transition);
+    letter-spacing: 0.01em;
+  }
+
+  .nav-link:hover,
+  .nav-link.is-active {
+    color: var(--fg);
+    background: var(--bg-3);
+  }
+
+  .nav-link.is-active {
+    color: var(--fg);
+  }
+
+  /* Menu Toggle */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    padding: 2px;
+  }
+
+  .menu-toggle span {
+    display: block;
+    height: 1.5px;
+    background: var(--fg);
+    border-radius: 2px;
+    transition: var(--transition);
+  }
+
+  .menu-toggle span:nth-child(1) { width: 100%; }
+  .menu-toggle span:nth-child(2) { width: 75%; }
+  .menu-toggle span:nth-child(3) { width: 55%; }
+
+  .menu-toggle.is-active span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+    width: 100%;
+  }
+  .menu-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.is-active span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+    width: 100%;
+  }
+
+  /* Mobile Nav */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(8, 8, 8, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 99;
+    padding: 6rem var(--gutter) 3rem;
+    opacity: 0;
+    transform: translateY(-12px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .mobile-nav.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  .mobile-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--fg-2);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+  }
+
+  .mobile-nav-link:hover {
+    color: var(--fg);
+    padding-left: 0.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .main-nav { display: none; }
+    .menu-toggle { display: flex; }
+    .mobile-nav { display: block; }
+  }
+
+  :global(body.menu-open) {
+    overflow: hidden;
+  }
+</style>

@@ -1,0 +1,310 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const today = new Date();
+
+const allEvents = [
+  {
+    id: 'e4',
+    date: new Date('2026-04-16'),
+    title: 'Story into Action: The Making of Rage Fighters',
+    venue: 'The MADE · Oakland, CA',
+    type: 'Panel & Demo',
+    link: null,
+  },
+  {
+    id: 'e5',
+    date: new Date('2026-04-18'),
+    title: 'UnTilted — Mastering the Internal OS with Ryzo',
+    venue: 'The MADE · Oakland, CA',
+    type: 'Workshop',
+    link: null,
+  },
+  {
+    id: 'e3',
+    date: new Date('2025-12-14'),
+    title: 'Release The Beast — Supporter Sneak Peek',
+    venue: 'The Roxie Theater · San Francisco, CA',
+    type: 'Film Screening',
+    link: null,
+  },
+  {
+    id: 'e1',
+    date: new Date('2025-01-09'),
+    title: 'Clubhouse Network',
+    venue: 'Edgewood, CO',
+    type: 'Community Visit',
+    link: null,
+  },
+  {
+    id: 'e2',
+    date: new Date('2025-01-08'),
+    title: 'Clubhouse Network',
+    venue: 'Lakewood, CO',
+    type: 'Community Visit',
+    link: null,
+  },
+];
+
+const upcoming = allEvents.filter(e => e.date >= today);
+const past = allEvents.filter(e => e.date < today);
+---
+
+<Layout
+  title="Ryzo Events"
+  description="Screenings, panels, and community gatherings — Ryzo brings the story into the room."
+>
+
+  <section class="events-hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <span class="eyebrow">Events</span>
+      <h1 class="display">
+        Where we<br />show up.
+      </h1>
+      <p class="hero-sub">
+        Screenings, panels, and live gatherings.<br />
+        <a href="/connect">Invite us to your community →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="events-list-section">
+    <div class="container">
+
+      {upcoming.length > 0 && (
+        <div class="events-block">
+          {upcoming.map(event => (
+            <div class="event-row">
+              <div class="event-date">
+                <span class="e-month">{event.date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span>
+                <span class="e-day">{event.date.getDate()}</span>
+              </div>
+              <div class="event-body">
+                <span class="event-type">{event.type}</span>
+                <h2 class="event-title">{event.title}</h2>
+                <p class="event-venue">{event.venue}</p>
+              </div>
+              {event.link && (
+                <a href={event.link} class="btn btn-primary" target="_blank" rel="noopener">Get Tickets</a>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {past.length > 0 && (
+        <div class="events-block past-block">
+          <div class="past-divider">
+            <span>Past Events</span>
+          </div>
+          {past.map(event => (
+            <div class="event-row is-past">
+              <div class="event-date">
+                <span class="e-month">{event.date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span>
+                <span class="e-day">{event.date.getDate()}</span>
+              </div>
+              <div class="event-body">
+                <span class="event-type">{event.type}</span>
+                <h2 class="event-title">{event.title}</h2>
+                <p class="event-venue">{event.venue}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div class="events-cta">
+        <p>Want to bring Ryzo to your community?</p>
+        <a href="/connect" class="btn btn-outline">Send an Inquiry</a>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* Hero */
+  .events-hero {
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-block: 8rem 4rem;
+    position: relative;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(245, 200, 66, 0.06) 0%, transparent 55%),
+      linear-gradient(to right, #080316, #1c0832);
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+  .hero-content .eyebrow { margin-bottom: 1.5rem; }
+
+  .display {
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-sub {
+    font-size: var(--text-base);
+    color: var(--fg-2);
+    line-height: 1.6;
+  }
+
+  .hero-sub a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Events list section */
+  .events-list-section {
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+    padding-block: clamp(3rem, 6vw, 6rem);
+  }
+
+  .events-block {
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* Individual event row */
+  .event-row {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 2.5rem;
+    align-items: center;
+    padding: 2.25rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: var(--transition);
+  }
+
+  .event-row:not(.is-past):hover .event-title {
+    color: var(--accent);
+  }
+
+  /* Date column */
+  .event-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .e-month {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .e-day {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--fg);
+  }
+
+  /* Body column */
+  .event-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .event-type {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg-3);
+  }
+
+  .event-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.5vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    transition: color var(--transition);
+  }
+
+  .event-venue {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    margin-top: 0.125rem;
+  }
+
+  /* Past events */
+  .past-divider {
+    padding: 2rem 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: 1rem;
+  }
+
+  .past-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .past-divider span {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--fg-3);
+    white-space: nowrap;
+  }
+
+  .is-past {
+    opacity: 0.35;
+  }
+
+  .is-past .e-month { color: var(--fg-3); }
+  .is-past .e-day { color: var(--fg-2); }
+
+  /* Bottom CTA */
+  .events-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .events-cta p {
+    font-size: var(--text-base);
+    color: var(--fg-2);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .event-row {
+      grid-template-columns: 60px 1fr;
+      gap: 1.5rem;
+    }
+
+    .event-row .btn {
+      grid-column: 2;
+    }
+
+    .e-day { font-size: clamp(2rem, 8vw, 3rem); }
+
+    .events-cta { flex-direction: column; align-items: flex-start; }
+  }
+</style>

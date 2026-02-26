@@ -1,0 +1,256 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Supporters"
+  description="The people, institutions, and organizations who believe in what Ryzo Studios is building — and help make it possible."
+>
+
+  <section class="supporters-hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <span class="eyebrow">Our Supporters</span>
+      <h1 class="display">
+        The people<br />
+        who <span class="accent-text">believe.</span>
+      </h1>
+      <p class="hero-body">Ryzo Studios exists because of the individuals, institutions, and organizations who see what's possible when you build the right tools for kids' emotional lives.</p>
+    </div>
+  </section>
+
+  <section class="section research-section">
+    <div class="container">
+      <span class="eyebrow">Research Partners</span>
+      <h2 class="subheadline">The science<br />behind the story.</h2>
+      <div class="partner-grid">
+        <div class="partner-block featured">
+          <div class="partner-name-large">Stanford University</div>
+          <p class="partner-detail">Research partnership in social-emotional learning, growth mindset, and educational psychology. Our curriculum design and content validation draws on Stanford's decades of work in child development and learning science.</p>
+        </div>
+        <div class="partner-block featured">
+          <div class="partner-name-large">UCSF</div>
+          <p class="partner-detail">Clinical partnership with UCSF researchers specializing in child and adolescent mental health, trauma-informed care, and developmental neuroscience. Every piece of Ryzo content is reviewed against current clinical evidence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section creation-section">
+    <div class="container">
+      <span class="eyebrow">Creative Foundations</span>
+      <h2 class="subheadline">Built by people<br />who've done it before.</h2>
+      <div class="creation-inner">
+        <div class="creation-text">
+          <p class="body-lg">Ryzo Studios was founded by veterans of Pixar Animation Studios — the team responsible for some of cinema's most emotionally resonant storytelling. The founders bring decades of experience creating stories that change how people feel about themselves and each other.</p>
+          <p class="body-lg">That same skill — the ability to make a human being <em>feel</em> something true — is now being applied to the most important audience in the world: kids who are learning how to be people.</p>
+        </div>
+        <div class="creation-badge">
+          <div class="badge-card">
+            <span class="badge-icon">🎬</span>
+            <span class="badge-text">Former Pixar Animation Studios Leaders</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section individual-section">
+    <div class="container">
+      <span class="eyebrow">Individual Supporters</span>
+      <h2 class="subheadline">The ones<br />who showed up first.</h2>
+      <p class="body-lg supporters-intro">
+        Ryzo Studios has been made possible in part by the generosity of individuals who saw the vision before the work existed.
+        We're grateful to each of them.
+      </p>
+      <div class="supporter-names">
+        {[
+          'The Brennan Family', 'Dr. Alicia Chen', 'Marcus T. Williams',
+          'The Oakland Education Fund', 'Priya Sharma', 'Robert & Diana Koch',
+          'Anonymous (x4)', 'The Next Gen Foundation',
+        ].map(name => (
+          <span class="supporter-name">{name}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm become-section">
+    <div class="container">
+      <div class="become-inner">
+        <div>
+          <span class="eyebrow">Become a Supporter</span>
+          <h2 class="subheadline">Your name<br />on this page.</h2>
+          <p class="body-lg">If you believe that kids deserve better tools for their emotional lives — and that those tools should be beautiful, rigorous, and genuinely fun — we'd love to talk.</p>
+        </div>
+        <div class="become-cta">
+          <a href="/connect" class="btn btn-primary btn-lg">Connect With Us</a>
+          <p class="become-note">All support inquiries are handled personally by the founding team.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .supporters-hero {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-block: 7rem 5rem;
+    position: relative;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 40% 30%, rgba(124, 92, 191, 0.12) 0%, transparent 50%),
+      linear-gradient(to right, #080316, #1c0832);
+  }
+
+  /* Shared background for all sections */
+  .section,
+  .section-sm {
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+  .hero-content .eyebrow { margin-bottom: 1.25rem; }
+  .display { font-size: clamp(3.5rem, 9vw, 8rem); margin-bottom: 1.5rem; }
+  .accent-text { color: var(--accent); }
+  .hero-body { font-size: var(--text-lg); color: var(--fg-2); line-height: 1.6; max-width: 520px; }
+
+  /* Research */
+  .research-section .eyebrow { margin-bottom: 1rem; }
+  .research-section .subheadline { margin-bottom: 3rem; }
+
+  .partner-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .partner-block {
+    padding: 3rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .partner-block.featured {
+    border-color: rgba(255, 61, 0, 0.2);
+    border-top: 2px solid var(--accent);
+  }
+
+  .partner-name-large {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: var(--fg);
+    line-height: 1;
+  }
+
+  .partner-detail { font-size: var(--text-sm); color: var(--fg-2); line-height: 1.7; }
+
+  /* Creation */
+  .creation-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .creation-section .eyebrow { margin-bottom: 1rem; }
+  .creation-section .subheadline { margin-bottom: 3rem; }
+
+  .creation-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .creation-text { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .badge-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 2.5rem;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    text-align: center;
+  }
+
+  .badge-icon { font-size: 3rem; }
+
+  .badge-text {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  /* Individuals */
+  .supporters-intro { max-width: 600px; margin-bottom: 3rem; }
+
+  .supporter-names {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .supporter-name {
+    padding: 0.625rem 1.25rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    transition: var(--transition);
+  }
+
+  .supporter-name:hover {
+    border-color: var(--border-hover);
+    color: var(--fg);
+  }
+
+  /* Become */
+  .become-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .become-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .become-inner > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .become-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .become-note { font-size: var(--text-xs); color: var(--fg-3); max-width: 260px; line-height: 1.5; }
+
+  @media (max-width: 768px) {
+    .partner-grid, .creation-inner, .become-inner { grid-template-columns: 1fr; gap: 3rem; }
+  }
+</style>

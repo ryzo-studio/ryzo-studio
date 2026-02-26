@@ -1,0 +1,646 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { fetchSanity, queries } from '../lib/sanity';
+
+const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
+---
+
+<Layout
+  title="Ryzo Studios"
+  description="Ryzo Studios creates films, games, and live experiences about the questions that shape who young people become — built at the intersection of world-class storytelling and world-class research."
+>
+
+  <!-- Studio Hero -->
+  <section class="studio-hero">
+    <div class="hero-bg">
+      <img
+        src="/images/RTB_OriginStoryToy.jpg"
+        alt=""
+        class="hero-img"
+        aria-hidden="true"
+      />
+    </div>
+    <div class="container hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow">Ryzo Studios</span>
+        <span class="hero-divider">—</span>
+        <span class="eyebrow-sub">Impact Franchise Studio</span>
+      </div>
+      <h1 class="hero-headline display">
+        Stories that<br />
+        move you<br />
+        <em class="accent-text">and move you<br />to act.</em>
+      </h1>
+      <p class="hero-body">
+        A studio at the intersection of world-class storytelling and
+        world-class research — creating films, games, and live experiences
+        about the questions young people are already living.
+        We will tell many kinds of stories. All of them matter.
+      </p>
+      <div class="hero-cred">
+        <span>Former Pixar leaders</span>
+        <span class="sep">·</span>
+        <span>Research-backed storytelling</span>
+        <span class="sep">·</span>
+        <span>Built for the next generation</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Purpose -->
+  <section class="section purpose-section">
+    <div class="container">
+      <div class="purpose-inner">
+        <span class="eyebrow">Our Approach</span>
+        <h2 class="purpose-headline">
+          Meet young people<br />where they live.
+        </h2>
+        <p class="body-lg">
+          Our audiences don't wait for a film to come to them.
+          They're in Roblox at midnight. They're watching YouTube in the
+          back of a car. They're scrolling before school. They live in a
+          fractured, high-speed world facing the biggest questions of their
+          generation — and that's exactly where we show up, with fiercely
+          entertaining stories that spark internal shifts and external activation.
+        </p>
+        <div class="purpose-platforms">
+          {['Gaming', 'Animated Film', 'Digital Stories', 'Live Experiences'].map(p => (
+            <span class="platform-chip">{p}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three Principles -->
+  <section class="section how-section">
+    <div class="container">
+      <span class="eyebrow">How We Work</span>
+      <h2 class="subheadline">Three principles.<br />Every project.</h2>
+
+      <div class="principles">
+
+        <div class="principle">
+          <div class="principle-num">01</div>
+          <div class="principle-body">
+            <h3 class="principle-title">We create franchises, not films.</h3>
+            <p>
+              We see the story through the same prism our audiences see
+              their world. Roblox. YouTube. Netflix. YA novels. Merch.
+              All of it is part of how they connect with, explore, and
+              take action around a story and its core themes.
+            </p>
+            <p>
+              "Release The Beast" isn't a film with a game attached.
+              Rage Fighters isn't a game inspired by a film. They are
+              two entry points into the same living world — designed to
+              be experienced together, in any order, on any platform.
+            </p>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="principle-num">02</div>
+          <div class="principle-body">
+            <h3 class="principle-title">We prize genuine entertainment.</h3>
+            <p>
+              We make things that young people connect to and want to
+              play and watch — using all the tools of great storytelling.
+              Character. Stakes. Emotion. Surprise. Beauty.
+            </p>
+            <p>
+              Impact that doesn't entertain first isn't impact.
+              It's homework. And kids can tell the difference.
+              We don't make homework.
+            </p>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="principle-num">03</div>
+          <div class="principle-body">
+            <h3 class="principle-title">We drive impact.</h3>
+            <p>
+              Our stories are designed to give the audience a way to
+              transform themes into action in their lives. Not passive
+              consumption — personal agency. Not awareness — activation.
+            </p>
+            <p>
+              Every Ryzo franchise is built with a clear answer to the
+              question: after experiencing this, what can a young person
+              do differently? That answer shapes everything —
+              the story, the game mechanics, the live events,
+              the take-home resources.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- One World, Every Platform -->
+  <section class="section franchise-section">
+    <div class="container">
+      <div class="franchise-inner">
+        <div class="franchise-text">
+          <span class="eyebrow">The Model</span>
+          <h2 class="subheadline">One world.<br />Every platform.</h2>
+          <p class="body-lg">
+            The Ryzo Franchise Model starts with a theme that matters —
+            something young people are actually living through — and
+            builds it out across every medium where they spend their time.
+          </p>
+          <p class="body-lg">
+            The film makes them feel it. The game lets them practice it.
+            The live events let them talk about it. The guides help the
+            adults in their lives support it. And the merch lets them
+            carry it with them.
+          </p>
+          <p class="body-lg">
+            This isn't marketing. It's architecture.
+          </p>
+        </div>
+        <div class="franchise-platforms">
+          {[
+            { medium: 'Animated Film', role: 'Feel it' },
+            { medium: 'Roblox Game', role: 'Practice it' },
+            { medium: 'Live Activations', role: 'Talk about it' },
+            { medium: 'Educator Guides', role: 'Support it' },
+            { medium: 'YA Novels', role: 'Go deeper' },
+            { medium: 'Merchandise', role: 'Carry it' },
+          ].map(({ medium, role }) => (
+            <div class="franchise-item">
+              <span class="franchise-medium">{medium}</span>
+              <span class="franchise-role">{role}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research -->
+  <section class="section research-section">
+    <div class="container">
+      <div class="research-inner">
+        <span class="eyebrow">The Research</span>
+        <h2 class="subheadline">Rigorous research.<br />Real outcomes.</h2>
+        <p class="body-lg">
+          Every Ryzo franchise is developed in active partnership with
+          world-class researchers. Not as a validation exercise — as a
+          creative constraint. The research shapes the story, the game
+          mechanics, and the activation model.
+        </p>
+        <p class="body-lg">
+          We want to move kids emotionally. That's how stories work —
+          and it's the only way we get real impact. But we also want
+          to move them measurably. Those two things aren't in tension.
+          They're the whole point.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upcoming Events (from Sanity, shown only if there are events) -->
+  {events.length > 0 && (
+    <section class="section events-section">
+      <div class="container">
+        <div class="events-header">
+          <div>
+            <span class="eyebrow">Upcoming</span>
+            <h2 class="subheadline">Ryzo in the world.</h2>
+          </div>
+          <a href="/events" class="btn btn-outline">All Events →</a>
+        </div>
+        <div class="events-list">
+          {events.slice(0, 3).map((event: any) => (
+            <div class="event-row">
+              <div class="event-date">
+                <span class="event-month">{new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}</span>
+                <span class="event-day">{new Date(event.date).getDate()}</span>
+              </div>
+              <div class="event-info">
+                <h3 class="event-title">{event.title}</h3>
+                <span class="event-location">{event.location}</span>
+              </div>
+              {event.registrationLink && (
+                <a href={event.registrationLink} class="btn btn-outline" target="_blank" rel="noopener">Register</a>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Studio CTA -->
+  <section class="section studio-cta">
+    <div class="container">
+      <div class="cta-inner">
+        <h2 class="subheadline">
+          Work with us.<br />
+          Support us.<br />
+          Bring us to your community.
+        </h2>
+        <div class="cta-links">
+          <a href="/connect" class="btn btn-primary btn-lg">Get in Touch</a>
+          <a href="/activations" class="btn btn-outline btn-lg">School Activations</a>
+          <a href="/supporters" class="btn btn-outline btn-lg">Our Supporters</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+
+<style>
+  /* ─── Hero ─────────────────────────────────────────────────────────────────── */
+  .studio-hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-block: 8rem 5rem;
+    position: relative;
+    overflow: hidden;
+    --hero-accent: #f5c842;
+    --hero-accent-dim: rgba(245, 200, 66, 0.15);
+    --hero-purple: #2d1a5e;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .hero-img {
+      object-position: 78% 30%;
+    }
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        to right,
+        rgba(5, 2, 18, 0.92) 0%,
+        rgba(5, 2, 18, 0.75) 40%,
+        rgba(5, 2, 18, 0.2) 65%,
+        rgba(5, 2, 18, 0.0) 100%
+      ),
+      linear-gradient(
+        to top,
+        #080316 0%,
+        rgba(8, 3, 22, 0.7) 20%,
+        transparent 45%
+      );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 2rem;
+  }
+
+  .studio-hero .eyebrow {
+    color: var(--hero-accent);
+  }
+
+  .hero-divider {
+    color: rgba(245, 200, 66, 0.3);
+    font-size: var(--text-xs);
+  }
+
+  .eyebrow-sub {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245, 200, 66, 0.5);
+  }
+
+  .hero-headline {
+    font-size: clamp(3.5rem, 10vw, 9rem);
+    margin-bottom: 2rem;
+    line-height: 0.95;
+    color: #f5f0ff;
+    max-width: 14ch;
+  }
+
+  .accent-text {
+    color: var(--hero-accent);
+    font-style: normal;
+  }
+
+  .hero-body {
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    color: rgba(210, 200, 240, 0.75);
+    line-height: 1.7;
+    max-width: 500px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-cred {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    color: rgba(210, 200, 240, 0.4);
+    flex-wrap: wrap;
+  }
+
+  .sep { color: rgba(245, 200, 66, 0.3); }
+
+  /* ─── Shared gradient ───────────────────────────────────────────────────────── */
+  .purpose-section,
+  .how-section,
+  .franchise-section,
+  .research-section,
+  .events-section,
+  .studio-cta {
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+  }
+
+  /* ─── Purpose ──────────────────────────────────────────────────────────────── */
+  .purpose-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .purpose-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 800px;
+  }
+
+  .purpose-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+  }
+
+  .purpose-platforms {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding-top: 0.5rem;
+  }
+
+  .platform-chip {
+    padding: 0.4em 1em;
+    border: 1px solid rgba(245, 200, 66, 0.3);
+    border-radius: 100px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(245, 200, 66, 0.06);
+  }
+
+  /* ─── Three Principles ─────────────────────────────────────────────────────── */
+  .how-section .eyebrow { margin-bottom: 1rem; }
+  .how-section .subheadline { margin-bottom: 3.5rem; }
+
+  .principles {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .principle {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    padding: 3rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .principle:last-child { border-bottom: none; padding-bottom: 0; }
+  .principle:first-child { padding-top: 0; }
+
+  .principle-num {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    color: var(--accent);
+    padding-top: 0.4rem;
+  }
+
+  .principle-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .principle-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 0.25rem;
+  }
+
+  .principle-body p {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.75;
+    max-width: 640px;
+  }
+
+  /* ─── Franchise Model ──────────────────────────────────────────────────────── */
+  .franchise-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .franchise-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .franchise-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: sticky;
+    top: 7rem;
+  }
+
+  .franchise-platforms {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .franchise-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.125rem 1.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.02);
+    transition: var(--transition);
+  }
+
+  .franchise-item:last-child { border-bottom: none; }
+  .franchise-item:hover { background: rgba(245, 200, 66, 0.04); }
+
+  .franchise-medium {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .franchise-role {
+    font-size: var(--text-sm);
+    color: var(--accent);
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  /* ─── Research ─────────────────────────────────────────────────────────────── */
+  .research-section {
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .research-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 720px;
+  }
+
+  /* ─── Events ──────────────────────────────────────────────────────────────── */
+  .events-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2.5rem;
+  }
+
+  .events-header .eyebrow {
+    margin-bottom: 0.5rem;
+  }
+
+  .events-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border);
+  }
+
+  .event-row {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .event-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 44px;
+    text-align: center;
+  }
+
+  .event-month {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+
+  .event-day {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .event-info { flex: 1; }
+
+  .event-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.25rem;
+  }
+
+  .event-location {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+  }
+
+  /* ─── Studio CTA ──────────────────────────────────────────────────────────── */
+  .studio-cta {
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .cta-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .cta-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    align-items: flex-start;
+  }
+
+  /* ─── Responsive ──────────────────────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .franchise-inner {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+    .franchise-text {
+      position: static;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .principle {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .cta-inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>

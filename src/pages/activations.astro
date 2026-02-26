@@ -1,0 +1,435 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { fetchSanity, queries } from '../lib/sanity';
+
+const guides = await fetchSanity<any[]>(queries.guides) ?? [];
+---
+
+<Layout
+  title="Activations"
+  description="Ryzo Activations give educators and community organizers everything they need — guides, frameworks, and resources — to bring the story to their community."
+>
+
+  <!-- Hero -->
+  <section class="activations-hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <span class="eyebrow">Community Activations</span>
+      <h1 class="display">
+        You bring<br />
+        <span class="accent-text">the room.</span><br />
+        We bring the tools.
+      </h1>
+      <p class="hero-body">
+        Activations are the resources, guides, and frameworks that help
+        educators and community organizers create their own experience —
+        connecting people through story and sparking real conversation
+        about the themes that matter most to kids.
+      </p>
+      <a href="#guides" class="btn btn-primary btn-lg">Browse the Guides</a>
+    </div>
+  </section>
+
+  <!-- What Is an Activation -->
+  <section class="section what-section">
+    <div class="container">
+      <div class="what-inner">
+        <div class="what-text">
+          <span class="eyebrow">What Is an Activation</span>
+          <h2 class="subheadline">Story that does something.</h2>
+          <p class="body-lg">
+            An activation is any structured experience where a community
+            gathers around the Ryzo story — to watch it, discuss it, play
+            with it, or explore what it means for their own lives.
+          </p>
+          <p class="body-lg">
+            You don't need Ryzo in the room. You need the right tools
+            and a group of people willing to go there together.
+          </p>
+        </div>
+        <div class="what-formats">
+          <div class="format-item">
+            <span class="format-icon">🎓</span>
+            <div>
+              <h3 class="format-name">Classroom Activity</h3>
+              <p class="format-desc">Discussion questions, skill-mapping, and reflection activities connecting the film or game to SEL curriculum for middle and high school.</p>
+            </div>
+          </div>
+          <div class="format-item">
+            <span class="format-icon">🏠</span>
+            <div>
+              <h3 class="format-name">Afterschool Program</h3>
+              <p class="format-desc">90-minute structured experience built around one emotional theme — for afterschool clubs, youth groups, and community programs.</p>
+            </div>
+          </div>
+          <div class="format-item">
+            <span class="format-icon">📖</span>
+            <div>
+              <h3 class="format-name">Discussion Guide</h3>
+              <p class="format-desc">Conversation starters, lore explainers, and real-world connection activities for parents, educators, or group leaders.</p>
+            </div>
+          </div>
+          <div class="format-item">
+            <span class="format-icon">🎉</span>
+            <div>
+              <h3 class="format-name">Community Event</h3>
+              <p class="format-desc">A hosted gathering — family night, library event, school assembly — built around a screening, live game play, or open discussion.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guides -->
+  <section class="section guides-section" id="guides">
+    <div class="container">
+      <div class="guides-header">
+        <div>
+          <span class="eyebrow">Engagement Guides</span>
+          <h2 class="subheadline">Download. Teach. Talk.</h2>
+        </div>
+        <p class="guides-desc">
+          Deep-dive resources for educators and parents — covering the story world,
+          emotional skills, and how to open the conversations with kids.
+        </p>
+      </div>
+
+      <div class="guides-list">
+        {guides.length > 0 ? guides.map((guide: any) => (
+          <div class="guide-row">
+            <div class="guide-info">
+              <div class="guide-tags">
+                <span class="tag">{guide.audience === 'teachers' ? 'Educators' : guide.audience === 'parents' ? 'Parents' : 'All'}</span>
+                {guide.gradeLevel && <span class="tag">Grades {guide.gradeLevel}</span>}
+              </div>
+              <h3 class="guide-name">{guide.title}</h3>
+              {guide.description && <p class="guide-desc">{guide.description}</p>}
+            </div>
+            <div class="guide-actions">
+              {guide.pdfUrl && (
+                <a href={guide.pdfUrl} class="btn btn-primary" target="_blank" rel="noopener" download>Download PDF</a>
+              )}
+              <a href={`/guides/${guide.slug?.current}`} class="btn btn-outline">Read Online</a>
+            </div>
+          </div>
+        )) : (
+          <>
+            <div class="guide-row">
+              <div class="guide-info">
+                <div class="guide-tags">
+                  <span class="tag">Educators</span>
+                  <span class="tag">Grades 6–12</span>
+                </div>
+                <h3 class="guide-name">The Un-Tilted Framework</h3>
+                <p class="guide-desc">High-impact lesson plans designed for middle and high school settings. These resources bridge the gap between digital play and academic growth, featuring:</p>
+                <ul class="guide-features">
+                  <li><strong>SEL Skill Mapping:</strong> Alignment with CASEL standards (Self-Management, Self-Awareness).</li>
+                  <li><strong>The Analog MOD Activity:</strong> A physical body-mapping exercise for non-digital classrooms.</li>
+                  <li><strong>Systems Thinking:</strong> Lessons on "Internal Operating Systems" to help students deconstruct their reactions.</li>
+                </ul>
+              </div>
+              <div class="guide-actions">
+                <button class="btn btn-primary" disabled>Coming Soon</button>
+              </div>
+            </div>
+            <div class="guide-row">
+              <div class="guide-info">
+                <div class="guide-tags">
+                  <span class="tag">Youth Programs</span>
+                  <span class="tag">All Ages</span>
+                </div>
+                <h3 class="guide-name">UnTilted: A Ryzo Afterschool Activation</h3>
+                <p class="guide-desc">A turnkey, structured experience for youth groups and clubs. Built around a screening of Release the Beast, this program uses peer-to-peer discussion and live game-play to normalize the conversation around mental health and regulation.</p>
+              </div>
+              <div class="guide-actions">
+                <a href="/afterschool-hub" class="btn btn-primary">Open the Hub →</a>
+              </div>
+            </div>
+            <div class="guide-row">
+              <div class="guide-info">
+                <div class="guide-tags">
+                  <span class="tag">Parents</span>
+                  <span class="tag">All Ages</span>
+                </div>
+                <h3 class="guide-name">The Co-Op Companion Guide</h3>
+                <p class="guide-desc">Bridging the generational gap. This guide provides parents with a "translation key" for their child's digital world, offering:</p>
+                <ul class="guide-features">
+                  <li><strong>Vocabulary Sync:</strong> Understanding terms like "Tilt" and "Flashpoints" to improve home communication.</li>
+                  <li><strong>Discussion Starters:</strong> Intentional questions to ask after gameplay to reinforce real-world skills.</li>
+                  <li><strong>The Family Intel Report:</strong> A shared log to track and celebrate emotional progress.</li>
+                </ul>
+              </div>
+              <div class="guide-actions">
+                <button class="btn btn-primary" disabled>Coming Soon</button>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm cta-section">
+    <div class="container">
+      <div class="cta-row">
+        <div>
+          <h2 class="subheadline">Want Ryzo in the room?</h2>
+          <p class="body-lg">If you want our team facilitating live, see our events or send an inquiry.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="/events" class="btn btn-primary btn-lg">See Events</a>
+          <a href="/connect" class="btn btn-outline btn-lg">Talk to Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* Hero */
+  .activations-hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-block: 8rem 5rem;
+    position: relative;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/Ragefighters_Combo_rectangular.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 50%, rgba(124, 92, 191, 0.3) 0%, transparent 50%),
+      linear-gradient(to right, rgba(8, 3, 22, 0.85), rgba(28, 8, 50, 0.75));
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+  .hero-content .eyebrow { margin-bottom: 1.5rem; }
+  .display { font-size: clamp(3rem, 7vw, 7rem); margin-bottom: 1.5rem; line-height: 1.0; }
+  .accent-text { color: var(--accent); }
+
+  .hero-body {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: var(--fg-2);
+    line-height: 1.7;
+    max-width: 540px;
+    margin-bottom: 2rem;
+  }
+
+  /* Shared section bg */
+  .guides-section,
+  .cta-section {
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+  }
+
+  .what-section {
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    background-image: url('/images/activation_community_event.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+  }
+
+  .what-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(8, 3, 22, 0.72) 0%, rgba(28, 8, 50, 0.62) 100%);
+    pointer-events: none;
+  }
+
+  .what-section .container { position: relative; z-index: 1; }
+
+  .guides-section { border-top: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .cta-section    { border-top: 1px solid rgba(255,255,255,0.07); }
+
+  /* What section */
+  .what-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .what-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: sticky;
+    top: 7rem;
+  }
+
+  .what-text .eyebrow { margin-bottom: 0; }
+
+  .what-formats {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .format-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .format-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .format-item:first-child { padding-top: 0; }
+
+  .format-icon { font-size: 1.25rem; flex-shrink: 0; padding-top: 0.15rem; }
+
+  .format-name {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+  }
+
+  .format-desc { font-size: var(--text-sm); color: var(--fg-2); line-height: 1.65; }
+
+  /* Guides section */
+  .guides-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin-bottom: 3rem;
+  }
+
+  .guides-header .eyebrow { margin-bottom: 0.75rem; }
+
+  .guides-desc {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.7;
+    align-self: end;
+  }
+
+  /* Guide rows — compact list */
+  .guides-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .guide-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .guide-row:last-child { border-bottom: none; }
+
+  .guide-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    flex: 1;
+  }
+
+  .guide-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.125rem;
+  }
+
+  .guide-name {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .guide-desc {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.6;
+    max-width: 560px;
+  }
+
+  .guide-features {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .guide-features li {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.55;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .guide-features li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    opacity: 0.6;
+  }
+
+  .guide-features strong {
+    color: var(--fg);
+    font-weight: 600;
+  }
+
+  .guide-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    align-items: center;
+  }
+
+  /* CTA */
+  .cta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-row > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 480px;
+  }
+
+  .cta-actions { display: flex; gap: 0.875rem; flex-wrap: wrap; flex-shrink: 0; }
+
+  @media (max-width: 768px) {
+    .what-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .what-text { position: static; }
+    .guides-header { grid-template-columns: 1fr; gap: 1rem; }
+    .guide-row { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+    .cta-row { flex-direction: column; align-items: flex-start; }
+  }
+</style>

@@ -1,0 +1,498 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Mission"
+  description="Ryzo is an Impact Franchise Studio. We meet young people where they live — in gaming, animated film, and digital stories — with fiercely entertaining work that sparks real change."
+>
+
+  <section class="mission-hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <span class="eyebrow">Our Mission</span>
+      <h1 class="display">
+        Impact<br />
+        <span class="accent-text">Franchise</span><br />
+        Studio.
+      </h1>
+      <p class="hero-sub">
+        We don't just tell stories. We build digital doorways that turn
+        passive entertainment into personal agency.
+      </p>
+    </div>
+  </section>
+
+  <!-- Who We Are -->
+  <section class="section who-section">
+    <div class="container">
+      <div class="two-col">
+        <div class="col-header">
+          <span class="eyebrow">Who We Are</span>
+          <h2 class="subheadline">A new kind<br />of studio.</h2>
+        </div>
+        <div class="col-body">
+          <p class="body-lg">
+            Ryzo Studios is an Impact Franchise Studio. That means we
+            aren't making content to fill a slot — we're building worlds
+            designed to move young people from the inside out.
+          </p>
+          <p class="body-lg">
+            We operate at the intersection of world-class entertainment
+            and genuine purpose. Not one or the other. Both — at full
+            intensity.
+          </p>
+          <p class="body-lg">
+            Our founders come from Pixar Animation Studios. Our science
+            partners are at Stanford and UCSF. Our audience is the next
+            generation of people who will inherit a complicated world —
+            and we believe they deserve stories that take them seriously.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Purpose -->
+  <section class="section purpose-section">
+    <div class="container">
+      <div class="purpose-inner">
+        <span class="eyebrow">Our Purpose</span>
+        <h2 class="purpose-headline">
+          Meet young people<br />where they live.
+        </h2>
+        <p class="purpose-body body-lg">
+          Our audiences don't wait for a film to come to them.
+          They're in Roblox at midnight. They're watching YouTube in the
+          back of a car. They're scrolling before school. They live in a
+          fractured, high-speed, deeply emotional world — and that's
+          exactly where we show up, with fiercely entertaining stories
+          that spark internal shifts and external activation.
+        </p>
+        <div class="purpose-platforms">
+          {['Gaming', 'Animated Film', 'Digital Stories', 'Live Experiences'].map(p => (
+            <span class="platform-chip">{p}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Do This — 3 Principles -->
+  <section class="section how-section">
+    <div class="container">
+      <span class="eyebrow">How We Do This</span>
+      <h2 class="subheadline">Three principles.<br />Every project.</h2>
+
+      <div class="principles">
+
+        <div class="principle">
+          <div class="principle-num">01</div>
+          <div class="principle-body">
+            <h3 class="principle-title">We create franchises, not films.</h3>
+            <p>
+              We see the story through the same prism our audiences see
+              their world. Roblox. YouTube. Netflix. YA novels. Merch.
+              All of it is part of how they connect with, explore, and
+              take action around a story and its core themes.
+            </p>
+            <p>
+              "Release The Beast" isn't a film with a game attached.
+              Rage Fighters isn't a game inspired by a film. They are
+              two entry points into the same living world — designed to
+              be experienced together, in any order, on any platform.
+            </p>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="principle-num">02</div>
+          <div class="principle-body">
+            <h3 class="principle-title">We prize genuine entertainment.</h3>
+            <p>
+              We make things that young people connect to and want to
+              play and watch — using all the tools of great storytelling.
+              Character. Stakes. Emotion. Surprise. Beauty.
+            </p>
+            <p>
+              Impact that doesn't entertain first isn't impact.
+              It's homework. And kids can tell the difference.
+              We don't make homework.
+            </p>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="principle-num">03</div>
+          <div class="principle-body">
+            <h3 class="principle-title">We drive impact.</h3>
+            <p>
+              Our stories are designed to give the audience a way to
+              transform themes into action in their lives. Not passive
+              consumption — personal agency. Not awareness — activation.
+            </p>
+            <p>
+              Every Ryzo franchise is built with a clear answer to the
+              question: after experiencing this, what can a young person
+              do differently? That answer shapes everything —
+              the story, the game mechanics, the live events,
+              the take-home resources.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- The Franchise Model -->
+  <section class="section franchise-section">
+    <div class="container">
+      <div class="franchise-inner">
+        <div class="franchise-text">
+          <span class="eyebrow">The Model</span>
+          <h2 class="subheadline">One world.<br />Every platform.</h2>
+          <p class="body-lg">
+            The Ryzo Franchise Model starts with a theme that matters —
+            something young people are actually living through — and
+            builds it out across every medium where they spend their time.
+          </p>
+          <p class="body-lg">
+            The film makes them feel it. The game lets them practice it.
+            The live events let them talk about it. The guides help the
+            adults in their lives support it. And the merch lets them
+            carry it with them.
+          </p>
+          <p class="body-lg">
+            This isn't marketing. It's architecture.
+          </p>
+        </div>
+        <div class="franchise-platforms">
+          {[
+            { medium: 'Animated Film', role: 'Feel it' },
+            { medium: 'Roblox Game', role: 'Practice it' },
+            { medium: 'Live Activations', role: 'Talk about it' },
+            { medium: 'Educator Guides', role: 'Support it' },
+            { medium: 'YA Novels', role: 'Go deeper' },
+            { medium: 'Merchandise', role: 'Carry it' },
+          ].map(({ medium, role }) => (
+            <div class="franchise-item">
+              <span class="franchise-medium">{medium}</span>
+              <span class="franchise-role">{role}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research -->
+  <section class="section research-section">
+    <div class="container">
+      <div class="research-inner">
+        <span class="eyebrow">The Science</span>
+        <h2 class="subheadline">Rigorous research.<br />Real outcomes.</h2>
+        <p class="body-lg">
+          Every Ryzo franchise is developed in active partnership with
+          researchers at Stanford University and UCSF. Not as a
+          validation exercise — as a creative constraint. The science
+          shapes the story, the game mechanics, and the activation model.
+        </p>
+        <p class="body-lg">
+          Because we don't want to move kids emotionally. We want to
+          move them measurably.
+        </p>
+        <div class="research-partners">
+          <div class="rp-card">
+            <h3>Stanford University</h3>
+            <p>Social-emotional learning, growth mindset, and educational psychology research shapes our curriculum and content design.</p>
+          </div>
+          <div class="rp-card">
+            <h3>UCSF</h3>
+            <p>Child development and clinical research ensures our content is developmentally appropriate, trauma-informed, and clinically sound.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm cta-section">
+    <div class="container">
+      <div class="cta-row">
+        <h2 class="subheadline">Build with us.</h2>
+        <div class="cta-actions">
+          <a href="/connect" class="btn btn-primary btn-lg">Get in Touch</a>
+          <a href="/supporters" class="btn btn-outline btn-lg">Our Supporters</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .mission-hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-block: 8rem 5rem;
+    position: relative;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(245, 200, 66, 0.07) 0%, transparent 55%),
+      linear-gradient(to right, #080316, #1c0832);
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+  .hero-content .eyebrow { margin-bottom: 1.5rem; }
+  .display { font-size: clamp(3.5rem, 9vw, 8rem); margin-bottom: 1.5rem; }
+  .accent-text { color: var(--accent); }
+
+  .hero-sub {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 2vw, 1.375rem);
+    font-weight: 500;
+    color: var(--fg-2);
+    line-height: 1.5;
+    max-width: 560px;
+  }
+
+  /* Shared background for all sections */
+  .who-section,
+  .purpose-section,
+  .how-section,
+  .franchise-section,
+  .research-section,
+  .cta-section {
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+  }
+
+  /* Who */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .col-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: sticky;
+    top: 7rem;
+  }
+
+  .col-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  /* Purpose */
+  .purpose-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .purpose-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 800px;
+  }
+
+  .purpose-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+  }
+
+  .purpose-platforms {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding-top: 0.5rem;
+  }
+
+  .platform-chip {
+    padding: 0.4em 1em;
+    border: 1px solid rgba(245, 200, 66, 0.3);
+    border-radius: 100px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(245, 200, 66, 0.06);
+  }
+
+  /* How */
+  .how-section .eyebrow { margin-bottom: 1rem; }
+  .how-section .subheadline { margin-bottom: 3.5rem; }
+
+  .principles {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .principle {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    padding: 3rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .principle:last-child { border-bottom: none; padding-bottom: 0; }
+  .principle:first-child { padding-top: 0; }
+
+  .principle-num {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    color: var(--accent);
+    padding-top: 0.4rem;
+  }
+
+  .principle-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .principle-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 0.25rem;
+  }
+
+  .principle-body p {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.75;
+    max-width: 640px;
+  }
+
+  /* Franchise */
+  .franchise-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .franchise-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .franchise-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .franchise-platforms {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .franchise-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.125rem 1.75rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.02);
+    transition: var(--transition);
+  }
+
+  .franchise-item:last-child { border-bottom: none; }
+  .franchise-item:hover { background: rgba(245, 200, 66, 0.04); }
+
+  .franchise-medium {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .franchise-role {
+    font-size: var(--text-sm);
+    color: var(--accent);
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  /* Research */
+  .research-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .research-partners {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .rp-card {
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-lg);
+    background: rgba(255,255,255,0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .rp-card h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .rp-card p {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.7;
+  }
+
+  /* CTA */
+  .cta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  @media (max-width: 768px) {
+    .two-col, .franchise-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .col-header { position: static; }
+    .principle { grid-template-columns: 1fr; gap: 1rem; }
+    .research-partners { grid-template-columns: 1fr; }
+    .cta-row { flex-direction: column; align-items: flex-start; }
+  }
+</style>

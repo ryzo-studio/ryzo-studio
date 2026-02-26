@@ -1,0 +1,331 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="2025 Year in Review"
+  description="Ryzo Studios looks back at 2025 — the milestones, moments, and impact of a year spent building tools for kids' emotional lives."
+>
+
+  <section class="review-hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <span class="eyebrow">Annual Report</span>
+      <h1 class="display">
+        2025:<br />
+        A year of<br />
+        <span class="accent-text">power-ups.</span>
+      </h1>
+      <p class="hero-body">A look back at the milestones, moments, and impact of our biggest year yet.</p>
+    </div>
+  </section>
+
+  <!-- Impact Numbers -->
+  <section class="section impact-section">
+    <div class="container">
+      <span class="eyebrow">Impact at a Glance</span>
+      <div class="impact-grid">
+        {[
+          { num: '14', unit: 'cities', label: 'Activations held across the US' },
+          { num: '4,200+', unit: 'kids', label: 'Directly reached through events and screenings' },
+          { num: '38', unit: 'schools', label: 'Partner schools and districts' },
+          { num: '2', unit: 'research', label: 'University research partners' },
+          { num: '1', unit: 'film', label: 'Completed animated short film' },
+          { num: '∞', unit: 'potential', label: 'Kids learning to harness their emotions' },
+        ].map(({ num, unit, label }) => (
+          <div class="impact-card">
+            <span class="impact-num">{num}</span>
+            <span class="impact-unit">{unit}</span>
+            <span class="impact-label">{label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section timeline-section">
+    <div class="container">
+      <span class="eyebrow">The Year in Milestones</span>
+      <h2 class="subheadline">Month by month.</h2>
+      <div class="timeline">
+        {[
+          { month: 'Jan', title: 'Research Partnership Announced', desc: 'Formalized partnership with Stanford University SEL Lab and UCSF Child Development program.' },
+          { month: 'Mar', title: 'SXSW EDU Debut', desc: '"Release The Beast" screened to packed audiences at SXSW EDU. Standing ovation. Three new partner inquiries that week.' },
+          { month: 'Apr', title: 'Bay Area School Activation Tour', desc: 'First activation tour: 6 schools, 4 days, 800+ kids. Real feedback. Real iteration.' },
+          { month: 'Jun', title: 'Rage Fighters Beta Launch', desc: 'First public beta of Rage Fighters on Roblox. 2,000+ players in the first 48 hours.' },
+          { month: 'Aug', title: 'Engagement Guide Release', desc: 'Published first set of Teacher and Parent Engagement Guides — downloaded 1,200+ times in the first month.' },
+          { month: 'Oct', title: 'National SEL Conference', desc: 'Presented research findings and methodology at the CASEL National SEL Conference in Chicago.' },
+          { month: 'Dec', title: 'Year 2 Planning Begins', desc: '2026 activations mapped out. New content partnerships in development. More to announce soon.' },
+        ].map(({ month, title, desc }) => (
+          <div class="timeline-item">
+            <div class="timeline-month">{month}</div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">{title}</h3>
+              <p class="timeline-desc">{desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="section-sm quote-section">
+    <div class="container">
+      <blockquote class="year-quote">
+        <p>"This year we found out that kids are ready for this conversation. They've been waiting for someone to take their emotions seriously. We just had to show up."</p>
+        <cite>— Ryzo Studios, 2025</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Looking Forward -->
+  <section class="section forward-section">
+    <div class="container">
+      <div class="forward-inner">
+        <div>
+          <span class="eyebrow">Looking Ahead</span>
+          <h2 class="subheadline">2026 and beyond.</h2>
+          <p class="body-lg">More activations. More cities. New content. Deeper research. A merchandise line. And the next chapter in the Ryzo universe — already in development.</p>
+          <div class="forward-actions">
+            <a href="/connect" class="btn btn-primary btn-lg">Join Us in 2026</a>
+            <a href="/events" class="btn btn-outline btn-lg">See Upcoming Events</a>
+          </div>
+        </div>
+        <div class="forward-list">
+          {[
+            '50+ activation cities planned',
+            'Rage Fighters full game release',
+            'New film content in development',
+            'Merchandise launch',
+            'Expanded research publication',
+          ].map(item => (
+            <div class="forward-item">
+              <span class="forward-check">→</span>
+              <span>{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .review-hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-block: 7rem 5rem;
+    position: relative;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 60% 20%, rgba(245, 200, 66, 0.09) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 70%, rgba(124, 92, 191, 0.08) 0%, transparent 40%),
+      linear-gradient(to right, #080316, #1c0832);
+  }
+
+  /* Shared background for all sections */
+  .section,
+  .section-sm {
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+  .hero-content .eyebrow { margin-bottom: 1.25rem; }
+  .display { font-size: clamp(3.5rem, 9vw, 8rem); margin-bottom: 1.5rem; }
+  .accent-text { color: var(--accent); }
+  .hero-body { font-size: var(--text-lg); color: var(--fg-2); line-height: 1.6; max-width: 480px; }
+
+  /* Impact */
+  .impact-section .eyebrow { margin-bottom: 2.5rem; }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+
+  .impact-card {
+    background: var(--bg-2);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    transition: var(--transition);
+  }
+
+  .impact-card:hover { background: var(--bg-3); }
+
+  .impact-num {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .impact-unit {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg-3);
+  }
+
+  .impact-label {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.4;
+    margin-top: 0.375rem;
+  }
+
+  /* Timeline */
+  .timeline-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .timeline-section .eyebrow { margin-bottom: 1rem; }
+  .timeline-section .subheadline { margin-bottom: 3rem; }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline-item:first-child { padding-top: 0; }
+  .timeline-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .timeline-month {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    min-width: 40px;
+    padding-top: 0.25rem;
+  }
+
+  .timeline-content { flex: 1; }
+
+  .timeline-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-desc { font-size: var(--text-sm); color: var(--fg-2); line-height: 1.6; }
+
+  /* Quote */
+  .quote-section { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .year-quote {
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .year-quote p {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+    color: var(--fg);
+    margin-bottom: 1.25rem;
+  }
+
+  .year-quote cite {
+    font-style: normal;
+    font-size: var(--text-sm);
+    color: var(--accent);
+  }
+
+  /* Forward */
+  .forward-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .forward-inner > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .forward-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .forward-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 2rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .forward-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.125rem 1.75rem;
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--fg-2);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-2);
+    transition: var(--transition);
+  }
+
+  .forward-item:last-child { border-bottom: none; }
+
+  .forward-item:hover {
+    background: var(--bg-3);
+    color: var(--fg);
+  }
+
+  .forward-check {
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+
+  @media (max-width: 1024px) {
+    .impact-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .impact-grid { grid-template-columns: 1fr; }
+    .forward-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .forward-list { padding-top: 0; }
+    .timeline-item { flex-direction: column; gap: 0.5rem; }
+  }
+</style>

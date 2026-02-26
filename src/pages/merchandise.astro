@@ -1,0 +1,349 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { fetchSanity, queries } from '../lib/sanity';
+
+// Check Sanity visibility toggle
+const isVisible = await fetchSanity<boolean>(queries.isMerchVisible) ?? false;
+const products = isVisible ? (await fetchSanity<any[]>(queries.merch) ?? []) : [];
+const visibleProducts = products.filter((p: any) => p.isVisible);
+---
+
+<Layout
+  title="Merchandise"
+  description="Official Ryzo Studios merchandise — apparel, accessories, and collectibles from the world of Release The Beast and Rage Fighters."
+>
+
+  {!isVisible ? (
+    <!-- Hidden / Coming Soon State -->
+    <section class="merch-coming-soon">
+      <div class="container">
+        <div class="coming-soon-inner">
+          <span class="eyebrow">Merchandise</span>
+          <h1 class="subheadline">The shop is<br />coming soon.</h1>
+          <p class="body-lg">
+            Official Ryzo Studios gear is on its way — apparel, accessories,
+            and collectibles from the world of Release The Beast and Rage Fighters.
+          </p>
+          <p class="body-lg">
+            Get notified when we launch by signing up below, or follow us for updates.
+          </p>
+          <form class="notify-form" name="merch-notify">
+            <input type="email" name="email" placeholder="your@email.com" required />
+            <button type="submit" class="btn btn-primary">Notify me</button>
+          </form>
+          <a href="/" class="btn btn-outline">Back to Home</a>
+        </div>
+        <div class="preview-placeholder">
+          <div class="preview-item"></div>
+          <div class="preview-item"></div>
+          <div class="preview-item"></div>
+        </div>
+      </div>
+    </section>
+  ) : (
+    <!-- Live Merch Store -->
+    <>
+      <section class="merch-hero">
+        <div class="hero-bg"></div>
+        <div class="container hero-content">
+          <span class="eyebrow">Official Store</span>
+          <h1 class="display">
+            Wear the<br />
+            <span class="accent-text">power-up.</span>
+          </h1>
+          <p class="hero-body">Official Ryzo Studios gear from the worlds of Release The Beast and Rage Fighters.</p>
+        </div>
+      </section>
+
+      <section class="section merch-catalog">
+        <div class="container">
+          {visibleProducts.length > 0 ? (
+            <div class="products-grid">
+              {visibleProducts.map((product: any) => (
+                <div class="product-card card">
+                  <div class="product-image">
+                    {product.images?.[0] ? (
+                      <img src={product.images[0]} alt={product.title} />
+                    ) : (
+                      <div class="product-image-placeholder">
+                        <span>Product Image</span>
+                      </div>
+                    )}
+                    {!product.inStock && (
+                      <span class="sold-out-badge">Sold Out</span>
+                    )}
+                    {product.isFeatured && (
+                      <span class="featured-badge">Featured</span>
+                    )}
+                  </div>
+                  <div class="product-info">
+                    {product.category && (
+                      <span class="tag">{product.category}</span>
+                    )}
+                    <h3 class="product-name">{product.title}</h3>
+                    {product.description && (
+                      <p class="product-desc">{product.description}</p>
+                    )}
+                    {product.sizes && product.sizes.length > 0 && (
+                      <div class="size-options">
+                        {product.sizes.map((size: string) => (
+                          <span class="size-chip">{size.toUpperCase()}</span>
+                        ))}
+                      </div>
+                    )}
+                    <div class="product-footer">
+                      <span class="product-price">
+                        {product.price ? `$${product.price}` : 'Price TBD'}
+                      </span>
+                      {product.purchaseLink && product.inStock ? (
+                        <a href={product.purchaseLink} class="btn btn-primary" target="_blank" rel="noopener">Buy Now</a>
+                      ) : (
+                        <button class="btn btn-outline" disabled={!product.inStock}>
+                          {product.inStock ? 'Add to Cart' : 'Sold Out'}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div class="no-products">
+              <p>Products are being prepared. Check back soon.</p>
+            </div>
+          )}
+        </div>
+      </section>
+    </>
+  )}
+
+</Layout>
+
+<style>
+  /* Coming Soon */
+  .merch-coming-soon {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-block: 8rem;
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+  }
+
+  .merch-coming-soon .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .coming-soon-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .notify-form {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 420px;
+  }
+
+  .notify-form input {
+    flex: 1;
+  }
+
+  .preview-placeholder {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .preview-item {
+    aspect-ratio: 1;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .preview-item:nth-child(1) { animation-delay: 0s; }
+  .preview-item:nth-child(2) { animation-delay: 0.3s; }
+  .preview-item:nth-child(3) {
+    grid-column: span 2;
+    aspect-ratio: 2/1;
+    animation-delay: 0.6s;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  /* Hero */
+  .merch-hero {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-block: 7rem 5rem;
+    position: relative;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 20%, rgba(245, 200, 66, 0.08) 0%, transparent 50%),
+      linear-gradient(to right, #080316, #1c0832);
+  }
+
+  /* All sections use the gradient */
+  .section,
+  .section-sm {
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content .eyebrow { margin-bottom: 1.25rem; }
+  .display { font-size: clamp(3.5rem, 9vw, 8rem); margin-bottom: 1.5rem; }
+  .accent-text { color: var(--accent); }
+  .hero-body { font-size: var(--text-lg); color: var(--fg-2); }
+
+  /* Products */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-image {
+    aspect-ratio: 1;
+    overflow: hidden;
+    position: relative;
+    background: var(--bg-2);
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .product-card:hover .product-image img {
+    transform: scale(1.04);
+  }
+
+  .product-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-image-placeholder span {
+    font-size: var(--text-sm);
+    color: var(--fg-3);
+    font-style: italic;
+  }
+
+  .sold-out-badge, .featured-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 100px;
+    font-size: var(--text-xs);
+    font-weight: 600;
+  }
+
+  .sold-out-badge {
+    background: rgba(0,0,0,0.8);
+    color: var(--fg-2);
+  }
+
+  .featured-badge {
+    background: var(--accent);
+    color: white;
+  }
+
+  .product-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .product-name {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .product-desc {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.6;
+  }
+
+  .size-options {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .size-chip {
+    padding: 0.2em 0.5em;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--fg-2);
+  }
+
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .product-price {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 800;
+    color: var(--fg);
+  }
+
+  .no-products {
+    text-align: center;
+    padding: 4rem;
+    color: var(--fg-2);
+  }
+
+  @media (max-width: 768px) {
+    .merch-coming-soon .container { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: 1fr; }
+    .notify-form { flex-direction: column; }
+  }
+
+  @media (max-width: 1024px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

@@ -1,0 +1,993 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="The UN-TILTED Educator Dashboard"
+  description="Classroom resources for Grades 6–12. Evidence-based emotional regulation tools delivered through cinematic storytelling and gameplay."
+>
+
+  <!-- Hero -->
+  <section class="edu-hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <div class="hero-eyebrow-row">
+        <span class="eyebrow">For Educators</span>
+        <span class="grade-badge">Grades 6–12</span>
+      </div>
+      <h1 class="hero-title">
+        The <em>"UN-TILTED"</em><br />
+        Educator Dashboard
+      </h1>
+      <p class="hero-sub">
+        Classroom Resources for Grades 6–12
+      </p>
+      <p class="hero-body">
+        Evidence-based emotional regulation tools delivered through<br />
+        cinematic storytelling and gameplay.
+      </p>
+      <div class="hero-skills">
+        {['Pause', 'Breathe', 'Cool Down', 'Connect'].map(skill => (
+          <span class="skill-chip">{skill}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Body: Sidebar + Content -->
+  <div class="edu-body">
+    <div class="container edu-layout">
+
+      <!-- Sticky Left Nav -->
+      <aside class="edu-nav">
+        <p class="nav-heading">Resources</p>
+        <nav class="nav-links">
+          <a href="#start-here" class="nav-link">
+            <span class="nav-num">01</span>
+            <span>The Foundation</span>
+          </a>
+          <a href="#activity-pack" class="nav-link">
+            <span class="nav-num">02</span>
+            <span>Activity Pack</span>
+          </a>
+          <a href="#visual-deck" class="nav-link">
+            <span class="nav-num">03</span>
+            <span>Visual Deck</span>
+          </a>
+          <a href="#assessment" class="nav-link">
+            <span class="nav-num">04</span>
+            <span>Assessment</span>
+          </a>
+        </nav>
+
+        <div class="nav-divider"></div>
+
+        <div class="nav-standards">
+          <p class="nav-standards-label">Aligned with</p>
+          <div class="nav-chips">
+            <span class="std-chip">CASEL</span>
+            <span class="std-chip">Common Core ELA</span>
+            <span class="std-chip">State SEL Standards</span>
+            <span class="std-chip">Grades 6–12</span>
+          </div>
+        </div>
+
+        <div class="nav-divider"></div>
+
+        <a href="/connect" class="btn btn-outline">Get in Touch</a>
+      </aside>
+
+      <!-- Content -->
+      <div class="edu-content">
+
+        <!-- Section 01: Start Here -->
+        <section class="content-section" id="start-here">
+          <div class="section-header">
+            <span class="eyebrow">The Foundation</span>
+            <h2 class="subheadline">The "Start Here" Guide</h2>
+            <p class="resource-subtitle">The Master PDF</p>
+          </div>
+          <p class="body-lg">
+            This is the single document that holds the whole vision together.
+            The complete framework — narrative, science, and step-by-step
+            classroom implementation — in one place.
+          </p>
+
+          <div class="included-items">
+            <p class="included-label">What's inside:</p>
+
+            <div class="included-item">
+              <div class="included-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <div class="included-body">
+                <strong>The Hero's Journey Narrative</strong>
+                <span>The explanation of the move from Recognition to Mastery — the arc that connects the film, the game, and the classroom.</span>
+              </div>
+            </div>
+
+            <div class="included-item">
+              <div class="included-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              </div>
+              <div class="included-body">
+                <strong>SEL Skill Mapping</strong>
+                <span>A one-page chart showing exactly how Pause, Breathe, Cool Down, and Connect align with state standards and CASEL competencies.</span>
+              </div>
+            </div>
+
+            <div class="included-item">
+              <div class="included-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <div class="included-body">
+                <strong>The "Say / Do" Script</strong>
+                <span>Step-by-step instructions for running the full Art Project → Film → Game sequence in your classroom.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-cta">
+            <a href="#" class="btn btn-primary btn-lg placeholder-link" aria-disabled="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Master PDF
+            </a>
+            <span class="coming-soon-note">Available at launch</span>
+          </div>
+        </section>
+
+        <!-- Section 02: Activity Pack -->
+        <section class="content-section" id="activity-pack">
+          <div class="section-header">
+            <span class="eyebrow">Printable Assets</span>
+            <h2 class="subheadline">The Activity Pack</h2>
+          </div>
+          <p class="body-lg">
+            Download just the handouts you need for the day. Each asset is
+            designed to stand alone — use them together or in any sequence
+            that works for your classroom.
+          </p>
+
+          <div class="assets-grid">
+
+            <div class="asset-card card">
+              <div class="asset-icon-area yellow">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M3 21c0-4.4 4-8 9-8s9 3.6 9 8"/></svg>
+              </div>
+              <div class="asset-body">
+                <span class="asset-label">Expression Gallery</span>
+                <h3 class="asset-title">The "Sticky Stan" Expression Gallery</h3>
+                <p class="asset-desc">
+                  A high-res PDF of the full emotional expression faces students
+                  will reference for their art project. Stan's expressions map
+                  directly to the four core skill states.
+                </p>
+                <div class="asset-specs">
+                  <span class="tag">High-Res PDF</span>
+                  <span class="tag">Art Project</span>
+                  <span class="tag">Grades 6–12</span>
+                </div>
+                <button class="btn btn-outline placeholder-btn" disabled>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Coming Soon
+                </button>
+              </div>
+            </div>
+
+            <div class="asset-card card">
+              <div class="asset-icon-area purple">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 9H9M15 15H9"/></svg>
+              </div>
+              <div class="asset-body">
+                <span class="asset-label">Body Mapping</span>
+                <h3 class="asset-title">The "Analog MOD" Worksheet</h3>
+                <p class="asset-desc">
+                  The humanoid body-mapping template for mapping "internal code"
+                  and word-fills. Students locate where emotions live in their
+                  body and name what activates them.
+                </p>
+                <div class="asset-specs">
+                  <span class="tag">Printable PDF</span>
+                  <span class="tag">SEL Activity</span>
+                  <span class="tag">Individual & Group</span>
+                </div>
+                <button class="btn btn-outline placeholder-btn" disabled>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Coming Soon
+                </button>
+              </div>
+            </div>
+
+            <div class="asset-card card">
+              <div class="asset-icon-area green">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <div class="asset-body">
+                <span class="asset-label">Universe Lore</span>
+                <h3 class="asset-title">The "Intel Notebook" Pages</h3>
+                <p class="asset-desc">
+                  Printable versions of Aaron's lore — Mind Ninjas, Tilt Shogun,
+                  and the full UN-TILTED universe — so students can read the
+                  "intel" even without a screen.
+                </p>
+                <div class="asset-specs">
+                  <span class="tag">Printable PDF</span>
+                  <span class="tag">Lore & Narrative</span>
+                  <span class="tag">Screenless Option</span>
+                </div>
+                <button class="btn btn-outline placeholder-btn" disabled>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Coming Soon
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Section 03: Visual Deck -->
+        <section class="content-section" id="visual-deck">
+          <div class="section-header">
+            <span class="eyebrow">The Presentation</span>
+            <h2 class="subheadline">The Visual Deck</h2>
+          </div>
+          <p class="body-lg">
+            The ready-to-project slide deck for your classroom. Everything
+            you need built in — Pixar examples, the film link, the game
+            mission, and hashtag instructions.
+          </p>
+          <p class="body-lg">
+            Open it. Project it. Teach it. Available in both Google Slides
+            and PowerPoint so you can edit to fit your class.
+          </p>
+
+          <div class="deck-features">
+            {[
+              'Pixar / film examples built-in',
+              'Film screening link embedded',
+              'Game mission walkthrough slides',
+              'Hashtag + social challenge instructions',
+              'Fully editable — customize for your class',
+              'Speaker notes on every slide',
+            ].map(f => (
+              <div class="deck-feature">
+                <span class="check-icon">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span>{f}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="deck-cta-row">
+            <a href="#" class="btn btn-primary placeholder-link" aria-disabled="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open in Google Slides
+            </a>
+            <a href="#" class="btn btn-outline placeholder-link" aria-disabled="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download as PowerPoint
+            </a>
+            <span class="coming-soon-note">Available at launch</span>
+          </div>
+        </section>
+
+        <!-- Section 04: Assessment -->
+        <section class="content-section" id="assessment">
+          <div class="section-header">
+            <span class="eyebrow">Assessment &amp; Reflection</span>
+            <h2 class="subheadline">Assessment &amp;<br />Reflection Tools</h2>
+          </div>
+          <p class="body-lg">
+            Fast, focused tools that close the loop — connecting what students
+            experience in the game to what they'll apply in their lives.
+          </p>
+
+          <div class="assessment-grid">
+
+            <div class="assessment-card card">
+              <div class="assessment-card-header">
+                <div class="assessment-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                </div>
+                <div>
+                  <span class="assessment-meta">3-Minute Reflection</span>
+                  <h3 class="assessment-title">The Exit Ticket</h3>
+                </div>
+              </div>
+              <p class="assessment-desc">
+                A quick end-of-session reflection sheet where students identify
+                which "Enemy" they faced in the game and which SEL skill they'll
+                commit to using at home.
+              </p>
+              <div class="assessment-prompts">
+                <p class="prompts-label">Reflection prompts include:</p>
+                <ul class="prompts-list">
+                  <li>Which emotional "Enemy" did you face today?</li>
+                  <li>Which skill did you use to beat it?</li>
+                  <li>Where will you use this skill this week?</li>
+                </ul>
+              </div>
+              <div class="assessment-placeholder">
+                <button class="btn btn-outline placeholder-btn" disabled>Coming Soon</button>
+              </div>
+            </div>
+
+            <div class="assessment-card card">
+              <div class="assessment-card-header">
+                <div class="assessment-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <div>
+                  <span class="assessment-meta">Systems Thinking Prompts</span>
+                  <h3 class="assessment-title">The Discussion Guide</h3>
+                </div>
+              </div>
+              <p class="assessment-desc">
+                Specific discussion prompts differentiated by tier — designed to
+                surface the systems thinking concepts underneath the game
+                narrative.
+              </p>
+
+              <div class="tier-tabs">
+                <div class="tier-tab active-tier">
+                  <span class="tier-label">Middle School</span>
+                  <div class="tier-placeholder">
+                    <p class="tier-desc">Discussion prompts focused on personal emotion recognition and peer connection. <span class="tier-grade">Grades 6–8</span></p>
+                  </div>
+                </div>
+                <div class="tier-tab">
+                  <span class="tier-label">High School</span>
+                  <div class="tier-placeholder">
+                    <p class="tier-desc">Systems-level prompts exploring emotional regulation, identity, and community impact. <span class="tier-grade">Grades 9–12</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="assessment-placeholder">
+                <button class="btn btn-outline placeholder-btn" disabled>Coming Soon</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div><!-- /edu-content -->
+    </div><!-- /edu-layout -->
+  </div><!-- /edu-body -->
+
+  <!-- CTA -->
+  <section class="section-sm edu-cta">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-text">
+          <h2 class="subheadline">Bring it to your school.</h2>
+          <p class="body-lg">
+            Ready to run the full Art Project → Film → Game sequence?
+            Reach out to bring a live activation to your campus.
+          </p>
+        </div>
+        <div class="cta-actions">
+          <a href="/activations" class="btn btn-primary btn-lg">School Activations</a>
+          <a href="/connect" class="btn btn-outline btn-lg">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* ─── Hero ─────────────────────────────────────────────────────────────────── */
+  .edu-hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-block: 8rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 60%, rgba(245, 200, 66, 0.07) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 20%, rgba(124, 92, 191, 0.1) 0%, transparent 50%),
+      linear-gradient(135deg, #080316 0%, #12062a 60%, #1c0832 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .grade-badge {
+    padding: 0.25em 0.875em;
+    background: rgba(245, 200, 66, 0.1);
+    border: 1px solid rgba(245, 200, 66, 0.3);
+    border-radius: 100px;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: #f5f0ff;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    font-weight: 700;
+    color: rgba(210, 200, 240, 0.8);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.875rem;
+  }
+
+  .hero-body {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    color: var(--fg-2);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .hero-skills {
+    display: flex;
+    gap: 0.625rem;
+    flex-wrap: wrap;
+  }
+
+  .skill-chip {
+    padding: 0.35em 1em;
+    border: 1px solid rgba(245, 200, 66, 0.25);
+    border-radius: 100px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(245, 200, 66, 0.06);
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── Body Layout ────────────────────────────────────────────────────────── */
+  .edu-body {
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-block: 5rem;
+  }
+
+  .edu-layout {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 0;
+    align-items: start;
+  }
+
+  /* ─── Left Nav ───────────────────────────────────────────────────────────── */
+  .edu-nav {
+    position: sticky;
+    top: 7rem;
+    padding-right: 2.5rem;
+    border-right: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .nav-heading {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--fg-2);
+    text-decoration: none;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .nav-link:hover {
+    color: var(--fg);
+    background: rgba(255,255,255,0.04);
+  }
+
+  .nav-num {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: rgba(245, 200, 66, 0.4);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    width: 1.5rem;
+  }
+
+  .nav-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.07);
+    margin-block: 0.25rem;
+  }
+
+  .nav-standards-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 0.625rem;
+  }
+
+  .nav-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .std-chip {
+    padding: 0.3em 0.75em;
+    border: 1px solid rgba(245, 200, 66, 0.2);
+    border-radius: 100px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: rgba(245, 200, 66, 0.7);
+    background: rgba(245, 200, 66, 0.05);
+    display: inline-block;
+    width: fit-content;
+  }
+
+  /* ─── Right Content ──────────────────────────────────────────────────────── */
+  .edu-content {
+    padding-left: 3.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content-section {
+    padding-block: 3.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .content-section:first-child { padding-top: 0; }
+  .content-section:last-child  { border-bottom: none; }
+
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .section-header .eyebrow { margin-bottom: 0.25rem; }
+
+  .resource-subtitle {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--fg-3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: -0.25rem;
+  }
+
+  /* ─── Included Items ─────────────────────────────────────────────────────── */
+  .included-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-xl);
+  }
+
+  .included-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 0.25rem;
+  }
+
+  .included-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .included-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius);
+    background: rgba(245, 200, 66, 0.08);
+    border: 1px solid rgba(245, 200, 66, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    margin-top: 0.1rem;
+  }
+
+  .included-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .included-body strong {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--fg);
+    letter-spacing: -0.01em;
+  }
+
+  .included-body span {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.6;
+  }
+
+  .resource-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .coming-soon-note {
+    font-size: var(--text-xs);
+    color: var(--fg-3);
+    font-style: italic;
+  }
+
+  /* ─── Assets Grid ────────────────────────────────────────────────────────── */
+  .assets-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .asset-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .asset-icon-area {
+    padding: 2rem 1.75rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .asset-icon-area.yellow { color: var(--accent); }
+  .asset-icon-area.purple { color: var(--purple); }
+  .asset-icon-area.green  { color: #4ade80; }
+
+  .asset-body {
+    padding: 1.5rem 1.75rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    flex: 1;
+  }
+
+  .asset-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+  }
+
+  .asset-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .asset-desc {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .asset-specs {
+    display: flex;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+  }
+
+  /* ─── Deck Features ──────────────────────────────────────────────────────── */
+  .deck-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-lg);
+  }
+
+  .deck-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+  }
+
+  .check-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    background: rgba(245, 200, 66, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+  }
+
+  .deck-cta-row {
+    display: flex;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* ─── Assessment ─────────────────────────────────────────────────────────── */
+  .assessment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .assessment-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+
+  .assessment-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .assessment-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    background: rgba(245, 200, 66, 0.08);
+    border: 1px solid rgba(245, 200, 66, 0.15);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+  }
+
+  .assessment-meta {
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 0.25rem;
+  }
+
+  .assessment-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .assessment-desc {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.65;
+  }
+
+  .assessment-prompts {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .prompts-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+  }
+
+  .prompts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    list-style: disc;
+    list-style-position: inside;
+  }
+
+  .prompts-list li {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.5;
+  }
+
+  .tier-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .tier-tab {
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .tier-label {
+    display: block;
+    padding: 0.625rem 1.25rem;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--fg-3);
+    background: rgba(255,255,255,0.02);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    letter-spacing: 0.04em;
+  }
+
+  .active-tier .tier-label {
+    color: var(--accent);
+    background: rgba(245, 200, 66, 0.05);
+    border-bottom-color: rgba(245, 200, 66, 0.15);
+  }
+
+  .tier-placeholder { padding: 0.875rem 1.25rem; }
+
+  .tier-desc {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.55;
+  }
+
+  .tier-grade {
+    color: var(--fg-3);
+    font-size: var(--text-xs);
+    font-weight: 600;
+  }
+
+  .assessment-placeholder {
+    margin-top: auto;
+  }
+
+  .placeholder-btn {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .placeholder-link {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* ─── CTA ────────────────────────────────────────────────────────────────── */
+  .edu-cta {
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .cta-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .cta-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+
+  /* ─── Responsive ─────────────────────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .assets-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .edu-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .edu-nav {
+      position: static;
+      padding-right: 0;
+      padding-bottom: 2rem;
+      border-right: none;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .nav-links {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.375rem;
+    }
+
+    .nav-link { padding: 0.375rem 0.625rem; }
+
+    .nav-divider { display: none; }
+
+    .nav-chips { flex-direction: row; flex-wrap: wrap; }
+
+    .edu-content { padding-left: 0; padding-top: 2.5rem; }
+
+    .assets-grid,
+    .assessment-grid { grid-template-columns: 1fr; }
+
+    .cta-inner { grid-template-columns: 1fr; gap: 2rem; }
+
+    .deck-cta-row { flex-direction: column; }
+  }
+</style>

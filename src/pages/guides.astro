@@ -1,0 +1,526 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { fetchSanity, queries } from '../lib/sanity';
+
+const guides = await fetchSanity<any[]>(queries.guides) ?? [];
+---
+
+<Layout
+  title="Teacher & Parent Engagement Guides"
+  description="Comprehensive guides for educators and parents — exploring the lore, skills, and emotional enemies of Release The Beast and Rage Fighters."
+>
+
+  <!-- Hero -->
+  <section class="guides-hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <span class="eyebrow">For Educators &amp; Parents</span>
+      <h1 class="display">
+        The guide<br />
+        <span class="accent-text">to the</span><br />
+        journey.
+      </h1>
+      <p class="hero-body">
+        Deep-dive resources that connect the film and game to real
+        classroom and kitchen-table conversations. Lore, skills,
+        enemies — and what to do with all of it.
+      </p>
+      <a href="#guides" class="btn btn-primary btn-lg">Browse Guides</a>
+    </div>
+  </section>
+
+  <!-- What Are the Guides -->
+  <section class="section guide-intro">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-text">
+          <span class="eyebrow">About the Guides</span>
+          <h2 class="subheadline">Film meets game.<br />Story meets science.</h2>
+          <p class="body-lg">
+            Ryzo's Engagement Guides are designed to bridge the entertainment
+            experience with the real emotional learning underneath. They're
+            built for the grown-ups who show up — teachers who want to use
+            "Release The Beast" as a classroom text, and parents who want to
+            understand what their kids are working through in Rage Fighters.
+          </p>
+          <p class="body-lg">
+            Each guide covers the emotional landscape of the Ryzo universe:
+            which enemies represent which emotions, which skills defeat them,
+            and how to open those conversations with kids.
+          </p>
+        </div>
+        <div class="intro-features">
+          {[
+            { icon: '📖', label: 'Narrative lore' },
+            { icon: '⚔️', label: 'Enemy breakdown' },
+            { icon: '💡', label: 'Skill mapping' },
+            { icon: '💬', label: 'Discussion questions' },
+            { icon: '🎯', label: 'Activity guides' },
+            { icon: '📄', label: 'Downloadable PDF' },
+          ].map(({ icon, label }) => (
+            <div class="feature-chip">
+              <span>{icon}</span>
+              <span>{label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Lore Section -->
+  <section class="section lore-section">
+    <div class="container">
+      <span class="eyebrow">The Ryzo Universe</span>
+      <h2 class="subheadline">The world your<br />kid is exploring.</h2>
+      <div class="lore-grid">
+        <div class="lore-card lore-film">
+          <span class="lore-tag">Film</span>
+          <h3>Release The Beast</h3>
+          <p>A world where emotions manifest as creatures — and a young hero must learn to work with her Beast instead of fighting it. The film's lore frames every emotion as both a challenge and a power.</p>
+          <ul class="lore-details">
+            <li>The Beast = unacknowledged emotional energy</li>
+            <li>The Hero's journey = learning emotional fluency</li>
+            <li>The village = community and support systems</li>
+          </ul>
+        </div>
+        <div class="lore-card lore-game">
+          <span class="lore-tag">Game</span>
+          <h3>Rage Fighters</h3>
+          <p>Set in the same emotional universe, the game lets kids actively fight the emotional enemies. Each boss battle is a direct mapping of a real SEL challenge — and winning requires real strategies.</p>
+          <ul class="lore-details">
+            <li>Rage = misdirected energy needing redirection</li>
+            <li>Anxiety = the alarm system needing calibration</li>
+            <li>Despair = the signal that something matters deeply</li>
+            <li>Shame = the belief that needs questioning</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guides Grid -->
+  <section class="section guides-grid-section" id="guides">
+    <div class="container">
+      <div class="section-header-row">
+        <div>
+          <span class="eyebrow">Available Guides</span>
+          <h2 class="subheadline">Download. Teach. Talk.</h2>
+        </div>
+      </div>
+
+      {guides.length > 0 ? (
+        <div class="guides-grid">
+          {guides.map((guide: any) => (
+            <div class="guide-card card">
+              {guide.coverImage && (
+                <div class="guide-cover">
+                  <img src={guide.coverImage} alt={guide.title} />
+                </div>
+              )}
+              <div class="guide-body">
+                <div class="guide-meta">
+                  <span class="tag">{guide.audience === 'teachers' ? 'Educators' : guide.audience === 'parents' ? 'Parents' : 'All'}</span>
+                  {guide.gradeLevel && <span class="tag">Grades: {guide.gradeLevel}</span>}
+                </div>
+                <h3 class="guide-title">{guide.title}</h3>
+                {guide.description && <p class="guide-desc">{guide.description}</p>}
+                <div class="guide-actions">
+                  {guide.pdfUrl && (
+                    <a href={guide.pdfUrl} class="btn btn-primary" target="_blank" rel="noopener" download>
+                      Download PDF
+                    </a>
+                  )}
+                  <a href={`/guides/${guide.slug?.current}`} class="btn btn-outline">Read Online</a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="guides-placeholder">
+          <div class="guide-card card placeholder-guide">
+            <div class="guide-cover placeholder-cover"></div>
+            <div class="guide-body">
+              <div class="guide-meta">
+                <span class="tag">Educators</span>
+                <span class="tag">Grades: 3–5</span>
+              </div>
+              <h3 class="guide-title">Release The Beast: Classroom Guide</h3>
+              <p class="guide-desc">Complete discussion guide, activity pack, and SEL skill mapping for elementary educators using the film as a classroom text.</p>
+              <div class="guide-actions">
+                <button class="btn btn-primary" disabled>Coming Soon</button>
+              </div>
+            </div>
+          </div>
+          <div class="guide-card card placeholder-guide">
+            <div class="guide-cover placeholder-cover"></div>
+            <div class="guide-body">
+              <div class="guide-meta">
+                <span class="tag">Parents</span>
+                <span class="tag">All Ages</span>
+              </div>
+              <h3 class="guide-title">Rage Fighters: Parent Companion Guide</h3>
+              <p class="guide-desc">Everything parents need to understand what their child is experiencing in the game — and how to extend the learning at home.</p>
+              <div class="guide-actions">
+                <button class="btn btn-primary" disabled>Coming Soon</button>
+              </div>
+            </div>
+          </div>
+          <p class="cms-note">Connect Sanity CMS to publish real guides here.</p>
+          </div>
+      )}
+
+      <!-- After-School Hub Feature — always visible -->
+      <div class="hub-feature">
+        <div class="hub-feature-text">
+          <span class="tag tag-accent">Live Now</span>
+          <h3 class="hub-feature-title">UnTilted: A Ryzo Afterschool Activation</h3>
+          <p class="hub-feature-desc">
+            A complete facilitator hub for running the 90-minute UN-TILTED experience
+            with youth groups. Includes the master slide deck, facilitator one-sheet,
+            "Field Intel" lore sheet for kids, and a technical launchpad — including
+            direct access to the Rage Fighters Roblox server.
+          </p>
+          <div class="hub-feature-tags">
+            <span class="tag">Youth Programs</span>
+            <span class="tag">Slide Deck</span>
+            <span class="tag">Facilitator Script</span>
+            <span class="tag">Roblox Game Access</span>
+          </div>
+        </div>
+        <div class="hub-feature-action">
+          <a href="/afterschool-hub" class="btn btn-primary btn-lg">Open the Event Hub →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm request-section">
+    <div class="container">
+      <div class="request-inner">
+        <h2 class="subheadline">Need something specific?</h2>
+        <p class="body-lg">If you're a school district, library system, or community organization with specific needs, reach out. We create custom guides for partners.</p>
+        <a href="/connect" class="btn btn-primary btn-lg">Request a Custom Guide</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .guides-hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-block: 7rem 5rem;
+    position: relative;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(124, 92, 191, 0.14) 0%, transparent 50%),
+      linear-gradient(to right, #080316, #1c0832);
+  }
+
+  /* Shared background for all sections */
+  .section,
+  .section-sm {
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content .eyebrow { margin-bottom: 1.25rem; }
+
+  .display {
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .accent-text { color: var(--accent); }
+
+  .hero-body {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: var(--fg-2);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+
+  /* Intro */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .intro-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .intro-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.875rem;
+    align-content: start;
+    padding-top: 1rem;
+  }
+
+  .feature-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--fg-2);
+    transition: var(--transition);
+  }
+
+  .feature-chip:hover {
+    border-color: var(--border-hover);
+    color: var(--fg);
+  }
+
+  /* Lore */
+  .lore-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .lore-section .eyebrow { margin-bottom: 1rem; }
+  .lore-section .subheadline { margin-bottom: 3rem; }
+
+  .lore-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .lore-card {
+    padding: 2.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background: var(--bg-3);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .lore-film { border-top: 2px solid var(--accent); }
+  .lore-game { border-top: 2px solid var(--purple); }
+
+  .lore-tag {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+  }
+
+  .lore-card h3 {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .lore-card p {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.7;
+  }
+
+  .lore-details {
+    list-style: disc;
+    list-style-position: inside;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .lore-details li {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+  }
+
+  /* Guides Grid */
+  .section-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2.5rem;
+  }
+
+  .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .guide-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .guide-cover {
+    aspect-ratio: 3/2;
+    overflow: hidden;
+  }
+
+  .guide-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .guide-card:hover .guide-cover img {
+    transform: scale(1.03);
+  }
+
+  .placeholder-cover {
+    aspect-ratio: 3/2;
+    background: var(--bg-3);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .guide-body {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    flex: 1;
+  }
+
+  .guide-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .guide-title {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .guide-desc {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .guide-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  .guides-placeholder {
+    position: relative;
+  }
+
+  .guides-placeholder .guides-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 900px;
+  }
+
+  .cms-note {
+    font-size: var(--text-xs);
+    color: var(--fg-3);
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--bg-2);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    text-align: center;
+  }
+
+  /* Hub Feature */
+  .hub-feature {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+    padding: 2.5rem;
+    background: var(--bg-2);
+    border: 1px solid rgba(245, 200, 66, 0.2);
+    border-top: 2px solid var(--accent);
+    border-radius: var(--radius-xl);
+  }
+
+  .hub-feature-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    flex: 1;
+    max-width: 640px;
+  }
+
+  .hub-feature-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .hub-feature-desc {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.7;
+  }
+
+  .hub-feature-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .hub-feature-action { flex-shrink: 0; }
+
+  /* Request */
+  .request-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .request-inner {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 768px) {
+    .intro-grid, .lore-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .guides-grid { grid-template-columns: 1fr; }
+    .guides-placeholder .guides-grid { grid-template-columns: 1fr; }
+    .intro-features { grid-template-columns: 1fr; }
+  }
+</style>

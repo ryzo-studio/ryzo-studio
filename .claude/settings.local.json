@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install 2>&1)",
+      "Bash(npm view @sanity/astro versions --json 2>&1 | tail -20)",
+      "Bash(npm view @astrojs/vercel version 2>&1 && npm view astro version 2>&1)",
+      "Bash(npm view @sanity/client version && npm view sanity version22222)",
+      "Bash(npm view react version && npm view sanity@\"^4.0.0\" version 2>&1 | head -522)",
+      "Bash(sudo chown -R 501:20 \"/Users/ericahome/.npm\" 2>&1)",
+      "Bash(npm install --cache /tmp/npm-cache 2>&1)",
+      "Bash(npm run dev -- --host 2>&1)",
+      "Bash(curl -s http://localhost:4321/ | head -302)",
+      "Bash(curl -s http://localhost:4321/events 2>&1 | grep -i \"error\\\\|Error\\\\|stack\\\\|message\" | head -20)",
+      "Bash(sleep 3 && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/events)",
+      "Bash(pkill -f \"astro dev\" 2>/dev/null; sleep 1; echo \"killed\")",
+      "Bash(sleep 2 && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/)",
+      "Bash(file /Users/ericahome/ryzo-studio/public/images/RyzoLogo_Brigher_WordsOnly.png && python3 -c \"\nfrom PIL import Image\nimg = Image.open\\('/Users/ericahome/ryzo-studio/public/images/RyzoLogo_Brigher_WordsOnly.png'\\)\nprint\\('Mode:', img.mode\\)\nprint\\('Has alpha:', img.mode in \\('RGBA', 'LA'\\) or 'transparency' in img.info\\)\n\" 2>/dev/null || python3 -c \"\nimport struct, zlib\nwith open\\('/Users/ericahome/ryzo-studio/public/images/RyzoLogo_Brigher_WordsOnly.png','rb'\\) as f:\n    sig = f.read\\(8\\)\n    while True:\n        length = struct.unpack\\('>I', f.read\\(4\\)\\)[0]\n        chunk = f.read\\(4\\).decode\\('ascii'\\)\n        data = f.read\\(length\\)\n        f.read\\(4\\)\n        if chunk == 'IHDR':\n            print\\('Color type:', data[9]\\)  # 6=RGBA, 2=RGB, 4=gray+alpha\n            break\n\" 2>/dev/null)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/ 2>/dev/null)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/mission 2>/dev/null && echo \" | mission\" && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/rage-fighters 2>/dev/null && echo \" | rage-fighters\" && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/about 2>/dev/null && echo \" | about\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/events 2>/dev/null && echo \" | events\" && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/activations 2>/dev/null && echo \" | activations\")",
+      "WebFetch(domain:www.hustwit.com)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/events 2>/dev/null)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/activations 2>/dev/null)",
+      "WebFetch(domain:www.ryzo.studio)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321/about 2>/dev/null)"
+    ]
+  }
+}
