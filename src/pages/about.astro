@@ -93,8 +93,10 @@ import Layout from '../layouts/Layout.astro';
             <img src="/images/team/suzanne-slatcher.jpg" alt="Suzanne Slatcher" loading="lazy" />
             <div class="photo-fallback" aria-hidden="true">SS</div>
           </div>
-          <h3 class="person-name">Suzanne Slatcher</h3>
-          <span class="person-title">Chief Technical Explorer</span>
+          <div class="person-info">
+            <h3 class="person-name">Suzanne Slatcher</h3>
+            <span class="person-title">Chief Technical Explorer</span>
+          </div>
         </div>
 
         <div class="person-card">
@@ -102,8 +104,10 @@ import Layout from '../layouts/Layout.astro';
             <img src="/images/team/tehya-kopp.jpg" alt="Tehya Kopp" loading="lazy" />
             <div class="photo-fallback" aria-hidden="true">TK</div>
           </div>
-          <h3 class="person-name">Tehya Kopp</h3>
-          <span class="person-title">Chief Impact Officer</span>
+          <div class="person-info">
+            <h3 class="person-name">Tehya Kopp</h3>
+            <span class="person-title">Chief Impact Officer</span>
+          </div>
         </div>
 
         <div class="person-card">
@@ -111,8 +115,10 @@ import Layout from '../layouts/Layout.astro';
             <img src="/images/team/ty-goodwin.jpg" alt="Ty Goodwin" loading="lazy" />
             <div class="photo-fallback" aria-hidden="true">TG</div>
           </div>
-          <h3 class="person-name">Ty Goodwin</h3>
-          <span class="person-title">Creative Director</span>
+          <div class="person-info">
+            <h3 class="person-name">Ty Goodwin</h3>
+            <span class="person-title">Creative Director</span>
+          </div>
         </div>
 
       </div>
@@ -328,8 +334,8 @@ import Layout from '../layouts/Layout.astro';
 
   .founder-card {
     display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 2.5rem;
+    grid-template-columns: 80px 1fr;
+    gap: 1.75rem;
     align-items: start;
     padding: 2.5rem;
     border: 1px solid rgba(255,255,255,0.07);
@@ -344,7 +350,9 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .founder-photo {
-    aspect-ratio: 3/4;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
   }
 
   .founder-photo .photo-fallback { font-size: 3rem; }
@@ -391,15 +399,25 @@ import Layout from '../layouts/Layout.astro';
 
   .person-card {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    gap: 1.75rem;
+    align-items: flex-start;
   }
 
   .person-photo {
-    aspect-ratio: 1;
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
   }
 
-  .person-photo .photo-fallback { font-size: 2rem; }
+  .person-photo .photo-fallback { font-size: 1.25rem; }
+
+  .person-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
 
   .person-name {
     font-family: var(--font-display);
@@ -415,7 +433,6 @@ import Layout from '../layouts/Layout.astro';
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--accent);
-    margin-top: -0.375rem;
   }
 
   /* ── Advisors ── */
@@ -521,14 +538,11 @@ import Layout from '../layouts/Layout.astro';
 
   /* Responsive */
   @media (max-width: 1024px) {
-    .founder-card { grid-template-columns: 160px 1fr; gap: 2rem; }
     .team-list { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 768px) {
     .founders-grid { grid-template-columns: 1fr; }
-    .founder-card { grid-template-columns: 1fr; }
-    .founder-photo { aspect-ratio: 16/9; }
     .leadership-grid { grid-template-columns: 1fr 1fr; }
     .advisors-grid { grid-template-columns: 1fr; }
     .team-list { grid-template-columns: 1fr 1fr; }
