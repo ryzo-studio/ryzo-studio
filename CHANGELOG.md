@@ -7,6 +7,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.2] — 2026-02-28
+
+### feat: Supporters page — full content overhaul
+- Replaced all placeholder content with real copy across every section
+- Added **Get Involved** section: "Ryzo is ready to scale with impact investment." with mailto CTA button pre-addressed to `Erica@ryzo.studio` and `Todd@ryzo.studio` with subject "Impact Investor Here"
+- Added **Our Approach** section with real body copy
+- Added **Gratitude** section with three blocks: Equimindo & the Caring Masculinity Fund (lead partners), AutoDesk · Unreal · Perforce (technical partners), Community Supporters (crowdfunding/Kickstarter)
+- Updated bottom CTA copy
+
+### feat: Supporters added to main nav
+- Added `{ label: 'Supporters', href: '/supporters' }` to `navItems` array between About and Connect
+- Removed old hardcoded mobile-only Supporters and duplicate Activations entries
+
+### fix: Mobile nav — page content bleeding through overlay
+- Moved `.mobile-nav` outside `<header>` to escape `backdrop-filter` stacking context
+- Boosted z-index from `99` → `9999` — overlay now properly covers all page content on iPhone
+
+### feat: Film page hero — countdown and Join button moved to right
+- Split `.film-hero-content` into a two-column grid
+- Left: eyebrow, title, logline, tagline
+- Right: "Premiering on YouTube" label, date, countdown timer, "Join the Live Watch Party →" button
+- Mobile: stacks back to single column
+
+### fix: About page — founder card mobile layout
+- Restructured `founder-info` into `founder-header` (name + title) and `founder-bios` (bio paragraphs) using CSS grid placement
+- Desktop: photo spans both rows, name/title top-right, bio bottom-right (unchanged visually)
+- Mobile: photo + name/title side by side in row 1, bio spans full width in row 2
+
+### fix: Rage Fighters — mobile hero
+- Shifted `background-position` to `left center` to better show character faces on portrait screens
+- Darkened overlay on mobile (gradient to `0.92` opacity at bottom) — image was too bright
+- Hidden `.production-credit` on mobile — was overlapping the Play Now button
+
+### feat: Connect page — Discord added to social links
+- Added Discord pill button linking to `https://discord.gg/Pe4P9Ykrn8`
+- Matches existing social link pill style
+
+---
+
 ## [1.1.1] — 2026-02-27
 
 ### fix: Connect hero headline

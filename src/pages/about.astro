@@ -37,9 +37,11 @@ import Layout from '../layouts/Layout.astro';
             <img src="/images/team/erica-milsom.png" alt="Erica Milsom" loading="lazy" />
             <div class="photo-fallback" aria-hidden="true">EM</div>
           </div>
-          <div class="founder-info">
+          <div class="founder-header">
             <h3 class="founder-name">Erica Milsom</h3>
             <span class="founder-title">Co-Founder & Chief Creative Officer</span>
+          </div>
+          <div class="founder-bios">
             <p class="founder-bio">
               Writer, director, and creative executive with 20 years at Pixar
               Animation Studios, where she pioneered the studio's unscripted
@@ -62,9 +64,11 @@ import Layout from '../layouts/Layout.astro';
             <img src="/images/team/todd-shaiman.jpg" alt="Todd Shaiman" loading="lazy" />
             <div class="photo-fallback" aria-hidden="true">TS</div>
           </div>
-          <div class="founder-info">
+          <div class="founder-header">
             <h3 class="founder-name">Todd Shaiman</h3>
             <span class="founder-title">Co-Founder & President</span>
+          </div>
+          <div class="founder-bios">
             <p class="founder-bio">
               Production strategist and technologist with 10 years at Pixar,
               where he led workflow innovations on Oscar-winning films including
@@ -351,6 +355,7 @@ import Layout from '../layouts/Layout.astro';
   .founder-card {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
     align-items: start;
     border: 1px solid rgba(255,255,255,0.07);
     border-radius: var(--radius-xl);
@@ -368,16 +373,29 @@ import Layout from '../layouts/Layout.astro';
     width: 100%;
     aspect-ratio: 3 / 4;
     border-radius: 0;
+    grid-column: 1;
+    grid-row: 1 / 3;
   }
 
   .founder-photo .photo-fallback { font-size: 4rem; }
 
-  .founder-info {
+  .founder-header {
+    grid-column: 2;
+    grid-row: 1;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    padding: 2rem 2.25rem;
-    align-self: center;
+    padding: 2rem 2.25rem 1rem;
+  }
+
+  .founder-bios {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    padding: 0 2.25rem 2rem;
+    align-self: start;
   }
 
   .founder-name {
@@ -582,6 +600,31 @@ import Layout from '../layouts/Layout.astro';
     .advisors-grid { grid-template-columns: 1fr; }
     .team-list { grid-template-columns: repeat(2, 1fr); }
     .cta-row { flex-direction: column; align-items: flex-start; }
+
+    /* Founder cards: photo + name/title side by side, bio below */
+    .founder-card {
+      grid-template-columns: 130px 1fr;
+      grid-template-rows: auto auto;
+    }
+    .founder-photo {
+      grid-column: 1;
+      grid-row: 1;
+      aspect-ratio: auto;
+      height: 160px;
+    }
+    .founder-card:last-child .founder-photo img {
+      transform: scale(1.15);
+    }
+    .founder-header {
+      grid-column: 2;
+      grid-row: 1;
+      padding: 1.25rem 1.25rem 1rem;
+    }
+    .founder-bios {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      padding: 0 1.5rem 1.5rem;
+    }
   }
 
   @media (max-width: 480px) {

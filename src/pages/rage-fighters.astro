@@ -598,5 +598,24 @@ import Layout from '../layouts/Layout.astro';
     .skills-text { position: static; }
     .zones-grid { grid-template-columns: 1fr; }
     .film-cta-inner { flex-direction: column; align-items: flex-start; }
+
+    /* Hero mobile fixes */
+    .game-hero-bg {
+      background-position: left center;
+    }
+    .game-hero-bg::after {
+      background: linear-gradient(
+        to bottom,
+        rgba(8, 3, 22, 0.55) 0%,
+        rgba(8, 3, 22, 0.78) 50%,
+        rgba(8, 3, 22, 0.92) 100%
+      );
+    }
+    .production-credit {
+      display: none;
+    }
+    .hero-tagline {
+      color: rgba(255, 255, 255, 0.90);
+    }
   }
 </style>

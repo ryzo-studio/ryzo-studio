@@ -5,6 +5,7 @@ const navItems = [
   { label: 'Events', href: '/events' },
   { label: 'Activations', href: '/activations' },
   { label: 'About', href: '/about' },
+  { label: 'Supporters', href: '/supporters' },
   { label: 'Connect', href: '/connect' },
 ];
 
@@ -45,21 +46,20 @@ const { pathname } = Astro.url;
     </button>
   </div>
 
-  <!-- Mobile nav -->
-  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
-    <ul>
-      {navItems.map((item) => (
-        <li>
-          <a href={item.href} class="mobile-nav-link">
-            {item.label}
-          </a>
-        </li>
-      ))}
-      <li><a href="/supporters" class="mobile-nav-link">Supporters</a></li>
-      <li><a href="/activations" class="mobile-nav-link">Activations</a></li>
-    </ul>
-  </div>
 </header>
+
+<!-- Mobile nav — outside header to escape backdrop-filter stacking context -->
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+  <ul>
+    {navItems.map((item) => (
+      <li>
+        <a href={item.href} class="mobile-nav-link">
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
 
 <script>
   const header = document.getElementById('site-header');
@@ -218,7 +218,7 @@ const { pathname } = Astro.url;
     bottom: 0;
     background: rgba(8, 8, 8, 0.98);
     backdrop-filter: blur(20px);
-    z-index: 99;
+    z-index: 9999;
     padding: 6rem var(--gutter) 3rem;
     opacity: 0;
     transform: translateY(-12px);

@@ -19,15 +19,17 @@ import Layout from '../layouts/Layout.astro';
     </div>
     <div class="film-hero-overlay"></div>
     <div class="container film-hero-content">
-      <p class="eyebrow">Everything You Can't Contain</p>
-      <h1 class="display">
-        Release<br />
-        <span class="accent-text">The Beast</span>
-      </h1>
-      <p class="film-hero-logline">A 12-minute animated film about anger, gaming, and the voices in your head that won't shut up.</p>
-      <p class="film-hero-tagline">
-        The monster inside isn't the villain.<br />It's the power you never learned to use.
-      </p>
+      <div class="film-hero-left">
+        <p class="eyebrow">Everything You Can't Contain</p>
+        <h1 class="display">
+          Release<br />
+          <span class="accent-text">The Beast</span>
+        </h1>
+        <p class="film-hero-logline">A 12-minute animated film about anger, gaming, and the voices in your head that won't shut up.</p>
+        <p class="film-hero-tagline">
+          The monster inside isn't the villain.<br />It's the power you never learned to use.
+        </p>
+      </div>
       <div class="film-premiere">
         <p class="premiere-eyebrow">Premiering on YouTube</p>
         <p class="premiere-date">March 28, 2026</p>
@@ -311,9 +313,18 @@ import Layout from '../layouts/Layout.astro';
     position: relative;
     z-index: 1;
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: flex-end;
   }
 
-  .film-hero-content .eyebrow {
+  .film-hero-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .film-hero-left .eyebrow {
     margin-bottom: 1.25rem;
   }
 
@@ -360,7 +371,8 @@ import Layout from '../layouts/Layout.astro';
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    align-items: flex-start;
+    align-items: flex-end;
+    text-align: right;
   }
 
   .premiere-eyebrow {
@@ -684,6 +696,17 @@ import Layout from '../layouts/Layout.astro';
   .origin-and-yet {
     font-weight: 700;
     color: var(--fg-1);
+  }
+
+  @media (max-width: 768px) {
+    .film-hero-content {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .film-premiere {
+      align-items: flex-start;
+      text-align: left;
+    }
   }
 
   @media (max-width: 768px) {
