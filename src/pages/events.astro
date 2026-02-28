@@ -60,7 +60,7 @@ const past = allEvents.filter(e => e.date < today);
     <div class="container hero-content">
       <span class="eyebrow">Events</span>
       <h1 class="display">
-        Where we<br />show up.
+        Where we<br /><span class="accent-text">show up.</span>
       </h1>
       <p class="hero-sub">
         Screenings, panels, and live gatherings.<br />
@@ -131,16 +131,26 @@ const past = allEvents.filter(e => e.date < today);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-block: 8rem 4rem;
+    padding-block: 8rem 5rem;
     position: relative;
   }
 
   .hero-bg {
     position: absolute;
     inset: 0;
+    background-image: url('/images/RTB_OnScreenRoxie.png');
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
     background:
-      radial-gradient(ellipse at 70% 30%, rgba(245, 200, 66, 0.06) 0%, transparent 55%),
-      linear-gradient(to right, #080316, #1c0832);
+      linear-gradient(to right, rgba(8, 3, 22, 0.90) 0%, rgba(8, 3, 22, 0.55) 45%, rgba(8, 3, 22, 0.08) 100%),
+      linear-gradient(to top, rgba(8, 3, 22, 0.85) 0%, rgba(8, 3, 22, 0.30) 35%, transparent 65%);
   }
 
   .hero-content { position: relative; z-index: 1; }
@@ -150,6 +160,8 @@ const past = allEvents.filter(e => e.date < today);
     font-size: clamp(3.5rem, 9vw, 8rem);
     margin-bottom: 1.25rem;
   }
+
+  .accent-text { color: var(--accent); }
 
   .hero-sub {
     font-size: var(--text-base);

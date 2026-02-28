@@ -28,8 +28,31 @@ import Layout from '../layouts/Layout.astro';
       <p class="film-hero-tagline">
         The monster inside isn't the villain.<br />It's the power you never learned to use.
       </p>
-      <div class="film-actions">
-        <a href="#watch" class="btn btn-primary btn-lg">Watch the Film</a>
+      <div class="film-premiere">
+        <p class="premiere-eyebrow">Premiering on YouTube</p>
+        <p class="premiere-date">March 28, 2026</p>
+        <div class="countdown" id="countdown">
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-days">--</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-hours">--</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-minutes">--</span>
+            <span class="countdown-label">Min</span>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-seconds">--</span>
+            <span class="countdown-label">Sec</span>
+          </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCotWg6gjmIEYXoUfvK_upxQ" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Join the Live Watch Party →</a>
       </div>
     </div>
     <div class="film-hero-scroll-hint">
@@ -209,6 +232,39 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+<script>
+  // Update this to the exact premiere time when confirmed
+  const PREMIERE = new Date('2026-03-28T19:00:00-07:00'); // 7pm PT — adjust as needed
+
+  function pad(n: number) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    const diff = PREMIERE.getTime() - Date.now();
+    if (diff <= 0) {
+      const cd = document.getElementById('countdown');
+      if (cd) cd.innerHTML = '<p class="countdown-live">The film is live — watch now.</p>';
+      return;
+    }
+    const days    = Math.floor(diff / 86400000);
+    const hours   = Math.floor((diff % 86400000) / 3600000);
+    const minutes = Math.floor((diff % 3600000)  / 60000);
+    const seconds = Math.floor((diff % 60000)    / 1000);
+
+    const d = document.getElementById('cd-days');
+    const h = document.getElementById('cd-hours');
+    const m = document.getElementById('cd-minutes');
+    const s = document.getElementById('cd-seconds');
+
+    if (d) d.textContent = pad(days);
+    if (h) h.textContent = pad(hours);
+    if (m) m.textContent = pad(minutes);
+    if (s) s.textContent = pad(seconds);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+</script>
+
 </Layout>
 
 <style>
@@ -217,7 +273,7 @@ import Layout from '../layouts/Layout.astro';
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-block: 7rem 5rem;
+    padding-block: 8rem 5rem;
     position: relative;
     overflow: hidden;
   }
@@ -242,7 +298,7 @@ import Layout from '../layouts/Layout.astro';
     background:
       radial-gradient(ellipse at 60% 30%, rgba(232, 53, 42, 0.12) 0%, transparent 55%),
       radial-gradient(ellipse at 90% 70%, rgba(124, 92, 191, 0.15) 0%, transparent 45%),
-      linear-gradient(to bottom, rgba(8, 3, 22, 0.4) 0%, rgba(8, 3, 22, 0.72) 100%);
+      linear-gradient(to bottom, rgba(8, 3, 22, 0.22) 0%, rgba(8, 3, 22, 0.55) 100%);
   }
 
   /* Shared background for all sections */
@@ -286,7 +342,7 @@ import Layout from '../layouts/Layout.astro';
 
   .film-hero-logline {
     font-size: clamp(1rem, 1.5vw, 1.2rem);
-    color: var(--fg-2);
+    color: rgba(255, 255, 255, 0.92);
     margin-bottom: 0.75rem;
     max-width: 520px;
   }
@@ -295,15 +351,81 @@ import Layout from '../layouts/Layout.astro';
     font-family: var(--font-display);
     font-size: clamp(1.1rem, 2vw, 1.5rem);
     font-weight: 500;
-    color: var(--fg-2);
+    color: rgba(255, 255, 255, 0.92);
     line-height: 1.5;
     margin-bottom: 2.5rem;
   }
 
-  .film-actions {
+  .film-premiere {
     display: flex;
+    flex-direction: column;
     gap: 1rem;
-    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .premiere-eyebrow {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #E8352A;
+  }
+
+  .premiere-date {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: rgba(255,255,255,0.88);
+    margin-top: -0.25rem;
+  }
+
+  .countdown {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    min-width: 3.5rem;
+  }
+
+  .countdown-num {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 4vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+
+  .countdown-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.70);
+  }
+
+  .countdown-sep {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900;
+    color: rgba(255,255,255,0.45);
+    padding-bottom: 1rem;
+    line-height: 1;
+  }
+
+  .countdown-live {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: #E8352A;
   }
 
   .film-hero-scroll-hint {
@@ -390,7 +512,7 @@ import Layout from '../layouts/Layout.astro';
   .themes-bg-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, rgba(8,3,22,0.75) 0%, rgba(8,3,22,0.45) 50%, rgba(8,3,22,0.65) 100%);
+    background: linear-gradient(to right, rgba(8,3,22,0.55) 0%, rgba(8,3,22,0.28) 50%, rgba(8,3,22,0.45) 100%);
   }
 
   .themes-section .container {
@@ -519,7 +641,7 @@ import Layout from '../layouts/Layout.astro';
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to right, rgba(8,3,22,0.82) 0%, rgba(8,3,22,0.55) 50%, rgba(8,3,22,0.72) 100%);
+      linear-gradient(to right, rgba(8,3,22,0.45) 0%, rgba(8,3,22,0.55) 45%, rgba(8,3,22,0.82) 100%);
   }
 
   .origin-layout {
@@ -553,6 +675,10 @@ import Layout from '../layouts/Layout.astro';
     flex-direction: column;
     justify-content: center;
     gap: 1.75rem;
+  }
+
+  .origin-body-col .body-lg {
+    color: rgba(255, 255, 255, 0.90);
   }
 
   .origin-and-yet {
@@ -592,7 +718,7 @@ import Layout from '../layouts/Layout.astro';
   .screen-bg-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, rgba(8,3,22,0.85) 0%, rgba(8,3,22,0.5) 60%, rgba(8,3,22,0.3) 100%);
+    background: linear-gradient(to right, rgba(8,3,22,0.65) 0%, rgba(8,3,22,0.32) 60%, rgba(8,3,22,0.15) 100%);
   }
 
   .screen-section .container {

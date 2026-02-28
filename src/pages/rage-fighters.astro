@@ -26,9 +26,9 @@ import Layout from '../layouts/Layout.astro';
       </p>
       <div class="hero-actions">
         <a href="https://www.roblox.com/games/106511362279091/Rage-Fighters" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Play Now</a>
-        <a href="/activations#guides" class="btn btn-outline btn-lg">Get the Parent Guide</a>
       </div>
     </div>
+    <p class="production-credit">A Ryzo Studios × Equimundo production</p>
   </section>
 
   <!-- About the Game -->
@@ -207,7 +207,7 @@ import Layout from '../layouts/Layout.astro';
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-block: 7rem 5rem;
+    padding-block: 8rem 5rem;
     position: relative;
     overflow: hidden;
   }
@@ -225,7 +225,7 @@ import Layout from '../layouts/Layout.astro';
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, rgba(8, 3, 22, 0.75), rgba(28, 8, 50, 0.5));
+    background: linear-gradient(to right, rgba(8, 3, 22, 0.55), rgba(28, 8, 50, 0.30));
   }
 
   /* Shared background for all sections */
@@ -294,6 +294,18 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .production-credit {
+    position: absolute;
+    bottom: 5rem;
+    right: var(--gutter);
+    font-size: var(--text-lg);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    z-index: 1;
+  }
 
   /* About */
   .game-about {
@@ -371,7 +383,7 @@ import Layout from '../layouts/Layout.astro';
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(8, 3, 22, 0.75);
+    background: rgba(8, 3, 22, 0.55);
   }
 
   .zones-section .container {
@@ -501,7 +513,7 @@ import Layout from '../layouts/Layout.astro';
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(8, 3, 22, 0.72);
+    background: rgba(8, 3, 22, 0.52);
   }
 
   .notebook-inner {
@@ -529,11 +541,11 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .attribution-label {
-    font-size: var(--text-xs);
-    font-weight: 600;
+    font-size: var(--text-base);
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--fg-3);
+    color: var(--accent);
   }
 
   .attribution-title {

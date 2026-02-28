@@ -18,7 +18,7 @@ const guides = await fetchSanity<any[]>(queries.guides) ?? [];
       <h1 class="display">
         You bring<br />
         <span class="accent-text">the room.</span><br />
-        We bring the tools.
+        We've got the tools.
       </h1>
       <p class="hero-body">
         Activations are the resources, guides, and frameworks that help
@@ -33,10 +33,12 @@ const guides = await fetchSanity<any[]>(queries.guides) ?? [];
   <!-- What Is an Activation -->
   <section class="section what-section">
     <div class="container">
-      <div class="what-inner">
+      <div class="what-header">
+        <span class="eyebrow">What Is an Activation</span>
+        <h2 class="subheadline">Story that does<br />something.</h2>
+      </div>
+      <div class="what-body">
         <div class="what-text">
-          <span class="eyebrow">What Is an Activation</span>
-          <h2 class="subheadline">Story that does something.</h2>
           <p class="body-lg">
             An activation is any structured experience where a community
             gathers around the Ryzo story — to watch it, discuss it, play
@@ -46,6 +48,9 @@ const guides = await fetchSanity<any[]>(queries.guides) ?? [];
             You don't need Ryzo in the room. You need the right tools
             and a group of people willing to go there together.
           </p>
+        </div>
+        <div class="what-photo">
+          <img src="/images/activation_community_event.jpg" alt="Community activation event" />
         </div>
         <div class="what-formats">
           <div class="format-item">
@@ -130,7 +135,7 @@ const guides = await fetchSanity<any[]>(queries.guides) ?? [];
                 </ul>
               </div>
               <div class="guide-actions">
-                <button class="btn btn-primary" disabled>Coming Soon</button>
+                <button class="btn btn-coming-soon" disabled>Coming Soon</button>
               </div>
             </div>
             <div class="guide-row">
@@ -161,7 +166,7 @@ const guides = await fetchSanity<any[]>(queries.guides) ?? [];
                 </ul>
               </div>
               <div class="guide-actions">
-                <button class="btn btn-primary" disabled>Coming Soon</button>
+                <button class="btn btn-coming-soon" disabled>Coming Soon</button>
               </div>
             </div>
           </>
@@ -214,7 +219,7 @@ const guides = await fetchSanity<any[]>(queries.guides) ?? [];
     inset: 0;
     background:
       radial-gradient(ellipse at 30% 50%, rgba(124, 92, 191, 0.3) 0%, transparent 50%),
-      linear-gradient(to right, rgba(8, 3, 22, 0.85), rgba(28, 8, 50, 0.75));
+      linear-gradient(to right, rgba(8, 3, 22, 0.65), rgba(28, 8, 50, 0.50));
   }
 
   .hero-content { position: relative; z-index: 1; }
@@ -237,32 +242,27 @@ const guides = await fetchSanity<any[]>(queries.guides) ?? [];
   }
 
   .what-section {
-    position: relative;
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
     border-top: 1px solid rgba(255,255,255,0.07);
-    background-image: url('/images/activation_community_event.jpg');
-    background-size: cover;
-    background-position: center 30%;
-    background-repeat: no-repeat;
   }
-
-  .what-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, rgba(8, 3, 22, 0.72) 0%, rgba(28, 8, 50, 0.62) 100%);
-    pointer-events: none;
-  }
-
-  .what-section .container { position: relative; z-index: 1; }
 
   .guides-section { border-top: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.07); }
   .cta-section    { border-top: 1px solid rgba(255,255,255,0.07); }
 
   /* What section */
-  .what-inner {
+  .what-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .what-header .eyebrow { margin-bottom: 0; }
+
+  .what-body {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    grid-template-columns: 1fr 1.1fr 1fr;
+    gap: 3.5rem;
     align-items: start;
   }
 
@@ -270,11 +270,16 @@ const guides = await fetchSanity<any[]>(queries.guides) ?? [];
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-    position: sticky;
-    top: 7rem;
   }
 
-  .what-text .eyebrow { margin-bottom: 0; }
+  .what-photo img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: var(--radius-xl);
+    display: block;
+  }
 
   .what-formats {
     display: flex;
@@ -400,6 +405,14 @@ const guides = await fetchSanity<any[]>(queries.guides) ?? [];
     font-weight: 600;
   }
 
+  .btn-coming-soon {
+    background: transparent;
+    border-color: rgba(255,255,255,0.12);
+    color: var(--fg-3);
+    cursor: default;
+    opacity: 0.5;
+  }
+
   .guide-actions {
     display: flex;
     gap: 0.75rem;
@@ -425,9 +438,16 @@ const guides = await fetchSanity<any[]>(queries.guides) ?? [];
 
   .cta-actions { display: flex; gap: 0.875rem; flex-wrap: wrap; flex-shrink: 0; }
 
+  @media (max-width: 1024px) {
+    .what-body { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .what-photo { grid-column: span 2; order: -1; }
+    .what-photo img { aspect-ratio: 16 / 7; }
+  }
+
   @media (max-width: 768px) {
-    .what-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .what-text { position: static; }
+    .what-body { grid-template-columns: 1fr; gap: 2rem; }
+    .what-photo { grid-column: span 1; order: -1; }
+    .what-photo img { aspect-ratio: 16 / 9; }
     .guides-header { grid-template-columns: 1fr; gap: 1rem; }
     .guide-row { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
     .cta-row { flex-direction: column; align-items: flex-start; }
