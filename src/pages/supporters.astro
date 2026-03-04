@@ -57,6 +57,7 @@ import Layout from '../layouts/Layout.astro';
         <!-- Block 1: Lead Partners -->
         <div class="gratitude-block featured">
           <span class="gratitude-label">Lead Partners — Rage Fighters</span>
+          <img src="/images/equimundo-logo.png" alt="Equimundo" class="partner-logo" />
           <div class="partner-name-large">Equimindo &amp; the Caring Masculinity Fund</div>
           <p class="partner-detail">The most significant contribution to the Rage Fighters game came from Equimindo and the Caring Masculinity Fund. Our first franchise centers on boys' coming of age and belonging — and they were true partners in that work, helping us connect with allies around the world and bringing genuine collaborative enthusiasm to the challenge of uniting story and activation inside the places where young people already live.</p>
         </div>
@@ -197,6 +198,16 @@ import Layout from '../layouts/Layout.astro';
 
   .community-block {
     grid-column: 1 / -1;
+  }
+
+  .partner-logo {
+    height: 64px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 0.5rem 1rem;
   }
 
   .gratitude-label {
