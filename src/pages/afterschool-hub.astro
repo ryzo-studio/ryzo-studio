@@ -22,7 +22,6 @@ import Layout from '../layouts/Layout.astro';
         No advanced prep or "expert" knowledge required — Aaron's story and the integrated
         slide deck lead the way.
       </p>
-      <a href="#toolkit" class="btn btn-primary btn-lg">Go to the Toolkit</a>
     </div>
   </section>
 
@@ -255,11 +254,11 @@ import Layout from '../layouts/Layout.astro';
 <style>
   /* Hero */
   .hub-hero {
-    min-height: 85vh;
+    min-height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-block: 8rem 5rem;
+    padding-block: 10rem 3rem;
     position: relative;
   }
 
@@ -292,7 +291,7 @@ import Layout from '../layouts/Layout.astro';
     color: var(--fg-2);
     line-height: 1.7;
     max-width: 560px;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
   }
 
   /* Shared section bg */
@@ -302,6 +301,12 @@ import Layout from '../layouts/Layout.astro';
   .cta-section {
     background: linear-gradient(to right, #080316 0%, #1c0832 100%);
     border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  /* Toolkit flows directly from hero — no hard break */
+  .toolkit-section {
+    border-top: none;
+    padding-top: 2.5rem;
   }
 
   /* Toolkit */
