@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.3] — 2026-03-03
+
+### feat: Events — new UnTilted Clubhouse Network event (Mar 18)
+- Added: UnTilted — Mastering the Internal OS with Ryzo
+- Group/venue: The Clubhouse Network · The Tech Center @ Boys & Girls Clubs of San Leandro
+- Type: Workshop · March 18, 2026
+
+### feat: Events — "Invite us to your community" link opens mailto
+- Now opens `hello@ryzo.studio` with subject "EVENT REQUEST" pre-filled
+
+### fix: Activations — "Coming Soon" buttons more visible
+- Border opacity raised, text opacity raised, removed double-opacity
+- Buttons now read clearly as disabled/forthcoming without being invisible
+
+### feat: Afterschool Hub — continuous frame from hero into toolkit
+- Removed "Go to the Toolkit" gate button
+- Hero height reduced to auto (title card only)
+- Removed border-top between hero and toolkit section
+- Hero title flows directly into "Three tools. One unforgettable session."
+
+### feat: Supporters — Equimundo logo added
+- Logo added to Lead Partners block with white background pill
+- Card border opacity raised to 0.14 for clearly visible pill frames
+
+### feat: Connect — Discord added to social links
+- Discord pill linking to `https://discord.gg/Pe4P9Ykrn8`
+
+---
+
 ## [1.1.2] — 2026-02-28
 
 ### feat: Supporters page — full content overhaul
