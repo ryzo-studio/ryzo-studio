@@ -60,7 +60,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="partner-logo-wrap">
             <img src="/images/equimundo-logo.png" alt="Equimundo" width="188" height="56" style="height:56px;width:auto;display:block;object-fit:contain;" />
           </div>
-          <div class="partner-name-large">Equimindo &amp; the Caring Masculinity Fund</div>
+          <a href="https://www.equimundo.org/caring-masculinity-fund/" target="_blank" rel="noopener" class="partner-name-large partner-name-link">Equimindo &amp; the Caring Masculinity Fund</a>
           <p class="partner-detail">The most significant contribution to the Rage Fighters game came from Equimindo and the Caring Masculinity Fund. Our first franchise centers on boys' coming of age and belonging — and they were true partners in that work, helping us connect with allies around the world and bringing genuine collaborative enthusiasm to the challenge of uniting story and activation inside the places where young people already live.</p>
         </div>
 
@@ -225,6 +225,15 @@ import Layout from '../layouts/Layout.astro';
     letter-spacing: -0.03em;
     color: var(--fg);
     line-height: 1.1;
+  }
+
+  .partner-name-link {
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .partner-name-link:hover {
+    color: var(--accent);
   }
 
   .community-headline {
