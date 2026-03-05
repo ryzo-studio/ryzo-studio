@@ -33,28 +33,9 @@ import Layout from '../layouts/Layout.astro';
       <div class="film-premiere">
         <p class="premiere-eyebrow">Premiering on YouTube</p>
         <p class="premiere-date">March 28, 2026</p>
-        <div class="countdown" id="countdown">
-          <div class="countdown-unit">
-            <span class="countdown-num" id="cd-days">--</span>
-            <span class="countdown-label">Days</span>
-          </div>
-          <div class="countdown-sep">:</div>
-          <div class="countdown-unit">
-            <span class="countdown-num" id="cd-hours">--</span>
-            <span class="countdown-label">Hours</span>
-          </div>
-          <div class="countdown-sep">:</div>
-          <div class="countdown-unit">
-            <span class="countdown-num" id="cd-minutes">--</span>
-            <span class="countdown-label">Min</span>
-          </div>
-          <div class="countdown-sep">:</div>
-          <div class="countdown-unit">
-            <span class="countdown-num" id="cd-seconds">--</span>
-            <span class="countdown-label">Sec</span>
-          </div>
+        <div class="coming-soon-splash">
+          <span class="coming-soon-label">Coming Soon</span>
         </div>
-        <a href="https://www.youtube.com/channel/UCotWg6gjmIEYXoUfvK_upxQ" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Join the Live Watch Party →</a>
       </div>
     </div>
     <div class="film-hero-scroll-hint">
@@ -234,38 +215,6 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-<script>
-  // Update this to the exact premiere time when confirmed
-  const PREMIERE = new Date('2026-03-28T19:00:00-07:00'); // 7pm PT — adjust as needed
-
-  function pad(n: number) { return String(n).padStart(2, '0'); }
-
-  function tick() {
-    const diff = PREMIERE.getTime() - Date.now();
-    if (diff <= 0) {
-      const cd = document.getElementById('countdown');
-      if (cd) cd.innerHTML = '<p class="countdown-live">The film is live — watch now.</p>';
-      return;
-    }
-    const days    = Math.floor(diff / 86400000);
-    const hours   = Math.floor((diff % 86400000) / 3600000);
-    const minutes = Math.floor((diff % 3600000)  / 60000);
-    const seconds = Math.floor((diff % 60000)    / 1000);
-
-    const d = document.getElementById('cd-days');
-    const h = document.getElementById('cd-hours');
-    const m = document.getElementById('cd-minutes');
-    const s = document.getElementById('cd-seconds');
-
-    if (d) d.textContent = pad(days);
-    if (h) h.textContent = pad(hours);
-    if (m) m.textContent = pad(minutes);
-    if (s) s.textContent = pad(seconds);
-  }
-
-  tick();
-  setInterval(tick, 1000);
-</script>
 
 </Layout>
 
@@ -431,6 +380,25 @@ import Layout from '../layouts/Layout.astro';
     color: rgba(255,255,255,0.45);
     padding-bottom: 1rem;
     line-height: 1;
+  }
+
+  .coming-soon-splash {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    border: 1px solid rgba(232, 53, 42, 0.4);
+    border-radius: var(--radius-lg);
+    background: rgba(232, 53, 42, 0.08);
+  }
+
+  .coming-soon-label {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.5vw, 2rem);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #E8352A;
   }
 
   .countdown-live {
