@@ -47,7 +47,7 @@ const allEvents = [
   {
     id: 'e1',
     date: new Date('2025-01-09'),
-    title: 'Clubhouse Network',
+    title: 'UnTilted Betatest with the Colorado Clubhouse Network',
     venue: 'Edgewood, CO',
     type: 'Community Visit',
     link: null,
@@ -55,7 +55,7 @@ const allEvents = [
   {
     id: 'e2',
     date: new Date('2025-01-08'),
-    title: 'Clubhouse Network',
+    title: 'UnTilted Betatest with the Colorado Clubhouse Network',
     venue: 'Lakewood, CO',
     type: 'Community Visit',
     link: null,
@@ -231,6 +231,7 @@ const past = allEvents.filter(e => e.date < today);
     letter-spacing: 0.1em;
     color: var(--accent);
     line-height: 1;
+    opacity: 1;
   }
 
   .e-day {
@@ -302,7 +303,7 @@ const past = allEvents.filter(e => e.date < today);
     opacity: 0.35;
   }
 
-  .is-past .e-month { color: var(--fg-3); }
+  .is-past .e-month { color: rgba(255,255,255,0.50); }
   .is-past .e-day { color: var(--fg-2); }
 
   /* Bottom CTA */
