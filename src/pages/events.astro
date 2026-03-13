@@ -5,6 +5,15 @@ const today = new Date();
 
 const allEvents = [
   {
+    id: 'e8',
+    date: new Date('2026-04-15'),
+    title: 'UnTilted — Mastering the Internal OS with Ryzo',
+    venue: 'The Clubhouse Network @ TTC at MACLA',
+    venueLink: 'https://maclaarte.org/programs/ttc/',
+    type: 'Workshop',
+    link: null,
+  },
+  {
     id: 'e6',
     date: new Date('2026-03-18'),
     title: 'UnTilted — Mastering the Internal OS with Ryzo',
@@ -120,7 +129,11 @@ const past = allEvents.filter(e => e.date < today);
               <div class="event-body">
                 <span class="event-type">{event.type}</span>
                 <h2 class="event-title">{event.title}</h2>
-                <p class="event-venue">{event.venue}</p>
+                <p class="event-venue">
+                  {event.venueLink
+                    ? <a href={event.venueLink} target="_blank" rel="noopener" class="venue-link">{event.venue}</a>
+                    : event.venue}
+                </p>
               </div>
               {event.link && (
                 <a href={event.link} class="btn btn-primary" target="_blank" rel="noopener">Get Tickets</a>
@@ -144,7 +157,11 @@ const past = allEvents.filter(e => e.date < today);
               <div class="event-body">
                 <span class="event-type">{event.type}</span>
                 <h2 class="event-title">{event.title}</h2>
-                <p class="event-venue">{event.venue}</p>
+                <p class="event-venue">
+                  {event.venueLink
+                    ? <a href={event.venueLink} target="_blank" rel="noopener" class="venue-link">{event.venue}</a>
+                    : event.venue}
+                </p>
               </div>
             </div>
           ))}
@@ -361,6 +378,19 @@ const past = allEvents.filter(e => e.date < today);
     font-size: var(--text-sm);
     color: var(--fg-2);
     margin-top: 0.125rem;
+  }
+
+  .venue-link {
+    color: var(--fg-2);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(255,255,255,0.25);
+    transition: color 0.2s;
+  }
+
+  .venue-link:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
   }
 
   /* Past events */
