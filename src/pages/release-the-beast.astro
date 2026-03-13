@@ -32,10 +32,34 @@ import Layout from '../layouts/Layout.astro';
       </div>
       <div class="film-premiere">
         <p class="premiere-eyebrow">Premiering on YouTube</p>
-        <p class="premiere-date">March 28, 2026</p>
-        <div class="coming-soon-splash">
-          <span class="coming-soon-label">Coming Soon</span>
+        <p class="premiere-date">March 30, 2026</p>
+        <div class="countdown" id="countdown">
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-days">--</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <span class="countdown-sep">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-hours">--</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <span class="countdown-sep">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-mins">--</span>
+            <span class="countdown-label">Mins</span>
+          </div>
+          <span class="countdown-sep">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="cd-secs">--</span>
+            <span class="countdown-label">Secs</span>
+          </div>
         </div>
+        <a
+          href="https://youtube.com/@ryzo-studio?si=r2Rim6EYLbyv04q6"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-primary"
+        >Subscribe on YouTube →</a>
       </div>
     </div>
     <div class="film-hero-scroll-hint">
@@ -200,6 +224,36 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </section>
+
+  <script>
+    (function () {
+      const target = new Date('2026-03-30T00:00:00-07:00').getTime();
+      const days  = document.getElementById('cd-days');
+      const hours = document.getElementById('cd-hours');
+      const mins  = document.getElementById('cd-mins');
+      const secs  = document.getElementById('cd-secs');
+      if (!days) return;
+      const pad = (n: number) => String(n).padStart(2, '0');
+      function tick() {
+        const diff = target - Date.now();
+        if (diff <= 0) {
+          const el = document.getElementById('countdown');
+          if (el) el.innerHTML = '<span class="countdown-live">Streaming Now</span>';
+          return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        days.textContent  = String(d);
+        hours.textContent = pad(h);
+        mins.textContent  = pad(m);
+        secs.textContent  = pad(s);
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
 
   <!-- Companion Game CTA -->
   <section class="section-sm game-cta">
