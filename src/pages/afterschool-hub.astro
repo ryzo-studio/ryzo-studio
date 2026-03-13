@@ -34,6 +34,9 @@ import Layout from '../layouts/Layout.astro';
       <div class="toolkit-header">
         <span class="eyebrow">The Toolkit</span>
         <h2 class="subheadline">Three tools.<br />One unforgettable session.</h2>
+        <p class="toolkit-description">
+          UN-TILTED is a multi-part, integrated live experience — each element doing specific emotional work, and each one setting up the next. Kids watch <em>Release the Beast</em> to identify Aaron's emotional world, play <em>Rage Fighters</em> to act on those same skills, and draw their own emotions on sticky notes throughout — creating a personal thread that connects every part of the story.
+        </p>
         <p class="toolkit-intro">
           Direct access to the three essential elements. Each one is designed to work
           together — open them in order and you're ready to go.
@@ -333,6 +336,19 @@ import Layout from '../layouts/Layout.astro';
 
   .toolkit-header .eyebrow { margin-bottom: 1rem; }
   .toolkit-header .subheadline { margin-bottom: 1rem; }
+
+  .toolkit-description {
+    font-size: var(--text-base);
+    color: var(--fg-1);
+    line-height: 1.75;
+    max-width: 720px;
+    margin-bottom: 0.5rem;
+  }
+
+  .toolkit-description em {
+    font-style: italic;
+    color: var(--fg);
+  }
 
   .toolkit-intro {
     font-size: var(--text-sm);
