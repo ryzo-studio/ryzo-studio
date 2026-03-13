@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Rage Fighters — Impact Survey"
+  description="Share your experience with Rage Fighters and Release the Beast."
+>
+  <section class="survey-section">
+    <div class="container survey-header">
+      <span class="eyebrow">Impact Survey</span>
+      <h1 class="survey-title">Tell us what you thought.</h1>
+      <p class="survey-sub">Your answers help us understand what's working and who we're reaching.</p>
+    </div>
+    <div class="form-wrap">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSdXyKDGJDs2RP2IEuzgXHN36nBV8TdXf-eqBEPjjS52RJvkUA/viewform?embedded=true"
+        width="100%"
+        height="100%"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="Rage Fighters Impact Survey"
+      >Loading…</iframe>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .survey-section {
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .survey-header {
+    padding-block: 7rem 2rem;
+  }
+
+  .survey-header .eyebrow { margin-bottom: 0.75rem; }
+
+  .survey-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+  }
+
+  .survey-sub {
+    font-size: var(--text-base);
+    color: var(--fg-2);
+    max-width: 480px;
+  }
+
+  .form-wrap {
+    flex: 1;
+    width: 100%;
+    min-height: 1200px;
+    background: #fff;
+  }
+
+  .form-wrap iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 1200px;
+    border: none;
+  }
+</style>

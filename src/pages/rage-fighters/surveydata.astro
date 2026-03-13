@@ -1,0 +1,239 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SurveyCharts from '../../components/SurveyCharts.tsx';
+
+// ── Auth gate ────────────────────────────────────────────────────
+const cookie = Astro.request.headers.get('cookie') ?? '';
+const isAuthed = cookie.split(';').some(c => c.trim() === 'survey_auth=1');
+const hasError = Astro.url.searchParams.get('error') === '1';
+
+// ── Fetch data (only when authenticated) ─────────────────────────
+let headers: string[] = [];
+let rows: string[][] = [];
+let fetchError = '';
+
+if (isAuthed) {
+  const sheetId = import.meta.env.SURVEY_SHEET_ID;
+  if (sheetId) {
+    try {
+      const url = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&single=true&gid=0`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const csv = await res.text();
+
+      const parseCSV = (text: string): string[][] => {
+        const results: string[][] = [];
+        let row: string[] = [];
+        let cell = '';
+        let inQuotes = false;
+        for (let i = 0; i < text.length; i++) {
+          const ch = text[i];
+          if (ch === '"') {
+            if (inQuotes && text[i+1] === '"') { cell += '"'; i++; }
+            else inQuotes = !inQuotes;
+          } else if (ch === ',' && !inQuotes) {
+            row.push(cell); cell = '';
+          } else if ((ch === '\n' || ch === '\r') && !inQuotes) {
+            row.push(cell); cell = '';
+            if (row.some(c => c.trim())) results.push(row);
+            row = [];
+            if (ch === '\r' && text[i+1] === '\n') i++;
+          } else {
+            cell += ch;
+          }
+        }
+        if (cell || row.length) { row.push(cell); results.push(row); }
+        return results;
+      };
+
+      const [hdrs, ...dataRows] = parseCSV(csv);
+      headers = hdrs ?? [];
+      rows = dataRows;
+    } catch (e: any) {
+      fetchError = e.message ?? 'Unknown error';
+    }
+  } else {
+    fetchError = 'SURVEY_SHEET_ID environment variable is not set.';
+  }
+}
+---
+
+<Layout
+  title="Survey Data — Rage Fighters Impact"
+  description="Internal impact data dashboard for the Rage Fighters program."
+>
+  <section class="data-section">
+    <div class="container">
+
+      {!isAuthed ? (
+        <!-- ── Password gate ── -->
+        <div class="gate-wrap">
+          <span class="eyebrow">Internal Dashboard</span>
+          <h1 class="gate-title">Survey Data</h1>
+          <p class="gate-sub">This page is for the Ryzo team.</p>
+
+          {hasError && (
+            <p class="gate-error">Incorrect password. Try again.</p>
+          )}
+
+          <form method="POST" action="/api/survey-auth" class="gate-form">
+            <input type="hidden" name="redirect" value="/rage-fighters/surveydata" />
+            <label class="gate-label" for="password">Password</label>
+            <div class="gate-row">
+              <input
+                id="password"
+                type="password"
+                name="password"
+                class="gate-input"
+                placeholder="Enter password"
+                autocomplete="current-password"
+                required
+              />
+              <button type="submit" class="btn btn-primary">Enter →</button>
+            </div>
+          </form>
+        </div>
+      ) : (
+        <!-- ── Dashboard ── -->
+        <div class="dash-wrap">
+          <div class="dash-header">
+            <div>
+              <span class="eyebrow">Internal Dashboard</span>
+              <h1 class="dash-title">Rage Fighters — Impact Data</h1>
+            </div>
+            <a href="/rage-fighters/survey" class="btn btn-outline">View Survey →</a>
+          </div>
+
+          {fetchError ? (
+            <div class="fetch-error">
+              <strong>Could not load data:</strong> {fetchError}
+              <br />
+              <small>Make sure the Google Sheet is shared as "Anyone with the link can view" and SURVEY_SHEET_ID is set correctly.</small>
+            </div>
+          ) : (
+            <SurveyCharts rows={rows} headers={headers} client:load />
+          )}
+        </div>
+      )}
+
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .data-section {
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+    min-height: 100vh;
+    padding-block: 7rem 5rem;
+  }
+
+  /* ── Gate ── */
+  .gate-wrap {
+    max-width: 420px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .gate-wrap .eyebrow { margin-bottom: 0; }
+
+  .gate-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .gate-sub {
+    font-size: var(--text-base);
+    color: var(--fg-2);
+    margin: 0;
+  }
+
+  .gate-error {
+    font-size: var(--text-sm);
+    color: #f87171;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: var(--radius);
+    padding: 0.6rem 1rem;
+    margin: 0;
+  }
+
+  .gate-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .gate-label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--fg-2);
+  }
+
+  .gate-row {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .gate-input {
+    flex: 1;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: var(--radius);
+    padding: 0.65rem 1rem;
+    color: var(--fg);
+    font-size: var(--text-base);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .gate-input:focus {
+    border-color: var(--accent);
+  }
+
+  /* ── Dashboard ── */
+  .dash-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .dash-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .dash-header .eyebrow { margin-bottom: 0.5rem; }
+
+  .dash-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .fetch-error {
+    font-size: var(--text-sm);
+    color: #f87171;
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.25);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem 2rem;
+    line-height: 1.7;
+  }
+
+  .fetch-error small {
+    color: rgba(255,255,255,0.45);
+  }
+</style>
