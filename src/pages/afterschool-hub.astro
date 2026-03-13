@@ -9,7 +9,10 @@ import Layout from '../layouts/Layout.astro';
 
   <!-- Hero -->
   <section class="hub-hero">
-    <div class="hero-bg"></div>
+    <div class="hero-bg">
+      <img src="/images/untitled-hero.png" alt="" class="hero-bg-img" aria-hidden="true" />
+      <div class="hero-bg-overlay"></div>
+    </div>
     <div class="container hero-content">
       <span class="eyebrow">After-School Event Hub</span>
       <h1 class="display">
@@ -265,10 +268,23 @@ import Layout from '../layouts/Layout.astro';
   .hero-bg {
     position: absolute;
     inset: 0;
+    overflow: hidden;
+  }
+
+  .hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+  }
+
+  .hero-bg-overlay {
+    position: absolute;
+    inset: 0;
     background:
-      radial-gradient(ellipse at 20% 60%, rgba(245, 200, 66, 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at 75% 30%, rgba(124, 92, 191, 0.14) 0%, transparent 50%),
-      linear-gradient(to right, #080316, #1c0832);
+      linear-gradient(to right, rgba(8, 3, 22, 0.88) 0%, rgba(8, 3, 22, 0.65) 55%, rgba(8, 3, 22, 0.40) 100%),
+      linear-gradient(to top, rgba(8, 3, 22, 0.80) 0%, rgba(8, 3, 22, 0.20) 40%, transparent 70%);
   }
 
   .hero-content {
