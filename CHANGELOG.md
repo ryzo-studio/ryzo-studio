@@ -7,6 +7,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.4] — 2026-03-15
+
+### fix: Subscribe form — resolved 500 error on submission
+- Root cause: `createClient` (Sanity) at module level threw when `PUBLIC_SANITY_PROJECT_ID` was missing, crashing the entire API route
+- Added `|| 'placeholder'` fallback to Sanity client init to match the pattern in `src/lib/sanity.ts`
+- Wrapped `request.json()` in try-catch to prevent uncaught parse errors
+- Moved `new Resend()` instantiation inside try-catch
+
+### feat: Subscribe form — added Last Name field
+- Added optional Last Name input next to First Name in a two-column grid
+- Last name passed through to API, Resend Audience, and both notification + welcome emails
+- Mobile: stacks to single column below 480px
+
+### feat: Subscribe form — welcome email to new subscribers
+- Sends automated welcome email from `hello@ryzo.studio` on signup
+- Includes links to Release the Beast, Rage Fighters, Events, YouTube, and Roblox community
+- Interests line omitted from both emails when none are selected
+
+### feat: Resend domain verification — ryzo.studio
+- Verified `ryzo.studio` as a sending domain in Resend
+- Added 3 DNS records in Squarespace: DKIM TXT, SPF MX, SPF TXT
+- All outgoing emails now send from `hello@ryzo.studio` instead of `onboarding@resend.dev`
+
+### feat: Resend Audience — subscriber storage
+- Replaced broken Sanity write with Resend Contacts API
+- Every new subscriber is saved to Resend Audience (`8398772b-03c2-40cd-861a-76d76b155c23`)
+- Viewable at resend.com/audience → Contacts
+- Removed `@sanity/client` dependency from subscribe API entirely
+
+### chore: Rotated Resend API key
+- Old key (`re_U731HZwh...`) was shared in chat and has been deleted
+- New key generated and stored in Vercel environment variables only
+
+### docs: Added MAINTENANCE.md
+- Covers all services (GitHub, Vercel, Sanity, Resend, Squarespace), what each does, how they connect
+- Full environment variable reference with descriptions and where to get each one
+- Common troubleshooting scenarios
+- Notes Squarespace domain access via spockngrizz@gmail.com
+
+---
+
 ## [1.1.3] — 2026-03-03
 
 ### feat: Events — new UnTilted Clubhouse Network event (Mar 18)
