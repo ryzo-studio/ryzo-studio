@@ -47,7 +47,7 @@ export const POST: APIRoute = async ({ request }) => {
   // 2. Notify hello@ryzo.studio via Resend
   const interestList = (interests as string[])
     .map((i) => INTEREST_LABELS[i] ?? i)
-    .join(', ') || 'None selected';
+    .join(', ');
 
   try {
     const resend = new Resend(import.meta.env.RESEND_API_KEY);
@@ -61,7 +61,7 @@ export const POST: APIRoute = async ({ request }) => {
         <p><strong>Name:</strong> ${firstName} ${lastName ?? ''}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Region:</strong> ${region}</p>
-        <p><strong>Interests:</strong> ${interestList}</p>
+        ${interestList ? `<p><strong>Interests:</strong> ${interestList}</p>` : ''}
       `,
     });
 
@@ -72,7 +72,7 @@ export const POST: APIRoute = async ({ request }) => {
       subject: `You're in — welcome to the Ryzo Studios community`,
       html: `
         <p>Hey ${firstName},</p>
-        <p>You're on the list. We'll reach out with updates that actually matter to you — ${interestList}.</p>
+        <p>You're on the list. We'll reach out with updates that matter to you${interestList ? ` — ${interestList}` : ''}.</p>
         <p>In the meantime, explore what we're building:</p>
         <ul>
           <li><a href="https://www.ryzo.studio/release-the-beast">Release the Beast</a> — our animated short film</li>
