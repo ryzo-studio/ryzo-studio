@@ -237,6 +237,16 @@ import SubscribeForm from '../components/SubscribeForm';
     line-height: 1.6;
   }
 
+  :global(.form-row) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    :global(.form-row) { grid-template-columns: 1fr; }
+  }
+
   :global(.form-note) {
     font-size: var(--text-xs);
     color: var(--fg-3);

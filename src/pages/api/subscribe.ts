@@ -26,13 +26,14 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ error: 'Invalid request body' }), { status: 400 });
   }
 
-  const { firstName, email, region, interests } = body;
+  const { firstName, lastName, email, region, interests } = body;
 
   // 1. Store in Sanity
   try {
     await sanity.create({
       _type: 'subscriber',
       firstName,
+      lastName,
       email,
       region,
       interests,
@@ -50,15 +51,37 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const resend = new Resend(import.meta.env.RESEND_API_KEY);
+
+    // Notify the studio
     await resend.emails.send({
-      from: 'Ryzo Studios Website <onboarding@resend.dev>',
+      from: 'Ryzo Studios <hello@ryzo.studio>',
       to: 'hello@ryzo.studio',
-      subject: `[ryzo.studio] New subscriber — ${firstName} (${region})`,
+      subject: `New subscriber — ${firstName} ${lastName ?? ''} (${region})`,
       html: `
-        <p><strong>Name:</strong> ${firstName}</p>
+        <p><strong>Name:</strong> ${firstName} ${lastName ?? ''}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Region:</strong> ${region}</p>
         <p><strong>Interests:</strong> ${interestList}</p>
+      `,
+    });
+
+    // Welcome email to the subscriber
+    await resend.emails.send({
+      from: 'Ryzo Studios <hello@ryzo.studio>',
+      to: email,
+      subject: `You're in — welcome to the Ryzo Studios community`,
+      html: `
+        <p>Hey ${firstName},</p>
+        <p>You're on the list. We'll reach out with updates that actually matter to you — ${interestList}.</p>
+        <p>In the meantime, explore what we're building:</p>
+        <ul>
+          <li><a href="https://www.ryzo.studio/release-the-beast">Release the Beast</a> — our animated short film</li>
+          <li><a href="https://www.ryzo.studio/rage-fighters">Rage Fighters</a> — the Roblox game</li>
+          <li><a href="https://www.ryzo.studio/events">Upcoming Events</a></li>
+        </ul>
+        <p>Follow us on <a href="https://www.youtube.com/@Ryzo-Studio">YouTube</a> for behind-the-scenes and releases.</p>
+        <p>Roblox player? <a href="https://www.roblox.com/share/g/69304950">Join our community</a>.</p>
+        <p>— The Ryzo Studios team</p>
       `,
     });
   } catch (err) {

@@ -40,6 +40,7 @@ export default function SubscribeForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           firstName: get('first-name'),
+          lastName:  get('last-name'),
           email:     get('email'),
           region:    get('region'),
           interests,
@@ -70,9 +71,15 @@ export default function SubscribeForm() {
 
   return (
     <form className="contact-form" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="sf-first-name">First Name *</label>
-        <input type="text" id="sf-first-name" required placeholder="First" />
+      <div className="form-row">
+        <div className="form-group">
+          <label htmlFor="sf-first-name">First Name *</label>
+          <input type="text" id="sf-first-name" required placeholder="First" />
+        </div>
+        <div className="form-group">
+          <label htmlFor="sf-last-name">Last Name</label>
+          <input type="text" id="sf-last-name" placeholder="Last" />
+        </div>
       </div>
 
       <div className="form-group">
