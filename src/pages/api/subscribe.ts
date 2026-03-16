@@ -1,14 +1,7 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
-import { createClient } from '@sanity/client';
 
-const sanity = createClient({
-  projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID || 'placeholder',
-  dataset:   import.meta.env.PUBLIC_SANITY_DATASET || 'production',
-  apiVersion: '2024-01-01',
-  token:  import.meta.env.SANITY_WRITE_TOKEN,
-  useCdn: false,
-});
+const AUDIENCE_ID = '8398772b-03c2-40cd-861a-76d76b155c23';
 
 const INTEREST_LABELS: Record<string, string> = {
   films:     'Films & Screenings',
@@ -18,7 +11,7 @@ const INTEREST_LABELS: Record<string, string> = {
 };
 
 export const POST: APIRoute = async ({ request }) => {
-  let body: { firstName: string; email: string; region: string; interests: string[] };
+  let body: { firstName: string; lastName?: string; email: string; region: string; interests: string[] };
 
   try {
     body = await request.json();
@@ -28,20 +21,18 @@ export const POST: APIRoute = async ({ request }) => {
 
   const { firstName, lastName, email, region, interests } = body;
 
-  // 1. Store in Sanity
+  // 1. Save to Resend Audience
   try {
-    await sanity.create({
-      _type: 'subscriber',
-      firstName,
-      lastName,
+    const resend = new Resend(import.meta.env.RESEND_API_KEY);
+    await resend.contacts.create({
+      audienceId: AUDIENCE_ID,
       email,
-      region,
-      interests,
-      subscribedAt: new Date().toISOString(),
+      firstName,
+      lastName: lastName ?? '',
+      unsubscribed: false,
     });
   } catch (err) {
-    console.error('Sanity write error:', err);
-    // Don't block — still try to send notification
+    console.error('Resend audience error:', err);
   }
 
   // 2. Notify hello@ryzo.studio via Resend
@@ -53,6 +44,7 @@ export const POST: APIRoute = async ({ request }) => {
     const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
     // Notify the studio
+
     await resend.emails.send({
       from: 'Ryzo Studios <hello@ryzo.studio>',
       to: 'hello@ryzo.studio',
