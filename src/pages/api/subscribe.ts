@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 import { createClient } from '@sanity/client';
 
 const sanity = createClient({
-  projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
+  projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID || 'placeholder',
   dataset:   import.meta.env.PUBLIC_SANITY_DATASET || 'production',
   apiVersion: '2024-01-01',
   token:  import.meta.env.SANITY_WRITE_TOKEN,
@@ -18,7 +18,15 @@ const INTEREST_LABELS: Record<string, string> = {
 };
 
 export const POST: APIRoute = async ({ request }) => {
-  const { firstName, email, region, interests } = await request.json();
+  let body: { firstName: string; email: string; region: string; interests: string[] };
+
+  try {
+    body = await request.json();
+  } catch {
+    return new Response(JSON.stringify({ error: 'Invalid request body' }), { status: 400 });
+  }
+
+  const { firstName, email, region, interests } = body;
 
   // 1. Store in Sanity
   try {
