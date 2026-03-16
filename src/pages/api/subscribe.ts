@@ -36,12 +36,12 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   // 2. Notify hello@ryzo.studio via Resend
-  const resend = new Resend(import.meta.env.RESEND_API_KEY);
   const interestList = (interests as string[])
     .map((i) => INTEREST_LABELS[i] ?? i)
     .join(', ') || 'None selected';
 
   try {
+    const resend = new Resend(import.meta.env.RESEND_API_KEY);
     await resend.emails.send({
       from: 'Ryzo Studios Website <onboarding@resend.dev>',
       to: 'hello@ryzo.studio',
