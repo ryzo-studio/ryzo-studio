@@ -1,5 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const today = new Date();
+const allEvents = [
+  { date: new Date('2026-03-18'), title: 'UnTilted — Mastering the Internal OS with Ryzo', venue: 'Boys & Girls Clubs of San Leandro', type: 'Workshop' },
+  { date: new Date('2026-04-15'), title: 'UnTilted — Mastering the Internal OS with Ryzo', venue: 'The Clubhouse Network @ TTC at MACLA', type: 'Workshop', venueLink: 'https://maclaarte.org/programs/ttc/' },
+  { date: new Date('2026-04-16'), title: 'Story into Action: The Making of Rage Fighters', venue: 'The MADE · Oakland, CA', type: 'Panel & Demo' },
+  { date: new Date('2026-04-18'), title: 'UnTilted — Mastering the Internal OS with Ryzo', venue: 'The MADE · Oakland, CA', type: 'Workshop' },
+];
+const upcomingEvents = allEvents.filter(e => e.date >= today).sort((a, b) => a.date.getTime() - b.date.getTime());
 ---
 
 <Layout
@@ -55,11 +64,11 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
         <a
-          href="https://youtube.com/@ryzo-studio?si=r2Rim6EYLbyv04q6"
+          href="https://youtu.be/fGHBh76NHuI"
           target="_blank"
           rel="noopener"
           class="btn btn-primary"
-        >Subscribe on YouTube →</a>
+        >Save Your Seat →</a>
       </div>
     </div>
     <div class="film-hero-scroll-hint">
@@ -67,6 +76,36 @@ import Layout from '../layouts/Layout.astro';
       <div class="scroll-line"></div>
     </div>
   </section>
+
+  <!-- Upcoming Events Teaser -->
+  {upcomingEvents.length > 0 && (
+    <section class="events-teaser">
+      <div class="container">
+        <div class="events-teaser-header">
+          <span class="eyebrow">Upcoming Events</span>
+          <a href="/events" class="events-teaser-all">See all events →</a>
+        </div>
+        <div class="events-teaser-list">
+          {upcomingEvents.map(event => (
+            <div class="teaser-event-row">
+              <div class="teaser-date">
+                <span class="teaser-month">{event.date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span>
+                <span class="teaser-day">{event.date.getDate()}</span>
+              </div>
+              <div class="teaser-body">
+                <span class="teaser-type">{event.type}</span>
+                <p class="teaser-title">{event.title}</p>
+                <p class="teaser-venue">{event.venue}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="events-teaser-cta">
+          <a href="/events" class="btn btn-primary">See All Events &amp; Locations →</a>
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- Synopsis -->
   <section class="section" id="about">
@@ -94,17 +133,36 @@ import Layout from '../layouts/Layout.astro';
             way down, Aaron finds what's really underneath his anger — and learns to
             use it, not for destruction, but as fuel.
           </p>
-        </div>
-        <div class="synopsis-visual">
-          <div class="film-player">
-            <video
-              src="/rtb-hero.mp4"
-              controls
-              playsinline
-              preload="metadata"
-              class="film-video"
-            ></video>
+          <div class="synopsis-video-inline">
+            <div class="film-player">
+              <video
+                src="/rtb-hero.mp4"
+                controls
+                playsinline
+                preload="metadata"
+                class="film-video"
+              ></video>
+            </div>
           </div>
+        </div>
+        <div class="synopsis-room">
+          <span class="eyebrow">Built for Your Room</span>
+          <h2 class="subheadline">Tooled to<br />your audience.</h2>
+          <div class="room-cards">
+            <div class="room-card">
+              <div class="room-card-header"><span class="room-icon">🎮</span><h3 class="room-card-title">Kids Ages 10–17</h3></div>
+              <p class="room-card-body">Animation, gaming, and art in a single live experience that meets young people exactly where they are.</p>
+            </div>
+            <div class="room-card">
+              <div class="room-card-header"><span class="room-icon">⚙️</span><h3 class="room-card-title">Adults &amp; Tinkerers</h3></div>
+              <p class="room-card-body">Behind-the-scenes process talk — how story and impact get built together. Real talk for people who make things.</p>
+            </div>
+            <div class="room-card">
+              <div class="room-card-header"><span class="room-icon">🎬</span><h3 class="room-card-title">Festivals</h3></div>
+              <p class="room-card-body">A short film with big impact. Cinematic storytelling and a conversation worth having.</p>
+            </div>
+          </div>
+          <a href="/events" class="btn btn-primary">See Events &amp; Locations →</a>
         </div>
       </div>
     </div>
@@ -488,12 +546,121 @@ import Layout from '../layouts/Layout.astro';
     background: linear-gradient(to bottom, var(--fg-3), transparent);
   }
 
+  /* Events Teaser */
+  .events-teaser {
+    background: linear-gradient(to right, #0d0420 0%, #150628 100%);
+    border-top: 1px solid rgba(232, 53, 42, 0.25);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding-block: 2.5rem;
+  }
+
+  .events-teaser-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  .events-teaser-all {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--fg-2);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(255,255,255,0.2);
+    transition: color 0.2s;
+  }
+
+  .events-teaser-all:hover {
+    color: #E8352A;
+    text-decoration-color: #E8352A;
+  }
+
+  .events-teaser-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .teaser-event-row {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+  }
+
+  .teaser-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .teaser-month {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #E8352A;
+    line-height: 1;
+  }
+
+  .teaser-day {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .teaser-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+
+  .teaser-type {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg-3);
+  }
+
+  .teaser-title {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--fg);
+    margin: 0;
+  }
+
+  .teaser-venue {
+    font-size: var(--text-xs);
+    color: var(--fg-2);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .events-teaser-cta {
+    display: flex;
+    justify-content: center;
+  }
+
   /* Synopsis */
   .film-synopsis {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    align-items: start;
   }
 
   .synopsis-text {
@@ -504,6 +671,10 @@ import Layout from '../layouts/Layout.astro';
 
   .synopsis-text .eyebrow {
     margin-bottom: 0.5rem;
+  }
+
+  .synopsis-video-inline {
+    margin-top: 0.5rem;
   }
 
   .film-player {
@@ -520,6 +691,68 @@ import Layout from '../layouts/Layout.astro';
     height: 100%;
     display: block;
     object-fit: cover;
+  }
+
+  /* Synopsis right column — Built for Your Room */
+  .synopsis-room {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: sticky;
+    top: 5rem;
+  }
+
+  .synopsis-room .eyebrow {
+    margin-bottom: 0;
+  }
+
+  .synopsis-room .subheadline {
+    margin-bottom: 0;
+  }
+
+  .room-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .room-card {
+    background: var(--bg-2);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .room-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .room-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .room-card-title {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    color: var(--fg);
+    margin: 0;
+  }
+
+  .room-card-body {
+    font-size: var(--text-xs);
+    color: var(--fg-2);
+    line-height: 1.6;
+    margin: 0;
   }
 
   /* Themes */
@@ -825,6 +1058,12 @@ import Layout from '../layouts/Layout.astro';
     .film-synopsis {
       grid-template-columns: 1fr;
       gap: 3rem;
+    }
+    .synopsis-room {
+      position: static;
+    }
+    .events-teaser-list {
+      grid-template-columns: 1fr;
     }
     .game-cta-inner {
       flex-direction: column;
