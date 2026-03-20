@@ -161,7 +161,10 @@ import Layout from '../layouts/Layout.astro';
           </div>
           <div class="person-info">
             <h3 class="person-name">Suzanne Slatcher</h3>
-            <span class="person-title">Chief Technical Explorer</span>
+            <span class="person-title">Chief Technology Officer</span>
+            <p class="person-bio">An animation director and creative technologist with over 25 years of experience in feature films, television, commercials, and web content. As CTO of Ryzo Studios, she embraces next-generation production technologies as part of an evolving pipeline that allows filmmakers to focus creative energies on the artistic aspects of storytelling.</p>
+            <p class="person-bio">At Pixar Animation Studios, Suzanne specialized in traditional camera work and set modeling, creating iconic sequences and environments for <em>Finding Nemo</em>, <em>WALL-E</em>, <em>Up</em>, <em>Toy Story 3</em>, and more. After nearly a decade at Pixar, she co-founded The Good Bean, a healthy snack food company. An accomplished painter and photographer, she works across 2D, 3D, immersive media, and AI-adjacent production techniques.</p>
+            <span class="person-known">Known for: Finding Nemo · The Incredibles · WALL-E · Up · Toy Story 3</span>
           </div>
         </div>
 
@@ -173,6 +176,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="person-info">
             <h3 class="person-name">Tehya Kopp</h3>
             <span class="person-title">Chief Impact Officer</span>
+            <p class="person-bio">Brings marketing, strategy, and operations leadership from entertainment companies including 20+ years at Warner Bros., where she led large-scale transformations and managed global operations across 18 countries. Active in multiple civic organizations, she specializes in partnering with changemakers to turn vision into meaningful results.</p>
           </div>
         </div>
 
@@ -473,6 +477,23 @@ import Layout from '../layouts/Layout.astro';
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .person-bio {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.7;
+    margin-top: 0.5rem;
+  }
+
+  .person-known {
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--fg-3);
+    letter-spacing: 0.04em;
+    margin-top: 0.75rem;
   }
 
   /* ── Advisors ── */
