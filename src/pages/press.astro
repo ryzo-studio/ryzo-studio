@@ -1,0 +1,198 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const packets = [
+  {
+    title: 'Press Kit',
+    subtitle: 'Ryzo Studios',
+    desc: 'Company overview, logos, team bios, stills, and key messaging for press and promotional use.',
+    icon: '📁',
+    href: 'https://drive.google.com/drive/folders/1T4C8-G92TzJHGjXUx97_pR8M576yOnmu?usp=drive_link',
+  },
+  {
+    title: 'Press Packet',
+    subtitle: 'Release the Beast',
+    desc: 'Film stills, synopsis, director's statement, production notes, and promotional assets for Release the Beast.',
+    icon: '🎬',
+    href: 'https://drive.google.com/drive/folders/1b3qxhx5FPnuSxCJa4mdJJ0Ry5payXzbF?usp=sharing',
+  },
+  {
+    title: 'Press Packet',
+    subtitle: 'Rage Fighters',
+    desc: 'Game screenshots, descriptions, key art, and promotional materials for Rage Fighters on Roblox.',
+    icon: '🎮',
+    href: 'https://drive.google.com/drive/folders/1EYzhr07i-uTpmUAnVtFtogI1HU31FHg2?usp=drive_link',
+  },
+];
+---
+
+<Layout
+  title="Press — Ryzo Studios"
+  description="Press kits, film stills, and promotional assets for Ryzo Studios, Release the Beast, and Rage Fighters."
+>
+
+  <section class="press-hero">
+    <div class="container hero-content">
+      <span class="eyebrow">Press</span>
+      <h1 class="display">
+        Assets &amp;<br /><span class="accent-text">press materials.</span>
+      </h1>
+      <p class="hero-sub">
+        Everything you need to cover Ryzo Studios and our projects.<br />
+        For interviews and additional requests, <a href="mailto:hello@ryzo.studio?subject=PRESS%20INQUIRY">get in touch →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section press-section">
+    <div class="container">
+      <div class="packets-grid">
+        {packets.map(p => (
+          <a href={p.href} target="_blank" rel="noopener" class="packet-card">
+            <span class="packet-icon">{p.icon}</span>
+            <div class="packet-text">
+              <span class="packet-label">{p.title}</span>
+              <h2 class="packet-title">{p.subtitle}</h2>
+              <p class="packet-desc">{p.desc}</p>
+            </div>
+            <span class="packet-cta">Open folder →</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="press-note">
+        <p>All assets are for editorial and promotional use only. Please credit <strong>Ryzo Studios</strong> where applicable.</p>
+        <a href="mailto:hello@ryzo.studio?subject=PRESS%20INQUIRY" class="btn btn-outline">Press Inquiry</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .press-hero {
+    padding-block: 10rem 5rem;
+    background: linear-gradient(to bottom right, #080316 0%, #1c0832 100%);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .hero-content .eyebrow { margin-bottom: 1.5rem; }
+
+  .display {
+    font-size: clamp(3rem, 8vw, 7rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .accent-text { color: var(--accent); }
+
+  .hero-sub {
+    font-size: var(--text-base);
+    color: var(--fg-2);
+    line-height: 1.7;
+  }
+
+  .hero-sub a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .press-section {
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+  }
+
+  .packets-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .packet-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 2rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .packet-card:hover {
+    border-color: rgba(245, 200, 66, 0.4);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .packet-icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .packet-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex: 1;
+  }
+
+  .packet-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg-3);
+  }
+
+  .packet-title {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--fg);
+  }
+
+  .packet-desc {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.65;
+    margin-top: 0.25rem;
+  }
+
+  .packet-cta {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--accent);
+    margin-top: auto;
+  }
+
+  .press-note {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .press-note p {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.6;
+  }
+
+  .press-note strong {
+    color: var(--fg);
+  }
+
+  @media (max-width: 900px) {
+    .packets-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .press-note { flex-direction: column; align-items: flex-start; }
+  }
+</style>
