@@ -174,11 +174,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section {
-  padding-block: clamp(var(--s-12), 7vw, var(--s-24));
+  padding-block: clamp(var(--s-6), 3.5vw, var(--s-12));
 }
 
 .section-sm {
-  padding-block: clamp(var(--s-6), 4vw, var(--s-16));
+  padding-block: clamp(var(--s-3), 2vw, var(--s-8));
 }
 
 .grid-2 {
