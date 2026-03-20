@@ -10,7 +10,8 @@ const allEvents = [
     title: 'UnTilted — Mastering the Internal OS with Ryzo',
     venue: 'The Clubhouse Network @ TTC at MACLA',
     venueLink: 'https://maclaarte.org/programs/ttc/',
-    type: 'Workshop',
+    type: 'Live Event',
+    audience: 'For Young People',
     link: null,
   },
   {
@@ -18,7 +19,8 @@ const allEvents = [
     date: new Date('2026-03-18'),
     title: 'UnTilted — Mastering the Internal OS with Ryzo',
     venue: 'The Clubhouse Network · The Tech Center @ Boys & Girls Clubs of San Leandro',
-    type: 'Workshop',
+    type: 'Live Event',
+    audience: 'For Young People',
     link: null,
   },
   {
@@ -26,16 +28,20 @@ const allEvents = [
     date: new Date('2026-04-16'),
     title: 'Story into Action: The Making of Rage Fighters',
     venue: 'The MADE · Oakland, CA',
-    type: 'Panel & Demo',
-    link: null,
+    venueLink: 'https://www.themade.org/calendar',
+    type: 'Talk',
+    audience: 'For Creators',
+    link: 'https://www.themade.org/calendar',
   },
   {
     id: 'e5',
     date: new Date('2026-04-18'),
     title: 'UnTilted — Mastering the Internal OS with Ryzo',
     venue: 'The MADE · Oakland, CA',
-    type: 'Workshop',
-    link: null,
+    venueLink: 'https://www.themade.org/calendar',
+    type: 'Live Event',
+    audience: 'For Young People',
+    link: 'https://www.themade.org/calendar',
   },
   {
     id: 'e7',
@@ -43,6 +49,7 @@ const allEvents = [
     title: 'Understanding Anger in Young Men — feat. Erica Milsom',
     venue: 'Ever Forward Club · Advocates for Young Men (Skool)',
     type: 'Guest Speaker',
+    audience: 'For Creators',
     link: null,
   },
   {
@@ -51,6 +58,7 @@ const allEvents = [
     title: 'Release The Beast — Supporter Sneak Peek',
     venue: 'The Roxie Theater · San Francisco, CA',
     type: 'Film Screening',
+    audience: 'For Creators',
     link: null,
   },
   {
@@ -59,6 +67,7 @@ const allEvents = [
     title: 'UnTilted Betatest with the Colorado Clubhouse Network',
     venue: 'Edgewood, CO',
     type: 'Community Visit',
+    audience: 'For Young People',
     link: null,
   },
   {
@@ -67,6 +76,7 @@ const allEvents = [
     title: 'UnTilted Betatest with the Colorado Clubhouse Network',
     venue: 'Lakewood, CO',
     type: 'Community Visit',
+    audience: 'For Young People',
     link: null,
   },
 ];
@@ -127,7 +137,10 @@ const past = allEvents.filter(e => e.date < today);
                 <span class="e-day">{event.date.getDate()}</span>
               </div>
               <div class="event-body">
-                <span class="event-type">{event.type}</span>
+                <div class="event-meta">
+                  <span class="event-type">{event.type}</span>
+                  <span class="event-audience">{event.audience}</span>
+                </div>
                 <h2 class="event-title">{event.title}</h2>
                 <p class="event-venue">
                   {event.venueLink
@@ -135,9 +148,10 @@ const past = allEvents.filter(e => e.date < today);
                     : event.venue}
                 </p>
               </div>
-              {event.link && (
-                <a href={event.link} class="btn btn-primary" target="_blank" rel="noopener">Get Tickets</a>
-              )}
+              {event.link
+                ? <a href={event.link} class="btn btn-primary" target="_blank" rel="noopener">Get on the List</a>
+                : <span class="event-private">Private</span>
+              }
             </div>
           ))}
         </div>
@@ -155,7 +169,10 @@ const past = allEvents.filter(e => e.date < today);
                 <span class="e-day">{event.date.getDate()}</span>
               </div>
               <div class="event-body">
-                <span class="event-type">{event.type}</span>
+                <div class="event-meta">
+                  <span class="event-type">{event.type}</span>
+                  <span class="event-audience">{event.audience}</span>
+                </div>
                 <h2 class="event-title">{event.title}</h2>
                 <p class="event-venue">
                   {event.venueLink
@@ -357,12 +374,30 @@ const past = allEvents.filter(e => e.date < today);
     gap: 0.25rem;
   }
 
+  .event-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
   .event-type {
     font-size: var(--text-xs);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--fg-3);
+    color: var(--fg);
+  }
+
+  .event-audience {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    border: 1px solid rgba(245, 200, 66, 0.35);
+    border-radius: 999px;
+    padding: 0.1em 0.6em;
   }
 
   .event-title {
@@ -375,7 +410,7 @@ const past = allEvents.filter(e => e.date < today);
   }
 
   .event-venue {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--fg-2);
     margin-top: 0.125rem;
   }
@@ -391,6 +426,15 @@ const past = allEvents.filter(e => e.date < today);
   .venue-link:hover {
     color: var(--accent);
     text-decoration-color: var(--accent);
+  }
+
+  .event-private {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg-3);
+    white-space: nowrap;
   }
 
   /* Past events */
@@ -448,7 +492,8 @@ const past = allEvents.filter(e => e.date < today);
       gap: 1.5rem;
     }
 
-    .event-row .btn {
+    .event-row .btn,
+    .event-row .event-private {
       grid-column: 2;
     }
 
