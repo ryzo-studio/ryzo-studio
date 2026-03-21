@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.5] — 2026-03-20
+
+### feat: Press page — new `/press` route
+- Created dedicated press page with three cards: Live Event Materials, Release the Beast press packet, Rage Fighters press packet
+- Each card links to its respective Google Drive folder
+- Includes editorial use note and press inquiry email CTA
+- Fixed apostrophe syntax error in press page that caused Vercel build failure
+
+### feat: Footer — updated nav links
+- Added Mission and Press under Company section
+- Removed Year in Review from Resources
+- Removed "Backed by Stanford & UCSF research. Created by former Pixar leaders." credit line from footer bottom
+
+### feat: About — leadership bios added
+- Added full bio for Tehya Kopp (Chief Impact Officer)
+- Added full bio for Suzanne Slatcher; title updated to Chief Technology Officer; Added "Known for" film credits line
+- Shortened Suzanne's bio to match Tehya's length
+- Fixed leadership card alignment: names now align to top edge of photo (`align-self: start`)
+
+### feat: Events page — overhaul
+- Added audience badge (For Young People / For Creators) to each event
+- Added "Get on the List" button for The MADE events linking to themade.org/calendar; all others show "Private"
+- Changed all UnTilted event types from Workshop → Live Event
+- Changed Story into Action type from Panel & Demo → Talk
+- Increased venue name font size to `text-base`
+- Brightened event-type label color to `var(--fg)`
+
+### fix: Homepage & Mission — copy updates
+- Reordered paragraph: "They're in Roblox at midnight." moved to after "They're scrolling before school."
+- Reordered platform chips: Animated Film first, then Gaming
+- Halved section `padding-block` spacing in `global.css` (`.section` and `.section-sm`)
+
+### fix: Release the Beast — copy and media updates
+- Replaced local `rtb-hero.mp4` with YouTube embed (knN0Eb-OTiI), muted by default with full controls
+- Capitalized "Bullies" in Aaron's Got Problems synopsis
+- Changed "collaborators who had looked" → "collaborators who listened" in Our Take On Anger section
+
+### fix: Rage Fighters — copy updates
+- Updated game description: "a melee fighting game" → "an educational melee fighter game"
+- Renamed skill 03 from "Cool Down" → "Chill"
+
+### fix: Activations — copy updates
+- "You don't need Ryzo in the room" → "You don't need the Ryzo team in the room"
+- Afterschool Program duration: "90-minute" → "60-90 minute"
+
+---
+
 ## [1.1.4] — 2026-03-15
 
 ### fix: Subscribe form — resolved 500 error on submission
