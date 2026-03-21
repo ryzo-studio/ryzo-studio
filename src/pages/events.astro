@@ -101,28 +101,46 @@ const past = allEvents.filter(e => e.date < today);
 
   <section class="events-hero">
     <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
     <div class="container hero-content">
-      <span class="eyebrow">Events</span>
-      <h1 class="display">
-        Where we<br /><span class="accent-text">show up.</span>
-      </h1>
-      <p class="hero-sub">
-        Screenings, panels, and live gatherings.<br />
-        <a href="mailto:hello@ryzo.studio?subject=EVENT%20REQUEST">Invite us to your community →</a>
-      </p>
-    </div>
-  </section>
-
-  <section class="premiere-banner">
-    <div class="container premiere-inner">
-      <div class="premiere-text">
-        <span class="premiere-eyebrow">🎬 March 30 · 5 PM PT · Virtual</span>
-        <h2 class="premiere-title">Release the Beast<br />YouTube Premiere Party</h2>
-        <p class="premiere-sub">Party starts at 5:00 · Watch together at 5:30 · Hosted by Ryzo</p>
+      <div class="hero-left">
+        <span class="eyebrow">Events</span>
+        <h1 class="display">
+          Where we<br /><span class="accent-text">show up.</span>
+        </h1>
+        <p class="hero-sub">
+          Screenings, panels, and live gatherings.<br />
+          <a href="mailto:hello@ryzo.studio?subject=EVENT%20REQUEST">Invite us to your community →</a>
+        </p>
       </div>
-      <a href="https://luma.com/fl72b5hz" target="_blank" rel="noopener" class="btn btn-primary btn-lg premiere-btn">
-        Join the Premiere Party →
-      </a>
+      <div class="hero-premiere">
+        <p class="premiere-eyebrow">YouTube Premiere Party</p>
+        <p class="premiere-date">March 30, 2026</p>
+        <div class="countdown" id="ev-countdown">
+          <div class="countdown-unit">
+            <span class="countdown-num" id="ev-days">--</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <span class="countdown-sep">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="ev-hours">--</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <span class="countdown-sep">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="ev-mins">--</span>
+            <span class="countdown-label">Mins</span>
+          </div>
+          <span class="countdown-sep">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-num" id="ev-secs">--</span>
+            <span class="countdown-label">Secs</span>
+          </div>
+        </div>
+        <a href="https://luma.com/fl72b5hz" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+          Join the Premiere Party →
+        </a>
+      </div>
     </div>
   </section>
 
@@ -215,17 +233,48 @@ const past = allEvents.filter(e => e.date < today);
     </div>
   </section>
 
+  <script>
+    (function () {
+      const target = new Date('2026-03-30T17:00:00-07:00').getTime();
+      const days  = document.getElementById('ev-days');
+      const hours = document.getElementById('ev-hours');
+      const mins  = document.getElementById('ev-mins');
+      const secs  = document.getElementById('ev-secs');
+      if (!days) return;
+      const pad = (n: number) => String(n).padStart(2, '0');
+      function tick() {
+        const diff = target - Date.now();
+        if (diff <= 0) {
+          const el = document.getElementById('ev-countdown');
+          if (el) el.innerHTML = '<span class="countdown-live">Streaming Now</span>';
+          return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        days.textContent  = String(d);
+        hours.textContent = pad(h);
+        mins.textContent  = pad(m);
+        secs.textContent  = pad(s);
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
+
 </Layout>
 
 <style>
   /* Hero */
   .events-hero {
-    min-height: 55vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding-block: 8rem 5rem;
     position: relative;
+    overflow: hidden;
   }
 
   .hero-bg {
@@ -237,17 +286,30 @@ const past = allEvents.filter(e => e.date < today);
     background-repeat: no-repeat;
   }
 
-  .hero-bg::after {
-    content: '';
+  .hero-overlay {
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to right, rgba(8, 3, 22, 0.90) 0%, rgba(8, 3, 22, 0.55) 45%, rgba(8, 3, 22, 0.08) 100%),
-      linear-gradient(to top, rgba(8, 3, 22, 0.85) 0%, rgba(8, 3, 22, 0.30) 35%, transparent 65%);
+      linear-gradient(to right, rgba(8, 3, 22, 0.88) 0%, rgba(8, 3, 22, 0.50) 50%, rgba(8, 3, 22, 0.20) 100%),
+      linear-gradient(to top, rgba(8, 3, 22, 0.92) 0%, rgba(8, 3, 22, 0.40) 40%, transparent 70%);
   }
 
-  .hero-content { position: relative; z-index: 1; }
-  .hero-content .eyebrow { margin-bottom: 1.5rem; }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: flex-end;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-left .eyebrow { margin-bottom: 1.5rem; }
 
   .display {
     font-size: clamp(3.5rem, 9vw, 8rem);
@@ -268,37 +330,14 @@ const past = allEvents.filter(e => e.date < today);
     text-underline-offset: 3px;
   }
 
-  /* Premiere banner */
-  .premiere-banner {
-    background: linear-gradient(135deg, #1a0a00 0%, #2a1200 40%, #1c0832 100%);
-    border-top: 1px solid rgba(245, 200, 66, 0.25);
-    border-bottom: 1px solid rgba(245, 200, 66, 0.25);
-    padding-block: 3rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .premiere-banner::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 60% 50%, rgba(245, 200, 66, 0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .premiere-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
-    position: relative;
-  }
-
-  .premiere-text {
+  /* Premiere column inside hero */
+  .hero-premiere {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    align-items: flex-end;
+    text-align: right;
+    gap: 1rem;
+    flex-shrink: 0;
   }
 
   .premiere-eyebrow {
@@ -309,36 +348,61 @@ const past = allEvents.filter(e => e.date < today);
     color: var(--accent);
   }
 
-  .premiere-title {
+  .premiere-date {
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: rgba(255,255,255,0.88);
+    margin-top: -0.25rem;
+  }
+
+  .countdown {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    min-width: 3.5rem;
+  }
+
+  .countdown-num {
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 4vw, 3.5rem);
     font-weight: 900;
+    line-height: 1;
     letter-spacing: -0.03em;
-    line-height: 1.1;
-    color: var(--fg);
   }
 
-  .premiere-sub {
-    font-size: var(--text-sm);
-    color: var(--fg-2);
-    margin-top: 0.25rem;
+  .countdown-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.70);
   }
 
-  .premiere-btn {
-    white-space: nowrap;
-    flex-shrink: 0;
-    box-shadow: 0 0 24px rgba(245, 200, 66, 0.35);
-    animation: pulse-glow 2.5s ease-in-out infinite;
+  .countdown-sep {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900;
+    color: rgba(255,255,255,0.45);
+    line-height: 1;
+    margin-bottom: 1rem;
   }
 
-  @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 24px rgba(245, 200, 66, 0.35); }
-    50%       { box-shadow: 0 0 40px rgba(245, 200, 66, 0.65); }
-  }
-
-  @media (max-width: 768px) {
-    .premiere-inner { flex-direction: column; align-items: flex-start; }
-    .premiere-btn { width: 100%; text-align: center; }
+  .countdown-live {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 900;
+    color: var(--accent);
+    letter-spacing: -0.02em;
   }
 
   /* Audience section */
@@ -581,6 +645,16 @@ const past = allEvents.filter(e => e.date < today);
   }
 
   /* Responsive */
+  @media (max-width: 900px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+    }
+    .hero-premiere {
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
+
   @media (max-width: 768px) {
     .event-row {
       grid-template-columns: 60px 1fr;
