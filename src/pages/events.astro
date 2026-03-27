@@ -233,6 +233,22 @@ const past = allEvents.filter(e => e.date < today);
     </div>
   </section>
 
+  <section class="live-materials-section">
+    <div class="container">
+      <span class="eyebrow">Event Materials</span>
+      <h2 class="live-materials-heading">Live Event <span class="accent-text">Materials</span></h2>
+      <p class="live-materials-sub">Facilitator guides, activity sheets, and supporting assets for Ryzo live events.</p>
+      <a
+        href="https://drive.google.com/drive/folders/1T4C8-G92TzJHGjXUx97_pR8M576yOnmu?usp=drive_link"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-primary"
+      >
+        Open Live Event Materials →
+      </a>
+    </div>
+  </section>
+
   <script>
     (function () {
       const target = new Date('2026-03-30T17:00:00-07:00').getTime();
@@ -653,6 +669,34 @@ const past = allEvents.filter(e => e.date < today);
       align-items: flex-start;
       text-align: left;
     }
+  }
+
+  /* Live Event Materials */
+  .live-materials-section {
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-block: clamp(3rem, 6vw, 5rem);
+  }
+
+  .live-materials-section .eyebrow {
+    margin-bottom: 1rem;
+  }
+
+  .live-materials-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .live-materials-sub {
+    font-size: var(--text-base);
+    color: var(--fg-2);
+    max-width: 540px;
+    margin-bottom: 2rem;
+    line-height: 1.6;
   }
 
   @media (max-width: 768px) {
