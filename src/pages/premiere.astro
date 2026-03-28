@@ -1,0 +1,802 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const ZOOM  = 'https://us06web.zoom.us/j/89824625902?pwd=oJ7goOE5l2dkq5vaTevPaUgabin4Wa.1';
+const YT    = 'https://youtu.be/fGHBh76NHuI';
+
+const zoomBgs = [
+  { file: 'RTB_Skinfight.png',       title: 'Skinfight!',          desc: 'The game screen showdown' },
+  { file: 'RTB_Guilloutine.png',     title: 'Locker Room',         desc: 'Animated locker scene' },
+  { file: 'RTB_ToyPoison.png',       title: 'Paper Stan Samurai',  desc: 'Bold red warrior on navy' },
+  { file: 'RTB_FireBoyFantasy.png',  title: 'Fireboy',             desc: 'Spotlight character moment' },
+  { file: 'RTB_CGStan_BedJump.png',  title: 'Bedroom Chaos',       desc: 'CG Stan mid-air in Aaron\'s room' },
+  { file: 'RTB_Soft_Question.png',   title: 'Stan at the Desk',    desc: 'Moody gaming room scene' },
+  { file: 'CGStan_BedScream.png',    title: 'Bed Scream',          desc: 'Overhead CG Stan exploding' },
+];
+
+const socialImgs = [
+  { file: 'RelaseTheBeastPoster_Official.jpg',    title: 'Official Poster',      desc: 'Best for Instagram feed & Stories — vertical, glitch title.' },
+  { file: 'ReleaseTheBeast_YouTube_Thumbnail.jpg', title: 'YouTube Thumbnail',   desc: 'Best for Twitter/X, Facebook, Discord — horizontal, cinematic.' },
+  { file: 'RTB_ToyPoison.png',                    title: 'Paper Stan Samurai',   desc: 'Bold red samurai on navy — great secondary feed image.' },
+  { file: 'RTB_FireBoyFantasy.png',               title: 'Fireboy',              desc: 'Spotlight character moment — works well for Stories.' },
+  { file: 'RTB_CGStan_BedJump.png',               title: 'Bedroom Chaos',        desc: 'Cinematic bedroom wide shot — great for any platform.' },
+];
+---
+
+<Layout
+  title="Release The Beast — Premiere Party"
+  description="Join us for the world premiere of Release The Beast — Monday March 30 at 5pm PT. Zoom party + YouTube premiere together."
+  image="/images/premiere/RelaseTheBeastPoster_Official.jpg"
+  noFooter={true}
+>
+
+  <!-- ── STICKY CTA BAR ─────────────────────────────────────────── -->
+  <div class="sticky-bar" id="sticky-bar">
+    <div class="sticky-inner">
+      <span class="sticky-label">Monday March 30 · 5pm PT</span>
+      <div class="sticky-btns">
+        <a href={ZOOM} target="_blank" rel="noopener" class="sbtn sbtn-zoom">🎥 Join Zoom Party</a>
+        <a href={YT}   target="_blank" rel="noopener" class="sbtn sbtn-yt">🎬 Watch on YouTube</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HERO ──────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <p class="eyebrow-red">World Premiere · March 30, 2026</p>
+      <h1 class="hero-title">
+        <span class="glitch" data-text="RELEASE">RELEASE</span><br />
+        <span class="glitch" data-text="THE">THE</span><br />
+        <span class="glitch glitch-cyan" data-text="BEAST">BEAST</span>
+      </h1>
+      <p class="hero-sub">The World Premiere. Monday, March 30. Watch with us.</p>
+      <p class="hero-body">
+        Ryzo Studios' first short film is dropping — and we want our people there for it.
+        Join us for a live premiere party, watch the film together, and stick around for a Q&A with the crew.
+      </p>
+
+      <!-- Countdown -->
+      <div class="countdown" id="countdown">
+        <div class="cd-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Days</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">Hrs</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">Min</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Sec</span></div>
+      </div>
+
+      <div class="hero-btns">
+        <a href={ZOOM} target="_blank" rel="noopener" class="btn-hero btn-zoom">🎥 Join the Party on Zoom →</a>
+        <a href={YT}   target="_blank" rel="noopener" class="btn-hero btn-yt">🎬 Watch on YouTube →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── THE DETAILS ───────────────────────────────────────────── -->
+  <section class="section details-section">
+    <div class="container">
+      <span class="eyebrow-gold">The Details</span>
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-icon">📅</span>
+          <div class="tl-text">
+            <strong>Monday, March 30, 2026</strong>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-icon">⏰</span>
+          <div class="tl-text">
+            <strong>5:00 PM PT</strong>
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-icon">🎥</span>
+          <div class="tl-text">
+            <strong>Zoom Party opens at 5:00</strong> — BTS clips, crew appreciations, vision tease
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-icon">🎬</span>
+          <div class="tl-text">
+            <strong>Film premieres on YouTube at 5:30</strong> — we all hit play together
+          </div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-icon">🥂</span>
+          <div class="tl-text">
+            <strong>Toast + Live Q&A</strong> with the crew after
+          </div>
+        </div>
+      </div>
+      <p class="details-tip">
+        Open both links in separate tabs before 5pm and you're set.
+      </p>
+      <div class="details-btns">
+        <a href={ZOOM} target="_blank" rel="noopener" class="btn-outline-red">🎥 Zoom Party</a>
+        <a href={YT}   target="_blank" rel="noopener" class="btn-outline-cyan">🎬 YouTube Premiere</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SPREAD THE WORD ──────────────────────────────────────── -->
+  <section class="section spread-section">
+    <div class="container">
+      <span class="eyebrow-gold">Bring Your People</span>
+      <h2 class="section-h2">Share it. The more, the louder.</h2>
+      <p class="section-body">
+        Every stream on premiere night matters. Help us make some noise — grab the text below and send it to your people.
+      </p>
+
+      <div class="share-blocks">
+
+        <div class="share-block">
+          <div class="share-block-header">
+            <span class="share-platform">Instagram / Facebook</span>
+            <button class="copy-btn" data-target="ig-text">Copy</button>
+          </div>
+          <pre class="share-text" id="ig-text">My friends at Ryzo Studios are premiering their first short film Monday night and I'm watching live — you should too! 🎬
+
+Release The Beast is a wild, heartfelt animated short about a 14-year-old whose rage literally explodes into his bedroom as different versions of his game character.
+
+Join us Monday March 30 at 5pm PT for the premiere party on Zoom, then we all watch together on YouTube at 5:30.
+
+Zoom Party 🎥 → {ZOOM}
+Watch the Film 🎬 → {YT}</pre>
+        </div>
+
+        <div class="share-block">
+          <div class="share-block-header">
+            <span class="share-platform">Twitter / X</span>
+            <button class="copy-btn" data-target="tw-text">Copy</button>
+          </div>
+          <pre class="share-text" id="tw-text">Watching the premiere of @RyzoStudios' first short film Monday night — Release The Beast 🎬
+
+A 14-year-old's rage explodes into his bedroom as CG, paper, and sticky versions of his unfinished game character.
+It's chaotic and I'm here for it.
+
+Join live: March 30 | 5pm PT
+Watch: {YT}</pre>
+        </div>
+
+        <div class="share-block">
+          <div class="share-block-header">
+            <span class="share-platform">Text / DM</span>
+            <button class="copy-btn" data-target="dm-text">Copy</button>
+          </div>
+          <pre class="share-text" id="dm-text">Hey! My friends made a short film and it's premiering Monday night — want to watch with me? It's free, it's online, and it looks incredible. March 30 at 5:30pm PT on YouTube.
+Here's the link: {YT}</pre>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ZOOM BACKGROUNDS ─────────────────────────────────────── -->
+  <section class="section dl-section">
+    <div class="container">
+      <span class="eyebrow-gold">Dress Your Zoom</span>
+      <h2 class="section-h2">Rep the film. Download a background.</h2>
+      <p class="section-body">
+        Set one of these as your Zoom background when you come online Monday night.<br />
+        <span class="tip-inline">On Zoom desktop: click the arrow next to <strong>Stop Video</strong> → <strong>Virtual Background</strong> → <strong>+ Add Image</strong></span>
+      </p>
+      <div class="img-grid">
+        {zoomBgs.map(img => (
+          <div class="img-card">
+            <div class="img-thumb-wrap">
+              <img src={`/images/premiere/${img.file}`} alt={img.title} class="img-thumb" loading="lazy" />
+            </div>
+            <div class="img-card-body">
+              <p class="img-title">{img.title}</p>
+              <p class="img-desc">{img.desc}</p>
+              <a href={`/images/premiere/${img.file}`} download={img.file} class="dl-btn">↓ Download</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SOCIAL IMAGES ────────────────────────────────────────── -->
+  <section class="section dl-section social-section">
+    <div class="container">
+      <span class="eyebrow-gold">Share the Look</span>
+      <h2 class="section-h2">Grab an image to post.</h2>
+      <p class="section-body">Drop one of these in your story, your feed, or your group chat.</p>
+      <div class="img-grid">
+        {socialImgs.map(img => (
+          <div class="img-card">
+            <div class="img-thumb-wrap">
+              <img src={`/images/premiere/${img.file}`} alt={img.title} class="img-thumb" loading="lazy" />
+            </div>
+            <div class="img-card-body">
+              <p class="img-title">{img.title}</p>
+              <p class="img-desc">{img.desc}</p>
+              <a href={`/images/premiere/${img.file}`} download={img.file} class="dl-btn">↓ Download</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────────────── -->
+  <footer class="premiere-footer">
+    <div class="container">
+      <p class="footer-tagline">Release The Beast is the first short from Ryzo Studios. We're just getting started.</p>
+      <div class="footer-links">
+        <a href={YT}   target="_blank" rel="noopener">Watch on YouTube →</a>
+        <a href={ZOOM} target="_blank" rel="noopener">Join the Zoom Party →</a>
+      </div>
+      <p class="footer-copy">© 2026 Ryzo Studios</p>
+    </div>
+  </footer>
+
+</Layout>
+
+<script>
+  // ── Countdown ────────────────────────────────────────────────
+  (function () {
+    const target = new Date('2026-03-30T17:00:00-07:00').getTime();
+    const days  = document.getElementById('cd-days');
+    const hours = document.getElementById('cd-hours');
+    const mins  = document.getElementById('cd-mins');
+    const secs  = document.getElementById('cd-secs');
+    const wrap  = document.getElementById('countdown');
+    if (!days || !wrap) return;
+    const pad = (n: number) => String(n).padStart(2, '0');
+    function tick() {
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        wrap.innerHTML = '<span class="cd-live">🔴 We\'re Live</span>';
+        return;
+      }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      days.textContent  = String(d);
+      hours.textContent = pad(h);
+      mins.textContent  = pad(m);
+      secs.textContent  = pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // ── Sticky bar on scroll ─────────────────────────────────────
+  (function () {
+    const bar = document.getElementById('sticky-bar');
+    if (!bar) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { bar.classList.toggle('visible', !entry.isIntersecting); },
+      { threshold: 0 }
+    );
+    const hero = document.querySelector('.hero');
+    if (hero) observer.observe(hero);
+  })();
+
+  // ── Copy buttons ─────────────────────────────────────────────
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = (btn as HTMLElement).dataset.target;
+      if (!targetId) return;
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      navigator.clipboard.writeText(el.textContent || '').then(() => {
+        const orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = orig; }, 2000);
+      });
+    });
+  });
+</script>
+
+<style>
+  /* ── Base ──────────────────────────────────────────────────── */
+  :root {
+    --rtb-bg:     #060212;
+    --rtb-red:    #ff1a00;
+    --rtb-cyan:   #00e5ff;
+    --rtb-gold:   #f5c842;
+    --rtb-fg:     #f0eeff;
+    --rtb-fg2:    rgba(240,238,255,0.65);
+    --rtb-border: rgba(255,255,255,0.09);
+  }
+
+  /* ── Sticky bar ─────────────────────────────────────────────── */
+  .sticky-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    background: rgba(6,2,18,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rtb-border);
+    padding: 0.6rem 1.5rem;
+    transform: translateY(-110%);
+    transition: transform 0.3s ease;
+  }
+  .sticky-bar.visible { transform: translateY(0); }
+  .sticky-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .sticky-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rtb-fg2);
+  }
+  .sticky-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .sbtn {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: opacity 0.2s;
+  }
+  .sbtn:hover { opacity: 0.85; }
+  .sbtn-zoom { background: var(--rtb-red);  color: #fff; }
+  .sbtn-yt   { background: var(--rtb-cyan); color: #060212; }
+
+  /* ── Hero ──────────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding-block: 8rem 5rem;
+    overflow: hidden;
+    background: var(--rtb-bg);
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/premiere/ReleaseTheBeast_YouTube_Thumbnail.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    opacity: 0.35;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top, var(--rtb-bg) 0%, transparent 60%),
+      linear-gradient(to right, rgba(6,2,18,0.85) 0%, transparent 70%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+  }
+  .eyebrow-red {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--rtb-red);
+    margin-bottom: 1.25rem;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 13vw, 11rem);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: #fff;
+  }
+
+  /* Glitch effect */
+  .glitch {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+  }
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    overflow: hidden;
+  }
+  .glitch::before {
+    color: var(--rtb-red);
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    transform: translateX(-3px);
+    animation: glitch-top 4s infinite steps(1);
+  }
+  .glitch::after {
+    color: var(--rtb-cyan);
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    transform: translateX(3px);
+    animation: glitch-bot 4s infinite steps(1);
+  }
+  .glitch-cyan { color: var(--rtb-cyan); }
+
+  @keyframes glitch-top {
+    0%, 90%, 100% { transform: translateX(0); opacity: 0; }
+    92%            { transform: translateX(-4px); opacity: 1; }
+    94%            { transform: translateX(4px);  opacity: 1; }
+    96%            { transform: translateX(-2px); opacity: 1; }
+  }
+  @keyframes glitch-bot {
+    0%, 90%, 100% { transform: translateX(0); opacity: 0; }
+    93%            { transform: translateX(4px);  opacity: 1; }
+    95%            { transform: translateX(-4px); opacity: 1; }
+    97%            { transform: translateX(2px);  opacity: 1; }
+  }
+
+  .hero-sub {
+    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+    font-style: italic;
+    color: var(--rtb-fg2);
+    margin-bottom: 1rem;
+  }
+  .hero-body {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    color: var(--rtb-fg2);
+    max-width: 640px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Countdown */
+  .countdown {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .cd-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    min-width: 4rem;
+  }
+  .cd-num {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--rtb-cyan);
+  }
+  .cd-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.5);
+  }
+  .cd-sep {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    color: rgba(255,255,255,0.3);
+    line-height: 1;
+    margin-bottom: 1.2rem;
+  }
+  .cd-live {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 900;
+    color: var(--rtb-red);
+    animation: pulse 1s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-hero {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .btn-hero:hover { transform: translateY(-2px); opacity: 0.9; }
+  .btn-zoom { background: var(--rtb-red);  color: #fff; }
+  .btn-yt   { background: var(--rtb-cyan); color: #060212; }
+
+  /* ── Shared section styles ──────────────────────────────────── */
+  .section {
+    background: var(--rtb-bg);
+    padding-block: clamp(4rem, 8vw, 7rem);
+    border-top: 1px solid var(--rtb-border);
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .eyebrow-gold {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--rtb-gold);
+    margin-bottom: 1rem;
+  }
+  .section-h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--rtb-fg);
+    margin-bottom: 1rem;
+  }
+  .section-body {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    color: var(--rtb-fg2);
+    max-width: 680px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* ── Details ────────────────────────────────────────────────── */
+  .details-section { background: linear-gradient(135deg, #0c0224 0%, #060212 100%); }
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 2rem;
+    border-left: 2px solid var(--rtb-red);
+    padding-left: 2rem;
+    margin-left: 0.5rem;
+  }
+  .tl-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--rtb-border);
+    position: relative;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -2.45rem;
+    top: 1.55rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--rtb-red);
+    border: 2px solid var(--rtb-bg);
+  }
+  .tl-icon { font-size: 1.25rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .tl-text {
+    font-size: 1.05rem;
+    color: var(--rtb-fg2);
+    line-height: 1.6;
+  }
+  .tl-text strong { color: var(--rtb-fg); }
+  .details-tip {
+    font-size: 0.95rem;
+    color: var(--rtb-gold);
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+  .details-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-outline-red, .btn-outline-cyan {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline-red  { border: 2px solid var(--rtb-red);  color: var(--rtb-red);  }
+  .btn-outline-red:hover  { background: var(--rtb-red);  color: #fff; }
+  .btn-outline-cyan { border: 2px solid var(--rtb-cyan); color: var(--rtb-cyan); }
+  .btn-outline-cyan:hover { background: var(--rtb-cyan); color: #060212; }
+
+  /* ── Share blocks ───────────────────────────────────────────── */
+  .spread-section { background: linear-gradient(135deg, #060212 0%, #0d0228 100%); }
+  .share-blocks {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .share-block {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--rtb-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .share-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--rtb-border);
+    background: rgba(255,255,255,0.04);
+  }
+  .share-platform {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--rtb-gold);
+  }
+  .copy-btn {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--rtb-cyan);
+    background: none;
+    border: 1px solid var(--rtb-cyan);
+    border-radius: 4px;
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .copy-btn:hover { background: var(--rtb-cyan); color: #060212; }
+  .share-text {
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--rtb-fg2);
+    line-height: 1.7;
+    padding: 1.25rem;
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* ── Image grids ────────────────────────────────────────────── */
+  .dl-section { background: var(--rtb-bg); }
+  .social-section { background: linear-gradient(135deg, #0c0224 0%, #060212 100%); }
+  .tip-inline {
+    display: block;
+    font-size: 0.85rem;
+    color: rgba(240,238,255,0.45);
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+  .img-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .img-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--rtb-border);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s;
+  }
+  .img-card:hover { border-color: rgba(245,200,66,0.4); }
+  .img-thumb-wrap {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #0a0520;
+  }
+  .img-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .img-card:hover .img-thumb { transform: scale(1.04); }
+  .img-card-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex: 1;
+  }
+  .img-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--rtb-fg);
+    letter-spacing: -0.01em;
+  }
+  .img-desc {
+    font-size: 0.78rem;
+    color: var(--rtb-fg2);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .dl-btn {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.45rem 1rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: var(--rtb-gold);
+    border: 1px solid rgba(245,200,66,0.4);
+    border-radius: 4px;
+    text-align: center;
+    transition: background 0.2s, color 0.2s;
+  }
+  .dl-btn:hover { background: var(--rtb-gold); color: #060212; }
+
+  /* ── Footer ─────────────────────────────────────────────────── */
+  .premiere-footer {
+    background: #030110;
+    border-top: 1px solid var(--rtb-border);
+    padding-block: 3rem 2rem;
+    text-align: center;
+  }
+  .footer-tagline {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--rtb-fg2);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-inline: auto;
+    line-height: 1.6;
+  }
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .footer-links a {
+    color: var(--rtb-cyan);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+  }
+  .footer-links a:hover { opacity: 0.75; }
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(240,238,255,0.3);
+  }
+
+  /* ── Mobile ─────────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .hero { padding-block: 6rem 4rem; }
+    .hero-btns { flex-direction: column; }
+    .btn-hero { text-align: center; }
+    .details-btns { flex-direction: column; }
+    .sticky-inner { justify-content: center; }
+    .sticky-label { display: none; }
+    .img-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  }
+</style>
