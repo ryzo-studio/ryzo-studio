@@ -41,34 +41,30 @@ const socialImgs = [
     </div>
   </div>
 
+  <!-- ── COUNTDOWN (fixed upper-left) ─────────────────────────── -->
+  <div class="countdown-fixed" id="countdown">
+    <p class="cd-eyebrow">Premiere in</p>
+    <div class="cd-row">
+      <div class="cd-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Days</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">Hrs</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">Min</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Sec</span></div>
+    </div>
+  </div>
+
   <!-- ── HERO ──────────────────────────────────────────────────── -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="container hero-content">
-      <p class="eyebrow-red">World Premiere · March 30, 2026</p>
-      <h1 class="hero-title">
-        <span class="glitch" data-text="RELEASE">RELEASE</span><br />
-        <span class="glitch" data-text="THE">THE</span><br />
-        <span class="glitch glitch-cyan" data-text="BEAST">BEAST</span>
-      </h1>
       <p class="hero-sub">The World Premiere. Monday, March 30. Watch with us.</p>
       <p class="hero-body">
         Ryzo Studios' first short film is dropping — and we want our people there for it.
         Join us for a live premiere party, watch the film together, and stick around for a Q&A with the crew.
       </p>
-
-      <!-- Countdown -->
-      <div class="countdown" id="countdown">
-        <div class="cd-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Days</span></div>
-        <span class="cd-sep">:</span>
-        <div class="cd-unit"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">Hrs</span></div>
-        <span class="cd-sep">:</span>
-        <div class="cd-unit"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">Min</span></div>
-        <span class="cd-sep">:</span>
-        <div class="cd-unit"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Sec</span></div>
-      </div>
-
       <div class="hero-btns">
         <a href={ZOOM} target="_blank" rel="noopener" class="btn-hero btn-zoom">🎥 Join the Party on Zoom →</a>
         <a href={YT}   target="_blank" rel="noopener" class="btn-hero btn-yt">🎬 Watch on YouTube →</a>
@@ -78,67 +74,62 @@ const socialImgs = [
 
   <!-- ── THE DETAILS ───────────────────────────────────────────── -->
   <section class="section details-section">
-    <div class="container">
-      <span class="eyebrow-gold">The Details</span>
-      <div class="timeline">
-        <div class="tl-item">
-          <span class="tl-icon">📅</span>
-          <div class="tl-text">
-            <strong>Monday, March 30, 2026</strong>
+    <div class="container details-grid">
+      <!-- Left: timeline -->
+      <div class="details-left">
+        <span class="eyebrow-gold">The Details</span>
+        <div class="timeline">
+          <div class="tl-item">
+            <span class="tl-icon">📅</span>
+            <div class="tl-text"><strong>Monday, March 30, 2026</strong></div>
           </div>
-        </div>
-        <div class="tl-item">
-          <span class="tl-icon">⏰</span>
-          <div class="tl-text">
-            <strong>5:00 PM PT</strong>
+          <div class="tl-item">
+            <span class="tl-icon">⏰</span>
+            <div class="tl-text"><strong>5:00 PM PT</strong></div>
           </div>
-        </div>
-        <div class="tl-item">
-          <span class="tl-icon">🎥</span>
-          <div class="tl-text">
-            <strong>Zoom Party opens at 5:00</strong> — BTS clips, crew appreciations, vision tease
+          <div class="tl-item">
+            <span class="tl-icon">🎥</span>
+            <div class="tl-text"><strong>Zoom Party opens at 5:00</strong> — BTS clips, crew appreciations, vision tease</div>
           </div>
-        </div>
-        <div class="tl-item">
-          <span class="tl-icon">🎬</span>
-          <div class="tl-text">
-            <strong>Film premieres on YouTube at 5:30</strong> — we all hit play together
+          <div class="tl-item">
+            <span class="tl-icon">🎬</span>
+            <div class="tl-text"><strong>Film premieres on YouTube at 5:30</strong> — we all hit play together</div>
           </div>
-        </div>
-        <div class="tl-item">
-          <span class="tl-icon">🥂</span>
-          <div class="tl-text">
-            <strong>Toast + Live Q&A</strong> with the crew after
+          <div class="tl-item">
+            <span class="tl-icon">🥂</span>
+            <div class="tl-text"><strong>Toast + Live Q&A</strong> with the crew after</div>
           </div>
         </div>
       </div>
-      <p class="details-tip">
-        Open both links in separate tabs before 5pm and you're set.
-      </p>
-      <div class="details-btns">
-        <a href={ZOOM} target="_blank" rel="noopener" class="btn-outline-red">🎥 Zoom Party</a>
-        <a href={YT}   target="_blank" rel="noopener" class="btn-outline-cyan">🎬 YouTube Premiere</a>
+      <!-- Right: tip + buttons -->
+      <div class="details-right">
+        <p class="details-tip">Open both links in separate tabs before 5pm and you're set.</p>
+        <div class="details-btns">
+          <a href={ZOOM} target="_blank" rel="noopener" class="btn-outline-red">🎥 Zoom Party</a>
+          <a href={YT}   target="_blank" rel="noopener" class="btn-outline-cyan">🎬 YouTube Premiere</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ── SPREAD THE WORD ──────────────────────────────────────── -->
+  <!-- ── SHARE: text left, images right ──────────────────────── -->
   <section class="section spread-section">
     <div class="container">
       <span class="eyebrow-gold">Bring Your People</span>
       <h2 class="section-h2">Share it. The more, the louder.</h2>
-      <p class="section-body">
-        Every stream on premiere night matters. Help us make some noise — grab the text below and send it to your people.
-      </p>
+      <div class="share-two-col">
 
-      <div class="share-blocks">
+        <!-- Left: copy text blocks -->
+        <div class="share-left">
+          <p class="share-intro">Every stream on premiere night matters. Grab the text below and send it to your people.</p>
+          <div class="share-blocks">
 
-        <div class="share-block">
-          <div class="share-block-header">
-            <span class="share-platform">Instagram / Facebook</span>
-            <button class="copy-btn" data-target="ig-text">Copy</button>
-          </div>
-          <pre class="share-text" id="ig-text">My friends at Ryzo Studios are premiering their first short film Monday night and I'm watching live — you should too! 🎬
+            <div class="share-block">
+              <div class="share-block-header">
+                <span class="share-platform">Instagram / Facebook</span>
+                <button class="copy-btn" data-target="ig-text">Copy</button>
+              </div>
+              <pre class="share-text" id="ig-text">My friends at Ryzo Studios are premiering their first short film Monday night and I'm watching live — you should too! 🎬
 
 Release The Beast is a wild, heartfelt animated short about a 14-year-old whose rage literally explodes into his bedroom as different versions of his game character.
 
@@ -146,29 +137,51 @@ Join us Monday March 30 at 5pm PT for the premiere party on Zoom, then we all wa
 
 Zoom Party 🎥 → {ZOOM}
 Watch the Film 🎬 → {YT}</pre>
-        </div>
+            </div>
 
-        <div class="share-block">
-          <div class="share-block-header">
-            <span class="share-platform">Twitter / X</span>
-            <button class="copy-btn" data-target="tw-text">Copy</button>
-          </div>
-          <pre class="share-text" id="tw-text">Watching the premiere of @RyzoStudios' first short film Monday night — Release The Beast 🎬
+            <div class="share-block">
+              <div class="share-block-header">
+                <span class="share-platform">Twitter / X</span>
+                <button class="copy-btn" data-target="tw-text">Copy</button>
+              </div>
+              <pre class="share-text" id="tw-text">Watching the premiere of @RyzoStudios' first short film Monday night — Release The Beast 🎬
 
 A 14-year-old's rage explodes into his bedroom as CG, paper, and sticky versions of his unfinished game character.
 It's chaotic and I'm here for it.
 
 Join live: March 30 | 5pm PT
 Watch: {YT}</pre>
+            </div>
+
+            <div class="share-block">
+              <div class="share-block-header">
+                <span class="share-platform">Text / DM</span>
+                <button class="copy-btn" data-target="dm-text">Copy</button>
+              </div>
+              <pre class="share-text" id="dm-text">Hey! My friends made a short film and it's premiering Monday night — want to watch with me? It's free, it's online, and it looks incredible. March 30 at 5:30pm PT on YouTube.
+Here's the link: {YT}</pre>
+            </div>
+
+          </div>
         </div>
 
-        <div class="share-block">
-          <div class="share-block-header">
-            <span class="share-platform">Text / DM</span>
-            <button class="copy-btn" data-target="dm-text">Copy</button>
+        <!-- Right: social image downloads -->
+        <div class="share-right">
+          <p class="share-intro">Grab an image to drop in your story, feed, or group chat.</p>
+          <div class="img-grid-narrow">
+            {socialImgs.map(img => (
+              <div class="img-card">
+                <div class="img-thumb-wrap">
+                  <img src={`/images/premiere/${img.file}`} alt={img.title} class="img-thumb" loading="lazy" />
+                </div>
+                <div class="img-card-body">
+                  <p class="img-title">{img.title}</p>
+                  <p class="img-desc">{img.desc}</p>
+                  <a href={`/images/premiere/${img.file}`} download={img.file} class="dl-btn">↓ Download</a>
+                </div>
+              </div>
+            ))}
           </div>
-          <pre class="share-text" id="dm-text">Hey! My friends made a short film and it's premiering Monday night — want to watch with me? It's free, it's online, and it looks incredible. March 30 at 5:30pm PT on YouTube.
-Here's the link: {YT}</pre>
         </div>
 
       </div>
@@ -186,29 +199,6 @@ Here's the link: {YT}</pre>
       </p>
       <div class="img-grid">
         {zoomBgs.map(img => (
-          <div class="img-card">
-            <div class="img-thumb-wrap">
-              <img src={`/images/premiere/${img.file}`} alt={img.title} class="img-thumb" loading="lazy" />
-            </div>
-            <div class="img-card-body">
-              <p class="img-title">{img.title}</p>
-              <p class="img-desc">{img.desc}</p>
-              <a href={`/images/premiere/${img.file}`} download={img.file} class="dl-btn">↓ Download</a>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ── SOCIAL IMAGES ────────────────────────────────────────── -->
-  <section class="section dl-section social-section">
-    <div class="container">
-      <span class="eyebrow-gold">Share the Look</span>
-      <h2 class="section-h2">Grab an image to post.</h2>
-      <p class="section-body">Drop one of these in your story, your feed, or your group chat.</p>
-      <div class="img-grid">
-        {socialImgs.map(img => (
           <div class="img-card">
             <div class="img-thumb-wrap">
               <img src={`/images/premiere/${img.file}`} alt={img.title} class="img-thumb" loading="lazy" />
@@ -371,14 +361,14 @@ Here's the link: {YT}</pre>
     background-image: url('/images/premiere/ReleaseTheBeast_YouTube_Thumbnail.jpg');
     background-size: cover;
     background-position: center 30%;
-    opacity: 0.35;
+    opacity: 1;
   }
   .hero-overlay {
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to top, var(--rtb-bg) 0%, transparent 60%),
-      linear-gradient(to right, rgba(6,2,18,0.85) 0%, transparent 70%);
+      linear-gradient(to top, var(--rtb-bg) 0%, rgba(6,2,18,0.15) 50%, transparent 100%),
+      linear-gradient(to right, rgba(6,2,18,0.5) 0%, transparent 60%);
   }
   .hero-content {
     position: relative;
@@ -459,47 +449,64 @@ Here's the link: {YT}</pre>
     margin-bottom: 2.5rem;
   }
 
-  /* Countdown */
-  .countdown {
+  /* Countdown — fixed upper left */
+  .countdown-fixed {
+    position: fixed;
+    top: 5rem;
+    left: 1.5rem;
+    z-index: 150;
+    background: rgba(6,2,18,0.82);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,229,255,0.25);
+    border-radius: 8px;
+    padding: 0.6rem 0.9rem;
+  }
+  .cd-eyebrow {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--rtb-cyan);
+    margin-bottom: 0.3rem;
+  }
+  .cd-row {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 2.5rem;
-    flex-wrap: wrap;
+    gap: 0.3rem;
   }
   .cd-unit {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.2rem;
-    min-width: 4rem;
+    gap: 0.1rem;
+    min-width: 2.4rem;
   }
   .cd-num {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: 1.5rem;
     font-weight: 900;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.03em;
     line-height: 1;
     color: var(--rtb-cyan);
   }
   .cd-label {
-    font-size: 0.6rem;
+    font-size: 0.5rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.45);
   }
   .cd-sep {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: 1.2rem;
     font-weight: 900;
     color: rgba(255,255,255,0.3);
     line-height: 1;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.8rem;
   }
   .cd-live {
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: 1rem;
     font-weight: 900;
     color: var(--rtb-red);
     animation: pulse 1s infinite;
@@ -568,6 +575,20 @@ Here's the link: {YT}</pre>
 
   /* ── Details ────────────────────────────────────────────────── */
   .details-section { background: linear-gradient(135deg, #0c0224 0%, #060212 100%); }
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: start;
+  }
+  .details-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 2.5rem;
+    min-width: 220px;
+    max-width: 280px;
+  }
   .timeline {
     display: flex;
     flex-direction: column;
@@ -609,7 +630,7 @@ Here's the link: {YT}</pre>
     font-style: italic;
     margin-bottom: 2rem;
   }
-  .details-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .details-btns { display: flex; flex-direction: column; gap: 0.75rem; }
   .btn-outline-red, .btn-outline-cyan {
     display: inline-block;
     padding: 0.75rem 1.75rem;
@@ -626,11 +647,32 @@ Here's the link: {YT}</pre>
   .btn-outline-cyan { border: 2px solid var(--rtb-cyan); color: var(--rtb-cyan); }
   .btn-outline-cyan:hover { background: var(--rtb-cyan); color: #060212; }
 
-  /* ── Share blocks ───────────────────────────────────────────── */
+  /* ── Share section ──────────────────────────────────────────── */
   .spread-section { background: linear-gradient(135deg, #060212 0%, #0d0228 100%); }
+  .share-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .share-intro {
+    font-size: 0.9rem;
+    color: var(--rtb-fg2);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
   .share-blocks {
     display: grid;
-    gap: 1.5rem;
+    gap: 1rem;
+  }
+  .img-grid-narrow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 900px) {
+    .share-two-col { grid-template-columns: 1fr; }
+    .img-grid-narrow { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
   }
   .share-block {
     background: rgba(255,255,255,0.03);
@@ -790,13 +832,19 @@ Here's the link: {YT}</pre>
   }
 
   /* ── Mobile ─────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .details-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .details-right { max-width: 100%; padding-top: 0; }
+    .details-btns { flex-direction: row; }
+  }
+
   @media (max-width: 768px) {
     .hero { padding-block: 6rem 4rem; }
     .hero-btns { flex-direction: column; }
     .btn-hero { text-align: center; }
-    .details-btns { flex-direction: column; }
     .sticky-inner { justify-content: center; }
     .sticky-label { display: none; }
     .img-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    .countdown-fixed { top: 4rem; left: 0.75rem; }
   }
 </style>
