@@ -46,17 +46,19 @@ const socialImgs = [
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="container hero-content">
-      <p class="hero-sub">The World Premiere. Monday, March 30. Watch with us.</p>
-      <p class="hero-body">
-        Ryzo Studios' first short film is dropping — and we want our people there for it.
-        Join us for a live premiere party, watch the film together, and stick around for a Q&A with the crew.
-      </p>
-      <div class="hero-btns">
-        <a href={ZOOM} target="_blank" rel="noopener" class="btn-hero btn-zoom">🎥 Join the Party on Zoom →</a>
-        <a href={YT}   target="_blank" rel="noopener" class="btn-hero btn-yt">🎬 Watch on YouTube →</a>
+      <div class="hero-left">
+        <p class="hero-sub">The World Premiere. Monday, March 30. Watch with us.</p>
+        <p class="hero-body">
+          Ryzo Studios' first short film is dropping — and we want our people there for it.
+          Join us for a live premiere party, watch the film together, and stick around for a Q&A with the crew.
+        </p>
+        <div class="hero-btns">
+          <a href={ZOOM} target="_blank" rel="noopener" class="btn-hero btn-zoom">🎥 Join the Party on Zoom →</a>
+          <a href={YT}   target="_blank" rel="noopener" class="btn-hero btn-yt">🎬 Watch on YouTube →</a>
+        </div>
       </div>
 
-      <!-- Countdown -->
+      <!-- Countdown — right column -->
       <div class="countdown" id="countdown">
         <p class="cd-eyebrow">Premiere in</p>
         <div class="cd-row">
@@ -342,8 +344,8 @@ Here's the link: {YT}</pre>
     transition: opacity 0.2s;
   }
   .sbtn:hover { opacity: 0.85; }
-  .sbtn-zoom { background: var(--rtb-red);  color: #fff; }
-  .sbtn-yt   { background: var(--rtb-cyan); color: #060212; }
+  .sbtn-zoom { background: #C01A08; color: #fff; }
+  .sbtn-yt   { background: #1E3FA8; color: #fff; }
 
   /* ── Hero ──────────────────────────────────────────────────── */
   .hero {
@@ -372,7 +374,15 @@ Here's the link: {YT}</pre>
   .hero-content {
     position: relative;
     z-index: 1;
-    max-width: 860px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: flex-end;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
   }
   .eyebrow-red {
     font-size: 0.75rem;
@@ -448,59 +458,62 @@ Here's the link: {YT}</pre>
     margin-bottom: 2.5rem;
   }
 
-  /* Countdown — inline in hero, yellow */
+  /* Countdown — right column of hero */
   .countdown {
-    margin-top: 2.5rem;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-shrink: 0;
   }
   .cd-eyebrow {
     font-size: 0.65rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    color: var(--rtb-gold);
+    color: rgba(255,230,0,0.7);
     margin-bottom: 0.5rem;
+    text-align: right;
   }
   .cd-row {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
   .cd-unit {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.15rem;
-    min-width: 3rem;
+    min-width: 3.5rem;
   }
   .cd-num {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 900;
     letter-spacing: -0.04em;
     line-height: 1;
-    color: var(--rtb-gold);
+    color: #FFE600;
   }
   .cd-label {
     font-size: 0.55rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    color: rgba(245,200,66,0.6);
+    color: rgba(255,230,0,0.5);
   }
   .cd-sep {
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 900;
-    color: rgba(245,200,66,0.4);
+    color: rgba(255,230,0,0.35);
     line-height: 1;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
   }
   .cd-live {
     font-family: var(--font-display);
     font-size: clamp(1.5rem, 3vw, 2.5rem);
     font-weight: 900;
-    color: var(--rtb-red);
+    color: #FFE600;
     animation: pulse 1s infinite;
   }
   @keyframes pulse {
@@ -525,8 +538,8 @@ Here's the link: {YT}</pre>
     transition: transform 0.2s, opacity 0.2s;
   }
   .btn-hero:hover { transform: translateY(-2px); opacity: 0.9; }
-  .btn-zoom { background: var(--rtb-red);  color: #fff; }
-  .btn-yt   { background: var(--rtb-cyan); color: #060212; }
+  .btn-zoom { background: #C01A08; color: #fff; }
+  .btn-yt   { background: #1E3FA8; color: #fff; }
 
   /* ── Shared section styles ──────────────────────────────────── */
   .section {
@@ -832,6 +845,8 @@ Here's the link: {YT}</pre>
 
   @media (max-width: 768px) {
     .hero { padding-block: 6rem 4rem; }
+    .hero-content { grid-template-columns: 1fr; gap: 2rem; }
+    .countdown { align-items: flex-start; }
     .hero-btns { flex-direction: column; }
     .btn-hero { text-align: center; }
     .sticky-inner { justify-content: center; }
