@@ -96,10 +96,11 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
 ---
 
 <Layout
-  title="Ryzo Events"
+  title="Ryzo Events (v2)"
   description="Screenings, panels, and community gatherings — Ryzo brings the story into the room."
 >
 
+  <!-- Hero -->
   <section class="events-hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
@@ -139,95 +140,101 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     </div>
   </section>
 
-  <section class="audience-section">
-    <div class="container">
-      <span class="eyebrow">Built for Your Room</span>
-      <h2 class="audience-headline">Ryzo Events can be tooled<br /><span class="accent-text">to your audience.</span></h2>
-      <div class="audience-grid">
-        <div class="audience-card">
-          <div class="audience-header"><span class="audience-icon">🎮</span><h3 class="audience-title">Kids Ages 10–17</h3></div>
-          <p class="audience-body">We bring the full combo — animation, gaming, and art — into a single live experience that meets young people exactly where they are.</p>
-        </div>
-        <div class="audience-card">
-          <div class="audience-header"><span class="audience-icon">⚙️</span><h3 class="audience-title">Adults &amp; Tinkerers</h3></div>
-          <p class="audience-body">We go behind the scenes and talk process — how story and impact get built together inside a digital-forward world. Real talk for people who make things.</p>
-        </div>
-        <div class="audience-card">
-          <div class="audience-header"><span class="audience-icon">🎬</span><h3 class="audience-title">Festivals</h3></div>
-          <p class="audience-body">A short film with big impact. Ryzo brings cinematic storytelling and a conversation worth having — wherever great work is being shown.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Two-column body: audience left, calendar right -->
+  <section class="body-section">
+    <div class="container body-grid">
 
-  <section class="events-list-section">
-    <div class="container">
-
-      {upcoming.length > 0 && (
-        <div class="events-block">
-          {upcoming.map(event => (
-            <div class="event-row">
-              <div class="event-date">
-                <span class="e-month">{event.date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span>
-                <span class="e-day">{event.date.getDate()}</span>
-              </div>
-              <div class="event-body">
-                <div class="event-meta">
-                  <span class="event-type">{event.type}</span>
-                  <span class="event-audience">{event.audience}</span>
-                </div>
-                <h2 class="event-title">{event.title}</h2>
-                <p class="event-venue">
-                  {event.venueLink
-                    ? <a href={event.venueLink} target="_blank" rel="noopener" class="venue-link">{event.venue}</a>
-                    : event.venue}
-                </p>
-              </div>
-              {event.link
-                ? <a href={event.link} class="btn btn-primary" target="_blank" rel="noopener">Get on the List</a>
-                : <span class="event-private">Private</span>
-              }
+      <!-- LEFT: Built for Your Room -->
+      <aside class="sidebar">
+        <div class="sidebar-sticky">
+          <span class="eyebrow">Built for Your Room</span>
+          <h2 class="sidebar-headline">Ryzo Events can be tooled<br /><span class="accent-text">to your audience.</span></h2>
+          <div class="audience-stack">
+            <div class="audience-card">
+              <div class="audience-header"><span class="audience-icon">🎮</span><h3 class="audience-title">Kids Ages 10–17</h3></div>
+              <p class="audience-body">We bring the full combo — animation, gaming, and art — into a single live experience that meets young people exactly where they are.</p>
             </div>
-          ))}
-        </div>
-      )}
-
-      {past.length > 0 && (
-        <div class="events-block past-block">
-          <div class="past-divider">
-            <span>Past Events</span>
+            <div class="audience-card">
+              <div class="audience-header"><span class="audience-icon">⚙️</span><h3 class="audience-title">Adults &amp; Tinkerers</h3></div>
+              <p class="audience-body">We go behind the scenes and talk process — how story and impact get built together inside a digital-forward world. Real talk for people who make things.</p>
+            </div>
+            <div class="audience-card">
+              <div class="audience-header"><span class="audience-icon">🎬</span><h3 class="audience-title">Festivals</h3></div>
+              <p class="audience-body">A short film with big impact. Ryzo brings cinematic storytelling and a conversation worth having — wherever great work is being shown.</p>
+            </div>
           </div>
-          {past.map(event => (
-            <div class="event-row is-past">
-              <div class="event-date">
-                <span class="e-month">{event.date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span>
-                <span class="e-day">{event.date.getDate()}</span>
-              </div>
-              <div class="event-body">
-                <div class="event-meta">
-                  <span class="event-type">{event.type}</span>
-                  <span class="event-audience">{event.audience}</span>
-                </div>
-                <h2 class="event-title">{event.title}</h2>
-                <p class="event-venue">
-                  {event.venueLink
-                    ? <a href={event.venueLink} target="_blank" rel="noopener" class="venue-link">{event.venue}</a>
-                    : event.venue}
-                </p>
-              </div>
-            </div>
-          ))}
+          <div class="sidebar-cta">
+            <p>Want to bring Ryzo to your community?</p>
+            <a href="/connect" class="btn btn-outline btn-sm">Send an Inquiry →</a>
+          </div>
         </div>
-      )}
+      </aside>
 
-      <div class="events-cta">
-        <p>Want to bring Ryzo to your community?</p>
-        <a href="/connect" class="btn btn-outline">Send an Inquiry</a>
+      <!-- RIGHT: Calendar -->
+      <div class="calendar">
+
+        {upcoming.length > 0 && (
+          <div class="events-block">
+            {upcoming.map(event => (
+              <div class="event-row">
+                <div class="event-date">
+                  <span class="e-month">{event.date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span>
+                  <span class="e-day">{event.date.getDate()}</span>
+                </div>
+                <div class="event-body">
+                  <div class="event-meta">
+                    <span class="event-type">{event.type}</span>
+                    <span class="event-audience">{event.audience}</span>
+                  </div>
+                  <h2 class="event-title">{event.title}</h2>
+                  <p class="event-venue">
+                    {event.venueLink
+                      ? <a href={event.venueLink} target="_blank" rel="noopener" class="venue-link">{event.venue}</a>
+                      : event.venue}
+                  </p>
+                </div>
+                {event.link
+                  ? <a href={event.link} class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get on the List</a>
+                  : <span class="event-private">Private</span>
+                }
+              </div>
+            ))}
+          </div>
+        )}
+
+        {past.length > 0 && (
+          <div class="events-block past-block">
+            <div class="past-divider">
+              <span>Past Events</span>
+            </div>
+            {past.map(event => (
+              <div class="event-row is-past">
+                <div class="event-date">
+                  <span class="e-month">{event.date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span>
+                  <span class="e-day">{event.date.getDate()}</span>
+                </div>
+                <div class="event-body">
+                  <div class="event-meta">
+                    <span class="event-type">{event.type}</span>
+                    <span class="event-audience">{event.audience}</span>
+                  </div>
+                  <h2 class="event-title">{event.title}</h2>
+                  <p class="event-venue">
+                    {event.venueLink
+                      ? <a href={event.venueLink} target="_blank" rel="noopener" class="venue-link">{event.venue}</a>
+                      : event.venue}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
       </div>
-
     </div>
   </section>
 
+  <!-- Live Event Materials -->
   <section class="live-materials-section">
     <div class="container">
       <span class="eyebrow">Event Materials</span>
@@ -244,11 +251,10 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     </div>
   </section>
 
-
 </Layout>
 
 <style>
-  /* Hero */
+  /* ── Hero ── */
   .events-hero {
     min-height: 52vh;
     display: flex;
@@ -312,7 +318,7 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     text-underline-offset: 3px;
   }
 
-  /* Coming Up column inside hero */
+  /* Next Up column */
   .hero-next {
     display: flex;
     flex-direction: column;
@@ -351,7 +357,6 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0;
   }
 
   .hn-month {
@@ -395,38 +400,53 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     line-height: 1.3;
   }
 
-  /* Audience section */
-  .audience-section {
+  /* ── Two-column body ── */
+  .body-section {
     background: linear-gradient(to right, #080316 0%, #1c0832 100%);
-    padding-block: 1.75rem 0.5rem;
     border-top: 1px solid rgba(255,255,255,0.07);
+    padding-block: clamp(3rem, 6vw, 5rem);
   }
 
-  .audience-section .eyebrow { margin-bottom: 0.5rem; }
+  .body-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
 
-  .audience-headline {
+  /* ── Sidebar ── */
+  .sidebar-sticky {
+    position: sticky;
+    top: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .sidebar .eyebrow { margin-bottom: 0; }
+
+  .sidebar-headline {
     font-family: var(--font-display);
-    font-size: clamp(1.25rem, 2.5vw, 2rem);
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
     font-weight: 900;
     letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 1.25rem;
+    line-height: 1.15;
   }
 
-  .audience-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+  .audience-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
   }
 
   .audience-card {
     background: var(--bg-2);
     border: 1px solid rgba(255,255,255,0.10);
     border-radius: var(--radius-xl);
-    padding: 1rem 1.25rem;
+    padding: 0.9rem 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.35rem;
   }
 
   .audience-header {
@@ -436,7 +456,7 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
   }
 
   .audience-icon {
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1;
     flex-shrink: 0;
   }
@@ -458,29 +478,31 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     margin: 0;
   }
 
-  @media (max-width: 768px) {
-    .audience-grid {
-      grid-template-columns: 1fr;
-    }
+  .sidebar-cta {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
   }
 
-  /* Events list section */
-  .events-list-section {
-    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
-    padding-block: clamp(3rem, 6vw, 6rem);
+  .sidebar-cta p {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.5;
   }
 
+  /* ── Calendar ── */
   .events-block {
     border-top: 1px solid rgba(255,255,255,0.08);
   }
 
-  /* Individual event row */
   .event-row {
     display: grid;
-    grid-template-columns: 80px 1fr auto;
-    gap: 2.5rem;
+    grid-template-columns: 70px 1fr auto;
+    gap: 1.75rem;
     align-items: center;
-    padding: 2.25rem 0;
+    padding: 1.75rem 0;
     border-bottom: 1px solid rgba(255,255,255,0.07);
     transition: var(--transition);
   }
@@ -489,34 +511,30 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     color: var(--accent);
   }
 
-  /* Date column */
   .event-date {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0;
   }
 
   .e-month {
     font-family: var(--font-body);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     color: var(--accent);
     line-height: 1;
-    opacity: 1;
   }
 
   .e-day {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 900;
     letter-spacing: -0.04em;
     line-height: 1;
     color: var(--fg);
   }
 
-  /* Body column */
   .event-body {
     display: flex;
     flex-direction: column;
@@ -551,7 +569,7 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
 
   .event-title {
     font-family: var(--font-display);
-    font-size: clamp(1.25rem, 2.5vw, 2rem);
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
     font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1.15;
@@ -559,7 +577,7 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
   }
 
   .event-venue {
-    font-size: var(--text-base);
+    font-size: var(--text-sm);
     color: var(--fg-2);
     margin-top: 0.125rem;
   }
@@ -586,7 +604,6 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     white-space: nowrap;
   }
 
-  /* Past events */
   .past-divider {
     padding: 2rem 0 1rem;
     display: flex;
@@ -612,49 +629,18 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     white-space: nowrap;
   }
 
-  .is-past {
-    opacity: 0.35;
-  }
-
+  .is-past { opacity: 0.35; }
   .is-past .e-month { color: rgba(255,255,255,0.50); }
   .is-past .e-day { color: var(--fg-2); }
 
-  /* Bottom CTA */
-  .events-cta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    padding-top: 3rem;
-    flex-wrap: wrap;
-  }
-
-  .events-cta p {
-    font-size: var(--text-base);
-    color: var(--fg-2);
-  }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    .hero-content {
-      grid-template-columns: 1fr;
-    }
-    .hero-next {
-      min-width: 0;
-      max-width: 100%;
-    }
-  }
-
-  /* Live Event Materials */
+  /* ── Live Materials ── */
   .live-materials-section {
     background: linear-gradient(to right, #080316 0%, #1c0832 100%);
     border-top: 1px solid rgba(255,255,255,0.08);
     padding-block: clamp(3rem, 6vw, 5rem);
   }
 
-  .live-materials-section .eyebrow {
-    margin-bottom: 1rem;
-  }
+  .live-materials-section .eyebrow { margin-bottom: 1rem; }
 
   .live-materials-heading {
     font-family: var(--font-display);
@@ -673,19 +659,33 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     line-height: 1.6;
   }
 
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+    }
+    .hero-next {
+      min-width: 0;
+      max-width: 100%;
+    }
+    .body-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .sidebar-sticky {
+      position: static;
+    }
+  }
+
   @media (max-width: 768px) {
     .event-row {
-      grid-template-columns: 60px 1fr;
-      gap: 1.5rem;
+      grid-template-columns: 55px 1fr;
+      gap: 1.25rem;
     }
-
     .event-row .btn,
     .event-row .event-private {
       grid-column: 2;
     }
-
-    .e-day { font-size: clamp(2rem, 8vw, 3rem); }
-
-    .events-cta { flex-direction: column; align-items: flex-start; }
+    .e-day { font-size: clamp(1.75rem, 7vw, 2.5rem); }
   }
 </style>
