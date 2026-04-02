@@ -150,6 +150,7 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
 
       <!-- RIGHT: Calendar -->
       <div class="calendar">
+        <span class="eyebrow calendar-label">Calendar</span>
 
         {upcoming.length > 0 && (
           <div class="events-block">
@@ -257,8 +258,8 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to right, rgba(8, 3, 22, 0.70) 0%, rgba(8, 3, 22, 0.20) 50%, transparent 100%),
-      linear-gradient(to top, rgba(8, 3, 22, 0.60) 0%, transparent 40%);
+      linear-gradient(to right, rgba(8, 3, 22, 0.60) 0%, rgba(8, 3, 22, 0.10) 50%, transparent 100%),
+      linear-gradient(to top, rgba(8, 3, 22, 0.50) 0%, transparent 40%);
   }
 
   .hero-content {
@@ -397,6 +398,11 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
   }
 
   /* ── Calendar ── */
+  .calendar-label {
+    display: block;
+    margin-bottom: 1.25rem;
+  }
+
   .events-block {
     border-top: 1px solid rgba(255,255,255,0.08);
   }
@@ -533,9 +539,7 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     white-space: nowrap;
   }
 
-  .is-past { opacity: 0.35; }
-  .is-past .e-month { color: rgba(255,255,255,0.50); }
-  .is-past .e-day { color: var(--fg-2); }
+  .is-past .e-month { color: rgba(255,255,255,0.40); }
 
   /* ── Live Materials ── */
   .live-materials-section {
