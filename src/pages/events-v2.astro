@@ -173,7 +173,7 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
                 </div>
                 {event.link
                   ? <a href={event.link} class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get on the List</a>
-                  : <span class="event-private">Private</span>
+                  : <span class="btn event-private">Private</span>
                 }
               </div>
             ))}
@@ -250,6 +250,7 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    filter: brightness(1.2);
   }
 
   .hero-overlay {
@@ -499,12 +500,12 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
   }
 
   .event-private {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
     color: var(--fg-3);
-    white-space: nowrap;
+    border-color: rgba(255,255,255,0.12);
+    background: transparent;
+    cursor: default;
+    opacity: 0.5;
+    pointer-events: none;
   }
 
   .past-divider {
