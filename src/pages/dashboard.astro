@@ -1,0 +1,163 @@
+---
+export const prerender = false;
+
+import { google } from 'googleapis';
+
+const key = Astro.url.searchParams.get('key');
+const password = import.meta.env.DASHBOARD_PASSWORD;
+
+if (!password || key !== password) {
+  return new Response(
+    '<!doctype html><html><head><title>404</title></head><body><h1>404 Not Found</h1></body></html>',
+    { status: 404, headers: { 'Content-Type': 'text/html' } }
+  );
+}
+
+// Fetch all rows from the Google Sheet
+let rows: string[][] = [];
+let headers: string[] = [];
+let fetchError = '';
+
+try {
+  const auth = new google.auth.JWT({
+    email: import.meta.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    key: (import.meta.env.GOOGLE_PRIVATE_KEY ?? '').replace(/\\n/g, '\n'),
+    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+  });
+  const sheets = google.sheets({ version: 'v4', auth });
+  const res = await sheets.spreadsheets.values.get({
+    spreadsheetId: import.meta.env.GOOGLE_SHEET_ID,
+    range: 'Sheet1',
+  });
+  const values = res.data.values ?? [];
+  if (values.length > 0) {
+    headers = values[0];
+    rows = values.slice(1);
+  }
+} catch (e: any) {
+  fetchError = e?.message ?? 'Unknown error';
+}
+
+// Summary stats
+const totalSessions = rows.length;
+
+function colIdx(name: string) { return headers.indexOf(name); }
+
+function avg(col: string) {
+  const idx = colIdx(col);
+  if (idx === -1) return 'N/A';
+  const nums = rows.map(r => parseFloat(r[idx] ?? '')).filter(n => !isNaN(n));
+  if (nums.length === 0) return 'N/A';
+  return (nums.reduce((a, b) => a + b, 0) / nums.length).toFixed(1);
+}
+
+function loreRate() {
+  const cIdx = colIdx('lore_correct');
+  const tIdx = colIdx('lore_total');
+  if (cIdx === -1 || tIdx === -1) return 'N/A';
+  const pairs = rows
+    .map(r => ({ c: parseFloat(r[cIdx] ?? ''), t: parseFloat(r[tIdx] ?? '') }))
+    .filter(p => !isNaN(p.c) && !isNaN(p.t) && p.t > 0);
+  if (pairs.length === 0) return 'N/A';
+  const rate = pairs.reduce((sum, p) => sum + p.c / p.t, 0) / pairs.length;
+  return `${(rate * 100).toFixed(0)}%`;
+}
+
+const avgBattleScore = avg('battle_score');
+const avgStansCaptured = avg('stans_captured');
+const loreCorrectRate = loreRate();
+
+// CSV download data
+const csvData = [headers, ...rows].map(r => r.map(cell => `"${(cell ?? '').replace(/"/g, '""')}"`).join(',')).join('\n');
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aaron's Sketchbook — Session Dashboard</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Courier New', monospace; background: #111; color: #eee; min-height: 100vh; padding: 24px 16px; }
+    h1 { font-size: 1.6rem; color: #fff; letter-spacing: 2px; margin-bottom: 4px; }
+    .subtitle { color: #666; font-size: 0.85rem; margin-bottom: 24px; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 32px; }
+    .stat { background: #1a1a1a; border: 2px solid #333; padding: 16px; }
+    .stat-label { font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .stat-value { font-size: 1.8rem; color: #E63946; font-weight: bold; }
+    .actions { margin-bottom: 20px; }
+    .btn { display: inline-block; padding: 8px 20px; background: #E63946; color: #fff; border: none; cursor: pointer; font-family: 'Courier New', monospace; font-size: 0.9rem; letter-spacing: 1px; text-decoration: none; }
+    .btn:hover { background: #c01a08; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    th { background: #1a1a1a; color: #E63946; text-align: left; padding: 8px 10px; border-bottom: 2px solid #333; white-space: nowrap; position: sticky; top: 0; }
+    td { padding: 7px 10px; border-bottom: 1px solid #222; color: #ccc; white-space: nowrap; max-width: 200px; overflow: hidden; text-overflow: ellipsis; }
+    tr:hover td { background: #1a1a1a; }
+    .error { color: #E63946; background: #1a1a1a; border: 1px solid #E63946; padding: 12px; margin-bottom: 20px; }
+    .empty { color: #666; padding: 40px; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>AARON'S SKETCHBOOK</h1>
+  <div class="subtitle">Session Data Dashboard — Private</div>
+
+  {fetchError && <div class="error">Sheet error: {fetchError}</div>}
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-label">Total Sessions</div>
+      <div class="stat-value">{totalSessions}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Avg Battle Score</div>
+      <div class="stat-value">{avgBattleScore}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Avg Stans Captured</div>
+      <div class="stat-value">{avgStansCaptured}</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Lore Correct Rate</div>
+      <div class="stat-value">{loreCorrectRate}</div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn" id="csv-btn">Download CSV</button>
+  </div>
+
+  {rows.length === 0 && !fetchError && <div class="empty">No sessions recorded yet.</div>}
+
+  {rows.length > 0 && (
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            {headers.map(h => <th>{h}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr>
+              {headers.map((_, j) => <td title={row[j] ?? ''}>{row[j] ?? ''}</td>)}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )}
+
+  <script define:vars={{ csvData }}>
+    document.getElementById('csv-btn').addEventListener('click', () => {
+      const blob = new Blob([csvData], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `aarons-sketchbook-sessions-${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
