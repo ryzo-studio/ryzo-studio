@@ -284,6 +284,58 @@ const STANS: Record<string, any> = {
 };
 
 // ═══════════════════════════════════════════
+// STAN ARC QUESTIONS — locked to Stan tile encounters only
+// Q1=film, Q2=game, Q3=bridge, Q4/Q5=deeper
+// ═══════════════════════════════════════════
+const FILM_URL = "https://www.youtube.com/watch?v=fGHBh76NHuI";
+const STAN_ARC: Record<string, any> = {
+  cg: {
+    redirect: { text:"You missed it. Go back to when Aaron's mom offered to make that call. Watch his face. That's the moment I showed up. Come back when you've seen it.", url: FILM_URL + "&t=92" },
+    questions: [
+      { q:"In the film, when Aaron's mom wants to call Fireboy's mom, I say \"Do NOT get her involved!\" Which feelings is Aaron having that I'm trying to help with?", o:["Aaron feeling shame about his mom having to step in","Aaron worrying this will make the problem bigger","Aaron stressed about what his mom will say","All of the above"], c:3 },
+      { q:"Okay. I'm good. In MY zone — the EmoDojo — Mind Ninjas multiply faster than you can fight them. What's the only move?", o:["Fight one at a time","Use BREATHE to get through","Wait for a pile-on and whirl around madly","Ignore them"], c:1 },
+      { q:"Aaron felt shame, worry, and stress all at once in that moment. When YOU feel everything hitting at once, what's the most important move?", o:["Handle each problem one at a time","Stop and breathe BEFORE you react or decide anything","Ask someone for help immediately","Push through until it's over"], c:1 },
+    ]
+  },
+  paper: {
+    redirect: { text:"You don't get where I come from yet. Go back to when those messages hit Aaron at his desk. Watch what happens to him. That's me. That's where I was born.", url: FILM_URL + "&t=165" },
+    questions: [
+      { q:"In the film, I, Paper Stan, the RAGEFUL show up after Aaron gets to his room and is immediately hit with mean messages from Fireboy. What triggers his rage?", o:["Aaron losing at the game","Aaron being called out when he's home and ready to start working","Aaron's mom getting involved","Aaron's phone dying"], c:1 },
+      { q:"Mind Ninjas are swarming thoughts you can't stop. But I live in the Rage Storm, where Triggers are different. A trigger is when something OUTSIDE you — a sound, a message, a look — suddenly resurfaces a painful feeling. What hits Aaron like a trigger in that moment?", o:["Losing at his game","Getting Fireboy's messages when he's already hurt from earlier","Hearing his mom's voice","Seeing his own reflection"], c:1 },
+      { q:"The skill I needed most — and had to work hardest to learn — is PAUSE: get out before you blow up. When is PAUSE most powerful?", o:["After you've already said something you regret","Right when you feel the rage starting — before it takes over","When everything has calmed down","When someone tells you to calm down"], c:1 },
+    ]
+  },
+  toy: {
+    redirect: { text:"You don't know why I jumped off that shelf yet. Go watch that moment. You'll see exactly what shame and rage look like when they hit at the same time. Then come back.", url: FILM_URL + "&t=230" },
+    questions: [
+      { q:"Remember when I jumped off the shelf after realizing we got called an NPC again? What do you think I'm really feeling at that moment?", o:["Pure Rage at that Stinkbrain Fireboy","Shame. Because he keeps calling us that. And we're trying so hard to be something else.","Frustration that we can't fight back","Happy because now we can just stop"], c:1 },
+      { q:"Okay. I'm good. In MY zone — the Toxic Zone — the Critics have thumbs-down on their chests and they never stop. What are they in real life?", o:["Teachers who give bad grades","Everyone's opinions","People who used to be your friends","Randos in a comment section"], c:1 },
+      { q:"My biggest skill is COOL DOWN — and I mean that literally. When shame and rage hit at the same time, MY brain goes HOT. What actually works?", o:["Thinking about something happy","Get Cold. Splash cold water on your face, ice, anything physical — it snaps your brain back","Yelling until you feel better","Waiting it out alone"], c:1 },
+      { q:"And here's what I had to learn the hard way — the best Cool Down move isn't during the blowup. It's not after either. When do YOU use it?", o:["When someone tells you to calm down","Before you lose it — the second you feel it building","After you've said what you needed to say","When you're already on the floor"], c:1 },
+    ]
+  },
+  sticky: {
+    redirect: { text:"You don't know where I come from yet. Go find the part where Aaron sees Fireboy's post. That's the exact second I showed up. Keeping score. Like I always do.", url: FILM_URL + "&t=177" },
+    questions: [
+      { q:"I showed up when Aaron saw Fireboy's IG post. \"Everything's easy for him.\" What's really happening in that moment?", o:["Aaron is jealous of Fireboy's design skills","Aaron is measuring himself against someone else and coming up short","Aaron is angry his phone is blowing up","Aaron wishes he had more followers"], c:1 },
+      { q:"I live in the Toxic Zone too. The Exposure Beams don't attack you. They just... watch. What do they represent?", o:["Security cameras","The feeling that everyone's excited to see you fail","Fans following your work","Spotlight on a stage"], c:1 },
+      { q:"My skill is RELEASE. I keep score constantly — who has more, who got further, who won. What does keeping that score actually cost you?", o:["Your reputation","Your focus on what YOU actually want","Your friendships","Your time"], c:1 },
+      { q:"The counter-move to Exposure Beams is choosing to be seen by someone safe. What's the difference between that and just being watched?", o:["There isn't one","You're in control of who sees you — and they're on your side","Safe people don't judge","It's quieter"], c:1 },
+    ]
+  },
+  soft: {
+    redirect: { text:"You haven't found me yet. Go watch what happens right before Aaron turns it around. That moment — that's where I live. Come back when you've seen it.", url: FILM_URL + "&t=412" },
+    questions: [
+      { q:"I'm a little different from everybody else. I was made by someone who always sees the best in Aaron. So when Aaron gives up, I know he needs something different. What do I say that helps?", o:["\"You should apologize to Fireboy\"","\"Don't let this stop you\"","\"Your mom is coming\"","\"You can get revenge later\""], c:1 },
+      { q:"In the Toxic Zone, Inner Turmoil is the final boss. He's built from every harsh thing Aaron has ever been told about himself. What makes him different from every other enemy?", o:["He has the most HP","He sounds exactly like Aaron's own voice","He can't be defeated alone","He lives in the Toxic Zone"], c:1 },
+      { q:"My skill is CONNECT. Aaron's mom is there for him — but he has to let her in. What could Aaron actually do to use his CONNECT skill in that moment?", o:["Post about it online","Go to his mom and tell her what actually happened","Text Fireboy back","Wait until he feels better on his own"], c:1 },
+      { q:"CONNECT isn't just about asking for help. It's about letting someone see the real thing. What's the hardest part of that?", o:["Finding the right words","Believing someone will actually show up for you when you're at your worst","Knowing who to call","Picking the right time"], c:1 },
+      { q:"I represent all the good voices — the people who believe in you even when you don't. What's the most powerful thing CONNECT does?", o:["It solves the problem faster","It makes you look stronger","It reminds you that you don't have to survive the hard stuff alone","It gets you more followers"], c:2 },
+    ]
+  },
+};
+
+// ═══════════════════════════════════════════
 // SURVEY QUESTIONS (RTB Questionnaire)
 // ═══════════════════════════════════════════
 const SURVEY_QUESTIONS: any[] = [
@@ -422,34 +474,48 @@ async function sendToCollect(sessionData: any, collectSecret: string) {
 // AARON'S BEDROOM MAP (30 wide x 22 tall)
 // ═══════════════════════════════════════════
 const MAP_STR = [
-  "##############################",  // 0  top wall
-  "#N...........................#",  // 1  Soft Stan (knit doll) - far corner
-  "#............................#",  // 2
-  "#............................#",  // 3
-  "#..L.........K...............#",  // 4  laptop (CG), sketchbook (Paper)
-  "#............................#",  // 5
-  "#............................#",  // 6
-  "#............................#",  // 7
-  "#.........................T..#",  // 8  toy on shelf (Toy Stan) - right side
-  "#............................#",  // 9
-  "#...PPPPPPPPPPPPPP...........#",  // 10 paper floor - Mind Ninja zone
-  "#...PPPPPPPPPPPPPP...........#",  // 11
-  "#...PPPPPPPPPPPPPP...........#",  // 12
-  "#...PPPPPPPPPPPPPP......F....#",  // 13 phone (Sticky Stan) - right side
-  "#...PPPPPPPPPPPPPP...........#",  // 14
-  "#...PPPPPPPPPPPPPP...........#",  // 15
-  "#............................#",  // 16
-  "#............................#",  // 17
-  "#............................#",  // 18
-  "#............................#",  // 19 player starts here x=14
-  "#.............d..............#",  // 20 door
-  "##############################",  // 21 bottom wall
+  "####################",
+  "#5-....#ttYsstt....#",
+  "#.-.###ttstttYsss..#",
+  "#.-#tttststtss.s...#",
+  "#.--Ytstttts--...4.#",
+  "##sstttYtstss-RR####",
+  "####tttttttss-RR####",
+  "#..#tss3#tt.#p##pp##",
+  "#.#sstss#####LTTLp##",
+  "#.ssYtY###ppppLppp##",
+  "#.sssts##LLppppppL##",
+  "#.##tYY###ppLLppppp#",
+  "#...#tt..#L.L2ppppp#",
+  "#....##.#ppppppppL.#",
+  "#........#L-pppLp###",
+  "###....###p-#ppL####",
+  "#...---#######p#####",
+  "#RRR-RRRRR...###...#",
+  "#RccccccRRRTRTRTR..#",
+  "#RcKccccccccccccR..#",
+  "#RcccccKRRKKKKKKR..#",
+  "#RccccccRRKKKKKKR..#",
+  "#RcKccKcRR-----KR..#",
+  "#R..1...---...-KR..#",
+  "#RccccccRRKKKKKKR..#",
+  "#RccKccKRRKKKKKKR..#",
+  "#RRRRRRRRRccccccR..#",
+  "#TTTT.TTTRRRRRRRRT.#",
+  "#........TTTTT-TTT.#",
+  "##T#T#T#T#.T#T-#T#T#",
+  "#T#T#T#T#T.#T#-T#T##",
+  "#.........-----...##",
+  "#.........-.......##",
+  "#.........B.......##",
+  "###################",
+  "####################",
 ];
 const MAP = MAP_STR.map(row => row.split(""));
 const MAP_H = MAP.length;
 const MAP_W = MAP[0].length;
 
-const OBJECT_STANS: Record<string, string> = { L:"cg", K:"paper", T:"toy", F:"sticky", N:"soft" };
+const OBJECT_STANS: Record<string, string> = { N:"soft", "1":"cg", "2":"paper", "3":"toy", "4":"sticky", "5":"soft" };
 
 const OBJECT_LABELS: Record<string, { icon: string; name: string; hint: string }> = {
   L: { icon:"💻", name:"Aaron's Laptop", hint:"The contest. CG Stan lives here." },
@@ -461,19 +527,30 @@ const OBJECT_LABELS: Record<string, { icon: string; name: string; hint: string }
 
 const TILE_SIZE = 28;
 const VIEW_W = 15;
-const VIEW_H = 11;
+const VIEW_H = 13;
 const TILE_COLORS: Record<string, { bg: string; border: string }> = {
-  "#": {bg:"#1a1a2e", border:"#333"},
-  ".": {bg:"#f5f5f0", border:"#e0e0d8"},
-  "P": {bg:"#f0ece0", border:"#E63946"},
-  "L": {bg:"#1B9AAA", border:"#0d6b7a"},
-  "K": {bg:"#F5C518", border:"#c9a000"},
-  "T": {bg:"#E67E22", border:"#b5621a"},
-  "F": {bg:"#27AE60", border:"#1a7a42"},
-  "N": {bg:"#2980B9", border:"#1a5276"},
+  "#": {bg:"#1a1a2e", border:"#2a2a4e"},
+  ".": {bg:"#4a8a28", border:"#3a7a18"},
+  "-": {bg:"#D4B896", border:"#c4a878"},
+  "R": {bg:"#7A1010", border:"#E63946"},
+  "B": {bg:"#8B6F47", border:"#FFD700"},
+  "c": {bg:"#C49020", border:"#8B6914"},
+  "p": {bg:"#E8E8E8", border:"#E63946"},
+  "t": {bg:"#3D1080", border:"#F5C518"},
+  "s": {bg:"#1E0A50", border:"#FBBF24"},
+  "N": {bg:"#060620", border:"#1B4F72"},
+  "T": {bg:"#1B4E20", border:"#0d3010"},
+  "K": {bg:"#6D1B3C", border:"#F48FB1"},
+  "L": {bg:"#E8E8E8", border:"#E63946"},
+  "Y": {bg:"#2a1500", border:"#F5C518"},
+  "1": {bg:"#0d7a88", border:"#fff"},
+  "2": {bg:"#C0202C", border:"#fff"},
+  "3": {bg:"#C05A10", border:"#fff"},
+  "4": {bg:"#1A8040", border:"#fff"},
+  "5": {bg:"#1A5A90", border:"#FFD700"},
   "d": {bg:"#8B6F47", border:"#6d5635"},
 };
-const WALKABLE = new Set([".", "P", "L", "K", "T", "F", "N", "d"]);
+const WALKABLE = new Set([".", "-", "c", "p", "t", "s", "N", "d", "B", "L", "1", "2", "3", "4", "5"]);
 
 const DECORATIONS: Record<string, any> = {
   "5,10":  { type:"text", content:"MIND NINJA", color:"#E63946", rotation:-8,  opacity:0.22, size:7, bold:true },
@@ -551,7 +628,7 @@ CRITICAL RULES:
 // ═══════════════════════════════════════════
 export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret?: string }) {
   const [screen, setScreen] = useState("title");
-  const [pos, setPos] = useState({x:14,y:19});
+  const [pos, setPos] = useState({x:9,y:33});
   const [dir, setDir] = useState("down");
   const [hp, setHp] = useState(100);
   const [party, setParty] = useState<any[]>([]);
@@ -568,6 +645,9 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
   const [stepCount, setStepCount] = useState(0);
   const [showParty, setShowParty] = useState(false);
   const [showQuit, setShowQuit] = useState(false);
+  const [showRedirect, setShowRedirect] = useState<{text:string;url:string}|null>(null);
+  const [failCounts, setFailCounts] = useState<Record<string,number>>({cg:0,paper:0,toy:0,sticky:0,soft:0});
+  const [arcMode, setArcMode] = useState(false);
   const [flash, setFlash] = useState<string | null>(null);
   const [score, setScore] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
@@ -618,6 +698,17 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
   };
 
   const getQuestion = (stan: any) => {
+    if (arcMode && STAN_ARC[stan.id]) {
+      const arc = STAN_ARC[stan.id].questions;
+      const q = arc[qIdx] || arc[arc.length - 1];
+      const opts = [...q.o];
+      const correctText = opts[q.c];
+      for (let i = opts.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [opts[i], opts[j]] = [opts[j], opts[i]];
+      }
+      return { q: q.q, o: opts, c: opts.indexOf(correctText), d: "Medium", s: [stan.id] };
+    }
     const avail = LORE_QUESTIONS.filter((q, i) => !usedQs.has(i) && (q.s.includes(stan.id) || q.s.includes("any")));
     if (avail.length === 0) {
       const fallback = LORE_QUESTIONS.filter((_, i) => !usedQs.has(i));
@@ -631,14 +722,16 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
     return pick;
   };
 
-  const startEncounter = (stan: any) => {
+  const startEncounter = (stan: any, isArc = false) => {
     if (overworldLoop) overworldLoop.stop();
     playSfx("encounter");
     setCurStan(stan);
     setHp(100);
     setQIdx(0);
     setCorrectCount(0);
-    setTotalQs(numQsForEncounter(stan));
+    setArcMode(isArc);
+    const qs = isArc ? (STAN_ARC[stan.id]?.questions.length || 3) : numQsForEncounter(stan);
+    setTotalQs(qs);
     setBattleState("intro");
     setDialogue(stan.intro);
     setAnswered(null);
@@ -705,6 +798,14 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
         return;
       }
       setBattleState("between");
+      // Film redirect if Q1 missed in arc mode
+      if (!correct && arcMode && qIdx === 0 && STAN_ARC[curStan.id]) {
+        const newFails = {...failCounts, [curStan.id]: (failCounts[curStan.id]||0) + 1};
+        setFailCounts(newFails);
+        if (newFails[curStan.id] >= 1) {
+          setTimeout(() => setShowRedirect(STAN_ARC[curStan.id].redirect), 1400);
+        }
+      }
       const ctx = correct ? `Player got that right (${newCorrectCount}/${nextQIdx} so far, ${totalQs - nextQIdx} rounds left). They need a perfect score to earn your respect. As a sensei sizing them up — they might actually have something. React in character, grudgingly.` : `Player got that WRONG (${newCorrectCount}/${nextQIdx}). They needed a perfect score. As a sensei who doesn't waste time on people who aren't ready — dismiss them or call them out. React in character.`;
       setAiLoading(true);
       convHistory.current.push({role:"user",content:ctx});
@@ -726,14 +827,23 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
     if (stepCount % 2 === 0) playSfx("step");
 
     const tile = MAP[ny][nx];
+
+    // Stan position tiles (1-5, N) — arc encounter
     const stanId = OBJECT_STANS[tile];
     if (stanId) {
       const alreadyEarned = party.find((p: any) => p.id === stanId);
-      if (!alreadyEarned) {
-        setTimeout(() => startEncounter(STANS[stanId]), 200);
-      }
+      if (!alreadyEarned) { setTimeout(() => startEncounter(STANS[stanId], true), 200); }
+      return;
     }
-  }, [screen, pos, party, stepCount]);
+
+    // Zone tiles (c/p/t/s) — 18% random encounter
+    const ZONE_STANS: Record<string, string> = { c:"cg", p:"paper", t:"toy", s:"sticky" };
+    const zoneStanId = ZONE_STANS[tile];
+    if (zoneStanId && Math.random() < 0.18) {
+      const stan = STANS[zoneStanId];
+      if (!party.find((p: any) => p.id === stan.id)) setTimeout(() => startEncounter(stan), 200);
+    }
+  }, [screen, pos, party, stepCount, arcMode, failCounts]);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -1208,6 +1318,26 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
                 </div>
               ))}
               <button onClick={() => setShowParty(false)} style={{width:"100%",marginTop:12,padding:"12px",fontFamily:"'Bangers',cursive",fontSize:18,letterSpacing:2,background:"#111",color:"#F5C518",border:"none",cursor:"pointer",boxShadow:"3px 3px 0 #E63946"}}>CLOSE [P]</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showRedirect && (
+        <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.92)",zIndex:200,display:"flex",alignItems:"center",justifyContent:"center",padding:20}}>
+          <div style={{background:"#1a1a2e",border:"3px solid #E63946",borderRadius:12,padding:24,maxWidth:360,width:"100%",textAlign:"center"}}>
+            <div style={{fontFamily:"'Bangers',cursive",fontSize:13,color:"#F5C518",letterSpacing:3,marginBottom:12}}>THE FILM SHOWS YOU WHAT IT FEELS LIKE</div>
+            <div style={{fontFamily:"'Indie Flower',cursive",fontSize:15,color:"#fff",lineHeight:1.6,marginBottom:6,fontStyle:"italic"}}>"{showRedirect.text}"</div>
+            <div style={{fontFamily:"'Indie Flower',cursive",fontSize:11,color:"#888",marginBottom:20}}>The game teaches you what to do about it. You need both.</div>
+            <div style={{display:"flex",flexDirection:"column",gap:10}}>
+              <a href={showRedirect.url} target="_blank" rel="noopener noreferrer"
+                style={{display:"block",padding:"12px",fontFamily:"'Bangers',cursive",fontSize:18,letterSpacing:2,background:"#E63946",color:"#fff",borderRadius:6,textDecoration:"none",boxShadow:"3px 3px 0 #8B1A1A"}}>
+                WATCH THAT MOMENT →
+              </a>
+              <button onClick={() => setShowRedirect(null)}
+                style={{padding:"10px",fontFamily:"'Indie Flower',cursive",fontSize:14,background:"#333",color:"#aaa",border:"1px solid #555",borderRadius:6,cursor:"pointer"}}>
+                Keep Trying
+              </button>
             </div>
           </div>
         </div>
