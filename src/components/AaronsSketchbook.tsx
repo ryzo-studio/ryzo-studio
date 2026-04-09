@@ -457,9 +457,13 @@ function flattenSession(sessionData: any) {
 }
 
 async function sendToCollect(sessionData: any, collectSecret: string) {
-  if (!collectSecret) return;
+  console.log('sendToCollect called — secret present:', !!collectSecret, '— posting to /api/collect');
+  if (!collectSecret) {
+    console.warn('sendToCollect: no collectSecret, skipping POST');
+    return;
+  }
   try {
-    await fetch('/api/collect', {
+    const res = await fetch('/api/collect', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -467,7 +471,10 @@ async function sendToCollect(sessionData: any, collectSecret: string) {
       },
       body: JSON.stringify(flattenSession(sessionData)),
     });
-  } catch(e) { /* silently fail — local save still works */ }
+    console.log('sendToCollect response status:', res.status);
+  } catch(e) {
+    console.error('sendToCollect fetch error:', e);
+  }
 }
 
 // ═══════════════════════════════════════════
