@@ -471,7 +471,8 @@ async function sendToCollect(sessionData: any, collectSecret: string) {
       },
       body: JSON.stringify(flattenSession(sessionData)),
     });
-    console.log('sendToCollect response status:', res.status);
+    const body = await res.text();
+    console.log('sendToCollect response status:', res.status, body);
   } catch(e) {
     console.error('sendToCollect fetch error:', e);
   }

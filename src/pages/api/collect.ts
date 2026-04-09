@@ -61,8 +61,8 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     return new Response(JSON.stringify({ ok: true }), { status: 200 });
-  } catch (err) {
+  } catch (err: any) {
     console.error('collect error:', err);
-    return new Response(JSON.stringify({ error: 'Server error' }), { status: 500 });
+    return new Response(JSON.stringify({ error: 'Server error', detail: String(err?.message || err) }), { status: 500 });
   }
 };
