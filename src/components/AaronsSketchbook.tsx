@@ -1243,25 +1243,27 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
               const tc = TILE_COLORS[tile] || TILE_COLORS["#"];
               const isPlayer = mx === pos.x && my === pos.y;
               return (
-                <div key={`${vx}-${vy}`} style={{width:TILE_SIZE,height:TILE_SIZE,background:tc.bg,border:`1px solid ${tc.border}`,position:"relative",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,overflow:"hidden",boxSizing:"border-box",
-                  boxShadow: OBJECT_STANS[tile] ? `inset 0 0 8px ${tc.bg}` : "none",
-                  outline: OBJECT_STANS[tile] && !party.find((p: any)=>p.id===OBJECT_STANS[tile]) ? `2px solid ${tc.border}` : "none"
-                }}>
-                  {tile === "#" && <div style={{width:"100%",height:"100%",background:"repeating-linear-gradient(135deg,#1a1a2e 0px,#1a1a2e 6px,#222 6px,#222 12px)"}} />}
-                  {tile === "P" && (<>
-                    <div style={{position:"absolute",inset:0,background:"#f0ece0"}} />
-                    {(vx+vy)%3===0 && <div style={{position:"absolute",top:2,left:3,fontSize:7,color:"#E63946",opacity:0.4,transform:`rotate(${(vx*13+vy*7)%30-15}deg)`,fontFamily:"'Indie Flower',cursive"}}>✗</div>}
-                    {(vx+vy)%4===0 && <div style={{position:"absolute",bottom:2,right:3,fontSize:6,color:"#888",opacity:0.5,transform:`rotate(${(vx*7+vy*11)%20-10}deg)`}}>📄</div>}
-                    {(vx+vy)%5===0 && <div style={{position:"absolute",top:1,right:2,fontSize:7,color:"#E63946",fontWeight:"bold",opacity:0.35}}>!</div>}
-                  </>)}
-                  {OBJECT_STANS[tile] && (() => {
-                    const earned = party.find((p: any)=>p.id===OBJECT_STANS[tile]);
-                    const obj = OBJECT_LABELS[tile];
-                    return earned
-                      ? <div style={{fontSize:12,opacity:0.35}}>{obj.icon}</div>
-                      : <div style={{fontSize:14,animation:"grassPulse 1.5s ease-in-out infinite",animationDelay:`${(vx*0.3)%1.5}s`}}>{obj.icon}</div>;
+                <div key={`${vx}-${vy}`} style={{width:TILE_SIZE,height:TILE_SIZE,background:tc.bg,border:`1px solid ${tc.border}`,position:"relative",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,overflow:"hidden",boxSizing:"border-box"}}>
+                  {tile==="#" && <div style={{position:"absolute",inset:0,background:"repeating-linear-gradient(135deg,#1a1a2e 0px,#1a1a2e 5px,#252540 5px,#252540 10px)"}} />}
+                  {tile==="." && <div style={{position:"absolute",inset:0,background:"#4a8a28"}} />}
+                  {tile==="-" && <><div style={{position:"absolute",inset:0,background:"#D4B896"}} />{(vx+vy)%3===0&&<div style={{position:"absolute",inset:0,background:"rgba(139,104,60,0.15)"}} />}</>}
+                  {tile==="R" && <><div style={{position:"absolute",inset:0,background:"#7A1010"}} /><div style={{position:"absolute",inset:0,backgroundImage:"repeating-linear-gradient(0deg,rgba(0,0,0,0.3) 0px,rgba(0,0,0,0.3) 1px,transparent 1px,transparent 7px),repeating-linear-gradient(90deg,rgba(0,0,0,0.2) 0px,rgba(0,0,0,0.2) 1px,transparent 1px,transparent 14px)"}} /></>}
+                  {tile==="c" && <><div style={{position:"absolute",inset:0,background:"#C49020"}} /><div style={{position:"absolute",inset:0,background:"repeating-linear-gradient(90deg,rgba(92,61,10,0.12) 0px,rgba(92,61,10,0.12) 1px,transparent 1px,transparent 14px),repeating-linear-gradient(0deg,rgba(92,61,10,0.12) 0px,rgba(92,61,10,0.12) 1px,transparent 1px,transparent 14px)"}} />{!party.find((p:any)=>p.id==="cg")&&(vx+vy)%4===0&&<div style={{position:"absolute",top:1,right:2,fontSize:7,color:"#5C3D0A",fontWeight:"bold",animation:"sparkle 2s ease-in-out infinite",animationDelay:`${(vx*0.4)%2}s`}}>✦</div>}</>}
+                  {tile==="p" && <><div style={{position:"absolute",inset:0,background:"#E8E8E8"}} /><div style={{position:"absolute",inset:0,borderRight:"1px solid rgba(230,57,70,0.45)",borderBottom:"1px solid rgba(230,57,70,0.45)"}} />{!party.find((p:any)=>p.id==="paper")&&(vx+vy)%4===0&&<div style={{position:"absolute",top:1,right:2,fontSize:7,color:"#E63946",fontWeight:"bold",animation:"sparkle 2s ease-in-out infinite",animationDelay:`${(vx*0.3)%2}s`}}>✦</div>}</>}
+                  {tile==="t" && <><div style={{position:"absolute",inset:0,background:"#3D1080"}} />{(vx+vy)%4===0&&<div style={{position:"absolute",top:1,right:2,fontSize:7,color:"#F5C518",fontWeight:"bold",animation:"sparkle 2s ease-in-out infinite",animationDelay:`${(vx*0.5)%2}s`}}>✦</div>}</>}
+                  {tile==="s" && <><div style={{position:"absolute",inset:0,background:"#1E0A50"}} />{(vx+vy)%4===0&&<div style={{position:"absolute",top:1,right:2,fontSize:7,color:"#FBBF24",fontWeight:"bold",animation:"sparkle 2s ease-in-out infinite",animationDelay:`${(vx*0.35)%2}s`}}>✦</div>}</>}
+                  {tile==="Y" && <><div style={{position:"absolute",inset:0,background:"#2a1500"}} /><div style={{position:"absolute",top:4,left:4,right:4,bottom:4,background:"#F5C518",borderRadius:1}} /></>}
+                  {tile==="T" && <><div style={{position:"absolute",inset:0,background:"#0d3010"}} /><div style={{position:"absolute",top:2,left:3,right:3,bottom:3,background:"#1B4E20",borderRadius:2}} /><div style={{position:"absolute",top:3,left:4,right:4,bottom:4,background:"#2E7D32",borderRadius:2}} /></>}
+                  {tile==="K" && <><div style={{position:"absolute",inset:0,background:"#4a0d26"}} /><div style={{position:"absolute",top:2,left:3,right:3,bottom:3,background:"#8B1A4A",borderRadius:3}} /><div style={{position:"absolute",top:3,left:4,right:4,bottom:4,background:"#F48FB1",borderRadius:3,opacity:0.7}} /></>}
+                  {tile==="L" && <><div style={{position:"absolute",inset:0,background:"#E8E8E8"}} /><div style={{position:"absolute",top:0,left:"30%",width:4,bottom:2,backgroundImage:"repeating-linear-gradient(180deg,#E63946 0px,#E63946 3px,#F0F0F0 3px,#F0F0F0 6px)"}} /><div style={{position:"absolute",top:1,left:1,right:1,height:8,background:"#E63946",borderRadius:"50% 50% 0 0",opacity:0.9}} /></>}
+                  {tile==="N" && (() => { const e=party.find((p:any)=>p.id==="soft"); return <><div style={{position:"absolute",inset:0,background:"#060620"}} /><div style={{fontSize:14,animation:e?"none":"grassPulse 1.5s ease-in-out infinite",opacity:e?0.3:1,position:"relative",zIndex:2}}>🧸</div></>; })()}
+                  {(tile==="B"||tile==="d") && <div style={{width:"100%",height:"100%",background:"#8B6F47",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14}}>🚪</div>}
+                  {OBJECT_STANS[tile]&&tile!=="N" && (() => {
+                    const sid = OBJECT_STANS[tile];
+                    const earned = party.find((p: any) => p.id === sid);
+                    const icons: Record<string,string> = {"1":"💻","2":"📓","3":"🗿","4":"📱","5":"🧸"};
+                    return <div style={{fontSize:16,opacity:earned?0.25:1,animation:earned?"none":"grassPulse 1.8s ease-in-out infinite",position:"relative",zIndex:2}}>{icons[tile]}</div>;
                   })()}
-                  {tile === "d" && <div style={{width:"100%",height:"100%",background:"#8B6F47",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14}}>🚪</div>}
                   {DECORATIONS[`${mx},${my}`] && (() => {
                     const d = DECORATIONS[`${mx},${my}`];
                     const transform = `rotate(${d.rotation || 0}deg)`;
