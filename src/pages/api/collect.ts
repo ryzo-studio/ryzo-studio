@@ -14,7 +14,7 @@ const SHEET_HEADERS = [
 
 export const POST: APIRoute = async ({ request }) => {
   const authHeader = request.headers.get('Authorization');
-  const secret = import.meta.env.COLLECT_SECRET;
+  const secret = process.env.COLLECT_SECRET;
   if (!secret || !authHeader || authHeader !== `Bearer ${secret}`) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
   }
@@ -27,14 +27,17 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   try {
+    const privateKey = (process.env.GOOGLE_PRIVATE_KEY || '').replace(/\\n/g, '\n');
+    console.log('collect.ts: email present:', !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL, 'key length:', privateKey.length, 'sheetId present:', !!process.env.GOOGLE_SHEET_ID);
+
     const auth = new google.auth.JWT({
-      email: import.meta.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      key: (import.meta.env.GOOGLE_PRIVATE_KEY ?? '').replace(/\\n/g, '\n'),
+      email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      key: privateKey,
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
 
     const sheets = google.sheets({ version: 'v4', auth });
-    const spreadsheetId = import.meta.env.GOOGLE_SHEET_ID;
+    const spreadsheetId = process.env.GOOGLE_SHEET_ID;
 
     // Check if headers row exists
     const existing = await sheets.spreadsheets.values.get({
