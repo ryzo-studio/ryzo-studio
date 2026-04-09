@@ -984,7 +984,13 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
               <div style={{fontFamily:"'Indie Flower',cursive",fontSize:15,color:"#333",textAlign:"right",marginTop:6}}>— Aaron</div>
             </div>
             <div style={{padding:"16px 20px",background:"#fff"}}>
-              <button onClick={() => { if (journalLoop) journalLoop.stop(); createOverworldMusic().start(); setScreen("overworld"); playSfx("select"); }}
+              <button onClick={() => {
+                const sessions = loadSessions();
+                sessions.push({timestamp:new Date().toISOString(),survey:surveyAnswers,battle:{battle_score:0,stans_captured:0,lore_correct:0,lore_total:0}});
+                saveSessions(sessions);
+                sendToCollect({timestamp:new Date().toISOString(),survey:surveyAnswers,battle:{battle_score:0,stans_captured:0,lore_correct:0,lore_total:0}},collectSecret);
+                if (journalLoop) journalLoop.stop(); createOverworldMusic().start(); setScreen("overworld"); playSfx("select");
+              }}
                 style={{width:"100%",padding:"14px",fontFamily:"'Bangers',cursive",fontSize:22,letterSpacing:3,background:"#E63946",color:"#fff",border:"none",borderRadius:0,cursor:"pointer",boxShadow:"4px 4px 0 #111"}}>
                 ENTER THE OVERWORLD ▶
               </button>
