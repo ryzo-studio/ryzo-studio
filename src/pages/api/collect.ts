@@ -27,8 +27,10 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   try {
-    const privateKey = (process.env.GOOGLE_PRIVATE_KEY || '').replace(/\\n/g, '\n');
+    const rawKey = process.env.GOOGLE_PRIVATE_KEY || '';
+    const privateKey = rawKey.includes('\\n') ? rawKey.replace(/\\n/g, '\n') : rawKey;
     console.log('collect.ts: email present:', !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL, 'key length:', privateKey.length, 'sheetId present:', !!process.env.GOOGLE_SHEET_ID);
+    console.log('Key starts with:', privateKey.substring(0, 50));
 
     const auth = new google.auth.JWT({
       email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
