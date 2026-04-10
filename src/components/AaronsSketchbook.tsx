@@ -670,6 +670,7 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
   const [followUpInput, setFollowUpInput] = useState("");
   const [surveyComplete, setSurveyComplete] = useState(false);
   const [showIntro, setShowIntro] = useState(false);
+  const [recentLoss, setRecentLoss] = useState<{id: string; step: number} | null>(null);
 
   const findNextValidIdx = (fromIdx: number, answers: Record<string, any>) => {
     for (let i = fromIdx; i < SURVEY_QUESTIONS.length; i++) {
@@ -794,7 +795,7 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
     setTimeout(async () => {
       if (newHp <= 0) {
         if (battleLoop) battleLoop.stop();
-        setBattleState("result"); setDialogue(curStan.escape); playSfx("escape"); return;
+        setBattleState("result"); setDialogue(curStan.escape); playSfx("escape"); setRecentLoss({id: curStan.id, step: stepCount}); return;
       }
       if (nextQIdx >= totalQs) {
         if (battleLoop) battleLoop.stop();
@@ -804,6 +805,7 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
         } else {
           playSfx("escape");
           setDialogue(curStan.name === "Soft Stan" ? "...you tried. But you don't really know me yet. Come find me again." : curStan.name === "Paper Stan" ? "Close. But close isn't enough. You gotta KNOW me to catch me. Try again." : curStan.name === "Toy Stan" ? "Almost. But 'almost' is the story of Aaron's life, isn't it? Come back when you've done your homework." : curStan.name === "CG Stan" ? "So close! But not quite! You missed some stuff! Come back! Try again!" : "You noticed some things. But not everything. Look closer next time.");
+          setRecentLoss({id: curStan.id, step: stepCount});
         }
         return;
       }
@@ -851,9 +853,10 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
     const zoneStanId = ZONE_STANS[tile];
     if (zoneStanId && Math.random() < 0.18) {
       const stan = STANS[zoneStanId];
-      if (!party.find((p: any) => p.id === stan.id)) setTimeout(() => startEncounter(stan), 200);
+      const onCooldown = recentLoss?.id === stan.id && (stepCount - recentLoss.step) < 20;
+      if (!onCooldown && !party.find((p: any) => p.id === stan.id)) setTimeout(() => startEncounter(stan), 200);
     }
-  }, [screen, pos, party, stepCount, arcMode, failCounts]);
+  }, [screen, pos, party, stepCount, arcMode, failCounts, recentLoss]);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
