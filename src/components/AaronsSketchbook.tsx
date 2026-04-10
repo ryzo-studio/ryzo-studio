@@ -558,7 +558,7 @@ const TILE_COLORS: Record<string, { bg: string; border: string }> = {
   "5": {bg:"#1A5A90", border:"#FFD700"},
   "d": {bg:"#8B6F47", border:"#6d5635"},
 };
-const WALKABLE = new Set([".", "-", "c", "p", "t", "s", "N", "d", "B", "L", "T", "K", "Y", "R", "1", "2", "3", "4", "5"]);
+const WALKABLE = new Set([".", "-", "c", "p", "t", "s", "N", "d", "B", "L", "T", "K", "Y", "1", "2", "3", "4", "5"]);
 
 const DECORATIONS: Record<string, any> = {
   "5,10":  { type:"text", content:"MIND NINJA", color:"#E63946", rotation:-8,  opacity:0.22, size:7, bold:true },
