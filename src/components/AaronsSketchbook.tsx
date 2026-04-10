@@ -798,7 +798,6 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
   };
 
   const getQuestion = (stan: any) => {
-    if (isSkillEncounter) return getSkillQuestion();
     if (arcMode && STAN_ARC[stan.id]) {
       const arc = STAN_ARC[stan.id].questions;
       const q = arc[qIdx] || arc[arc.length - 1];
@@ -810,6 +809,7 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
       }
       return { q: q.q, o: opts, c: opts.indexOf(correctText), d: "Medium", s: [stan.id] };
     }
+    if (isSkillEncounter) return getSkillQuestion();
     const avail = LORE_QUESTIONS.filter((q, i) => !usedQs.has(i) && (q.s.includes(stan.id) || q.s.includes("any")));
     if (avail.length === 0) {
       const fallback = LORE_QUESTIONS.filter((_, i) => !usedQs.has(i));
@@ -831,10 +831,18 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
     setQIdx(0);
     setCorrectCount(0);
     setArcMode(isArc);
+    if (isArc) setIsSkillEncounter(false);
     const qs = isArc ? (STAN_ARC[stan.id]?.questions.length || 3) : isSkill ? 1 : numQsForEncounter(stan);
     setTotalQs(qs);
+    const skillIntros: Record<string,string> = {
+      cg: "Hey — quick check. You know this stuff?",
+      paper: "Hold up. Let me test something real fast.",
+      toy: "Stop. Quick question. Don't overthink it.",
+      sticky: "Oh. You again. Prove you've been paying attention.",
+      soft: "Before you go. One thing."
+    };
     setBattleState("intro");
-    setDialogue(stan.intro);
+    setDialogue(isSkill && !isArc ? (skillIntros[stan.id] || "Quick check.") : stan.intro);
     setAnswered(null);
     convHistory.current = [];
     setScreen("battle");
@@ -893,7 +901,20 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
         if (isSkillEncounter) {
           if (correct && curQ.skill) handleSkillAnswer(curQ, true);
           setIsSkillEncounter(false);
-          setDialogue(correct ? "Good. You know your skills. Keep moving." : "Not quite. Keep exploring — you'll get it.");
+          const winLines = [
+            "Learned fighter. You've been paying attention.",
+            "That's it. That's exactly it. Keep moving.",
+            "You got it. Aaron would be proud.",
+            "Solid. You actually know this stuff.",
+            "That's the one. Learned fighter."
+          ];
+          const lossLines = [
+            "Get back in there. The Senseis tell you everything — listen closer. Aaron's notebook pages are floating all around, full of intel. Don't skip them.",
+            "You probably need to play with your eyes and ears open. The Senseis drop every clue you need. The notebook pages have the answers — find them.",
+            "That one's in Aaron's notebook. They're everywhere out there — glowing, floating. The Senseis spell it out too if you're listening.",
+          ];
+          const pickRandom = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
+          setDialogue(correct ? pickRandom(winLines) : pickRandom(lossLines));
           return;
         }
         if (newCorrectCount === totalQs) {
@@ -1348,6 +1369,23 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
           {battleState === "result" && (() => {
             const captured = party.includes(curStan);
             const knockedOut = hp <= 0;
+            // Skill encounter — lightweight result
+            if (!captured && !knockedOut && !arcMode) {
+              const wasCorrect = dialogue.includes("fighter") || dialogue.includes("exactly") || dialogue.includes("proud") || dialogue.includes("Solid") || dialogue.includes("one.");
+              return (
+                <div>
+                  <div style={{background:"#faf6ee",border:`3px solid ${wasCorrect?"#27AE60":"#E67E22"}`,borderRadius:4,padding:16,marginBottom:12,textAlign:"center"}}>
+                    {wasCorrect && <div style={{fontFamily:"'Bangers',cursive",fontSize:18,color:"#27AE60",letterSpacing:2,marginBottom:8}}>LEARNED FIGHTER ✓</div>}
+                    {!wasCorrect && <div style={{fontFamily:"'Bangers',cursive",fontSize:16,color:"#E67E22",letterSpacing:1,marginBottom:8}}>NOT QUITE</div>}
+                    <div style={{fontFamily:"'Indie Flower',cursive",fontSize:15,color:"#111",lineHeight:1.6,fontStyle:"italic"}}>{dialogue}</div>
+                  </div>
+                  <button onClick={() => { setScreen("overworld"); createOverworldMusic().start(); playSfx("select"); }}
+                    style={{width:"100%",padding:"12px",fontFamily:"'Bangers',cursive",fontSize:20,letterSpacing:2,background:"#111",color:"#fff",border:"none",borderRadius:4,cursor:"pointer",boxShadow:"3px 3px 0 #000"}}>
+                    KEEP MOVING ▶
+                  </button>
+                </div>
+              );
+            }
             return (
               <div>
                 <div style={{background:captured?"#f0fff4":knockedOut?"#fff0f0":"#fffbf0",border:`3px solid ${captured?curStan.color:knockedOut?"#E63946":"#E67E22"}`,borderRadius:4,padding:12,marginBottom:10}}>
@@ -1380,25 +1418,31 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
 
   return (
     <div style={{width:"100%",maxWidth:500,margin:"0 auto",minHeight:"100vh",background:"#111",display:"flex",flexDirection:"column"}} ref={gameRef} tabIndex={0}>
-      <div style={{background:"#111",padding:"6px 10px",display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom:"2px solid #333"}}>
-        <div style={{display:"flex",gap:4,alignItems:"center"}}>
+      <div style={{background:"#111",padding:"8px 12px",display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom:"2px solid #333"}}>
+        <div style={{display:"flex",gap:6,alignItems:"center"}}>
           {[
-            {id:"cg",  icon:"💻", color:"#0d7a88"},
-            {id:"paper",icon:"📓",color:"#C0202C"},
-            {id:"toy", icon:"🗿", color:"#C05A10"},
-            {id:"sticky",icon:"📱",color:"#1A8040"},
-            {id:"soft",icon:"🧸", color:"#1A5A90"},
+            {id:"cg",   label:"CG",     color:"#0d7a88"},
+            {id:"paper",label:"PAPER",  color:"#C0202C"},
+            {id:"toy",  label:"TOY",    color:"#C05A10"},
+            {id:"sticky",label:"STICKY",color:"#1A8040"},
+            {id:"soft", label:"SOFT",   color:"#1A5A90"},
           ].map(s => {
             const captured = party.find((p: any) => p.id === s.id);
             return (
-              <div key={s.id} style={{width:32,height:32,borderRadius:4,background:captured?s.color:"#222",border:`2px solid ${captured?s.color:"#444"}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,opacity:captured?1:0.35,boxShadow:captured?`0 0 6px ${s.color}`:undefined,transition:"all 0.3s"}}>
-                {captured ? s.icon : "?"}
+              <div key={s.id} style={{display:"flex",flexDirection:"column",alignItems:"center",gap:2}}>
+                <div style={{width:44,height:44,borderRadius:"50%",background:captured?`radial-gradient(circle at 35% 35%, ${s.color}cc, ${s.color})`:"#1a1a1a",border:`3px solid ${captured?s.color:"#333"}`,boxShadow:captured?`0 0 10px ${s.color}, 0 0 20px ${s.color}44`:"none",transition:"all 0.4s ease",position:"relative",overflow:"hidden"}}>
+                  {captured && <div style={{position:"absolute",top:6,left:8,width:10,height:6,borderRadius:"50%",background:"rgba(255,255,255,0.35)"}} />}
+                  {!captured && <div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Bangers',cursive",fontSize:20,color:"#333"}}>?</div>}
+                </div>
+                <div style={{fontFamily:"'Bangers',cursive",fontSize:9,letterSpacing:0.5,color:captured?s.color:"#444",transition:"color 0.4s"}}>{s.label}</div>
               </div>
             );
           })}
         </div>
-        <div style={{fontFamily:"'Indie Flower',cursive",fontSize:12,color:"#aaa"}}>Score: {score}</div>
-        <button onClick={() => setShowQuit(true)} style={{fontFamily:"'Bangers',cursive",fontSize:14,color:"#E63946",background:"transparent",border:"none",cursor:"pointer",letterSpacing:1}}>QUIT</button>
+        <div style={{display:"flex",flexDirection:"column",alignItems:"flex-end",gap:4}}>
+          <button onClick={() => setShowQuit(true)} style={{fontFamily:"'Bangers',cursive",fontSize:14,color:"#E63946",background:"transparent",border:"none",cursor:"pointer",letterSpacing:1}}>QUIT</button>
+          <div style={{fontFamily:"'Indie Flower',cursive",fontSize:11,color:"#555"}}>Score: {score}</div>
+        </div>
       </div>
       <div style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",overflow:"hidden",background:"#fff",backgroundImage:"repeating-linear-gradient(transparent,transparent 27px,#e8e8e8 27px,#e8e8e8 28px)"}}>
         <div style={{display:"grid",gridTemplateColumns:`repeat(${VIEW_W}, ${TILE_SIZE}px)`,gridTemplateRows:`repeat(${VIEW_H}, ${TILE_SIZE}px)`,border:"3px solid #111",imageRendering:"pixelated"}}>
