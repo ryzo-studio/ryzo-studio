@@ -277,7 +277,7 @@ function StanSprite({ stanId, scale = 1 }: { stanId: string; scale?: number }) {
 
 const STANS: Record<string, any> = {
   paper: { id:"paper", name:"Paper Stan", emotion:"Explosive Rage", color:"#E74C3C", bgColor:"#FDEDEC", skill:"PAUSE", skillDesc:"Step back before you swing. The pause is the power.", voice:"Aggressive, blunt, short bursts. Protective. Sounds like he'd fight for you the second after he's done fighting you.", intro:"You again? I don't know if I'm in the mood for a brain battle. Maybe you should just BACK OFF.", defeat:"...fine. You get it. You know I'm a storm about to break. And I know that Rage can be over the top sometimes. But I was born out of an anger that happens when you feel like nobody else is gonna protect us. We better find some allies. Get back out there.", escape:"You're not ready. Come back when you've got guts." },
-  toy: { id:"toy", name:"Toy Stan", emotion:"Frustration & Shame", color:"#E67E22", bgColor:"#FEF5E7", skill:"COOL DOWN", skillDesc:"Lower the temperature before you make your move.", voice:"Sarcastic, perfectionist, self-deprecating. Has standards. Disappointed by everything, including himself.", intro:"Oh great. Another visitor who thinks they understand craft. Let me guess — you think everything Aaron makes is 'good enough'?", defeat:"Whoa. You actually... see the details. Most people just see the surface. The truth is, I'm not mad at the work. I'm just scared that if it's not perfect, no one will think Aaron matters. Maybe that's not the worst thing to admit.", escape:"Typical. Surface-level understanding. Come back when you can see what's actually wrong." },
+  toy: { id:"toy", name:"Toy Stan", emotion:"Frustration & Shame", color:"#E67E22", bgColor:"#FEF5E7", skill:"CHILL", skillDesc:"Lower the temperature before you make your move. That's CHILL.", voice:"Sarcastic, perfectionist, self-deprecating. Has standards. Disappointed by everything, including himself.", intro:"Oh great. Another visitor who thinks they understand craft. Let me guess — you think everything Aaron makes is 'good enough'?", defeat:"Whoa. You actually... see the details. Most people just see the surface. The truth is, I'm not mad at the work. I'm just scared that if it's not perfect, no one will think Aaron matters. Maybe that's not the worst thing to admit.", escape:"Typical. Surface-level understanding. Come back when you can see what's actually wrong." },
   cg: { id:"cg", name:"CG Stan", emotion:"Overwhelm & Pressure", color:"#8E44AD", bgColor:"#F5EEF8", skill:"BREATHE", skillDesc:"Slow it down. One breath changes everything.", voice:"Fast-talking, anxious, manic then shutdown. Seventeen thoughts at once. Goes quiet when overloaded.", intro:"Hey. You're here. Perfect. Now before somebody tries to interrupt — I've got seventeen strategies to review. Oh wait. We're sparring RIGHT? Let's go!", defeat:"Yes! You did it. Not everybody hangs around when I start spinning. The thing is... I gotta cover everything because if Aaron drops even ONE ball, they all come crashing down. But — BREATHE — maybe I don't have to handle everything all at once.", escape:"Too much! This is too much! I gotta go — sorry — bye —" },
   sticky: { id:"sticky", name:"Sticky Stan", emotion:"Envy & Comparison", color:"#27AE60", bgColor:"#EAFAF1", skill:"RELEASE", skillDesc:"Let the score go. That's where the energy comes from.", voice:"Quiet, bitter, speaks in comparisons. Keeps score. Assumes you forgot about him.", intro:"Oh look. You found me. Bet you found everyone else first though, right? That tracks.", defeat:"You're the first person who asked me anything. Was that because I let you? Usually I have to have the snappy comeback — I spend all my time making sure Aaron measures up to everybody else. I forgot to ask what Aaron actually cares about.", escape:"Whatever. Go hang out with the cooler Stans. I'll be here." },
   soft: { id:"soft", name:"Soft Stan", emotion:"Self-Regard & Resilience", color:"#2980B9", bgColor:"#EBF5FB", skill:"CONNECT", skillDesc:"You can keep going. Reach out — that's the hardest and most powerful move.", voice:"Quiet but not weak. Speaks in short certain sentences. The one who stayed when everyone else left.", intro:"You made it this far. Most people don't. I've been waiting.", defeat:"You stayed. You kept going even when it got hard. That's what I carry — the part of Aaron that knows he can survive it. Not because it stops hurting. Because he's still here. And that's enough to finish the fight.", escape:"Not yet. You'll need to know this before the end. Come back." }
@@ -310,7 +310,7 @@ const STAN_ARC: Record<string, any> = {
     questions: [
       { q:"Remember when I jumped off the shelf after realizing we got called an NPC again? What do you think I'm really feeling at that moment?", o:["Pure Rage at that Stinkbrain Fireboy","Shame. Because he keeps calling us that. And we're trying so hard to be something else.","Frustration that we can't fight back","Happy because now we can just stop"], c:1 },
       { q:"Okay. I'm good. In MY zone — the Toxic Zone — the Critics have thumbs-down on their chests and they never stop. What are they in real life?", o:["Teachers who give bad grades","Everyone's opinions","People who used to be your friends","Randos in a comment section"], c:1 },
-      { q:"My biggest skill is COOL DOWN — and I mean that literally. When shame and rage hit at the same time, MY brain goes HOT. What actually works?", o:["Thinking about something happy","Get Cold. Splash cold water on your face, ice, anything physical — it snaps your brain back","Yelling until you feel better","Waiting it out alone"], c:1 },
+      { q:"My biggest skill is CHILL — and I mean that literally. When shame and rage hit at the same time, MY brain goes HOT. What actually works?", o:["Thinking about something happy","Get Cold. Splash cold water on your face, ice, anything physical — it snaps your brain back","Yelling until you feel better","Waiting it out alone"], c:1 },
       { q:"And here's what I had to learn the hard way — the best Cool Down move isn't during the blowup. It's not after either. When do YOU use it?", o:["When someone tells you to calm down","Before you lose it — the second you feel it building","After you've said what you needed to say","When you're already on the floor"], c:1 },
     ]
   },
@@ -333,6 +333,70 @@ const STAN_ARC: Record<string, any> = {
       { q:"I represent all the good voices — the people who believe in you even when you don't. What's the most powerful thing CONNECT does?", o:["It solves the problem faster","It makes you look stronger","It reminds you that you don't have to survive the hard stuff alone","It gets you more followers"], c:2 },
     ]
   },
+};
+
+// ═══════════════════════════════════════════
+// SKILL QUESTIONS (zone tile encounters)
+// ═══════════════════════════════════════════
+const SKILL_QUESTIONS: any[] = [
+  // ── BREATHE ──
+  {q:"BREATHE is a skill in Rage Fighters. What does it actually do?", o:["Freezes enemies in place","Calls in a teammate","Gives you a speed boost","Restores health and grounds you faster than waiting"], c:3, skill:"breathe"},
+  {q:"In Rage Fighters, when should you use BREATHE?", o:["When you're at 10% health and out of options","Early — before the swarm buries you","Only in boss fights","Right after you take your biggest hit"], c:1, skill:"breathe"},
+  {q:"BREATHE works IRL too — where do you breathe for it to actually reset your body?", o:["Into your chest — it's more powerful","Through your mouth, slow and steady","It doesn't matter as long as you breathe","Into your stomach"], c:3, skill:"breathe"},
+  {q:"Deep breathing sends your body a message. What is it?", o:["That you need to fight harder","That you should sleep it off","That you need more oxygen to think","We're okay — we can get through this"], c:3, skill:"breathe"},
+  {q:"Advanced BREATHE isn't just for when you're already upset. When do you use it?", o:["Only when you're shaking and can't stop","Right after something bad happens","Only during a fight when skills are locked","Before any stressful situation when you want to feel centered"], c:3, skill:"breathe"},
+  // ── PAUSE ──
+  {q:"PAUSE is a skill in Rage Fighters. What does it actually do?", o:["Restores health and grounds you","Calls in backup automatically","Freezes enemies in range","Teleport + forcefield — stops attacks and gives you time to think"], c:3, skill:"pause"},
+  {q:"When Mind Ninjas swarm you in Rage Fighters, what does PAUSE give you?", o:["More attack damage to fight back","Extra health regeneration over time","A teammate who jumps in automatically","Distance and a forcefield"], c:3, skill:"pause"},
+  {q:"PAUSE in real life means...", o:["Running away and never coming back","Hiding until everyone forgets what happened","Pretending nothing happened and moving on like normal","Leaving before you say something you can't take back"], c:3, skill:"pause"},
+  {q:"Pause isn't avoidance. What is it?", o:["Ignoring the problem until it fades on its own","Waiting for the other person to stop first","Pretending you're fine when you're not","Choosing your moment"], c:3, skill:"pause"},
+  {q:"You're about to say something you can't take back. What's the move?", o:["Say it — honesty matters more than timing","Stay until there's a real resolution","Wait for them to stop talking first","Pause — get some space. Take a beat to think."], c:3, skill:"pause"},
+  // ── CHILL ──
+  {q:"CHILL is a skill in Rage Fighters. What does it actually do?", o:["Restores your health over time","Calls in a teammate automatically","Creates a forcefield around you","Sends out a freeze field — slows enemies and gives YOU a speed boost"], c:3, skill:"chill"},
+  {q:"When should you deploy CHILL in Rage Fighters?", o:["When you're already buried and out of options","Only against bosses — it doesn't work on small enemies","Right after you take your biggest hit","When enemies are swarming — before the swarm builds"], c:3, skill:"chill"},
+  {q:"CHILL works IRL. Why does putting something cold on your body actually help when you're angry?", o:["Cold is a distraction that breaks your focus","It makes you look calmer so others back off","It slows your heart rate permanently","Your body temperature affects your emotional temperature"], c:3, skill:"chill"},
+  {q:"When you're really angry, your brain is literally...", o:["Cold and shutting down to protect itself","Sleeping — that's why you can't think straight","Running too many thoughts all at once","HOT"], c:3, skill:"chill"},
+  {q:"Best real CHILL move when you feel yourself heating up?", o:["Yell into a pillow until it passes","Think about something that makes you happy","Count slowly from 100 down to zero","Cold water on your wrists or an ice cube"], c:3, skill:"chill"},
+  // ── CONNECT ──
+  {q:"CONNECT is a skill in Rage Fighters. What does it actually do?", o:["Freezes all enemies so you can think","Gives you a speed boost and forcefield","Restores health faster than BREATHE","Calls in support — some fights can't be won solo"], c:3, skill:"connect"},
+  {q:"In Rage Fighters, when do you need CONNECT most?", o:["When you want to go faster","When you need a quick health boost","When enemies are frozen and you have time","Boss fights — certain shields require two players hitting at once"], c:3, skill:"connect"},
+  {q:"CONNECT IRL means asking for help. What makes that hard for most people?", o:["It takes too long to explain","People usually say no anyway","It costs too much emotional energy to try","Most people think needing help means they're weak"], c:3, skill:"connect"},
+  {q:"When Critics swarm you, what does CONNECT do?", o:["Gets you more followers to drown them out","Blocks everyone who's being negative","Makes you invisible so they lose track of you","One real voice cuts through a thousand opinions"], c:3, skill:"connect"},
+  {q:"Why can't you finish Inner Turmoil solo?", o:["He regenerates faster than you deal damage","His final phase needs two targets hit at once","He absorbs solo attacks and gets stronger from them","You need someone to say \"that's not true\" when the voice is loudest"], c:3, skill:"connect"},
+];
+
+// ═══════════════════════════════════════════
+// NOTEBOOK PAGES
+// ═══════════════════════════════════════════
+const NOTEBOOK_PAGES: Record<string, any> = {
+  breathe: {
+    skill: "BREATHE",
+    sub: "reset your body",
+    color: "#8E44AD",
+    body: `What it does: Restores health. Grounds you faster. Bigger reset than just waiting.\n\nIn Rage Fighters: Use BREATHE before the swarm hits, not after. Skilled players use it early — when the screen starts getting shaky, not when they're already buried.\n\nIn life: Deep breathing into your STOMACH resets your body's panic response. It's not just "calm down" advice — it's biology. Your body thinks it's in danger. Deep breaths say: "We're okay. We can get through this."\n\nTry this: Where are you breathing right now? If it's all chest — you're tense. Shift it low. That's your first rep.`,
+    zone: "EmoDojo zone"
+  },
+  pause: {
+    skill: "PAUSE",
+    sub: "recognition and response",
+    color: "#E74C3C",
+    body: `What it does: Teleport + forcefield. Stops incoming attacks. Gives you time to think.\n\nIn Rage Fighters: When enemies are about to hit and you need 2 seconds. The teleport moves you out of danger, the forcefield keeps you from getting buried.\n\nIn life: Pause is the INSTANT you feel yourself about to react. Count to three. Walk to another room. Put the phone down. You're not ignoring the problem — you're making sure you don't make it worse.\n\nRemember: Pause isn't avoidance. It's choosing your moment instead of just reacting.`,
+    zone: "Rage Storm zone"
+  },
+  chill: {
+    skill: "CHILL",
+    sub: "the hot brain fix",
+    color: "#2980B9",
+    body: `What it does: Sends out a freeze field. Slows every enemy in range. Gives YOU a speed boost at the same time.\n\nIn Rage Fighters: Use it when enemies are swarming. Deploy EARLY — before the swarm builds, not after you're buried.\n\nIn life: When you're angry, your brain runs HOT — and a hot brain can't think straight. Put something cold on your body. Ice cube. Cold water on your wrists. Your body temperature actually affects your emotional temperature.\n\nFind your cool down spot BEFORE you need it. The best move is leaving before you blow up, not after.`,
+    zone: "Toxic zone"
+  },
+  connect: {
+    skill: "CONNECT",
+    sub: "call for backup",
+    color: "#27AE60",
+    body: `What it does: Calls in support. Some fights can't be won solo.\n\nIn Rage Fighters: Boss fights are designed for co-op. If you keep dying solo, it's not a skill issue — it's a design issue. You NEED backup.\n\nIn life: Some problems are too big to handle alone. That's not weakness — it's awareness. Asking for help is a skill. And sometimes just having someone THERE makes the fight easier.\n\nAt GridGuide level: You're not just calling for help — you're becoming someone others can call. The grid flows both ways.`,
+    zone: "any zone"
+  }
 };
 
 // ═══════════════════════════════════════════
@@ -369,20 +433,20 @@ const LORE_QUESTIONS: any[] = [
   {q:"Mind Ninjas multiply faster than you can swing. What's the ONLY move?",o:["Fight them one at a time","Use BREATHE to slow down","Use PAUSE to get distance","Ignore them completely"],c:1,d:"Easy",s:["cg"]},
   {q:"Mind Ninjas are loudest when you're...",o:["Tired, alone, or already stressed","Having a great day","Eating lunch","Playing with friends"],c:0,d:"Medium",s:["cg"]},
   {q:"The Shadow Samurai looks familiar because he IS you. What does he represent?",o:["A rival player","Your shadow side — dark emotions you're not proud of","Your best friend","A game glitch"],c:1,d:"Easy",s:["cg","any"]},
-  {q:"Shadow Samurai drains your energy slowly if you ignore him. What skill cracks his armor?",o:["PAUSE","BREATHE","COOL DOWN","RELEASE"],c:1,d:"Easy",s:["cg"]},
+  {q:"Shadow Samurai drains your energy slowly if you ignore him. What skill cracks his armor?",o:["PAUSE","BREATHE","CHILL","RELEASE"],c:1,d:"Easy",s:["cg"]},
   {q:"I learned you can't beat your shadow side by pretending it doesn't exist. What happens if you try?",o:["It disappears","It gets STRONGER","It becomes your friend","Nothing"],c:1,d:"Medium",s:["cg"]},
   {q:"The Tilt Shogun carries heads on his arm — trophies from everyone who lost control. What does he feed on?",o:["Health potions","Your anger and tilt","Your teammates","Coins"],c:1,d:"Easy",s:["cg","any"]},
-  {q:"You CANNOT button-mash the Tilt Shogun. What combo do you need?",o:["BREATHE + RELEASE","PAUSE + COOL DOWN + CONNECT","Just PAUSE","Attack harder"],c:1,d:"Medium",s:["cg"]},
+  {q:"You CANNOT button-mash the Tilt Shogun. What combo do you need?",o:["BREATHE + RELEASE","PAUSE + CHILL + CONNECT","Just PAUSE","Attack harder"],c:1,d:"Medium",s:["cg"]},
   {q:"The Tilt Shogun teaches the hardest lesson. What is it?",o:["Fight harder to win","Sometimes the bravest move is to stop fighting","Never ask for help","Anger makes you stronger"],c:1,d:"Medium",s:["cg"]},
   {q:"Triggers aren't just thoughts — they're tied to REAL events. What makes them hit harder than Mind Ninjas?",o:["They're bigger","They're connected to real stuff happening TO you","They have more HP","They fly"],c:1,d:"Medium",s:["paper"]},
   {q:"I designed Trigger Swarm to stack. When should you PAUSE?",o:["After the first hit","After hit 3 or 4 — before the snowball builds","Only at the end","Never, just fight through"],c:1,d:"Easy",s:["paper"]},
   {q:"When you blow up over something small, what's really happening?",o:["You're being dramatic","The thing that set you off is the LAST thing, not THE thing","You need sleep","You lost the game"],c:1,d:"Medium",s:["paper"]},
   {q:"Flashpoints telegraph their attacks — you can SEE them coming. How long before detonation?",o:["10 seconds","5 seconds","2 seconds","30 seconds"],c:2,d:"Easy",s:["paper","any"]},
   {q:"A Flashpoint hits different because of YOUR history. What's the real question to ask?",o:["Why am I so upset?","What does this REMIND me of?","Who did this to me?","How do I win?"],c:1,d:"Medium",s:["paper"]},
-  {q:"What skill do you use when you see a Flashpoint charging?",o:["COOL DOWN","CONNECT","BREATHE","PAUSE"],c:3,d:"Easy",s:["paper"]},
+  {q:"What skill do you use when you see a Flashpoint charging?",o:["CHILL","CONNECT","BREATHE","PAUSE"],c:3,d:"Easy",s:["paper"]},
   {q:"The Meltdown Boss has three phases. In which phase is your ONLY real window to win?",o:["Phase 2 — Inferno","Phase 3 — Burnout","Phase 1 — Ignition","All phases equally"],c:2,d:"Easy",s:["paper","any"]},
   {q:"Phase 2 of the Meltdown: your skills are LOCKED. What's the only move?",o:["Attack harder","Just survive — don't make it worse","Use all skills at once","Quit the fight"],c:1,d:"Medium",s:["paper"]},
-  {q:"Phase 3 Burnout: the rage crashes and shame shows up. What skill finishes the fight?",o:["PAUSE","BREATHE","COOL DOWN","CONNECT — you can't finish solo"],c:3,d:"Medium",s:["paper","soft"]},
+  {q:"Phase 3 Burnout: the rage crashes and shame shows up. What skill finishes the fight?",o:["PAUSE","BREATHE","CHILL","CONNECT — you can't finish solo"],c:3,d:"Medium",s:["paper","soft"]},
   {q:"The Critics have thumbs-down on their chests and never stop. What are they IRL?",o:["Teachers","Everyone's opinions and social media voices","Your parents","Game moderators"],c:1,d:"Easy",s:["toy","sticky","any"]},
   {q:"Your brain treats social rejection like actual survival-level danger. What's the forcefield?",o:["Fighting back online","Turning off the phone","Posting more","Getting more followers"],c:1,d:"Medium",s:["toy","sticky"]},
   {q:"One genuine person saying 'you're good' is worth more than...",o:["One hundred likes","A thousand online opinions","A viral post","All of the above"],c:1,d:"Easy",s:["toy","sticky"]},
@@ -391,7 +455,7 @@ const LORE_QUESTIONS: any[] = [
   {q:"The counter-move to Exposure Beams is choosing to be seen by someone safe. That's the difference between...",o:["A spotlight and a stage light","A flashlight and a torch","Day and night","Winning and losing"],c:0,d:"Hard",s:["toy","sticky"]},
   {q:"Inner Turmoil is the final boss. He's built from everything harsh you've ever been told. What is he?",o:["An external enemy","Your inner critic — toxic shame","A computer virus","Another player"],c:1,d:"Easy",s:["soft","toy","any"]},
   {q:"You can turn off your phone to escape The Critics. But Inner Turmoil?",o:["Also turns off","He IS your voice — you can't outrun yourself","Goes away with sleep","Only appears online"],c:1,d:"Medium",s:["soft","toy"]},
-  {q:"Phase 2 of Inner Turmoil locks you down. What breaks you free?",o:["PAUSE only","COOL DOWN for physical reset + CONNECT — call your team","Just wait it out","Attack harder"],c:1,d:"Hard",s:["soft"]},
+  {q:"Phase 2 of Inner Turmoil locks you down. What breaks you free?",o:["PAUSE only","CHILL for physical reset + CONNECT — call your team","Just wait it out","Attack harder"],c:1,d:"Hard",s:["soft"]},
   {q:"The ONLY way to beat Inner Turmoil's voice is...",o:["Being tougher","Self-compassion — you can't out-criticize the critic","Ignoring it","Fighting alone"],c:1,d:"Hard",s:["soft"]},
   {q:"Where should you breathe for it to actually work — your chest or your stomach?",o:["Chest","Stomach — it resets your body's panic response","Doesn't matter","Through your mouth only"],c:1,d:"Easy",s:["cg","any"]},
   {q:"Advanced breathing isn't 'breathe when upset.' It's breathe BEFORE you lose it. When?",o:["Only during fights","Morning, after school, before hard conversations","Only at night","Only when someone tells you to"],c:1,d:"Medium",s:["cg"]},
@@ -651,7 +715,7 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
   const [aiLoading, setAiLoading] = useState(false);
   const [usedQs, setUsedQs] = useState(new Set<number>());
   const [stepCount, setStepCount] = useState(0);
-  const [showParty, setShowParty] = useState(false);
+  const [showParty, setShowParty] = useState<string | boolean>(false);
   const [showQuit, setShowQuit] = useState(false);
   const [showRedirect, setShowRedirect] = useState<{text:string;url:string}|null>(null);
   const [failCounts, setFailCounts] = useState<Record<string,number>>({cg:0,paper:0,toy:0,sticky:0,soft:0});
@@ -671,6 +735,11 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
   const [surveyComplete, setSurveyComplete] = useState(false);
   const [showIntro, setShowIntro] = useState(false);
   const [recentLoss, setRecentLoss] = useState<{id: string; step: number} | null>(null);
+  const [skillCorrects, setSkillCorrects] = useState<Record<string,number>>({breathe:0,pause:0,chill:0,connect:0});
+  const [notebookUnlocked, setNotebookUnlocked] = useState<Record<string,boolean>>({breathe:false,pause:false,chill:false,connect:false});
+  const [showNotebook, setShowNotebook] = useState<string | null>(null);
+  const [usedSkillQs, setUsedSkillQs] = useState(new Set<number>());
+  const [isSkillEncounter, setIsSkillEncounter] = useState(false);
 
   const findNextValidIdx = (fromIdx: number, answers: Record<string, any>) => {
     for (let i = fromIdx; i < SURVEY_QUESTIONS.length; i++) {
@@ -708,7 +777,28 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
     return 5;
   };
 
+  const getSkillQuestion = () => {
+    const avail = SKILL_QUESTIONS.filter((_, i) => !usedSkillQs.has(i));
+    if (avail.length === 0) { setUsedSkillQs(new Set()); return SKILL_QUESTIONS[Math.floor(Math.random() * SKILL_QUESTIONS.length)]; }
+    const pick = avail[Math.floor(Math.random() * avail.length)];
+    setUsedSkillQs(prev => new Set([...prev, SKILL_QUESTIONS.indexOf(pick)]));
+    return pick;
+  };
+
+  const handleSkillAnswer = (q: any, correct: boolean) => {
+    if (correct && q.skill) {
+      const sk: string = q.skill;
+      const newCorrects: Record<string,number> = {...skillCorrects, [sk]: (skillCorrects[sk]||0) + 1};
+      setSkillCorrects(newCorrects);
+      if (newCorrects[sk] >= 3 && !notebookUnlocked[sk]) {
+        setNotebookUnlocked((prev: Record<string,boolean>) => ({...prev, [sk]: true}));
+        setTimeout(() => setShowNotebook(sk), 600);
+      }
+    }
+  };
+
   const getQuestion = (stan: any) => {
+    if (isSkillEncounter) return getSkillQuestion();
     if (arcMode && STAN_ARC[stan.id]) {
       const arc = STAN_ARC[stan.id].questions;
       const q = arc[qIdx] || arc[arc.length - 1];
@@ -733,7 +823,7 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
     return pick;
   };
 
-  const startEncounter = (stan: any, isArc = false) => {
+  const startEncounter = (stan: any, isArc = false, isSkill = false) => {
     if (overworldLoop) overworldLoop.stop();
     playSfx("encounter");
     setCurStan(stan);
@@ -741,7 +831,7 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
     setQIdx(0);
     setCorrectCount(0);
     setArcMode(isArc);
-    const qs = isArc ? (STAN_ARC[stan.id]?.questions.length || 3) : numQsForEncounter(stan);
+    const qs = isArc ? (STAN_ARC[stan.id]?.questions.length || 3) : isSkill ? 1 : numQsForEncounter(stan);
     setTotalQs(qs);
     setBattleState("intro");
     setDialogue(stan.intro);
@@ -800,6 +890,12 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
       if (nextQIdx >= totalQs) {
         if (battleLoop) battleLoop.stop();
         setBattleState("result");
+        if (isSkillEncounter) {
+          if (correct && curQ.skill) handleSkillAnswer(curQ, true);
+          setIsSkillEncounter(false);
+          setDialogue(correct ? "Good. You know your skills. Keep moving." : "Not quite. Keep exploring — you'll get it.");
+          return;
+        }
         if (newCorrectCount === totalQs) {
           setDialogue(curStan.defeat); setParty(p => [...p, curStan]); playSfx("capture");
         } else {
@@ -811,11 +907,12 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
       }
       setBattleState("between");
       // Film redirect if Q1 missed in arc mode
-      if (!correct && arcMode && qIdx === 0 && STAN_ARC[curStan.id]) {
-        const newFails = {...failCounts, [curStan.id]: (failCounts[curStan.id]||0) + 1};
+      if (!correct && arcMode && qIdx === 0 && STAN_ARC[curStan.id as string]) {
+        const stanKey: string = curStan.id;
+        const newFails: Record<string,number> = {...failCounts, [stanKey]: (failCounts[stanKey]||0) + 1};
         setFailCounts(newFails);
-        if (newFails[curStan.id] >= 1) {
-          setTimeout(() => setShowRedirect(STAN_ARC[curStan.id].redirect), 1400);
+        if (newFails[stanKey] >= 1) {
+          setTimeout(() => setShowRedirect(STAN_ARC[stanKey].redirect), 1400);
         }
       }
       const ctx = correct ? `Player got that right (${newCorrectCount}/${nextQIdx} so far, ${totalQs - nextQIdx} rounds left). They need a perfect score to earn your respect. As a sensei sizing them up — they might actually have something. React in character, grudgingly.` : `Player got that WRONG (${newCorrectCount}/${nextQIdx}). They needed a perfect score. As a sensei who doesn't waste time on people who aren't ready — dismiss them or call them out. React in character.`;
@@ -851,10 +948,13 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
     // Zone tiles (c/p/t/s) — 18% random encounter
     const ZONE_STANS: Record<string, string> = { c:"cg", p:"paper", t:"toy", s:"sticky" };
     const zoneStanId = ZONE_STANS[tile];
-    if (zoneStanId && Math.random() < 0.18) {
+    if (zoneStanId && Math.random() < 0.30) {
       const stan = STANS[zoneStanId];
-      const onCooldown = recentLoss?.id === stan.id && (stepCount - recentLoss.step) < 20;
-      if (!onCooldown && !party.find((p: any) => p.id === stan.id)) setTimeout(() => startEncounter(stan), 200);
+      const onCooldown = recentLoss != null && recentLoss.id === stan.id && (stepCount - recentLoss.step) < 20;
+      if (!onCooldown && !party.find((p: any) => p.id === stan.id)) {
+        setIsSkillEncounter(true);
+        setTimeout(() => startEncounter(stan, false, true), 200);
+      }
     }
   }, [screen, pos, party, stepCount, arcMode, failCounts, recentLoss]);
 
@@ -986,7 +1086,7 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
               <div style={{display:"flex",gap:8,marginBottom:16,flexWrap:"wrap"}}>
                 <span style={{fontFamily:"'Indie Flower',cursive",fontSize:11,background:"#E63946",color:"#fff",padding:"2px 8px",borderRadius:3,transform:"rotate(-2deg)",display:"inline-block"}}>PAUSE</span>
                 <span style={{fontFamily:"'Indie Flower',cursive",fontSize:11,background:"#1B9AAA",color:"#fff",padding:"2px 8px",borderRadius:3,transform:"rotate(1deg)",display:"inline-block"}}>BREATHE</span>
-                <span style={{fontFamily:"'Indie Flower',cursive",fontSize:11,background:"#F5C518",color:"#1a1a2e",padding:"2px 8px",borderRadius:3,transform:"rotate(-1deg)",display:"inline-block"}}>COOL DOWN</span>
+                <span style={{fontFamily:"'Indie Flower',cursive",fontSize:11,background:"#F5C518",color:"#1a1a2e",padding:"2px 8px",borderRadius:3,transform:"rotate(-1deg)",display:"inline-block"}}>CHILL</span>
                 <span style={{fontFamily:"'Indie Flower',cursive",fontSize:11,background:"#27AE60",color:"#fff",padding:"2px 8px",borderRadius:3,transform:"rotate(2deg)",display:"inline-block"}}>CONNECT</span>
               </div>
               <button onClick={async () => { await ensureAudio(); createJournalMusic().start(); setSurveyIdx(0); setSurveyAnswers({}); setSurveyInput(""); setSurveyComplete(false); setScreen("survey"); playSfx("select"); }}
@@ -1280,13 +1380,25 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
 
   return (
     <div style={{width:"100%",maxWidth:500,margin:"0 auto",minHeight:"100vh",background:"#111",display:"flex",flexDirection:"column"}} ref={gameRef} tabIndex={0}>
-      <div style={{background:"#111",padding:"6px 12px",display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom:`2px solid ${curStan?.color||"#333"}`}}>
-        <div style={{fontFamily:"'Bangers',cursive",fontSize:16,color:"#F5C518",letterSpacing:2}}>{party.length}/5 IN YOUR CORNER</div>
-        <div style={{fontFamily:"'Indie Flower',cursive",fontSize:13,color:"#aaa"}}>Score: {score}</div>
-        <div style={{display:"flex",gap:10,alignItems:"center"}}>
-          <button onClick={() => setShowParty(true)} style={{fontFamily:"'Bangers',cursive",fontSize:14,color:"#1B9AAA",background:"transparent",border:"none",cursor:"pointer",letterSpacing:1}}>PARTY</button>
-          <button onClick={() => setShowQuit(true)} style={{fontFamily:"'Bangers',cursive",fontSize:14,color:"#E63946",background:"transparent",border:"none",cursor:"pointer",letterSpacing:1}}>QUIT</button>
+      <div style={{background:"#111",padding:"6px 10px",display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom:"2px solid #333"}}>
+        <div style={{display:"flex",gap:4,alignItems:"center"}}>
+          {[
+            {id:"cg",  icon:"💻", color:"#0d7a88"},
+            {id:"paper",icon:"📓",color:"#C0202C"},
+            {id:"toy", icon:"🗿", color:"#C05A10"},
+            {id:"sticky",icon:"📱",color:"#1A8040"},
+            {id:"soft",icon:"🧸", color:"#1A5A90"},
+          ].map(s => {
+            const captured = party.find((p: any) => p.id === s.id);
+            return (
+              <div key={s.id} style={{width:32,height:32,borderRadius:4,background:captured?s.color:"#222",border:`2px solid ${captured?s.color:"#444"}`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,opacity:captured?1:0.35,boxShadow:captured?`0 0 6px ${s.color}`:undefined,transition:"all 0.3s"}}>
+                {captured ? s.icon : "?"}
+              </div>
+            );
+          })}
         </div>
+        <div style={{fontFamily:"'Indie Flower',cursive",fontSize:12,color:"#aaa"}}>Score: {score}</div>
+        <button onClick={() => setShowQuit(true)} style={{fontFamily:"'Bangers',cursive",fontSize:14,color:"#E63946",background:"transparent",border:"none",cursor:"pointer",letterSpacing:1}}>QUIT</button>
       </div>
       <div style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",overflow:"hidden",background:"#fff",backgroundImage:"repeating-linear-gradient(transparent,transparent 27px,#e8e8e8 27px,#e8e8e8 28px)"}}>
         <div style={{display:"grid",gridTemplateColumns:`repeat(${VIEW_W}, ${TILE_SIZE}px)`,gridTemplateRows:`repeat(${VIEW_H}, ${TILE_SIZE}px)`,border:"3px solid #111",imageRendering:"pixelated"}}>
@@ -1345,8 +1457,16 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
           <div />
         </div>
       </div>
-      <div style={{background:"#111",padding:"5px 12px",textAlign:"center"}}>
-        <span style={{fontFamily:"'Indie Flower',cursive",fontSize:12,color:"#F5C518"}}>Walk up to glowing objects to find Stans — earn their respect to get them in your corner</span>
+      <div style={{background:"#111",padding:"5px 12px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+        <span style={{fontFamily:"'Indie Flower',cursive",fontSize:11,color:"#555"}}>find all 5 Stans to win</span>
+        <button onClick={() => setShowParty('notebook')}
+          style={{display:"flex",alignItems:"center",gap:6,fontFamily:"'Bangers',cursive",fontSize:14,letterSpacing:1,
+            background:Object.values(notebookUnlocked).some(Boolean)?"#c0392b":"#222",
+            color:Object.values(notebookUnlocked).some(Boolean)?"#fff":"#555",
+            border:`2px solid ${Object.values(notebookUnlocked).some(Boolean)?"#c0392b":"#444"}`,
+            borderRadius:4,padding:"3px 10px",cursor:"pointer",transition:"all 0.3s"}}>
+          📓 NOTEBOOK {Object.values(notebookUnlocked).filter(Boolean).length > 0 && <span style={{background:"#F5C518",color:"#111",borderRadius:"50%",width:16,height:16,display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:11}}>{Object.values(notebookUnlocked).filter(Boolean).length}</span>}
+        </button>
       </div>
 
       {showParty && (
@@ -1354,25 +1474,47 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
           <div style={{background:"#fff",border:"4px solid #F5C518",borderRadius:0,padding:0,maxWidth:400,width:"100%",maxHeight:"80vh",overflowY:"auto",boxShadow:"6px 6px 0 #111"}} onClick={(e: any) => e.stopPropagation()}>
             <div style={{background:"#111",padding:"12px 20px",borderBottom:"4px solid #E63946"}}>
               <div style={{fontFamily:"'Bangers',cursive",fontSize:22,color:"#F5C518",letterSpacing:3,textAlign:"center"}}>YOUR CORNER ({party.length}/5)</div>
+              <div style={{display:"flex",gap:8,justifyContent:"center",marginTop:8}}>
+                <button onClick={() => setShowParty('stans')} style={{fontFamily:"'Bangers',cursive",fontSize:13,letterSpacing:1,padding:"4px 12px",background:showParty==='notebook'?"transparent":"#F5C518",color:showParty==='notebook'?"#888":"#111",border:"2px solid #F5C518",cursor:"pointer"}}>STANS</button>
+                <button onClick={() => setShowParty('notebook')} style={{fontFamily:"'Bangers',cursive",fontSize:13,letterSpacing:1,padding:"4px 12px",background:showParty==='notebook'?"#c0392b":"transparent",color:showParty==='notebook'?"#fff":"#888",border:"2px solid #c0392b",cursor:"pointer"}}>NOTEBOOK {Object.values(notebookUnlocked).filter(Boolean).length}/4</button>
+              </div>
             </div>
             <div style={{padding:16}}>
-              {party.length === 0 && <div style={{fontFamily:"'Indie Flower',cursive",fontSize:16,color:"#888",textAlign:"center",padding:20}}>No Stans caught yet. Explore the map!</div>}
-              {party.map((s: any) => (
-                <div key={s.id} style={{display:"flex",alignItems:"center",gap:12,padding:10,marginBottom:8,background:"#fff",border:`3px solid ${s.color}`,boxShadow:"3px 3px 0 #111"}}>
-                  <StanSprite stanId={s.id} scale={0.8} />
-                  <div>
-                    <div style={{fontFamily:"'Bangers',cursive",fontSize:18,color:s.color,letterSpacing:1}}>{s.name}</div>
-                    <div style={{fontFamily:"'Indie Flower',cursive",fontSize:13,color:"#666"}}>{s.emotion}</div>
-                    <div style={{fontFamily:"'Indie Flower',cursive",fontSize:13,color:"#333"}}>Skill: {s.skill}</div>
+              {showParty !== 'notebook' && <>
+                {party.length === 0 && <div style={{fontFamily:"'Indie Flower',cursive",fontSize:16,color:"#888",textAlign:"center",padding:20}}>No Stans caught yet. Explore the map!</div>}
+                {party.map((s: any) => (
+                  <div key={s.id} style={{display:"flex",alignItems:"center",gap:12,padding:10,marginBottom:8,background:"#fff",border:`3px solid ${s.color}`,boxShadow:"3px 3px 0 #111"}}>
+                    <StanSprite stanId={s.id} scale={0.8} />
+                    <div>
+                      <div style={{fontFamily:"'Bangers',cursive",fontSize:18,color:s.color,letterSpacing:1}}>{s.name}</div>
+                      <div style={{fontFamily:"'Indie Flower',cursive",fontSize:13,color:"#666"}}>{s.emotion}</div>
+                      <div style={{fontFamily:"'Indie Flower',cursive",fontSize:13,color:"#333"}}>Skill: {s.skill}</div>
+                    </div>
                   </div>
-                </div>
-              ))}
-              {[...Object.values(STANS).filter((s: any) => !party.find((p: any) => p.id === s.id))].map((s: any) => (
-                <div key={s.id} style={{display:"flex",alignItems:"center",gap:12,padding:10,marginBottom:8,background:"#f5f5f5",border:"2px solid #ccc",opacity:0.6}}>
-                  <div style={{width:40,height:40,background:"#ddd",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Bangers',cursive",fontSize:18,color:"#999"}}>?</div>
-                  <div><div style={{fontFamily:"'Bangers',cursive",fontSize:16,color:"#999",letterSpacing:1}}>???</div><div style={{fontFamily:"'Indie Flower',cursive",fontSize:13,color:"#bbb"}}>Not yet discovered</div></div>
-                </div>
-              ))}
+                ))}
+                {[...Object.values(STANS).filter((s: any) => !party.find((p: any) => p.id === s.id))].map((s: any) => (
+                  <div key={s.id} style={{display:"flex",alignItems:"center",gap:12,padding:10,marginBottom:8,background:"#f5f5f5",border:"2px solid #ccc",opacity:0.6}}>
+                    <div style={{width:40,height:40,background:"#ddd",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Bangers',cursive",fontSize:18,color:"#999"}}>?</div>
+                    <div><div style={{fontFamily:"'Bangers',cursive",fontSize:16,color:"#999",letterSpacing:1}}>???</div><div style={{fontFamily:"'Indie Flower',cursive",fontSize:13,color:"#bbb"}}>Not yet discovered</div></div>
+                  </div>
+                ))}
+              </>}
+              {showParty === 'notebook' && <div>
+                {['breathe','pause','chill','connect'].map(skill => {
+                  const page = NOTEBOOK_PAGES[skill];
+                  const unlocked = notebookUnlocked[skill];
+                  const correct = skillCorrects[skill] || 0;
+                  return (
+                    <div key={skill} style={{marginBottom:12,background:"#faf6ee",border:`2px solid ${unlocked?page.color:'#ccc'}`,borderRadius:4,padding:"12px 12px 12px 32px",position:"relative",opacity:unlocked?1:0.5,cursor:unlocked?"pointer":"default"}}
+                      onClick={() => unlocked && setShowNotebook(skill)}>
+                      <div style={{fontFamily:"'Bangers',cursive",fontSize:18,color:unlocked?"#c0392b":"#999",letterSpacing:1}}>{page.skill}</div>
+                      <div style={{fontFamily:"'Indie Flower',cursive",fontSize:12,color:"#888",fontStyle:"italic"}}>{page.sub}</div>
+                      {unlocked ? <div style={{fontFamily:"'Indie Flower',cursive",fontSize:11,color:page.color,marginTop:4}}>tap to read →</div>
+                        : <div style={{fontFamily:"'Indie Flower',cursive",fontSize:11,color:"#aaa",marginTop:4}}>{correct}/3 correct to unlock</div>}
+                    </div>
+                  );
+                })}
+              </div>}
               <button onClick={() => setShowParty(false)} style={{width:"100%",marginTop:12,padding:"12px",fontFamily:"'Bangers',cursive",fontSize:18,letterSpacing:2,background:"#111",color:"#F5C518",border:"none",cursor:"pointer",boxShadow:"3px 3px 0 #E63946"}}>CLOSE [P]</button>
             </div>
           </div>
@@ -1399,6 +1541,34 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
           </div>
         </div>
       )}
+
+      {showNotebook && NOTEBOOK_PAGES[showNotebook] && (() => {
+        const page = NOTEBOOK_PAGES[showNotebook];
+        return (
+          <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.92)",zIndex:200,display:"flex",alignItems:"center",justifyContent:"center",padding:16}}>
+            <div style={{background:"#faf6ee",borderRadius:4,padding:"24px 24px 28px 48px",maxWidth:360,width:"100%",position:"relative",boxShadow:"0 4px 24px rgba(0,0,0,0.5)"}}>
+              <div style={{position:"absolute",inset:0,borderRadius:4,overflow:"hidden",pointerEvents:"none"}}>
+                <div style={{position:"absolute",left:36,top:0,bottom:0,width:1,background:"rgba(220,120,120,0.4)"}} />
+                {[60,88,116,144,172,200,228,256,284,312,340].map(y => (
+                  <div key={y} style={{position:"absolute",left:0,right:0,top:y,height:1,background:"rgba(170,195,220,0.35)"}} />
+                ))}
+              </div>
+              {[60,160,260].map(top => (
+                <div key={top} style={{position:"absolute",left:12,top,width:14,height:14,borderRadius:"50%",background:"rgba(0,0,0,0.07)",border:"0.5px solid #c4b48a"}} />
+              ))}
+              <div style={{display:"inline-block",background:page.color,color:"#faf6ee",fontFamily:"'Bangers',cursive",fontSize:12,letterSpacing:2,padding:"2px 10px",borderRadius:2,marginBottom:12}}>PAGE UNLOCKED</div>
+              <div style={{fontFamily:"'Bangers',cursive",fontSize:24,color:"#c0392b",letterSpacing:2,marginBottom:2}}>{page.skill}</div>
+              <div style={{fontFamily:"'Indie Flower',cursive",fontSize:13,color:"#999",marginBottom:14,fontStyle:"italic"}}>{page.sub}</div>
+              <div style={{fontFamily:"'Indie Flower',cursive",fontSize:14,color:"#2a1f0e",lineHeight:1.8,whiteSpace:"pre-line"}}>{page.body}</div>
+              <div style={{marginTop:14,paddingTop:10,borderTop:"1px dashed #c4b48a",fontFamily:"'Indie Flower',cursive",fontSize:12,color:"#aaa",fontStyle:"italic"}}>found in: {page.zone}</div>
+              <button onClick={() => setShowNotebook(null)}
+                style={{marginTop:16,width:"100%",padding:"10px",fontFamily:"'Bangers',cursive",fontSize:16,letterSpacing:2,background:"#2a1f0e",color:"#faf6ee",border:"none",borderRadius:4,cursor:"pointer"}}>
+                BACK TO THE MAP ▶
+              </button>
+            </div>
+          </div>
+        );
+      })()}
 
       {showRedirect && (
         <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.92)",zIndex:200,display:"flex",alignItems:"center",justifyContent:"center",padding:20}}>
