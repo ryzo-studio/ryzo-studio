@@ -43,6 +43,16 @@ const allEvents = [
     link: 'https://www.eventbrite.com/e/story-into-action-the-making-of-rage-fighters-with-erica-milsom-the-ryzo-tickets-1985640418945?aff=ebdsshcopyurl&utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=organizer-profile&utm-share-source=organizer-profile',
   },
   {
+    id: 'e10',
+    date: new Date('2026-04-23'),
+    title: 'UnTilted — A Multimedia Live Experience',
+    venue: 'Private Event',
+    type: 'Live Event',
+    audience: 'For Young People',
+    details: '6:00 PM · Arrival & Refreshments at 5:30 PM',
+    link: null,
+  },
+  {
     id: 'e5',
     date: new Date('2026-04-18'),
     title: 'UnTilted — Mastering the Internal OS with Ryzo',
@@ -171,6 +181,7 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
                       ? <a href={event.venueLink} target="_blank" rel="noopener" class="venue-link">{event.venue}</a>
                       : event.venue}
                   </p>
+                  {event.details && <p class="event-details">{event.details}</p>}
                 </div>
                 {event.link
                   ? <a href={event.link} class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get on the List</a>
@@ -504,6 +515,12 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
   .venue-link:hover {
     color: var(--accent);
     text-decoration-color: var(--accent);
+  }
+
+  .event-details {
+    font-size: var(--text-xs);
+    color: var(--fg-3);
+    margin-top: 0.125rem;
   }
 
   .event-private {
