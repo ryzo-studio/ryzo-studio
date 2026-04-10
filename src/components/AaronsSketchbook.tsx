@@ -667,7 +667,9 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
   const [surveyIdx, setSurveyIdx] = useState(0);
   const [surveyAnswers, setSurveyAnswers] = useState<Record<string, any>>({});
   const [surveyInput, setSurveyInput] = useState("");
+  const [followUpInput, setFollowUpInput] = useState("");
   const [surveyComplete, setSurveyComplete] = useState(false);
+  const [showIntro, setShowIntro] = useState(false);
 
   const findNextValidIdx = (fromIdx: number, answers: Record<string, any>) => {
     for (let i = fromIdx; i < SURVEY_QUESTIONS.length; i++) {
@@ -889,17 +891,19 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
     }
   }, [party, screen]);
 
-  const handleSurveyNext = () => {
-    const q = currentSurveyQ();
-    if (!q) return;
-    let val = surveyInput;
-    if (q.required && (!val || val === "")) return;
+  // Returns the inline follow-up text question if one immediately follows the current question
+  const getInlineFollowUp = (currentIdx: number, answers: Record<string, any>) => {
+    const nextIdx = findNextValidIdx(currentIdx + 1, answers);
+    if (nextIdx < 0) return null;
+    const next = SURVEY_QUESTIONS[nextIdx];
+    return next.type === "text" ? { q: next, idx: nextIdx } : null;
+  };
 
-    const newAnswers = { ...surveyAnswers, [q.id]: val };
-    setSurveyAnswers(newAnswers);
-    setSurveyInput("");
-
-    const nextIdx = findNextValidIdx(surveyIdx + 1, newAnswers);
+  const advanceSurvey = (newAnswers: Record<string, any>, skipCount: number) => {
+    try {
+      localStorage.setItem("rf_sketchbook_partial", JSON.stringify({ timestamp: new Date().toISOString(), survey: newAnswers }));
+    } catch(e) {}
+    const nextIdx = findNextValidIdx(surveyIdx + skipCount, newAnswers);
     if (nextIdx === -1) {
       setSurveyComplete(true);
       if (journalLoop) journalLoop.stop();
@@ -910,20 +914,40 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
     }
   };
 
+  const handleSurveyNext = () => {
+    const q = currentSurveyQ();
+    if (!q) return;
+    const val = surveyInput;
+    if (q.required && (!val || val === "")) return;
+
+    let newAnswers = { ...surveyAnswers, [q.id]: val };
+    const inlineFollowUp = q.type !== "text" ? getInlineFollowUp(surveyIdx, newAnswers) : null;
+    if (inlineFollowUp) {
+      newAnswers = { ...newAnswers, [inlineFollowUp.q.id]: followUpInput || "(skipped)" };
+      setSurveyAnswers(newAnswers);
+      setSurveyInput(""); setFollowUpInput("");
+      advanceSurvey(newAnswers, inlineFollowUp.idx - surveyIdx + 1);
+    } else {
+      setSurveyAnswers(newAnswers);
+      setSurveyInput(""); setFollowUpInput("");
+      advanceSurvey(newAnswers, 1);
+    }
+  };
+
   const handleSurveySkip = () => {
     const q = currentSurveyQ();
     if (!q || q.required) return;
-    const newAnswers = { ...surveyAnswers, [q.id]: "(skipped)" };
-    setSurveyAnswers(newAnswers);
-    setSurveyInput("");
-    const nextIdx = findNextValidIdx(surveyIdx + 1, newAnswers);
-    if (nextIdx === -1) {
-      setSurveyComplete(true);
-      if (journalLoop) journalLoop.stop();
-      playSfx("capture");
+    let newAnswers = { ...surveyAnswers, [q.id]: "(skipped)" };
+    const inlineFollowUp = q.type !== "text" ? getInlineFollowUp(surveyIdx, newAnswers) : null;
+    if (inlineFollowUp) {
+      newAnswers = { ...newAnswers, [inlineFollowUp.q.id]: followUpInput || "(skipped)" };
+      setSurveyAnswers(newAnswers);
+      setSurveyInput(""); setFollowUpInput("");
+      advanceSurvey(newAnswers, inlineFollowUp.idx - surveyIdx + 1);
     } else {
-      setSurveyIdx(nextIdx);
-      playSfx("page");
+      setSurveyAnswers(newAnswers);
+      setSurveyInput(""); setFollowUpInput("");
+      advanceSurvey(newAnswers, 1);
     }
   };
 
@@ -997,7 +1021,7 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
                 sessions.push({timestamp:new Date().toISOString(),survey:surveyAnswers,battle:{battle_score:0,stans_captured:0,lore_correct:0,lore_total:0}});
                 saveSessions(sessions);
                 sendToCollect({timestamp:new Date().toISOString(),survey:surveyAnswers,battle:{battle_score:0,stans_captured:0,lore_correct:0,lore_total:0}},collectSecret);
-                if (journalLoop) journalLoop.stop(); createOverworldMusic().start(); setScreen("overworld"); playSfx("select");
+                if (journalLoop) journalLoop.stop(); createOverworldMusic().start(); setShowIntro(true); setScreen("overworld"); playSfx("select");
               }}
                 style={{width:"100%",padding:"14px",fontFamily:"'Bangers',cursive",fontSize:22,letterSpacing:3,background:"#E63946",color:"#fff",border:"none",borderRadius:0,cursor:"pointer",boxShadow:"4px 4px 0 #111"}}>
                 ENTER THE OVERWORLD ▶
@@ -1070,6 +1094,19 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
                   </div>
                 )}
               </div>
+              {/* Inline follow-up text question */}
+              {q.type !== "text" && (() => {
+                const fu = getInlineFollowUp(surveyIdx, surveyAnswers);
+                if (!fu) return null;
+                return (
+                  <div style={{background:"#f9f9f9",border:"2px solid #ddd",padding:14,marginBottom:12,borderLeft:"4px solid #E63946"}}>
+                    <div style={{fontFamily:"'Indie Flower',cursive",fontSize:16,color:"#333",marginBottom:8,lineHeight:1.4}}>{fu.q.q}</div>
+                    <textarea value={followUpInput} onChange={(e: any) => setFollowUpInput(e.target.value)}
+                      placeholder={fu.q.placeholder || "Your answer"} rows={2}
+                      style={{width:"100%",padding:"8px 10px",border:"2px solid #ddd",fontFamily:"'Indie Flower',cursive",fontSize:16,outline:"none",resize:"none",background:"#fff",color:"#111",lineHeight:1.5}} />
+                  </div>
+                );
+              })()}
               <div style={{display:"flex",gap:8,justifyContent:"center",marginTop:4}}>
                 {!q.required && (
                   <button onClick={handleSurveySkip}
@@ -1334,6 +1371,27 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
                 </div>
               ))}
               <button onClick={() => setShowParty(false)} style={{width:"100%",marginTop:12,padding:"12px",fontFamily:"'Bangers',cursive",fontSize:18,letterSpacing:2,background:"#111",color:"#F5C518",border:"none",cursor:"pointer",boxShadow:"3px 3px 0 #E63946"}}>CLOSE [P]</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showIntro && (
+        <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.88)",zIndex:150,display:"flex",alignItems:"center",justifyContent:"center",padding:24}} onClick={() => setShowIntro(false)}>
+          <div style={{background:"#fff",border:"4px solid #F5C518",maxWidth:340,width:"100%",boxShadow:"6px 6px 0 #111",overflow:"hidden",animation:"popIn 0.3s ease-out"}}>
+            <div style={{background:"#111",padding:"10px 18px"}}>
+              <div style={{fontFamily:"'Bangers',cursive",fontSize:18,color:"#F5C518",letterSpacing:3}}>AARON SAYS</div>
+            </div>
+            <div style={{padding:"18px 20px"}}>
+              <div style={{fontFamily:"'Indie Flower',cursive",fontSize:18,color:"#111",lineHeight:1.6,marginBottom:12}}>
+                Okay. Journal's done.<br/><br/>
+                Now find your Stans — they're hiding in the zones. Walk into the colored areas to find them. The numbered icons are where they live.<br/><br/>
+                Collect all 5 to complete your crew.
+              </div>
+              <div style={{fontFamily:"'Indie Flower',cursive",fontSize:14,color:"#888",textAlign:"right",marginBottom:16}}>— Aaron</div>
+              <div style={{background:"#F5C518",padding:"10px 14px",textAlign:"center",fontFamily:"'Bangers',cursive",fontSize:16,letterSpacing:2,color:"#111",cursor:"pointer"}}>
+                TAP ANYWHERE TO START
+              </div>
             </div>
           </div>
         </div>
