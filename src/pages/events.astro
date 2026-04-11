@@ -100,8 +100,8 @@ const allEvents = [
   },
 ];
 
-const upcoming = allEvents.filter(e => e.date >= today);
-const past = allEvents.filter(e => e.date < today);
+const upcoming = allEvents.filter(e => e.date >= today).sort((a, b) => a.date.getTime() - b.date.getTime());
+const past = allEvents.filter(e => e.date < today).sort((a, b) => b.date.getTime() - a.date.getTime());
 const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
 ---
 
