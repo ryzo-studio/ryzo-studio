@@ -798,6 +798,7 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
   };
 
   const getQuestion = (stan: any) => {
+    // Arc mode ALWAYS takes priority — never serve skill questions during a Stan spar
     if (arcMode && STAN_ARC[stan.id]) {
       const arc = STAN_ARC[stan.id].questions;
       const q = arc[qIdx] || arc[arc.length - 1];
@@ -1371,7 +1372,7 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
             const knockedOut = hp <= 0;
             // Skill encounter — lightweight result
             if (!captured && !knockedOut && !arcMode) {
-              const wasCorrect = dialogue.includes("fighter") || dialogue.includes("exactly") || dialogue.includes("proud") || dialogue.includes("Solid") || dialogue.includes("one.");
+              const wasCorrect = dialogue.includes("fighter") || dialogue.includes("paid") || dialogue.includes("proud") || dialogue.includes("Solid") || dialogue.includes("exactly");
               return (
                 <div>
                   <div style={{background:"#faf6ee",border:`3px solid ${wasCorrect?"#27AE60":"#E67E22"}`,borderRadius:4,padding:16,marginBottom:12,textAlign:"center"}}>
