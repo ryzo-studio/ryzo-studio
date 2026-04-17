@@ -10,6 +10,7 @@ const SHEET_HEADERS = [
   'use_skills', 'situations', 'recommend_film', 'recommend_film_why',
   'recommend_game', 'recommend_game_why', 'anything_else',
   'battle_score', 'stans_captured', 'lore_correct', 'lore_total',
+  'breathe_mastery', 'pause_mastery', 'chill_mastery', 'connect_mastery',
 ];
 
 export const POST: APIRoute = async ({ request }) => {
@@ -46,10 +47,11 @@ export const POST: APIRoute = async ({ request }) => {
       range: 'Sheet1!A1:Z1',
     });
     const firstRow = existing.data.values?.[0];
-    if (!firstRow || firstRow.length === 0) {
-      await sheets.spreadsheets.values.append({
+    const headersMatch = firstRow && SHEET_HEADERS.every((h, i) => firstRow[i] === h);
+    if (!headersMatch) {
+      await sheets.spreadsheets.values.update({
         spreadsheetId,
-        range: 'Sheet1',
+        range: 'Sheet1!A1',
         valueInputOption: 'RAW',
         requestBody: { values: [SHEET_HEADERS] },
       });
