@@ -900,15 +900,13 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
       const dmg = curQ.d === "Easy" ? 20 : curQ.d === "Medium" ? 25 : 30;
       setHp(h => Math.max(0, h - dmg));
       setFlash("wrong"); playSfx("wrong");
-      // Track consecutive game question failures
-      const isGameQ = curQ.s && !curQ.s.includes("film");
-      if (isGameQ) {
-        const newFails = consecutiveGameFails + 1;
-        setConsecutiveGameFails(newFails);
-        if (newFails >= 3) {
-          setTimeout(() => setShowGameRedirect(true), 1600);
-          setConsecutiveGameFails(0);
-        }
+      // Throwdowns: redirect after 2 wrong. Spars: redirect after 3 wrong game Qs
+      const threshold = isSkillEncounter ? 2 : 3;
+      const newFails = consecutiveGameFails + 1;
+      setConsecutiveGameFails(newFails);
+      if (newFails >= threshold) {
+        setTimeout(() => setShowGameRedirect(true), 1600);
+        setConsecutiveGameFails(0);
       }
     }
     setTimeout(() => setFlash(null), 400);
@@ -998,7 +996,7 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
     if (zoneStanId && Math.random() < 0.15) {
       const stan = STANS[zoneStanId];
       const onCooldown = recentLoss != null && recentLoss.id === stan.id && (stepCount - recentLoss.step) < 20;
-      if (!onCooldown && !party.find((p: any) => p.id === stan.id)) {
+      if (!onCooldown) {
         setIsSkillEncounter(true);
         setTimeout(() => startEncounter(stan, false, true), 200);
       }
@@ -1279,25 +1277,91 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
   // ═══════════ WIN SCREEN ═══════════
   if (screen === "win") {
     return (
-      <div style={{width:"100%",maxWidth:500,margin:"0 auto",minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",background:"#fff",backgroundImage:"repeating-linear-gradient(transparent,transparent 27px,#e8e8e8 27px,#e8e8e8 28px)",padding:20,boxSizing:"border-box"}}>
-        <div style={{fontFamily:"'Bangers',cursive",fontSize:14,color:"#E63946",letterSpacing:4,marginBottom:4}}>★ ALL STANS IN YOUR CORNER ★</div>
-        <div style={{fontFamily:"'Bangers',cursive",fontSize:32,color:"#111",letterSpacing:2,marginBottom:20,textAlign:"center"}}>YOUR CREW IS COMPLETE</div>
-        <div style={{display:"flex",gap:12,flexWrap:"wrap",justifyContent:"center",marginBottom:20}}>
+      <div style={{width:"100%",maxWidth:500,margin:"0 auto",minHeight:"100vh",display:"flex",flexDirection:"column",alignItems:"center",background:"#faf6ee",backgroundImage:"repeating-linear-gradient(transparent,transparent 27px,#e8d8cc 27px,#e8d8cc 28px)",padding:20,boxSizing:"border-box",overflowY:"auto"}}>
+
+        {/* Win header */}
+        <div style={{fontFamily:"'Bangers',cursive",fontSize:13,color:"#E63946",letterSpacing:4,marginBottom:4,marginTop:12}}>★ ALL STANS IN YOUR CORNER ★</div>
+        <div style={{fontFamily:"'Bangers',cursive",fontSize:30,color:"#111",letterSpacing:2,marginBottom:4,textAlign:"center"}}>YOUR CREW IS COMPLETE</div>
+        <div style={{fontFamily:"'Indie Flower',cursive",fontSize:13,color:"#888",marginBottom:16}}>Score: {score}</div>
+
+        {/* Stan portraits */}
+        <div style={{display:"flex",gap:8,flexWrap:"wrap",justifyContent:"center",marginBottom:20}}>
           {Object.values(STANS).map((s: any) => (
-            <div key={s.id} style={{padding:10,background:"#fff",border:`3px solid ${s.color}`,borderRadius:4,textAlign:"center",boxShadow:`3px 3px 0 ${s.color}44`}}>
-              <StanSprite stanId={s.id} scale={0.9} />
-              <div style={{fontFamily:"'Bangers',cursive",fontSize:13,color:s.color,letterSpacing:1,marginTop:4}}>{s.name}</div>
-              <div style={{fontFamily:"'Indie Flower',cursive",fontSize:11,color:"#888"}}>{s.skill}</div>
+            <div key={s.id} style={{padding:8,background:"#fff",border:`3px solid ${s.color}`,borderRadius:4,textAlign:"center",boxShadow:`3px 3px 0 ${s.color}44`}}>
+              <StanSprite stanId={s.id} scale={0.8} />
+              <div style={{fontFamily:"'Bangers',cursive",fontSize:12,color:s.color,letterSpacing:1,marginTop:3}}>{s.name}</div>
+              <div style={{fontFamily:"'Indie Flower',cursive",fontSize:10,color:"#888"}}>{s.skill}</div>
             </div>
           ))}
         </div>
-        <div style={{fontFamily:"'Indie Flower',cursive",fontSize:16,color:"#333",textAlign:"center",maxWidth:320,lineHeight:1.6,marginBottom:16,fontStyle:"italic"}}>
-          Every Stan showed up to protect Aaron. Rage. Overwhelm. Shame. Envy. And the quiet one who knew he could keep going. They're not enemies. They're the crew.
+
+        {/* Notebook badges earned */}
+        <div style={{width:"100%",marginBottom:20}}>
+          <div style={{fontFamily:"'Bangers',cursive",fontSize:16,color:"#c0392b",letterSpacing:2,marginBottom:8,textAlign:"center"}}>📓 SKILL BADGES EARNED</div>
+          <div style={{display:"flex",gap:8,justifyContent:"center",flexWrap:"wrap"}}>
+            {["breathe","pause","chill","connect"].map(skill => {
+              const page = NOTEBOOK_PAGES[skill];
+              const unlocked = notebookUnlocked[skill];
+              const pct = Math.round(((skillCorrects[skill]||0)/5)*100);
+              const icon = SKILL_ICONS[skill];
+              return (
+                <div key={skill} style={{
+                  width:72,textAlign:"center",
+                  opacity: unlocked ? 1 : 0.4,
+                  filter: unlocked ? "none" : "grayscale(1)"
+                }}>
+                  <div style={{
+                    width:60,height:60,borderRadius:"50%",margin:"0 auto 4px",
+                    background: unlocked ? page.color : "#ccc",
+                    border:`3px solid ${unlocked ? page.color : "#bbb"}`,
+                    display:"flex",alignItems:"center",justifyContent:"center",
+                    overflow:"hidden",
+                    boxShadow: unlocked ? `0 0 10px ${page.color}66` : "none"
+                  }}>
+                    {icon ? <img src={icon} style={{width:50,height:50,objectFit:"contain"}} alt={skill} />
+                      : <span style={{fontSize:22}}>?</span>}
+                  </div>
+                  <div style={{fontFamily:"'Bangers',cursive",fontSize:11,color: unlocked ? page.color : "#aaa",letterSpacing:1}}>{page.skill}</div>
+                  <div style={{fontFamily:"'Indie Flower',cursive",fontSize:10,color:"#aaa"}}>{pct}%</div>
+                </div>
+              );
+            })}
+          </div>
+          {Object.values(notebookUnlocked).every(v => !v) && (
+            <div style={{fontFamily:"'Indie Flower',cursive",fontSize:12,color:"#aaa",textAlign:"center",marginTop:8,fontStyle:"italic"}}>
+              No badges yet — explore the zones and answer Throwdown questions to earn them next time
+            </div>
+          )}
         </div>
-        <div style={{fontFamily:"'Bangers',cursive",fontSize:22,color:"#E63946",letterSpacing:2,marginBottom:2}}>Score: {score}</div>
-        <div style={{fontFamily:"'Indie Flower',cursive",fontSize:14,color:"#888",marginBottom:20}}>Lore mastery: {loreCorrectTotal}/{loreTotalAsked}</div>
-        <button onClick={() => { if (overworldLoop) overworldLoop.stop(); if (battleLoop) battleLoop.stop(); playSfx("select"); setScreen("title"); setParty([]); setUsedQs(new Set()); setPos({x:14,y:19}); setScore(0); setCorrectCount(0); setLoreCorrectTotal(0); setLoreTotalAsked(0); }}
-          style={{padding:"10px 24px",fontFamily:"'Bangers',cursive",fontSize:20,letterSpacing:2,background:"#E63946",color:"#fff",border:"none",borderRadius:4,cursor:"pointer",boxShadow:"3px 3px 0 #8B1A1A"}}>
+
+        {/* Share section */}
+        <div style={{width:"100%",background:"#fff",border:"3px solid #E63946",borderRadius:4,padding:16,marginBottom:16,textAlign:"center"}}>
+          <div style={{fontFamily:"'Bangers',cursive",fontSize:18,color:"#E63946",letterSpacing:2,marginBottom:6}}>KNOW SOMEONE WHO NEEDS THIS?</div>
+          <div style={{fontFamily:"'Indie Flower',cursive",fontSize:13,color:"#555",marginBottom:14,lineHeight:1.6}}>
+            Share the film or the game with someone who might need Aaron's story.
+          </div>
+          <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
+            <a href="https://www.youtube.com/watch?v=fGHBh76NHuI" target="_blank" rel="noopener noreferrer"
+              style={{padding:"10px 16px",fontFamily:"'Bangers',cursive",fontSize:15,letterSpacing:1,background:"#E63946",color:"#fff",borderRadius:4,textDecoration:"none",boxShadow:"2px 2px 0 #8B1A1A"}}>
+              🎬 Share the Film
+            </a>
+            <a href="https://www.roblox.com/games/106511362279091/Rage-Fighters" target="_blank" rel="noopener noreferrer"
+              style={{padding:"10px 16px",fontFamily:"'Bangers',cursive",fontSize:15,letterSpacing:1,background:"#E67E22",color:"#fff",borderRadius:4,textDecoration:"none",boxShadow:"2px 2px 0 #8B4513"}}>
+              🎮 Share the Game
+            </a>
+            <a href="https://ryzo.studio/play" target="_blank" rel="noopener noreferrer"
+              style={{padding:"10px 16px",fontFamily:"'Bangers',cursive",fontSize:15,letterSpacing:1,background:"#1A5A90",color:"#fff",borderRadius:4,textDecoration:"none",boxShadow:"2px 2px 0 #0d3a6a"}}>
+              📓 Share this Challenge
+            </a>
+          </div>
+        </div>
+
+        <div style={{fontFamily:"'Indie Flower',cursive",fontSize:13,color:"#aaa",textAlign:"center",marginBottom:16,lineHeight:1.6,fontStyle:"italic"}}>
+          Every Stan showed up to protect Aaron. They're not enemies. They're the crew.
+        </div>
+
+        <button onClick={() => { if (overworldLoop) overworldLoop.stop(); if (battleLoop) battleLoop.stop(); playSfx("select"); setScreen("title"); setParty([]); setUsedQs(new Set()); setPos({x:14,y:19}); setScore(0); setCorrectCount(0); setLoreCorrectTotal(0); setLoreTotalAsked(0); setSkillCorrects({breathe:0,pause:0,chill:0,connect:0}); setNotebookUnlocked({breathe:false,pause:false,chill:false,connect:false}); }}
+          style={{padding:"10px 24px",fontFamily:"'Bangers',cursive",fontSize:20,letterSpacing:2,background:"#111",color:"#fff",border:"none",borderRadius:4,cursor:"pointer",boxShadow:"3px 3px 0 #000",marginBottom:20}}>
           PLAY AGAIN
         </button>
       </div>
@@ -1311,32 +1375,53 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
     return (
       <div style={{width:"100%",maxWidth:500,margin:"0 auto",minHeight:"100vh",background:"#fff",backgroundImage:"repeating-linear-gradient(transparent,transparent 27px,#e8e8e8 27px,#e8e8e8 28px)",display:"flex",flexDirection:"column"}} ref={gameRef} tabIndex={0}>
         {flash && <div style={{position:"fixed",inset:0,background:flash==="correct"?"rgba(39,174,96,0.25)":"rgba(231,76,60,0.25)",zIndex:99,pointerEvents:"none"}} />}
-        {/* Battle header — Stan name dominant */}
-        <div style={{background:curStan.color,padding:"8px 14px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-          <div style={{fontFamily:"'Bangers',cursive",fontSize:28,color:"#fff",letterSpacing:3,textShadow:"2px 2px 0 rgba(0,0,0,0.3)"}}>{curStan.name}</div>
-          <div style={{fontFamily:"'Indie Flower',cursive",fontSize:12,color:"rgba(255,255,255,0.8)"}}>Q {qIdx+1}/{totalQs} • Score: {score}</div>
+        {/* Battle header — THROWDOWN (yellow) vs SPAR (Stan color) */}
+        <div style={{
+          background: isSkillEncounter ? "#FFE600" : curStan.color,
+          padding:"8px 14px",
+          display:"flex",justifyContent:"space-between",alignItems:"center",
+          borderBottom: isSkillEncounter ? "3px solid #111" : `3px solid ${curStan.color}`
+        }}>
+          <div style={{fontFamily:"'Bangers',cursive",fontSize:22,
+            color: isSkillEncounter ? "#111" : "#fff",
+            letterSpacing:3}}>
+            {isSkillEncounter ? "⚡ THROWDOWN" : "⚔️ SPAR"}
+          </div>
+          <div style={{fontFamily:"'Indie Flower',cursive",fontSize:12,
+            color: isSkillEncounter ? "#333" : "rgba(255,255,255,0.85)"}}>
+            Q {qIdx+1}/{totalQs} • Score: {score}
+          </div>
         </div>
-        <div style={{background:"#fff",borderBottom:"4px solid #111",padding:"12px 16px",display:"flex",alignItems:"flex-end",justifyContent:"space-between",minHeight:180,position:"relative"}}>
-          <div style={{position:"absolute",top:8,left:0,right:0,textAlign:"center",fontFamily:"'Bangers',cursive",fontSize:36,color:curStan.color,letterSpacing:4,opacity:0.12,pointerEvents:"none",userSelect:"none"}}>
-            {curStan.name.toUpperCase()}
+
+        {/* Battle field */}
+        <div style={{background:"#fff",borderBottom:"4px solid #111",padding:"12px 16px",display:"flex",alignItems:"flex-end",justifyContent:"space-between",minHeight:160,position:"relative"}}>
+
+          {/* Stan name — large, centered, in Stan color, behind sprites */}
+          <div style={{position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)",
+            fontFamily:"'Bangers',cursive",fontSize:48,
+            color: isSkillEncounter ? "#FFE600" : curStan.color,
+            letterSpacing:4,opacity:0.1,pointerEvents:"none",userSelect:"none",
+            whiteSpace:"nowrap"}}>
+            {isSkillEncounter ? curStan.name.split(" ")[0] : curStan.name.toUpperCase()}
           </div>
-          <div style={{textAlign:"center"}}>
-            <div style={{width:56,height:56,borderRadius:"50%",background:"#4A90D9",border:"3px solid #111",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,marginBottom:6,boxShadow:"3px 3px 0 rgba(0,0,0,0.2)"}}>🧑</div>
-            <div style={{background:"#fff",border:"2px solid #111",borderRadius:4,padding:"4px 8px",minWidth:110}}>
-              <div style={{fontFamily:"'Bangers',cursive",fontSize:14,color:"#111",letterSpacing:1}}>Aaron <span style={{fontFamily:"'Indie Flower',cursive",fontSize:11,color:"#888",fontWeight:"normal"}}>Lv.{party.length+1}</span></div>
-              <div style={{background:"#ddd",height:8,borderRadius:4,overflow:"hidden",marginTop:3,border:"1px solid #bbb"}}>
-                <div style={{width:`${hpPct*100}%`,height:"100%",background:hpColor,transition:"width 0.4s",borderRadius:4}} />
-              </div>
-              <div style={{fontFamily:"'Indie Flower',cursive",fontSize:11,color:"#666",marginTop:1}}>{hp}/100 HP</div>
-              <div style={{fontFamily:"'Indie Flower',cursive",fontSize:11,color:correctCount===qIdx&&qIdx>0?"#27AE60":"#E67E22",fontWeight:"bold"}}>{correctCount}/{qIdx} correct</div>
+
+          {/* HP bar — left side, no Aaron avatar */}
+          <div style={{background:"#fff",border:"2px solid #111",borderRadius:4,padding:"6px 10px",minWidth:100,zIndex:2}}>
+            <div style={{fontFamily:"'Bangers',cursive",fontSize:13,color:"#111",letterSpacing:1,marginBottom:3}}>
+              {isSkillEncounter ? "⚡ THROWDOWN" : "SPAR"}
             </div>
+            <div style={{background:"#ddd",height:8,borderRadius:4,overflow:"hidden",border:"1px solid #bbb"}}>
+              <div style={{width:`${hpPct*100}%`,height:"100%",background:hpColor,transition:"width 0.4s",borderRadius:4}} />
+            </div>
+            <div style={{fontFamily:"'Indie Flower',cursive",fontSize:11,color:"#666",marginTop:2}}>{hp}/100 HP</div>
+            <div style={{fontFamily:"'Indie Flower',cursive",fontSize:11,color:correctCount===qIdx&&qIdx>0?"#27AE60":"#E67E22",fontWeight:"bold"}}>{correctCount}/{qIdx} correct</div>
           </div>
-          <div style={{textAlign:"center"}}>
-            <div style={{marginBottom:6,display:"flex",justifyContent:"center"}}>
-              <StanSprite stanId={curStan.id} scale={1.4} />
-            </div>
-            <div style={{background:"#fff",border:`3px solid ${curStan.color}`,borderRadius:4,padding:"4px 8px",minWidth:110}}>
-              <div style={{fontFamily:"'Bangers',cursive",fontSize:13,color:curStan.color,letterSpacing:1}}>{curStan.name}</div>
+
+          {/* Stan sprite — right, larger */}
+          <div style={{textAlign:"center",zIndex:2}}>
+            <StanSprite stanId={curStan.id} scale={1.6} />
+            <div style={{background:"#fff",border:`3px solid ${curStan.color}`,borderRadius:4,padding:"3px 8px",marginTop:4}}>
+              <div style={{fontFamily:"'Bangers',cursive",fontSize:14,color:curStan.color,letterSpacing:1}}>{curStan.name}</div>
               <div style={{fontFamily:"'Indie Flower',cursive",fontSize:10,color:"#888"}}>{curStan.emotion}</div>
             </div>
           </div>
