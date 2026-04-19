@@ -11,6 +11,7 @@ const SHEET_HEADERS = [
   'recommend_game', 'recommend_game_why', 'anything_else',
   'battle_score', 'stans_captured', 'lore_correct', 'lore_total',
   'breathe_mastery', 'pause_mastery', 'chill_mastery', 'connect_mastery',
+  'session_id',
 ];
 
 export const POST: APIRoute = async ({ request }) => {
@@ -57,14 +58,42 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    // Append data row
+    // Upsert: update existing row if session_id matches, otherwise append
     const row = SHEET_HEADERS.map(h => (body[h] !== undefined ? String(body[h]) : ''));
-    await sheets.spreadsheets.values.append({
-      spreadsheetId,
-      range: 'Sheet1',
-      valueInputOption: 'RAW',
-      requestBody: { values: [row] },
-    });
+    const sessionId = body['session_id'] ? String(body['session_id']) : '';
+    let updatedExisting = false;
+
+    if (sessionId) {
+      const allRows = await sheets.spreadsheets.values.get({
+        spreadsheetId,
+        range: 'Sheet1!A:AZ',
+      });
+      const rows = allRows.data.values || [];
+      const sessionIdCol = SHEET_HEADERS.indexOf('session_id');
+      // rows[0] is header, data starts at rows[1] → sheet row 2
+      for (let i = 1; i < rows.length; i++) {
+        if (rows[i][sessionIdCol] === sessionId) {
+          const sheetRow = i + 1; // 1-indexed
+          await sheets.spreadsheets.values.update({
+            spreadsheetId,
+            range: `Sheet1!A${sheetRow}`,
+            valueInputOption: 'RAW',
+            requestBody: { values: [row] },
+          });
+          updatedExisting = true;
+          break;
+        }
+      }
+    }
+
+    if (!updatedExisting) {
+      await sheets.spreadsheets.values.append({
+        spreadsheetId,
+        range: 'Sheet1',
+        valueInputOption: 'RAW',
+        requestBody: { values: [row] },
+      });
+    }
 
     return new Response(JSON.stringify({ ok: true }), { status: 200 });
   } catch (err: any) {

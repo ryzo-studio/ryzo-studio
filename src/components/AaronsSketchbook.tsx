@@ -512,7 +512,7 @@ function saveSessions(sessions: any[]) {
 }
 
 function flattenSession(sessionData: any) {
-  const flat: Record<string, any> = { timestamp: sessionData.timestamp || "" };
+  const flat: Record<string, any> = { timestamp: sessionData.timestamp || "", session_id: sessionData.session_id || "" };
   if (sessionData.survey) {
     SURVEY_QUESTIONS.forEach(q => {
       flat[q.id] = sessionData.survey[q.id] !== undefined ? sessionData.survey[q.id] : "";
@@ -753,6 +753,7 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
   const [isSkillEncounter, setIsSkillEncounter] = useState(false);
   const [consecutiveGameFails, setConsecutiveGameFails] = useState(0);
   const [showGameRedirect, setShowGameRedirect] = useState(false);
+  const [sessionId] = useState(() => typeof crypto !== 'undefined' ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`);
 
   const findNextValidIdx = (fromIdx: number, answers: Record<string, any>) => {
     for (let i = fromIdx; i < SURVEY_QUESTIONS.length; i++) {
@@ -1028,6 +1029,7 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
       playSfx("capture");
       const sessionData = {
         timestamp: new Date().toISOString(),
+        session_id: sessionId,
         survey: surveyAnswers,
         battle: { battle_score: score, stans_captured: party.length, lore_correct: loreCorrectTotal, lore_total: loreTotalAsked, breathe_mastery: Math.round(((skillCorrects.breathe||0)/5)*100)+"%", pause_mastery: Math.round(((skillCorrects.pause||0)/5)*100)+"%", chill_mastery: Math.round(((skillCorrects.chill||0)/5)*100)+"%", connect_mastery: Math.round(((skillCorrects.connect||0)/5)*100)+"%" }
       };
@@ -1166,9 +1168,9 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
             <div style={{padding:"16px 20px",background:"#fff"}}>
               <button onClick={() => {
                 const sessions = loadSessions();
-                sessions.push({timestamp:new Date().toISOString(),survey:surveyAnswers,battle:{battle_score:0,stans_captured:0,lore_correct:0,lore_total:0,breathe_mastery:"0%",pause_mastery:"0%",chill_mastery:"0%",connect_mastery:"0%"}});
+                sessions.push({timestamp:new Date().toISOString(),session_id:sessionId,survey:surveyAnswers,battle:{battle_score:0,stans_captured:0,lore_correct:0,lore_total:0,breathe_mastery:"0%",pause_mastery:"0%",chill_mastery:"0%",connect_mastery:"0%"}});
                 saveSessions(sessions);
-                sendToCollect({timestamp:new Date().toISOString(),survey:surveyAnswers,battle:{battle_score:0,stans_captured:0,lore_correct:0,lore_total:0,breathe_mastery:"0%",pause_mastery:"0%",chill_mastery:"0%",connect_mastery:"0%"}},collectSecret);
+                sendToCollect({timestamp:new Date().toISOString(),session_id:sessionId,survey:surveyAnswers,battle:{battle_score:0,stans_captured:0,lore_correct:0,lore_total:0,breathe_mastery:"0%",pause_mastery:"0%",chill_mastery:"0%",connect_mastery:"0%"}},collectSecret);
                 if (journalLoop) journalLoop.stop(); createOverworldMusic().start(); setShowIntro(true); setScreen("overworld"); playSfx("select");
               }}
                 style={{width:"100%",padding:"14px",fontFamily:"'Bangers',cursive",fontSize:22,letterSpacing:3,background:"#E63946",color:"#fff",border:"none",borderRadius:0,cursor:"pointer",boxShadow:"4px 4px 0 #111"}}>
@@ -1817,7 +1819,7 @@ export default function AaronsSketchbook({ collectSecret = '' }: { collectSecret
               <div style={{display:"flex",gap:10,justifyContent:"center"}}>
                 <button onClick={() => setShowQuit(false)} style={{padding:"10px 16px",fontFamily:"'Bangers',cursive",fontSize:18,letterSpacing:1,background:"#fff",color:"#111",border:"3px solid #111",cursor:"pointer"}}>KEEP PLAYING</button>
                 <button onClick={() => {
-                  const sessionData = {timestamp:new Date().toISOString(),survey:surveyAnswers,battle:{battle_score:score,stans_captured:party.length,lore_correct:loreCorrectTotal,lore_total:loreTotalAsked,breathe_mastery:Math.round(((skillCorrects.breathe||0)/5)*100)+"%",pause_mastery:Math.round(((skillCorrects.pause||0)/5)*100)+"%",chill_mastery:Math.round(((skillCorrects.chill||0)/5)*100)+"%",connect_mastery:Math.round(((skillCorrects.connect||0)/5)*100)+"%"}};
+                  const sessionData = {timestamp:new Date().toISOString(),session_id:sessionId,survey:surveyAnswers,battle:{battle_score:score,stans_captured:party.length,lore_correct:loreCorrectTotal,lore_total:loreTotalAsked,breathe_mastery:Math.round(((skillCorrects.breathe||0)/5)*100)+"%",pause_mastery:Math.round(((skillCorrects.pause||0)/5)*100)+"%",chill_mastery:Math.round(((skillCorrects.chill||0)/5)*100)+"%",connect_mastery:Math.round(((skillCorrects.connect||0)/5)*100)+"%"}};
                   const sessions = loadSessions(); sessions.push(sessionData); saveSessions(sessions);
                   sendToCollect(sessionData, collectSecret);
                   if (overworldLoop) overworldLoop.stop(); if (battleLoop) battleLoop.stop(); playSfx("select"); setShowQuit(false); setScreen("title"); setParty([]); setUsedQs(new Set()); setPos({x:14,y:19}); setScore(0); setCorrectCount(0); setLoreCorrectTotal(0); setLoreTotalAsked(0);
