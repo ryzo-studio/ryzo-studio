@@ -12,7 +12,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="hero-bg"></div>
     <div class="container hero-content">
       <span class="eyebrow">Our Supporters</span>
-      <h1 class="display">
+      <h1 class="hero-display">
         Bound by the<br />
         <span class="accent-text">same bet.</span>
       </h1>
@@ -27,58 +27,54 @@ import Layout from '../layouts/Layout.astro';
       <h2 class="subheadline">The people and organizations<br />who made this possible.</h2>
 
       <!-- Lead Partner: Equimundo -->
-      <div class="gratitude-row">
-        <div class="cube-block featured-cube">
-          <span class="cube-label">Lead Partners — Rage Fighters</span>
-          <div class="featured-logo-row">
-            <div class="cube-logo-wrap">
-              <img src="/images/equimundo-logo.png" alt="Equimundo" height="48" style="height:48px;width:auto;display:block;object-fit:contain;" />
-            </div>
-            <h3 class="cube-name">Equimundo &amp; the Caring Masculinity Fund</h3>
+      <div class="cube-block featured-cube">
+        <span class="cube-label">Lead Partners — Rage Fighters</span>
+        <div class="featured-header">
+          <div class="logo-pill">
+            <img src="/images/equimundo-logo.png" alt="Equimundo" class="equimundo-img" />
           </div>
-          <p class="cube-detail">The most significant contribution to the Rage Fighters game came from Equimundo and the Caring Masculinity Fund. Our first franchise centers on boys' coming of age and belonging — and they were true partners in that work, helping us connect with allies around the world and bringing genuine collaborative enthusiasm to the challenge of uniting story and activation inside the places where young people already live.</p>
-          <a href="https://www.equimundo.org/caring-masculinity-fund/" target="_blank" rel="noopener" class="cube-link">Visit Equimundo →</a>
+          <h3 class="cube-name">Equimundo &amp; the Caring Masculinity Fund</h3>
         </div>
+        <p class="cube-detail">The most significant contribution to the Rage Fighters game came from Equimundo and the Caring Masculinity Fund. Our first franchise centers on boys' coming of age and belonging — and they were true partners in that work, helping us connect with allies around the world and bringing genuine collaborative enthusiasm to the challenge of uniting story and activation inside the places where young people already live.</p>
+        <a href="https://www.equimundo.org/caring-masculinity-fund/" target="_blank" rel="noopener" class="cube-link">Visit Equimundo →</a>
       </div>
 
       <!-- Technical Partners -->
-      <div class="gratitude-row tech-row">
-        <div class="cube-block tech-cube dark-tile">
+      <div class="tech-grid">
+        <div class="cube-block tech-cube">
           <span class="cube-label">Technical Partner</span>
-          <div class="tech-logo-wrap">
-            <img src="/images/supporters/autodesk.webp" alt="Autodesk" />
+          <div class="tech-logo-area dark-bg">
+            <img src="/images/supporters/autodesk.webp" alt="Autodesk" class="tech-img blend-screen" />
           </div>
           <p class="cube-detail">Software support powering our full production pipeline.</p>
         </div>
-        <div class="cube-block tech-cube light-tile">
+        <div class="cube-block tech-cube">
           <span class="cube-label">Technical Partner</span>
-          <div class="tech-logo-wrap">
-            <img src="/images/supporters/unreal.png" alt="Unreal Engine" />
+          <div class="tech-logo-area dark-bg">
+            <img src="/images/supporters/unreal.png" alt="Unreal Engine" class="tech-img invert" />
           </div>
           <p class="cube-detail">The engine behind our game development.</p>
         </div>
-        <div class="cube-block tech-cube dark-tile">
+        <div class="cube-block tech-cube">
           <span class="cube-label">Technical Partner</span>
-          <div class="tech-logo-wrap">
-            <img src="/images/supporters/perforce.jpeg" alt="Perforce" />
+          <div class="tech-logo-area dark-bg">
+            <img src="/images/supporters/perforce.jpeg" alt="Perforce" class="tech-img blend-screen" />
           </div>
           <p class="cube-detail">Version control at production scale.</p>
         </div>
       </div>
 
       <!-- Community -->
-      <div class="gratitude-row">
-        <div class="cube-block community-cube">
-          <span class="cube-label">Community Supporters</span>
-          <h3 class="cube-headline">The ones who showed up first.</h3>
-          <p class="cube-detail">We have a robust community of supporters who helped us through the early stages of the studio via crowdfunding campaigns on Kickstarter and private donations. Their belief — before the proof points existed — made everything else possible.</p>
-        </div>
+      <div class="cube-block community-cube">
+        <span class="cube-label">Community Supporters</span>
+        <h3 class="cube-headline">The ones who showed up first.</h3>
+        <p class="cube-detail">We have a robust community of supporters who helped us through the early stages of the studio via crowdfunding campaigns on Kickstarter and private donations. Their belief — before the proof points existed — made everything else possible.</p>
       </div>
 
     </div>
   </section>
 
-  <!-- GET INVOLVED — impact investment -->
+  <!-- GET INVOLVED -->
   <section class="section get-involved-section">
     <div class="container">
       <div class="get-involved-inner">
@@ -99,13 +95,11 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <span class="eyebrow">Events Partners</span>
       <h2 class="subheadline">Where the work shows up live.</h2>
-      <div class="events-partner-row">
-        <div class="cube-block events-cube">
-          <div class="events-logo-wrap">
-            <img src="/images/supporters/clubhouse-network.png" alt="The Clubhouse Network" />
-          </div>
-          <p class="cube-detail">We partner extensively with the Clubhouse Network to deliver live events that connect kids and teens with new ways to use their creativity and connect around their emotions.</p>
+      <div class="cube-block events-cube">
+        <div class="logo-pill">
+          <img src="/images/supporters/clubhouse-network.png" alt="The Clubhouse Network" class="clubhouse-img" />
         </div>
+        <p class="cube-detail events-detail">We partner extensively with the Clubhouse Network to deliver live events that connect kids and teens with new ways to use their creativity and connect around their emotions.</p>
       </div>
     </div>
   </section>
@@ -130,13 +124,13 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-  /* ── Hero ── */
+  /* ── Page backgrounds ── */
   .supporters-hero {
-    min-height: 65vh;
+    min-height: 72vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-block: 8rem 5rem;
+    padding-block: 6rem 5rem;
     position: relative;
   }
 
@@ -153,45 +147,60 @@ import Layout from '../layouts/Layout.astro';
     background: linear-gradient(to right, #0a0420 0%, #180730 100%);
   }
 
-  .hero-content { position: relative; z-index: 1; }
-  .hero-content .eyebrow { margin-bottom: 1.25rem; }
-  .display { font-size: clamp(3.5rem, 9vw, 8rem); margin-bottom: 1.5rem; }
+  /* ── Hero ── */
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-display {
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 5.5vw, 5.5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--fg);
+    margin-bottom: 1.5rem;
+  }
+
   .accent-text { color: var(--accent); }
-  .hero-body { font-size: var(--text-lg); color: var(--fg-2); line-height: 1.6; max-width: 520px; }
+
+  .hero-body {
+    font-size: var(--text-base);
+    color: var(--fg-2);
+    line-height: 1.7;
+    max-width: 600px;
+  }
 
   /* ── Gratitude section ── */
   .gratitude-section {
     border-top: 1px solid rgba(255,255,255,0.07);
   }
+
   .gratitude-section .eyebrow { margin-bottom: 1rem; }
-  .gratitude-section .subheadline { margin-bottom: 3rem; }
+  .gratitude-section .subheadline { margin-bottom: 2.5rem; }
 
-  .gratitude-row {
-    margin-bottom: 1.25rem;
-  }
-
-  .tech-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-  }
-
-  /* ── Cube blocks ── */
+  /* ── Cube blocks — base ── */
   .cube-block {
-    padding: 2.5rem;
-    background: rgba(255,255,255,0.04);
-    border: 1.5px solid rgba(255,255,255,0.1);
+    padding: 2.25rem;
+    background: #16082e;
+    border: 1.5px solid rgba(255,255,255,0.15);
     border-radius: 8px;
-    box-shadow: 5px 5px 0 rgba(255, 214, 0, 0.3);
+    box-shadow: 5px 5px 0 var(--accent);
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    transition: transform 0.16s ease, box-shadow 0.16s ease;
+    margin-bottom: 1.25rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
 
   .cube-block:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 7px 7px 0 rgba(255, 214, 0, 0.5);
+    box-shadow: 7px 7px 0 var(--accent);
   }
 
   .cube-label {
@@ -219,25 +228,37 @@ import Layout from '../layouts/Layout.astro';
   .cube-link:hover { text-decoration: underline; }
 
   /* ── Featured (Equimundo) cube ── */
-  .featured-logo-row {
+  .featured-cube {
+    margin-bottom: 1.25rem;
+  }
+
+  .featured-header {
     display: flex;
     align-items: center;
-    gap: 1.75rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
   }
 
-  .cube-logo-wrap {
+  .logo-pill {
     display: inline-flex;
     align-items: center;
-    background: #fff;
+    background: #ffffff;
     border-radius: 6px;
-    padding: 0.75rem 1.25rem;
+    padding: 0.6rem 1rem;
     flex-shrink: 0;
+  }
+
+  .equimundo-img {
+    display: block;
+    height: 40px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
   }
 
   .cube-name {
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    font-size: clamp(1.35rem, 2.2vw, 2rem);
     font-weight: 800;
     letter-spacing: -0.02em;
     color: var(--fg);
@@ -245,37 +266,54 @@ import Layout from '../layouts/Layout.astro';
     margin: 0;
   }
 
-  /* ── Tech cubes ── */
-  .tech-cube {
-    align-items: center;
-    text-align: center;
-    min-height: 220px;
-    justify-content: center;
+  /* ── Tech grid ── */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
   }
 
-  .tech-logo-wrap {
+  .tech-cube {
+    margin-bottom: 0;
+  }
+
+  .tech-logo-area {
+    width: 100%;
+    height: 72px;
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 88px;
-    border-radius: 6px;
     overflow: hidden;
+    flex-shrink: 0;
   }
 
-  .tech-logo-wrap img {
-    max-width: 100%;
-    max-height: 100%;
+  .dark-bg {
+    background: #0a0a0a;
+  }
+
+  .tech-img {
+    display: block;
+    max-height: 48px;
+    max-width: 80%;
+    width: auto;
+    height: auto;
     object-fit: contain;
   }
 
-  .dark-tile .tech-logo-wrap { background: #0d0d0d; }
-  .light-tile .tech-logo-wrap { background: #ffffff; padding: 0.5rem 1rem; }
+  .blend-screen {
+    mix-blend-mode: screen;
+  }
+
+  .invert {
+    filter: invert(1);
+  }
 
   /* ── Community cube ── */
   .cube-headline {
     font-family: var(--font-display);
-    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    font-size: clamp(1.3rem, 2vw, 1.75rem);
     font-weight: 800;
     letter-spacing: -0.02em;
     color: var(--fg);
@@ -313,26 +351,25 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .events-section .eyebrow { margin-bottom: 1rem; }
-  .events-section .subheadline { margin-bottom: 2.5rem; }
+  .events-section .subheadline { margin-bottom: 2rem; }
 
-  .events-partner-row { max-width: 600px; }
-
-  .events-cube { flex-direction: row; align-items: center; gap: 2rem; }
-
-  .events-logo-wrap {
-    background: #fff;
-    border-radius: 6px;
-    padding: 1rem 1.5rem;
-    display: flex;
+  .events-cube {
+    flex-direction: row;
     align-items: center;
-    flex-shrink: 0;
+    gap: 2rem;
+    max-width: 680px;
   }
 
-  .events-logo-wrap img {
+  .clubhouse-img {
+    display: block;
     height: 52px;
     width: auto;
-    display: block;
+    max-width: 220px;
     object-fit: contain;
+  }
+
+  .events-detail {
+    flex: 1;
   }
 
   /* ── Bottom CTA ── */
@@ -360,19 +397,24 @@ import Layout from '../layouts/Layout.astro';
     align-items: flex-start;
   }
 
-  .become-note { font-size: var(--text-xs); color: var(--fg-3); max-width: 260px; line-height: 1.5; }
+  .become-note {
+    font-size: var(--text-xs);
+    color: var(--fg-3);
+    max-width: 260px;
+    line-height: 1.5;
+  }
 
   /* ── Responsive ── */
   @media (max-width: 900px) {
-    .tech-row { grid-template-columns: 1fr 1fr; }
+    .tech-grid { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 768px) {
-    .tech-row { grid-template-columns: 1fr; }
+    .tech-grid { grid-template-columns: 1fr; }
     .get-involved-inner,
     .become-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .get-involved-cta { justify-content: flex-start; }
     .events-cube { flex-direction: column; align-items: flex-start; }
-    .featured-logo-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .featured-header { flex-direction: column; align-items: flex-start; }
   }
 </style>
