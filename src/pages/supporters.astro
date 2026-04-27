@@ -30,54 +30,48 @@ import Layout from '../layouts/Layout.astro';
         <h2 class="gratitude-headline">The people and organizations<br />who made this possible.</h2>
       </div>
 
-      <!-- Equimundo + tech partners row -->
       <div class="cards-row-main">
-        <!-- Lead Partner: Equimundo -->
-        <div class="supporter-card equimundo-card">
-          <div class="card-logo-wrap">
-            <img src="/images/equimundo-logo.png" alt="Equimundo" class="equimundo-img" />
+
+        <!-- Card 1: Impact Partners -->
+        <div class="supporter-card accent-yellow">
+          <p class="card-eyebrow">Impact Partners</p>
+          <div class="logo-strip">
+            <div class="logo-pill"><img src="/images/equimundo-logo.png" alt="Equimundo" class="logo-white-bg" /></div>
           </div>
-          <h3 class="card-name equimundo-name">Equimundo &amp; the Caring Masculinity Fund</h3>
-          <p class="card-category">Lead Partners — Rage Fighters</p>
-          <p class="card-detail">The most significant contribution to the Rage Fighters game came from Equimundo and the Caring Masculinity Fund — true partners in connecting story and activation inside the places where young people already live, helping us find allies around the world.</p>
-          <a href="https://www.equimundo.org/caring-masculinity-fund/" target="_blank" rel="noopener" class="card-link">Visit Equimundo →</a>
+          <p class="card-desc">Equimundo &amp; the Caring Masculinity Fund were lead partners on Rage Fighters — true collaborators in connecting story and activation inside the places where young people already live.</p>
+          <a href="https://www.equimundo.org/caring-masculinity-fund/" target="_blank" rel="noopener" class="card-visit">Visit Equimundo →</a>
         </div>
 
-        <!-- Technical Partners -->
-        <div class="supporter-card tech-card">
-          <div class="card-logo-wrap dark-logo">
-            <img src="/images/supporters/autodesk.webp" alt="Autodesk" class="tech-img blend-screen" />
+        <!-- Card 2: Technology Partners -->
+        <div class="supporter-card accent-purple">
+          <p class="card-eyebrow">Technology Partners</p>
+          <div class="logo-strip">
+            <div class="logo-pill"><img src="/images/supporters/autodesk.webp" alt="Autodesk" class="logo-screen logo-xl" /></div>
+            <div class="logo-pill"><img src="/images/supporters/unreal.png" alt="Unreal Engine" class="logo-invert-screen logo-ml" /></div>
+            <div class="logo-pill"><img src="/images/supporters/perforce.jpeg" alt="Perforce" class="logo-screen" /></div>
+            <div class="logo-pill"><img src="/images/supporters/roblox.png" alt="Roblox" class="logo-screen logo-xl" /></div>
           </div>
-          <h3 class="card-name autodesk-name">Autodesk</h3>
-          <p class="card-category">Technical Partner</p>
-          <p class="card-detail">Software support powering our full production pipeline.</p>
+          <p class="card-desc">Autodesk, Unreal, Perforce, and Roblox provide software donations and technical support that power our full pipeline — from ideation to linear media to interactive worlds.</p>
         </div>
 
-        <div class="supporter-card tech-card">
-          <div class="card-logo-wrap dark-logo">
-            <img src="/images/supporters/unreal.png" alt="Unreal Engine" class="tech-img invert" />
+        <!-- Card 3: Events Partners -->
+        <div class="supporter-card accent-cyan">
+          <p class="card-eyebrow">Events Partners</p>
+          <div class="logo-strip">
+            <div class="logo-pill"><img src="/images/supporters/clubhouse-network.png" alt="The Clubhouse Network" class="logo-white-bg" /></div>
           </div>
-          <h3 class="card-name unreal-name">Unreal Engine</h3>
-          <p class="card-category">Technical Partner</p>
-          <p class="card-detail">The engine behind our game development.</p>
+          <p class="card-desc">The Clubhouse Network is our live events partner, connecting kids and teens with new ways to use their creativity and take on big emotions through art, film and gaming.</p>
+          <a href="https://www.clubhousenetwork.org" target="_blank" rel="noopener" class="card-visit">Visit Clubhouse Network →</a>
         </div>
 
-        <div class="supporter-card tech-card">
-          <div class="card-logo-wrap dark-logo">
-            <img src="/images/supporters/perforce.jpeg" alt="Perforce" class="tech-img blend-screen" />
-          </div>
-          <h3 class="card-name perforce-name">Perforce</h3>
-          <p class="card-category">Technical Partner</p>
-          <p class="card-detail">Version control at production scale.</p>
-        </div>
       </div>
 
-      <!-- Community -->
+      <!-- Community row -->
       <div class="cards-row-community">
-        <div class="supporter-card community-card">
-          <h3 class="card-name community-name">The ones who showed up first.</h3>
-          <p class="card-category">Community Supporters</p>
-          <p class="card-detail">We have a robust community of supporters who helped us through the early stages of the studio via Kickstarter campaigns and private donations. Their belief — before the proof points existed — made everything else possible.</p>
+        <div class="supporter-card accent-subtle community-card">
+          <p class="card-eyebrow">Community Supporters</p>
+          <h3 class="card-title">The ones who showed up first.</h3>
+          <p class="card-desc">Early believers who helped us through the studio's first stages via Kickstarter campaigns and private donations. Their conviction — before the proof points existed — made everything else possible.</p>
         </div>
       </div>
 
@@ -100,21 +94,7 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- EVENTS PARTNERS -->
-  <section class="section events-section">
-    <div class="container">
-      <span class="eyebrow">Events Partners</span>
-      <h2 class="subheadline">Where the work shows up live.</h2>
-      <div class="events-card">
-        <div class="card-logo-wrap">
-          <img src="/images/supporters/clubhouse-network.png" alt="The Clubhouse Network" class="clubhouse-img" />
-        </div>
-        <p class="card-detail">We partner extensively with the Clubhouse Network to deliver live events that connect kids and teens with new ways to use their creativity and connect around their emotions.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- BOTTOM CTA -->
+<!-- BOTTOM CTA -->
   <section class="section-sm become-section">
     <div class="container">
       <div class="become-inner">
@@ -147,9 +127,19 @@ import Layout from '../layouts/Layout.astro';
   .hero-bg {
     position: absolute;
     inset: 0;
+    background-image: url('/images/supporters/hero-bg.png');
+    background-size: cover;
+    background-position: center 30%;
+    transform: scaleX(-1);
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
     background:
-      radial-gradient(ellipse at 40% 30%, rgba(124, 92, 191, 0.15) 0%, transparent 55%),
-      linear-gradient(to right, #080316, #1c0832);
+      linear-gradient(to right, rgba(8,3,22,0.82) 0%, rgba(8,3,22,0.45) 55%, rgba(8,3,22,0.12) 100%),
+      linear-gradient(to top, rgba(8,3,22,0.7) 0%, transparent 50%);
   }
 
   .section,
@@ -236,10 +226,10 @@ import Layout from '../layouts/Layout.astro';
   /* ── Cards layout ── */
   .cards-row-main {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
     margin-bottom: 1rem;
-    align-items: start;
+    align-items: stretch;
   }
 
   .cards-row-community {
@@ -249,109 +239,123 @@ import Layout from '../layouts/Layout.astro';
 
   /* ── Supporter card base ── */
   .supporter-card {
-    background: rgba(16, 10, 30, 0.88);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(48, 12, 80, 0.82);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-top: 3px solid transparent;
     border-radius: 14px;
     padding: 1.75rem;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    transition: border-color 0.2s ease, transform 0.2s ease;
+    transition: transform 0.2s ease;
   }
 
   .supporter-card:hover {
     transform: translateY(-3px);
-    border-color: rgba(255,255,255,0.22);
   }
 
-  /* ── Card logo ── */
-  .card-logo-wrap {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    border-radius: 8px;
-    padding: 0.5rem 0.875rem;
-    width: fit-content;
-    height: 48px;
-    overflow: hidden;
+  /* ── Top-border accent lines (Option B) ── */
+  .accent-yellow { border-top-color: #FFE600; }
+  .accent-purple { border-top-color: #a78bfa; }
+  .accent-cyan   { border-top-color: #38bdf8; }
+  .accent-subtle { border-top-color: rgba(255,255,255,0.18); }
+
+  /* ── Card anatomy ── */
+  .card-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin: 0;
   }
 
-  .card-logo-wrap.dark-logo {
-    background: #0d0d0d;
-    padding: 0.4rem 0.75rem;
-  }
-
-  .equimundo-img {
-    display: block;
-    max-height: 34px;
-    width: auto;
-    max-width: 150px;
-    object-fit: contain;
-  }
-
-  .tech-img {
-    display: block;
-    max-height: 30px;
-    max-width: 110px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-  }
-
-  .blend-screen { mix-blend-mode: screen; }
-  .invert { filter: invert(1); }
-
-  /* ── Card text ── */
-  .card-name {
+  .card-title {
     font-family: var(--font-display);
-    font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+    font-size: clamp(1.05rem, 1.5vw, 1.35rem);
     font-weight: 800;
     letter-spacing: -0.02em;
+    color: #fff;
     line-height: 1.2;
     margin: 0;
   }
 
-  .card-category {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    margin: 0;
+  /* ── Logo strip ── */
+  .logo-strip {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    align-items: center;
+    justify-content: center;
   }
 
-  .card-detail {
+  .logo-pill {
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 0.625rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 90px;
+    flex-shrink: 0;
+  }
+
+  .logo-strip img {
+    height: 56px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    max-width: 200px;
+  }
+
+  .logo-xl { height: 73px; max-width: 240px; }
+  .logo-ml { height: 64px; max-width: 220px; }
+
+  /* White-on-dark source images (Autodesk, Perforce, Roblox) */
+  .logo-screen {
+    mix-blend-mode: screen;
+    filter: grayscale(1);
+    opacity: 0.9;
+  }
+
+  /* Black-on-white source image (Unreal) */
+  .logo-invert-screen {
+    filter: invert(1) grayscale(1);
+    mix-blend-mode: screen;
+    opacity: 0.9;
+  }
+
+  /* Color-on-white source images (Equimundo, Clubhouse) */
+  .logo-white-bg {
+    filter: invert(1) grayscale(1) brightness(1.4);
+    mix-blend-mode: screen;
+    opacity: 0.85;
+  }
+
+  .card-desc {
     font-size: var(--text-sm);
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.6);
     line-height: 1.65;
     margin: 0;
+    flex: 1;
   }
 
-  .card-link {
+  .card-visit {
     font-size: var(--text-sm);
+    color: rgba(255,255,255,0.45);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     width: fit-content;
-    margin-top: 0.25rem;
+    margin-top: auto;
+    transition: color 0.15s;
   }
-  .card-link:hover { text-decoration: underline; }
-
-  /* ── Per-card accent colors ── */
-  .equimundo-name { color: #FFE600; }
-  .card-link { color: #FFE600; }
-
-  .autodesk-name  { color: #a78bfa; }
-  .unreal-name    { color: #f97316; }
-  .perforce-name  { color: #4ade80; }
-  .community-name { color: #38bdf8; }
-
-  /* Community card spans full width — just a single column row */
-  .community-card {
-    /* no extra styles needed */
-  }
+  .card-visit:hover { color: rgba(255,255,255,0.85); }
 
   /* ── Get Involved ── */
   .get-involved-section {
@@ -377,41 +381,6 @@ import Layout from '../layouts/Layout.astro';
     justify-content: flex-end;
   }
 
-  /* ── Events Partners ── */
-  .events-section {
-    border-top: 1px solid rgba(255,255,255,0.07);
-  }
-
-  .events-section .eyebrow { margin-bottom: 1rem; }
-  .events-section .subheadline { margin-bottom: 2rem; }
-
-  .events-card {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 2rem;
-    max-width: 680px;
-    background: #16082e;
-    border: 1.5px solid rgba(255,255,255,0.12);
-    border-radius: 14px;
-    padding: 1.75rem 2rem;
-  }
-
-  .events-card .card-logo-wrap {
-    flex-shrink: 0;
-  }
-
-  .events-card .card-detail {
-    flex: 1;
-  }
-
-  .clubhouse-img {
-    display: block;
-    height: 52px;
-    width: auto;
-    max-width: 220px;
-    object-fit: contain;
-  }
 
   /* ── Bottom CTA ── */
   .become-section {
@@ -447,12 +416,8 @@ import Layout from '../layouts/Layout.astro';
 
   /* ── Responsive ── */
   @media (max-width: 1100px) {
-    .cards-row-main {
-      grid-template-columns: 1fr 1fr;
-    }
-    .equimundo-card {
-      grid-column: 1 / -1;
-    }
+    .cards-row-main { grid-template-columns: 1fr 1fr; }
+    .equimundo-card { grid-column: 1 / -1; }
   }
 
   @media (max-width: 768px) {
@@ -461,6 +426,5 @@ import Layout from '../layouts/Layout.astro';
     .get-involved-inner,
     .become-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .get-involved-cta { justify-content: flex-start; }
-    .events-card { flex-direction: column; align-items: flex-start; }
   }
 </style>
