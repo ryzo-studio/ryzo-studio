@@ -138,7 +138,7 @@ import Layout from '../layouts/Layout.astro';
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to right, rgba(8,3,22,0.92) 0%, rgba(8,3,22,0.75) 40%, rgba(8,3,22,0.35) 65%, rgba(8,3,22,0.12) 100%),
+      linear-gradient(to right, rgba(8,3,22,0.82) 0%, rgba(8,3,22,0.45) 55%, rgba(8,3,22,0.12) 100%),
       linear-gradient(to top, rgba(8,3,22,0.7) 0%, transparent 50%);
   }
 
@@ -233,8 +233,8 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .cards-row-community {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    justify-content: center;
   }
 
   /* ── Supporter card base ── */
@@ -361,6 +361,17 @@ import Layout from '../layouts/Layout.astro';
   .community-card {
     position: relative;
     overflow: hidden;
+    width: 100%;
+    max-width: 420px;
+    min-height: 340px;
+    padding: 2.5rem 3rem;
+    justify-content: center;
+  }
+
+  .community-card .card-eyebrow,
+  .community-card .card-title,
+  .community-card .card-desc {
+    max-width: 280px;
   }
 
   .community-card::before {
@@ -368,9 +379,9 @@ import Layout from '../layouts/Layout.astro';
     position: absolute;
     inset: 0;
     background-image: url('/images/supporters/sticky-mural.png');
-    background-size: cover;
+    background-size: 150%;
     background-position: center;
-    opacity: 0.18;
+    opacity: 0.25;
     z-index: 0;
   }
 
