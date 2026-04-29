@@ -138,7 +138,7 @@ import Layout from '../layouts/Layout.astro';
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to right, rgba(8,3,22,0.82) 0%, rgba(8,3,22,0.45) 55%, rgba(8,3,22,0.12) 100%),
+      linear-gradient(to right, rgba(8,3,22,0.92) 0%, rgba(8,3,22,0.75) 40%, rgba(8,3,22,0.35) 65%, rgba(8,3,22,0.12) 100%),
       linear-gradient(to top, rgba(8,3,22,0.7) 0%, transparent 50%);
   }
 
@@ -171,7 +171,7 @@ import Layout from '../layouts/Layout.astro';
 
   .hero-body {
     font-size: var(--text-base);
-    color: var(--fg-2);
+    color: rgba(255,255,255,0.92);
     line-height: 1.7;
     max-width: 600px;
   }
@@ -356,6 +356,28 @@ import Layout from '../layouts/Layout.astro';
     transition: color 0.15s;
   }
   .card-visit:hover { color: rgba(255,255,255,0.85); }
+
+  /* ── Community card background ── */
+  .community-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .community-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/supporters/sticky-mural.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.18;
+    z-index: 0;
+  }
+
+  .community-card > * {
+    position: relative;
+    z-index: 1;
+  }
 
   /* ── Get Involved ── */
   .get-involved-section {
