@@ -68,11 +68,34 @@ import Layout from '../layouts/Layout.astro';
 
       <!-- Community row -->
       <div class="cards-row-community">
+
+        <!-- Advisors -->
+        <div class="supporter-card accent-teal">
+          <p class="card-eyebrow">Advisors</p>
+          <div class="logo-strip">
+            <div class="logo-pill"><img src="/images/supporters/digital-wellness-lab.png" alt="Digital Wellness Lab at Boston Children's Hospital" class="logo-white-bg" /></div>
+          </div>
+          <p class="card-desc">We're grateful to the Digital Wellness Lab at Boston Children's Hospital for helping us check our impact math and improve our measurement tools.</p>
+          <a href="https://digitalwellnesslab.org/" target="_blank" rel="noopener" class="card-visit">Visit the Digital Wellness Lab →</a>
+        </div>
+
+        <!-- Community Supporters -->
         <div class="supporter-card accent-subtle community-card">
           <p class="card-eyebrow">Community Supporters</p>
           <h3 class="card-title">The ones who showed up first.</h3>
           <p class="card-desc">Early believers who helped us through the studio's first stages via Kickstarter campaigns and private donations. Their conviction — before the proof points existed — made everything else possible.</p>
         </div>
+
+        <!-- Commitments -->
+        <div class="supporter-card accent-orange">
+          <p class="card-eyebrow">Commitments</p>
+          <div class="logo-strip">
+            <div class="logo-pill"><img src="/images/supporters/inspired-internet-pledge.png" alt="Inspired Internet Pledge" class="logo-white-bg" /></div>
+          </div>
+          <p class="card-desc">Ryzo Studios is a signatory of the Inspired Internet Pledge — a public commitment to make the internet a safer, healthier place for young people, convened by the Digital Wellness Lab.</p>
+          <a href="https://inspiredinternet.org/" target="_blank" rel="noopener" class="card-visit">Read the Pledge →</a>
+        </div>
+
       </div>
 
     </div>
@@ -233,8 +256,9 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .cards-row-community {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
   }
 
   /* ── Supporter card base ── */
@@ -262,6 +286,8 @@ import Layout from '../layouts/Layout.astro';
   .accent-yellow { border-top-color: #FFE600; }
   .accent-purple { border-top-color: #a78bfa; }
   .accent-cyan   { border-top-color: #38bdf8; }
+  .accent-teal   { border-top-color: #2dd4bf; }
+  .accent-orange { border-top-color: #fb923c; }
   .accent-subtle { border-top-color: rgba(255,255,255,0.18); }
 
   /* ── Card anatomy ── */
@@ -362,16 +388,9 @@ import Layout from '../layouts/Layout.astro';
     position: relative;
     overflow: hidden;
     width: 100%;
-    max-width: 420px;
     min-height: 340px;
     padding: 2.5rem 3rem;
     justify-content: center;
-  }
-
-  .community-card .card-eyebrow,
-  .community-card .card-title,
-  .community-card .card-desc {
-    max-width: 280px;
   }
 
   .community-card::before {
@@ -451,11 +470,15 @@ import Layout from '../layouts/Layout.astro';
   @media (max-width: 1100px) {
     .cards-row-main { grid-template-columns: 1fr 1fr; }
     .equimundo-card { grid-column: 1 / -1; }
+    .cards-row-community { grid-template-columns: 1fr 1fr; }
+    .community-card { grid-column: 1 / -1; order: -1; }
   }
 
   @media (max-width: 768px) {
     .cards-row-main { grid-template-columns: 1fr; }
     .equimundo-card { grid-column: auto; }
+    .cards-row-community { grid-template-columns: 1fr; }
+    .community-card { grid-column: auto; order: 0; }
     .get-involved-inner,
     .become-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .get-involved-cta { justify-content: flex-start; }
