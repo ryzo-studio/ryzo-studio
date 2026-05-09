@@ -36,7 +36,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="supporter-card accent-yellow">
           <p class="card-eyebrow">Impact Partners</p>
           <div class="logo-strip">
-            <div class="logo-pill"><img src="/images/equimundo-logo.png" alt="Equimundo" class="logo-white-bg" /></div>
+            <div class="logo-pill"><img src="/images/equimundo-logo.png" alt="Equimundo" class="logo-natural" /></div>
           </div>
           <p class="card-desc">Equimundo &amp; the Caring Masculinity Fund were lead partners on Rage Fighters — true collaborators in connecting story and activation inside the places where young people already live.</p>
           <a href="https://www.equimundo.org/caring-masculinity-fund/" target="_blank" rel="noopener" class="card-visit">Visit Equimundo →</a>
@@ -46,10 +46,10 @@ import Layout from '../layouts/Layout.astro';
         <div class="supporter-card accent-purple">
           <p class="card-eyebrow">Technology Partners</p>
           <div class="logo-strip">
-            <div class="logo-pill"><img src="/images/supporters/autodesk.webp" alt="Autodesk" class="logo-screen logo-xl" /></div>
-            <div class="logo-pill"><img src="/images/supporters/unreal.png" alt="Unreal Engine" class="logo-invert-screen logo-ml" /></div>
-            <div class="logo-pill"><img src="/images/supporters/perforce.jpeg" alt="Perforce" class="logo-screen" /></div>
-            <div class="logo-pill"><img src="/images/supporters/roblox.png" alt="Roblox" class="logo-screen logo-xl" /></div>
+            <div class="logo-pill logo-pill-white"><img src="/images/supporters/autodesk.webp" alt="Autodesk" class="logo-natural logo-xl" /></div>
+            <div class="logo-pill logo-pill-white"><img src="/images/supporters/unreal.png" alt="Unreal Engine" class="logo-natural logo-ml" /></div>
+            <div class="logo-pill logo-pill-white"><img src="/images/supporters/perforce.jpeg" alt="Perforce" class="logo-natural" /></div>
+            <div class="logo-pill logo-pill-white"><img src="/images/supporters/roblox.png" alt="Roblox" class="logo-natural logo-xl" /></div>
           </div>
           <p class="card-desc">Autodesk, Unreal, Perforce, and Roblox provide software donations and technical support that power our full pipeline — from ideation to linear media to interactive worlds.</p>
         </div>
@@ -58,7 +58,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="supporter-card accent-cyan">
           <p class="card-eyebrow">Events Partners</p>
           <div class="logo-strip">
-            <div class="logo-pill"><img src="/images/supporters/clubhouse-network.png" alt="The Clubhouse Network" class="logo-white-bg" /></div>
+            <div class="logo-pill logo-pill-white"><img src="/images/supporters/clubhouse-network.png" alt="The Clubhouse Network" class="logo-natural" /></div>
           </div>
           <p class="card-desc">The Clubhouse Network is our live events partner, connecting kids and teens with new ways to use their creativity and take on big emotions through art, film and gaming.</p>
           <a href="https://www.clubhousenetwork.org" target="_blank" rel="noopener" class="card-visit">Visit Clubhouse Network →</a>
@@ -73,7 +73,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="supporter-card accent-teal">
           <p class="card-eyebrow">Advisors</p>
           <div class="logo-strip">
-            <div class="logo-pill"><img src="/images/supporters/digital-wellness-lab.png" alt="Digital Wellness Lab at Boston Children's Hospital" class="logo-white-bg" /></div>
+            <div class="logo-pill"><img src="/images/supporters/digital-wellness-lab.png" alt="Digital Wellness Lab at Boston Children's Hospital" class="logo-natural" /></div>
           </div>
           <p class="card-desc">We're grateful to the Digital Wellness Lab at Boston Children's Hospital for helping us check our impact math and improve our measurement tools.</p>
           <a href="https://digitalwellnesslab.org/" target="_blank" rel="noopener" class="card-visit">Visit the Digital Wellness Lab →</a>
@@ -90,7 +90,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="supporter-card accent-orange">
           <p class="card-eyebrow">Commitments</p>
           <div class="logo-strip">
-            <div class="logo-pill"><img src="/images/supporters/inspired-internet-pledge.png" alt="Inspired Internet Pledge" class="logo-white-bg" /></div>
+            <div class="logo-pill"><img src="/images/supporters/inspired-internet-pledge.png" alt="Inspired Internet Pledge" class="logo-natural" /></div>
           </div>
           <p class="card-desc">Ryzo Studios is a signatory of the Inspired Internet Pledge — a public commitment to make the internet a safer, healthier place for young people, convened by the Digital Wellness Lab.</p>
           <a href="https://inspiredinternet.org/" target="_blank" rel="noopener" class="card-visit">Read the Pledge →</a>
@@ -343,25 +343,14 @@ import Layout from '../layouts/Layout.astro';
   .logo-xl { height: 73px; max-width: 240px; }
   .logo-ml { height: 64px; max-width: 220px; }
 
-  /* White-on-dark source images (Autodesk, Perforce, Roblox) */
-  .logo-screen {
-    mix-blend-mode: screen;
-    filter: grayscale(1);
-    opacity: 0.9;
+  /* Logos with transparent backgrounds — show in natural color on dark pill */
+  .logo-natural {
+    opacity: 0.92;
   }
 
-  /* Black-on-white source image (Unreal) */
-  .logo-invert-screen {
-    filter: invert(1) grayscale(1);
-    mix-blend-mode: screen;
-    opacity: 0.9;
-  }
-
-  /* Color-on-white source images (Equimundo, Clubhouse) */
-  .logo-white-bg {
-    filter: invert(1) grayscale(1) brightness(1.4);
-    mix-blend-mode: screen;
-    opacity: 0.85;
+  /* White-background logos — pill goes light so the logo colors read */
+  .logo-pill-white {
+    background: rgba(255, 255, 255, 0.93);
   }
 
   .card-desc {
