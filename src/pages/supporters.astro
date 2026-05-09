@@ -46,10 +46,10 @@ import Layout from '../layouts/Layout.astro';
         <div class="supporter-card accent-purple">
           <p class="card-eyebrow">Technology Partners</p>
           <div class="logo-strip">
-            <div class="logo-pill logo-pill-white"><img src="/images/supporters/autodesk.webp" alt="Autodesk" class="logo-natural logo-xl" /></div>
-            <div class="logo-pill logo-pill-white"><img src="/images/supporters/unreal.png" alt="Unreal Engine" class="logo-natural logo-ml" /></div>
-            <div class="logo-pill logo-pill-white"><img src="/images/supporters/perforce.jpeg" alt="Perforce" class="logo-natural" /></div>
-            <div class="logo-pill logo-pill-white"><img src="/images/supporters/roblox.png" alt="Roblox" class="logo-natural logo-xl" /></div>
+            <div class="logo-pill"><img src="/images/supporters/autodesk.webp" alt="Autodesk" class="logo-natural logo-xl" /></div>
+            <div class="logo-pill"><img src="/images/supporters/unreal.png" alt="Unreal Engine" class="logo-natural logo-ml" /></div>
+            <div class="logo-pill"><img src="/images/supporters/perforce.jpeg" alt="Perforce" class="logo-natural" /></div>
+            <div class="logo-pill"><img src="/images/supporters/roblox.png" alt="Roblox" class="logo-natural logo-xl" /></div>
           </div>
           <p class="card-desc">Autodesk, Unreal, Perforce, and Roblox provide software donations and technical support that power our full pipeline — from ideation to linear media to interactive worlds.</p>
         </div>
@@ -58,7 +58,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="supporter-card accent-cyan">
           <p class="card-eyebrow">Events Partners</p>
           <div class="logo-strip">
-            <div class="logo-pill logo-pill-white"><img src="/images/supporters/clubhouse-network.png" alt="The Clubhouse Network" class="logo-natural" /></div>
+            <div class="logo-pill"><img src="/images/supporters/clubhouse-network.png" alt="The Clubhouse Network" class="logo-natural" /></div>
           </div>
           <p class="card-desc">The Clubhouse Network is our live events partner, connecting kids and teens with new ways to use their creativity and take on big emotions through art, film and gaming.</p>
           <a href="https://www.clubhousenetwork.org" target="_blank" rel="noopener" class="card-visit">Visit Clubhouse Network →</a>
@@ -321,8 +321,8 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .logo-pill {
-    background: rgba(0, 0, 0, 0.55);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255,255,255,0.18);
     border-radius: 8px;
     padding: 0.625rem 1rem;
     display: flex;
@@ -348,10 +348,6 @@ import Layout from '../layouts/Layout.astro';
     opacity: 0.92;
   }
 
-  /* White-background logos — pill goes light so the logo colors read */
-  .logo-pill-white {
-    background: rgba(255, 255, 255, 0.93);
-  }
 
   .card-desc {
     font-size: var(--text-sm);
