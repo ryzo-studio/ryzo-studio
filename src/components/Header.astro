@@ -7,7 +7,6 @@ const navItems = [
   { label: 'About', href: '/about' },
   { label: 'Supporters', href: '/supporters' },
   { label: 'Connect', href: '/connect' },
-  { label: 'Donate', href: '/donate', highlight: true },
 ];
 
 const { pathname } = Astro.url;
@@ -31,7 +30,7 @@ const { pathname } = Astro.url;
           <li>
             <a
               href={item.href}
-              class:list={['nav-link', { 'is-active': pathname === item.href || pathname.startsWith(item.href + '/'), 'nav-highlight': item.highlight }]}
+              class:list={['nav-link', { 'is-active': pathname === item.href || pathname.startsWith(item.href + '/') }]}
             >
               {item.label}
             </a>
@@ -171,17 +170,6 @@ const { pathname } = Astro.url;
     color: var(--fg);
   }
 
-  .nav-link.nav-highlight {
-    background: var(--accent);
-    color: #0a0a0a;
-    font-weight: 700;
-    border-radius: 100px;
-  }
-
-  .nav-link.nav-highlight:hover {
-    background: var(--accent-light);
-    color: #0a0a0a;
-  }
 
   /* Menu Toggle */
   .menu-toggle {
