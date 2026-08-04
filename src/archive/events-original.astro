@@ -131,125 +131,125 @@ const allEvents = [
 
 const upcoming = allEvents.filter(e => e.date >= today).sort((a, b) => a.date.getTime() - b.date.getTime());
 const past = allEvents.filter(e => e.date < today).sort((a, b) => b.date.getTime() - a.date.getTime());
+const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
 ---
 
 <Layout
-  title="Events & Activations"
-  description="Where impact comes home — screenings, live events, and community activations that bring kids, families, and educators into the Ryzo story."
+  title="Ryzo Events"
+  description="Screenings, panels, and community gatherings — Ryzo brings the story into the room."
 >
 
   <!-- Hero -->
-  <section class="act-hero">
+  <section class="events-hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="container hero-content">
-      <span class="eyebrow">Events & Activations</span>
-      <h1 class="display">
-        When impact<br /><span class="accent-text">comes home.</span>
-      </h1>
-      <p class="hero-body">
-        An activation is any structured experience where a community gathers
-        around the Ryzo story — to watch it, discuss it, play with it, or
-        explore what it means for their own lives.
-      </p>
-      <a href="mailto:hello@ryzo.studio?subject=EVENT%20REQUEST" class="btn btn-outline">Invite us to your community →</a>
-    </div>
-  </section>
-
-  <!-- Built for Your Room -->
-  <section class="section room-section">
-    <div class="container room-grid">
-      <div class="room-photo">
-        <img src="/images/activation_community_event.jpg" alt="Kids watching a Ryzo screening at a community event" />
+      <div class="hero-left">
+        <span class="eyebrow">Events</span>
+        <h1 class="display">
+          Where we<br /><span class="accent-text">show up.</span>
+        </h1>
       </div>
-      <div class="room-content">
-        <span class="eyebrow">Built for Your Room</span>
-        <h2 class="subheadline">Ryzo Events can be tooled<br /><span class="accent-text">to your audience.</span></h2>
-        <div class="audience-stack">
-          <div class="audience-card">
-            <div class="audience-header"><span class="audience-icon">🎮</span><h3 class="audience-title">Kids Ages 10–17</h3></div>
-            <p class="audience-body">We bring the full combo — animation, gaming, and art — into a single live experience that meets young people exactly where they are.</p>
-          </div>
-          <div class="audience-card">
-            <div class="audience-header"><span class="audience-icon">⚙️</span><h3 class="audience-title">Adults & Tinkerers</h3></div>
-            <p class="audience-body">We go behind the scenes and talk process — how story and impact get built together inside a digital-forward world. Real talk for people who make things.</p>
-          </div>
-          <div class="audience-card">
-            <div class="audience-header"><span class="audience-icon">🎬</span><h3 class="audience-title">Festivals</h3></div>
-            <p class="audience-body">A short film with big impact. Ryzo brings cinematic storytelling and a conversation worth having — wherever great work is being shown.</p>
-          </div>
-        </div>
-        <div class="room-cta">
-          <p>Want to bring Ryzo to your community?</p>
-          <a href="/connect" class="btn btn-outline btn-sm">Send an Inquiry →</a>
-        </div>
+      <div class="hero-right">
+        <p class="hero-desc">Screenings, panels, and live gatherings.</p>
+        <a href="mailto:hello@ryzo.studio?subject=EVENT%20REQUEST" class="btn btn-outline">Invite us to your community →</a>
       </div>
     </div>
   </section>
 
-  <!-- Calendar -->
-  <section class="section calendar-section">
-    <div class="container">
-      <span class="eyebrow">Calendar</span>
-      <h2 class="calendar-headline">Where's Ryzo <span class="accent-text">next?</span></h2>
+  <!-- Two-column body: audience left, calendar right -->
+  <section class="body-section">
+    <div class="container body-grid">
 
-      {upcoming.length > 0 && (
-        <div class="events-block">
-          {upcoming.map(event => (
-            <div class="event-row">
-              <div class="event-date">
-                <span class="e-month">{event.date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span>
-                <span class="e-day">{event.date.getDate()}</span>
-              </div>
-              <div class="event-body">
-                <div class="event-meta">
-                  <span class="event-type">{event.type}</span>
-                  <span class="event-audience">{event.audience}</span>
-                </div>
-                <h3 class="event-title">{event.title}</h3>
-                <p class="event-venue">
-                  {event.venueLink
-                    ? <a href={event.venueLink} target="_blank" rel="noopener" class="venue-link">{event.venue}</a>
-                    : event.venue}
-                </p>
-                {event.details && <p class="event-details">{event.details}</p>}
-              </div>
-              {event.link
-                ? <a href={event.link} class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get on the List</a>
-                : <span class="btn btn-sm event-private">Private</span>
-              }
+      <!-- LEFT: Built for Your Room -->
+      <aside class="sidebar">
+        <div class="sidebar-sticky">
+          <span class="eyebrow">Built for Your Room</span>
+          <h2 class="sidebar-headline">Ryzo Events can be tooled<br /><span class="accent-text">to your audience.</span></h2>
+          <div class="audience-stack">
+            <div class="audience-card">
+              <div class="audience-header"><span class="audience-icon">🎮</span><h3 class="audience-title">Kids Ages 10–17</h3></div>
+              <p class="audience-body">We bring the full combo — animation, gaming, and art — into a single live experience that meets young people exactly where they are.</p>
             </div>
-          ))}
-        </div>
-      )}
-
-      {past.length > 0 && (
-        <div class="events-block past-block">
-          <div class="past-divider">
-            <span>Past Events</span>
+            <div class="audience-card">
+              <div class="audience-header"><span class="audience-icon">⚙️</span><h3 class="audience-title">Adults &amp; Tinkerers</h3></div>
+              <p class="audience-body">We go behind the scenes and talk process — how story and impact get built together inside a digital-forward world. Real talk for people who make things.</p>
+            </div>
+            <div class="audience-card">
+              <div class="audience-header"><span class="audience-icon">🎬</span><h3 class="audience-title">Festivals</h3></div>
+              <p class="audience-body">A short film with big impact. Ryzo brings cinematic storytelling and a conversation worth having — wherever great work is being shown.</p>
+            </div>
           </div>
-          {past.map(event => (
-            <div class="event-row is-past">
-              <div class="event-date">
-                <span class="e-month">{event.date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span>
-                <span class="e-day">{event.date.getDate()}</span>
-              </div>
-              <div class="event-body">
-                <div class="event-meta">
-                  <span class="event-type">{event.type}</span>
-                  <span class="event-audience">{event.audience}</span>
-                </div>
-                <h3 class="event-title">{event.title}</h3>
-                <p class="event-venue">
-                  {event.venueLink
-                    ? <a href={event.venueLink} target="_blank" rel="noopener" class="venue-link">{event.venue}</a>
-                    : event.venue}
-                </p>
-              </div>
-            </div>
-          ))}
+          <div class="sidebar-cta">
+            <p>Want to bring Ryzo to your community?</p>
+            <a href="/connect" class="btn btn-outline btn-sm">Send an Inquiry →</a>
+          </div>
         </div>
-      )}
+      </aside>
+
+      <!-- RIGHT: Calendar -->
+      <div class="calendar">
+        <span class="eyebrow calendar-label">Calendar</span>
+
+        {upcoming.length > 0 && (
+          <div class="events-block">
+            {upcoming.map(event => (
+              <div class="event-row">
+                <div class="event-date">
+                  <span class="e-month">{event.date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span>
+                  <span class="e-day">{event.date.getDate()}</span>
+                </div>
+                <div class="event-body">
+                  <div class="event-meta">
+                    <span class="event-type">{event.type}</span>
+                    <span class="event-audience">{event.audience}</span>
+                  </div>
+                  <h2 class="event-title">{event.title}</h2>
+                  <p class="event-venue">
+                    {event.venueLink
+                      ? <a href={event.venueLink} target="_blank" rel="noopener" class="venue-link">{event.venue}</a>
+                      : event.venue}
+                  </p>
+                  {event.details && <p class="event-details">{event.details}</p>}
+                </div>
+                {event.link
+                  ? <a href={event.link} class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get on the List</a>
+                  : <span class="btn btn-sm event-private">Private</span>
+                }
+              </div>
+            ))}
+          </div>
+        )}
+
+        {past.length > 0 && (
+          <div class="events-block past-block">
+            <div class="past-divider">
+              <span>Past Events</span>
+            </div>
+            {past.map(event => (
+              <div class="event-row is-past">
+                <div class="event-date">
+                  <span class="e-month">{event.date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span>
+                  <span class="e-day">{event.date.getDate()}</span>
+                </div>
+                <div class="event-body">
+                  <div class="event-meta">
+                    <span class="event-type">{event.type}</span>
+                    <span class="event-audience">{event.audience}</span>
+                  </div>
+                  <h2 class="event-title">{event.title}</h2>
+                  <p class="event-venue">
+                    {event.venueLink
+                      ? <a href={event.venueLink} target="_blank" rel="noopener" class="venue-link">{event.venue}</a>
+                      : event.venue}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+      </div>
     </div>
   </section>
 
@@ -274,12 +274,12 @@ const past = allEvents.filter(e => e.date < today).sort((a, b) => b.date.getTime
 
 <style>
   /* ── Hero ── */
-  .act-hero {
-    min-height: 72vh;
+  .events-hero {
+    min-height: 52vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-block: 8rem 5rem;
+    padding-block: 10rem 3.5rem;
     position: relative;
     overflow: hidden;
   }
@@ -287,88 +287,109 @@ const past = allEvents.filter(e => e.date < today).sort((a, b) => b.date.getTime
   .hero-bg {
     position: absolute;
     inset: 0;
-    background-image: url('/images/Ragefighters_Combo_rectangular.png');
+    background-image: url('/images/events-hero.png');
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
+    filter: brightness(1.2);
   }
 
   .hero-overlay {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 30% 50%, rgba(124, 92, 191, 0.3) 0%, transparent 50%),
-      linear-gradient(to right, rgba(8, 3, 22, 0.70) 0%, rgba(8, 3, 22, 0.35) 50%, transparent 100%),
-      linear-gradient(to top, rgba(28, 8, 50, 0.90) 0%, transparent 35%);
+      linear-gradient(to right, rgba(8, 3, 22, 0.60) 0%, rgba(8, 3, 22, 0.10) 50%, transparent 100%),
+      linear-gradient(to top, rgba(8, 3, 22, 0.50) 0%, transparent 40%),
+      linear-gradient(to top, rgba(28, 8, 50, 0.85) 0%, transparent 30%);
   }
 
   .hero-content {
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    max-width: 600px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: flex-end;
   }
 
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-left .eyebrow { margin-bottom: 1.5rem; }
+
   .display {
-    font-size: clamp(3rem, 7vw, 7rem);
-    line-height: 1.0;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    margin-bottom: 1.25rem;
   }
 
   .accent-text { color: var(--accent); }
 
-  .hero-body {
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    color: var(--fg-2);
-    line-height: 1.7;
-    max-width: 540px;
+  /* Hero right */
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 1.25rem;
+    flex-shrink: 0;
+    max-width: 320px;
   }
 
-  /* ── Built for Your Room ── */
-  .room-section {
+  .hero-desc {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.4;
+  }
+
+  /* ── Two-column body ── */
+  .body-section {
     background: linear-gradient(to right, #080316 0%, #1c0832 100%);
     border-top: 1px solid rgba(255,255,255,0.07);
+    padding-block: clamp(1.5rem, 3vw, 2.5rem) clamp(3rem, 6vw, 5rem);
   }
 
-  .room-grid {
+  .body-grid {
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: clamp(2.5rem, 5vw, 5rem);
+    grid-template-columns: 280px 1fr;
+    gap: 4rem;
     align-items: start;
   }
 
-  .room-photo img {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    object-position: center center;
-    border-radius: var(--radius-xl);
-    display: block;
-  }
-
-  .room-content {
+  /* ── Sidebar ── */
+  .sidebar-sticky {
+    position: sticky;
+    top: 5rem;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-    position: sticky;
-    top: 5rem;
   }
 
-  .room-content .eyebrow { margin-bottom: 0; }
+  .sidebar .eyebrow { margin-bottom: 0; }
+
+  .sidebar-headline {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
 
   .audience-stack {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    margin-top: 0.5rem;
   }
 
   .audience-card {
     background: var(--bg-2);
     border: 1px solid rgba(255,255,255,0.10);
     border-radius: var(--radius-xl);
-    padding: 1rem 1.25rem;
+    padding: 0.9rem 1rem;
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
@@ -381,14 +402,14 @@ const past = allEvents.filter(e => e.date < today).sort((a, b) => b.date.getTime
   }
 
   .audience-icon {
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1;
     flex-shrink: 0;
   }
 
   .audience-title {
     font-family: var(--font-display);
-    font-size: var(--text-base);
+    font-size: var(--text-sm);
     font-weight: 800;
     letter-spacing: -0.01em;
     line-height: 1.2;
@@ -397,13 +418,13 @@ const past = allEvents.filter(e => e.date < today).sort((a, b) => b.date.getTime
   }
 
   .audience-body {
-    font-size: var(--text-sm);
+    font-size: var(--text-xs);
     color: var(--fg-2);
     line-height: 1.6;
     margin: 0;
   }
 
-  .room-cta {
+  .sidebar-cta {
     border-top: 1px solid rgba(255,255,255,0.08);
     padding-top: 1.25rem;
     display: flex;
@@ -411,27 +432,16 @@ const past = allEvents.filter(e => e.date < today).sort((a, b) => b.date.getTime
     gap: 0.75rem;
   }
 
-  .room-cta p {
+  .sidebar-cta p {
     font-size: var(--text-sm);
     color: var(--fg-2);
     line-height: 1.5;
   }
 
   /* ── Calendar ── */
-  .calendar-section {
-    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
-    border-top: 1px solid rgba(255,255,255,0.07);
-  }
-
-  .calendar-section .eyebrow { margin-bottom: 1rem; }
-
-  .calendar-headline {
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5.5vw, 5rem);
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-    margin-bottom: 2.5rem;
+  .calendar-label {
+    display: block;
+    margin-bottom: 1.25rem;
   }
 
   .events-block {
@@ -605,15 +615,18 @@ const past = allEvents.filter(e => e.date < today).sort((a, b) => b.date.getTime
 
   /* ── Responsive ── */
   @media (max-width: 900px) {
-    .room-grid {
+    .hero-content {
       grid-template-columns: 1fr;
-      gap: 2.5rem;
     }
-    .room-content {
+    .hero-right {
+      max-width: 100%;
+    }
+    .body-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .sidebar-sticky {
       position: static;
-    }
-    .room-photo img {
-      aspect-ratio: 16 / 9;
     }
   }
 

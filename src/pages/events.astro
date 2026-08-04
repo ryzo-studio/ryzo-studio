@@ -131,39 +131,41 @@ const allEvents = [
 
 const upcoming = allEvents.filter(e => e.date >= today).sort((a, b) => a.date.getTime() - b.date.getTime());
 const past = allEvents.filter(e => e.date < today).sort((a, b) => b.date.getTime() - a.date.getTime());
-const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
 ---
 
 <Layout
-  title="Ryzo Events"
-  description="Screenings, panels, and community gatherings — Ryzo brings the story into the room."
+  title="Events & Activations"
+  description="Where impact comes home — screenings, live events, and community activations that bring kids, families, and educators into the Ryzo story."
 >
 
   <!-- Hero -->
-  <section class="events-hero">
+  <section class="act-hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="container hero-content">
-      <div class="hero-left">
-        <span class="eyebrow">Events</span>
-        <h1 class="display">
-          Where we<br /><span class="accent-text">show up.</span>
-        </h1>
-      </div>
-      <div class="hero-right">
-        <p class="hero-desc">Screenings, panels, and live gatherings.</p>
-        <a href="mailto:hello@ryzo.studio?subject=EVENT%20REQUEST" class="btn btn-outline">Invite us to your community →</a>
-      </div>
+      <span class="eyebrow">Events & Activations</span>
+      <h1 class="hero-title">
+        Designed to<br /><span class="accent-text">draw us together.</span>
+      </h1>
+      <p class="hero-body">
+        Our activations and events bring impact back home — through fun,
+        story-driven experiences that let audiences dive deeper on the themes,
+        play more inside the story, and connect.
+      </p>
+      <a href="mailto:hello@ryzo.studio?subject=EVENT%20REQUEST" class="btn btn-outline">Invite us to your community →</a>
     </div>
   </section>
 
-  <!-- Two-column body: audience left, calendar right -->
-  <section class="body-section">
+  <!-- Two-column body: activations left, calendar right -->
+  <section class="section body-section">
     <div class="container body-grid">
 
-      <!-- LEFT: Built for Your Room -->
+      <!-- LEFT: Photo + Audience types -->
       <aside class="sidebar">
         <div class="sidebar-sticky">
+          <div class="room-photo">
+            <img src="/images/activation_community_event.jpg" alt="Kids watching a Ryzo screening at a community event" />
+          </div>
           <span class="eyebrow">Built for Your Room</span>
           <h2 class="sidebar-headline">Ryzo Events can be tooled<br /><span class="accent-text">to your audience.</span></h2>
           <div class="audience-stack">
@@ -172,7 +174,7 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
               <p class="audience-body">We bring the full combo — animation, gaming, and art — into a single live experience that meets young people exactly where they are.</p>
             </div>
             <div class="audience-card">
-              <div class="audience-header"><span class="audience-icon">⚙️</span><h3 class="audience-title">Adults &amp; Tinkerers</h3></div>
+              <div class="audience-header"><span class="audience-icon">⚙️</span><h3 class="audience-title">Adults & Tinkerers</h3></div>
               <p class="audience-body">We go behind the scenes and talk process — how story and impact get built together inside a digital-forward world. Real talk for people who make things.</p>
             </div>
             <div class="audience-card">
@@ -190,6 +192,7 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
       <!-- RIGHT: Calendar -->
       <div class="calendar">
         <span class="eyebrow calendar-label">Calendar</span>
+        <h2 class="calendar-headline">Where's Ryzo <span class="accent-text">next?</span></h2>
 
         {upcoming.length > 0 && (
           <div class="events-block">
@@ -204,7 +207,7 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
                     <span class="event-type">{event.type}</span>
                     <span class="event-audience">{event.audience}</span>
                   </div>
-                  <h2 class="event-title">{event.title}</h2>
+                  <h3 class="event-title">{event.title}</h3>
                   <p class="event-venue">
                     {event.venueLink
                       ? <a href={event.venueLink} target="_blank" rel="noopener" class="venue-link">{event.venue}</a>
@@ -237,7 +240,7 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
                     <span class="event-type">{event.type}</span>
                     <span class="event-audience">{event.audience}</span>
                   </div>
-                  <h2 class="event-title">{event.title}</h2>
+                  <h3 class="event-title">{event.title}</h3>
                   <p class="event-venue">
                     {event.venueLink
                       ? <a href={event.venueLink} target="_blank" rel="noopener" class="venue-link">{event.venue}</a>
@@ -248,8 +251,8 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
             ))}
           </div>
         )}
-
       </div>
+
     </div>
   </section>
 
@@ -274,14 +277,15 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
 
 <style>
   /* ── Hero ── */
-  .events-hero {
-    min-height: 52vh;
+  .act-hero {
+    min-height: 72vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-block: 10rem 3.5rem;
+    padding-block: 8rem 5rem;
     position: relative;
     overflow: hidden;
+    text-align: left;
   }
 
   .hero-bg {
@@ -289,7 +293,7 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     inset: 0;
     background-image: url('/images/events-hero.png');
     background-size: cover;
-    background-position: center center;
+    background-position: center;
     background-repeat: no-repeat;
     filter: brightness(1.2);
   }
@@ -306,61 +310,45 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
   .hero-content {
     position: relative;
     z-index: 1;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 4rem;
-    align-items: flex-end;
   }
 
-  .hero-left {
-    display: flex;
-    flex-direction: column;
+  .hero-content .eyebrow {
+    margin-bottom: 1.5rem;
   }
 
-  .hero-left .eyebrow { margin-bottom: 1.5rem; }
-
-  .display {
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 900;
     font-size: clamp(3.5rem, 9vw, 8rem);
-    margin-bottom: 1.25rem;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
   }
 
   .accent-text { color: var(--accent); }
 
-  /* Hero right */
-  .hero-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    gap: 1.25rem;
-    flex-shrink: 0;
-    max-width: 320px;
-  }
-
-  .hero-desc {
-    font-family: var(--font-display);
-    font-size: clamp(1.1rem, 2vw, 1.5rem);
-    font-weight: 500;
-    color: rgba(255,255,255,0.85);
-    line-height: 1.4;
+  .hero-body {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: var(--fg-2);
+    line-height: 1.7;
+    max-width: 540px;
+    margin-bottom: 2rem;
   }
 
   /* ── Two-column body ── */
   .body-section {
     background: linear-gradient(to right, #080316 0%, #1c0832 100%);
     border-top: 1px solid rgba(255,255,255,0.07);
-    padding-block: clamp(1.5rem, 3vw, 2.5rem) clamp(3rem, 6vw, 5rem);
   }
 
   .body-grid {
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 340px 1fr;
     gap: 4rem;
     align-items: start;
   }
 
-  /* ── Sidebar ── */
+  /* ── Sidebar (left column) ── */
   .sidebar-sticky {
     position: sticky;
     top: 5rem;
@@ -370,6 +358,16 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
   }
 
   .sidebar .eyebrow { margin-bottom: 0; }
+
+  .room-photo img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: var(--radius-xl);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
 
   .sidebar-headline {
     font-family: var(--font-display);
@@ -438,10 +436,19 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     line-height: 1.5;
   }
 
-  /* ── Calendar ── */
+  /* ── Calendar (right column) ── */
   .calendar-label {
     display: block;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .calendar-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5.5vw, 5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 2.5rem;
   }
 
   .events-block {
@@ -456,6 +463,10 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     padding: 1.75rem 0;
     border-bottom: 1px solid rgba(255,255,255,0.07);
     transition: var(--transition);
+  }
+
+  .event-row:not(.is-past) .event-title {
+    color: #fff;
   }
 
   .event-row:not(.is-past):hover .event-title {
@@ -585,6 +596,7 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
     white-space: nowrap;
   }
 
+  .is-past { opacity: 0.45; }
   .is-past .e-month { color: rgba(255,255,255,0.40); }
 
   /* ── Live Materials ── */
@@ -615,18 +627,15 @@ const nextPublic = upcoming.filter(e => e.link).slice(0, 2);
 
   /* ── Responsive ── */
   @media (max-width: 900px) {
-    .hero-content {
-      grid-template-columns: 1fr;
-    }
-    .hero-right {
-      max-width: 100%;
-    }
     .body-grid {
       grid-template-columns: 1fr;
       gap: 3rem;
     }
     .sidebar-sticky {
       position: static;
+    }
+    .room-photo img {
+      aspect-ratio: 16 / 9;
     }
   }
 
