@@ -1,6 +1,36 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SubscribeForm from '../components/SubscribeForm';
 import { fetchSanity, queries } from '../lib/sanity';
+
+const updates = [
+  {
+    tag: 'New \u00b7 Report',
+    heading: "Our 'First Franchise' Impact Report",
+    body: "The full snapshot of our first franchise for boys \u2014 Release the Beast, Rage Fighters, and the Un-Tilted live tour. What happened, what we learned, and where we're heading next.",
+    cta: 'Read the Report \u2192',
+    href: '/docs/Ryzo_FirstFranchiseImpactReport.pdf',
+    mediaType: 'cover' as const,
+    cover: {
+      kicker: 'First Franchise Impact Report',
+      title: 'What boys do when you draw them out.',
+      stats: [
+        { value: '1.47M', label: 'boys reached on Roblox' },
+        { value: '16,362', label: 'unique players' },
+        { value: '16', label: 'live sessions, 5 states + DC' },
+      ],
+    },
+  },
+  {
+    tag: 'New \u00b7 Video',
+    heading: 'Rage Fighters: Update Video',
+    body: "A fun tour of the newest features in our Roblox game \u2014 and how they're landing with boys at our in-person events.",
+    cta: 'Watch on YouTube \u2192',
+    href: 'https://youtu.be/HXX0y1JSyqs',
+    mediaType: 'video' as const,
+    embedUrl: 'https://www.youtube.com/embed/HXX0y1JSyqs',
+  },
+];
 
 const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
 ---
@@ -233,6 +263,61 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
     </section>
   )}
 
+  <!-- Latest Updates -->
+  <section class="section updates-section">
+    <div class="container">
+      <span class="eyebrow">Latest Updates</span>
+      <h2 class="subheadline">What's new.</h2>
+
+      <div class="updates-grid">
+        {updates.map((item) => (
+          <div class="update-card">
+            <div class="update-media">
+              {item.mediaType === 'cover' && item.cover && (
+                <div class="cover-treatment">
+                  <span class="cover-kicker">{item.cover.kicker}</span>
+                  <h3 class="cover-title">{item.cover.title}</h3>
+                  <div class="cover-stats">
+                    {item.cover.stats.map((s) => (
+                      <div class="cover-stat">
+                        <span class="stat-value">{s.value}</span>
+                        <span class="stat-label">{s.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {item.mediaType === 'video' && item.embedUrl && (
+                <div class="video-wrap">
+                  <iframe
+                    src={item.embedUrl}
+                    title={item.heading}
+                    loading="lazy"
+                    allowfullscreen
+                    style="position:absolute;inset:0;width:100%;height:100%;border:0;"
+                  ></iframe>
+                </div>
+              )}
+            </div>
+            <div class="update-body">
+              <span class="tag tag-accent">{item.tag}</span>
+              <h3 class="update-heading">{item.heading}</h3>
+              <p class="update-desc">{item.body}</p>
+              <a href={item.href} target="_blank" rel="noopener" class="update-cta">{item.cta}</a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="updates-subscribe">
+        <p class="subscribe-lead">Want updates like these in your inbox?</p>
+        <div class="subscribe-form-wrap">
+          <SubscribeForm client:load />
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Studio CTA -->
   <section class="section studio-cta">
     <div class="container">
@@ -376,6 +461,7 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
   .how-section,
   .franchise-section,
   .research-section,
+  .updates-section,
   .events-section,
   .studio-cta {
     background: linear-gradient(to right, #080316 0%, #1c0832 100%);
@@ -538,6 +624,156 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
     max-width: 720px;
   }
 
+  /* ─── Latest Updates ──────────────────────────────────────────────────────── */
+  .updates-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .updates-section .eyebrow { margin-bottom: 1rem; }
+  .updates-section .subheadline { margin-bottom: 2.5rem; }
+
+  .updates-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-8);
+  }
+
+  .update-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+  }
+
+  .update-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+  }
+
+  .update-media {
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover-treatment {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1c0832 0%, #0e0e10 60%, rgba(245,200,66,0.08) 100%);
+    padding: clamp(1.25rem, 3vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .cover-kicker {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .cover-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--fg);
+  }
+
+  .cover-stats {
+    display: flex;
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+    flex-wrap: wrap;
+    margin-top: 0.25rem;
+  }
+
+  .cover-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--fg-3);
+    line-height: 1.3;
+    max-width: 10ch;
+  }
+
+  .video-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .update-body {
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .update-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .update-desc {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .update-cta {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--accent);
+    transition: color var(--transition);
+    align-self: flex-start;
+  }
+
+  .update-cta:hover {
+    color: var(--accent-light);
+  }
+
+  .updates-subscribe {
+    margin-top: var(--s-12);
+    border-top: 1px solid var(--border);
+    padding-top: var(--s-8);
+  }
+
+  .subscribe-lead {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    margin-bottom: var(--s-6);
+  }
+
+  .subscribe-form-wrap {
+    max-width: 640px;
+  }
+
   /* ─── Events ──────────────────────────────────────────────────────────────── */
   .events-header {
     display: flex;
@@ -636,6 +872,9 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
     .principle {
       grid-template-columns: 1fr;
       gap: 1rem;
+    }
+    .updates-grid {
+      grid-template-columns: 1fr;
     }
     .cta-inner {
       grid-template-columns: 1fr;
