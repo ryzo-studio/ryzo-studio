@@ -74,58 +74,6 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
   </section>
 
 
-  <!-- Three Principles -->
-  <section class="section how-section">
-    <div class="container">
-      <div class="principles-grid">
-        <div class="principles-left">
-          <span class="eyebrow">Principles</span>
-          <h2 class="subheadline">What every project has to do.</h2>
-        </div>
-
-        <div class="principles">
-          <div class="principle">
-            <div class="principle-num">01</div>
-            <div class="principle-body">
-              <h3 class="principle-title">Entertainment comes first.</h3>
-              <p>
-                We make things kids want to watch and play, using everything
-                that makes a story work: character, stakes, emotion, surprise,
-                fun. Impact that doesn't entertain first is homework.
-              </p>
-            </div>
-          </div>
-
-          <div class="principle">
-            <div class="principle-num">02</div>
-            <div class="principle-body">
-              <h3 class="principle-title">Every story builds toward action.</h3>
-              <p>
-                Each franchise starts from a question we can answer plainly:
-                after a kid experiences this, what can they do differently?
-                That answer shapes the film, the game mechanics, and what
-                happens in the room.
-              </p>
-            </div>
-          </div>
-
-          <div class="principle">
-            <div class="principle-num">03</div>
-            <div class="principle-body">
-              <h3 class="principle-title">We create franchises.</h3>
-              <p>
-                Kids are watching YouTube in the back of a car. They're
-                playing Roblox at midnight. They're making fan art in the
-                margin of their notebook. We create stories for those
-                same places.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Approach -->
   <section class="section approach-section">
     <div class="container">
@@ -321,9 +269,9 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
           Bring us to your community.
         </h2>
         <div class="cta-links">
-          <a href="/connect" class="btn btn-primary btn-lg">Get in Touch</a>
-          <a href="/events" class="btn btn-outline btn-lg">Events & Activations</a>
-          <a href="/supporters" class="btn btn-outline btn-lg">Our Supporters</a>
+          <a href="/connect" class="btn btn-primary btn-sm">Get in Touch</a>
+          <a href="/events" class="btn btn-outline btn-sm">Events & Activations</a>
+          <a href="/supporters" class="btn btn-outline btn-sm">Our Supporters</a>
         </div>
       </div>
     </div>
@@ -439,74 +387,6 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
   .events-section,
   .studio-cta {
     background: linear-gradient(to right, #080316 0%, #1c0832 100%);
-  }
-
-
-  /* ─── Three Principles ─────────────────────────────────────────────────────── */
-  .how-section {
-    background: #080316;
-  }
-  .principles-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 3rem;
-    align-items: start;
-  }
-
-  .principles-left {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    position: sticky;
-    top: 7rem;
-    max-width: 220px;
-  }
-
-  .principles {
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid rgba(255,255,255,0.07);
-  }
-
-  .principle {
-    display: grid;
-    grid-template-columns: 50px 1fr;
-    gap: 1.5rem;
-    padding: 2rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-  }
-
-  .principle:last-child { border-bottom: none; padding-bottom: 0; }
-  .principle:first-child { padding-top: 0; }
-
-  .principle-num {
-    font-family: var(--font-display);
-    font-size: var(--text-sm);
-    font-weight: 800;
-    color: var(--accent);
-    padding-top: 0.4rem;
-  }
-
-  .principle-body {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .principle-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.25rem, 2vw, 1.6rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    margin-bottom: 0.125rem;
-  }
-
-  .principle-body p {
-    font-size: var(--text-base);
-    color: var(--fg);
-    line-height: 1.7;
-    max-width: 520px;
   }
 
   /* ─── Approach ────────────────────────────────────────────────────────────── */
@@ -937,17 +817,6 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
   }
 
   @media (max-width: 768px) {
-    .principles-grid {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-    .principles-left {
-      position: static;
-    }
-    .principle {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
     .updates-grid {
       grid-template-columns: 1fr;
     }
