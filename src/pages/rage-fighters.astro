@@ -496,16 +496,20 @@ import Layout from '../layouts/Layout.astro';
     border-top: 1px solid rgba(255,255,255,0.07);
     border-bottom: 1px solid rgba(255,255,255,0.07);
     position: relative;
-    background-image: url('/images/notebook/RageStormEnemies.png');
-    background-size: cover;
-    background-position: center 75%;
-    background-repeat: no-repeat;
     min-height: 70vh;
     display: flex;
     align-items: flex-end;
+    overflow: hidden;
   }
 
   .notebook-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('/images/notebook/RageStormEnemies.png') center 75% / cover no-repeat;
+  }
+
+  .notebook-section::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -514,7 +518,7 @@ import Layout from '../layouts/Layout.astro';
 
   .notebook-inner {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 640px;
   }
 
