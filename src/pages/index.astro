@@ -250,10 +250,16 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
         ))}
       </div>
 
-      <div class="updates-subscribe">
-        <p class="subscribe-lead">Want updates like these in your inbox?</p>
-        <div class="subscribe-form-wrap">
-          <SubscribeForm client:load />
+      <div class="updates-bottom">
+        <div class="updates-subscribe">
+          <p class="subscribe-lead">Want updates like these in your inbox?</p>
+          <div class="subscribe-form-wrap">
+            <SubscribeForm client:load />
+          </div>
+        </div>
+        <div class="updates-support">
+          <p class="subscribe-lead">Want to support the work?</p>
+          <a href="https://secure.lglforms.com/form_engine/s/Vl4n9NT5Rdj2w6OylYlQXw" target="_blank" rel="noopener" class="btn btn-primary">Donate</a>
         </div>
       </div>
     </div>
@@ -678,10 +684,20 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
     color: var(--accent-light);
   }
 
-  .updates-subscribe {
+  .updates-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
     margin-top: var(--s-12);
     border-top: 1px solid var(--border);
     padding-top: var(--s-8);
+  }
+
+  .updates-support {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-6);
+    align-items: flex-start;
   }
 
   .subscribe-lead {
@@ -805,6 +821,9 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
 
   @media (max-width: 768px) {
     .updates-grid {
+      grid-template-columns: 1fr;
+    }
+    .updates-bottom {
       grid-template-columns: 1fr;
     }
     .cta-inner {
