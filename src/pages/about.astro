@@ -165,18 +165,12 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- Who we build it with -->
-  <section class="section build-with-section">
-    <div class="container">
-      <p class="build-with-intro">We develop our work in partnership with researchers and clinicians. We choose individuals over institutions on purpose: we'd rather have the person who wrote the book in a story meeting than a logo on a slide.</p>
-    </div>
-  </section>
-
   <!-- Advisors -->
   <section class="section advisors-section">
     <div class="container">
       <span class="eyebrow">Advisors</span>
-      <h2 class="subheadline">Who we build it with.</h2>
+      <h2 class="subheadline">Who we build with.</h2>
+      <p class="build-with-intro">We develop our work in partnership with researchers and clinicians. We choose individuals over institutions on purpose: we'd rather have the person who wrote the book in a story meeting than a logo on a slide.</p>
       <div class="advisors-grid">
 
         <div class="advisor-card">
@@ -345,7 +339,6 @@ import Layout from '../layouts/Layout.astro';
   /* Shared section bg + tight vertical rhythm */
   .founders-section,
   .leadership-section,
-  .build-with-section,
   .advisors-section,
   .team-section,
   .cta-section {
@@ -353,15 +346,12 @@ import Layout from '../layouts/Layout.astro';
     padding-block: clamp(2.5rem, 4vw, 3.5rem);
   }
 
-  .build-with-section {
-    border-top: 1px solid rgba(255,255,255,0.07);
-  }
-
   .build-with-intro {
     font-size: clamp(1rem, 1.5vw, 1.2rem);
     color: var(--fg-2);
     line-height: 1.7;
     max-width: 640px;
+    margin-bottom: 2.5rem;
   }
 
   /* ─── Principles ─────────────────────────────────────────────────────── */
