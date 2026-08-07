@@ -597,7 +597,9 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
   .cover-treatment {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #1c0832 0%, #0e0e10 60%, rgba(245,200,66,0.08) 100%);
+    background:
+      linear-gradient(135deg, rgba(28,8,50,0.75) 0%, rgba(14,14,16,0.65) 60%, rgba(245,200,66,0.08) 100%),
+      url('/images/FranchiseReportCover.png') center / cover no-repeat;
     padding: clamp(1.25rem, 3vw, 2rem);
     display: flex;
     flex-direction: column;
@@ -654,6 +656,7 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
     position: relative;
     width: 100%;
     height: 100%;
+    filter: brightness(0.7);
   }
 
   .update-body {
