@@ -137,12 +137,8 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
 
       <div class="approach-doors">
 
-        <div class="approach-door">
-          <div class="door-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-          </div>
+        <div class="approach-door" style="--door-bg: url('/images/approach-film.png')">
+          <div class="door-bg"></div>
           <div class="door-text">
             <h3 class="door-title">Animation makes you feel it.</h3>
             <p class="door-desc">A short, a series, or a feature. Our animated stories make you feel something real.</p>
@@ -151,14 +147,8 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
           </div>
         </div>
 
-        <div class="approach-door">
-          <div class="door-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="6" width="20" height="12" rx="2"></rect>
-              <path d="M6 12h.01M10 12h.01"></path>
-              <path d="M15 10l2 2-2 2"></path>
-            </svg>
-          </div>
+        <div class="approach-door" style="--door-bg: url('/images/approach-game.png')">
+          <div class="door-bg"></div>
           <div class="door-text">
             <h3 class="door-title">Games let you practice it.</h3>
             <p class="door-desc">Our games are where you try the skills out.</p>
@@ -167,15 +157,8 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
           </div>
         </div>
 
-        <div class="approach-door">
-          <div class="door-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-          </div>
+        <div class="approach-door" style="--door-bg: url('/images/approach-events.jpg')">
+          <div class="door-bg"></div>
           <div class="door-text">
             <h3 class="door-title">At live events you make it yours.</h3>
             <p class="door-desc">Our events pull the story off the screen and into your own life.</p>
@@ -527,11 +510,12 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
   }
 
   .approach-door {
-    background: rgba(255, 255, 255, 0.03);
+    position: relative;
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: var(--radius-lg);
     padding: 2rem;
     transition: var(--transition);
+    overflow: hidden;
   }
 
   .approach-door:hover {
@@ -539,13 +523,23 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
     transform: translateY(-2px);
   }
 
-  .door-icon {
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-    opacity: 0.85;
+  .door-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--door-bg) center / cover no-repeat;
+    opacity: 0.25;
+  }
+
+  .door-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(8,3,22,0.3) 0%, rgba(8,3,22,0.7) 100%);
   }
 
   .door-text {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
