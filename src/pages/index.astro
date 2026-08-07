@@ -527,7 +527,7 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
     position: absolute;
     inset: 0;
     background: var(--door-bg) center / cover no-repeat;
-    opacity: 0.4;
+    opacity: 0.43;
   }
 
   .door-bg::after {
@@ -551,31 +551,31 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
     font-weight: 800;
     letter-spacing: -0.02em;
     line-height: 1.2;
-    color: var(--accent);
+    color: #fff;
     text-transform: uppercase;
   }
 
   .door-desc {
     font-size: var(--text-sm);
-    color: var(--fg);
+    color: #fff;
     line-height: 1.65;
   }
 
   .door-example {
     font-size: var(--text-sm);
-    color: var(--fg-2);
+    color: rgba(255,255,255,0.8);
     line-height: 1.65;
   }
 
   .door-example strong {
-    color: var(--fg);
+    color: #fff;
     font-weight: 600;
   }
 
   .door-cta {
     font-size: var(--text-sm);
     font-weight: 600;
-    color: var(--accent);
+    color: #fff;
     transition: color var(--transition);
     margin-top: 0.25rem;
   }
