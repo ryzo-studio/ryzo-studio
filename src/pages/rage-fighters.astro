@@ -12,7 +12,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="game-hero-bg"></div>
     <div class="container game-hero-content">
       <div class="hero-eyebrow">
-        <p class="eyebrow">Roblox Game</p>
+        <p class="eyebrow">Roblox · Live Now</p>
         <span class="live-badge">Live Now</span>
       </div>
       <h1 class="display">
@@ -22,7 +22,7 @@ import Layout from '../layouts/Layout.astro';
       <p class="hero-tagline">
         Fight through emotional chaos,<br />
         master your rage, and evolve<br />
-        into an unstoppable force.
+        into something unstoppable.
       </p>
       <div class="hero-actions">
         <a href="https://www.roblox.com/games/106511362279091/Rage-Fighters" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Play Now</a>
@@ -37,19 +37,17 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <div class="game-about">
         <div>
-          <span class="eyebrow">The Game</span>
+          <span class="eyebrow">What It Is</span>
           <h2 class="subheadline">Built by Aaron.<br />Played by everyone.</h2>
           <p class="body-lg">
-            Rage Fighters is a melee fighting game on Roblox that brings
-            the world of <em>Release The Beast</em> into playable form.
-            The game is presented as Aaron's own creation — built by the
-            film's protagonist to process the emotional storm inside him.
+            Rage Fighters is a melee fighter on Roblox set inside the world
+            of <em>Release the Beast</em>. The conceit is that Aaron built it
+            himself, to handle the emotional storm going on inside him.
           </p>
           <p class="body-lg">
-            The genre itself came from the audience. Boys who watched early
-            screenings of <em>Release The Beast</em> named the emotions
-            immediately: anger, fear, shame, frustration. When asked what
-            game they wanted? A fighter.
+            The genre came from the audience. Boys who watched early screenings
+            named the emotions immediately: anger, fear, shame, frustration.
+            When we asked what kind of game they wanted, they said a fighter.
           </p>
         </div>
         <div class="game-preview">
@@ -63,8 +61,8 @@ import Layout from '../layouts/Layout.astro';
           ></video>
           <div class="game-specs">
             <div class="spec"><span class="spec-label">Platform</span><span>Roblox</span></div>
-            <div class="spec"><span class="spec-label">Ages</span><span>5+</span></div>
-            <div class="spec"><span class="spec-label">Type</span><span>Melee Fighter</span></div>
+            <div class="spec"><span class="spec-label">Ages</span><span>Recommended 10+</span></div>
+            <div class="spec"><span class="spec-label">Type</span><span>Melee fighter</span></div>
             <div class="spec"><span class="spec-label">Price</span><span>Free</span></div>
           </div>
         </div>
@@ -83,19 +81,19 @@ import Layout from '../layouts/Layout.astro';
             name: 'EmoDojo',
             color: '#7C5CBF',
             symbol: '⚔️',
-            desc: 'The training ground. Where players first learn to face their inner world — confronting the emotional enemies that have been running the show.'
+            desc: 'The training ground, where players first face the emotional enemies that have been running the show.'
           },
           {
             name: 'Rage Storm',
             color: '#FF3D00',
             symbol: '🌪️',
-            desc: 'The storm inside. Overwhelming, explosive, disorienting. Players learn that the rage isn\'t the enemy — losing control of it is.'
+            desc: 'Overwhelming, explosive, disorienting. Losing control of it is the real danger.'
           },
           {
             name: 'Toxic Zone',
             color: '#2d6a4f',
             symbol: '☠️',
-            desc: 'Where the inner critics live. Shame, self-doubt, the voice that says you\'re the problem. The hardest zone — and the one that hits closest to home.'
+            desc: 'Where the inner critics live. Shame, self-doubt, the voice that says you\'re the problem. It\'s the most challenging zone in the game.'
           },
         ].map(({ name, color, symbol, desc }) => (
           <div class="zone-card" style={`--zone-color: ${color}`}>
@@ -116,19 +114,16 @@ import Layout from '../layouts/Layout.astro';
           <span class="eyebrow">The Mechanics</span>
           <h2 class="subheadline">Real skills.<br />Real power.</h2>
           <p class="body-lg">
-            Players unlock four core skills that work as both game mechanics
-            and real emotional tools. The combat isn't just a metaphor —
-            it's practice. Every move maps to something a player can use
+            Players unlock skills that work as game mechanics and as actual
+            emotional tools. Every move maps to something a player can use
             outside the game.
           </p>
-          <a href="/events" class="btn btn-outline">Events & Activations →</a>
         </div>
         <div class="skills-list">
           {[
-            { num: '01', skill: 'Pause', mechanic: 'Force field & teleport to safety', desc: 'Stop the action before it escalates. In-game: creates a protective force field and lets players teleport to safety. In life: the moment before the reaction.' },
-            { num: '02', skill: 'Breathe', mechanic: 'Restore health & calm the chaos', desc: 'Reset and recover. In-game: restores health and calms the surrounding chaos. In life: the physiological reset that changes what happens next.' },
-            { num: '03', skill: 'Cool Down', mechanic: 'Environmental combat advantages', desc: 'Use the environment, not just your fists. In-game: unlocks combat advantages in the environment. In life: changing your context when your internal state won\'t shift.' },
-            { num: '04', skill: 'Connect', mechanic: 'Make meaningful bonds through play', desc: 'You can\'t win alone. In-game: making meaningful bonds unlocks new abilities. In life: the thing kids most need — and least expect to find in a fighter.' },
+            { num: '01', skill: 'Pause', mechanic: 'Force field and teleport', desc: 'In game: throws up a protective field and gets you out. In life: the moment before the reaction.' },
+            { num: '02', skill: 'Breathe', mechanic: 'Restore health', desc: 'In game: restores health and calms the chaos around you. In life: the physiological reset that changes what happens next.' },
+            { num: '03', skill: 'Chill', mechanic: 'Environmental advantage', desc: 'In game: turns the environment to your advantage instead of your fists. In life: changing your situation when your head won\'t change.' },
           ].map(({ num, skill, mechanic, desc }) => (
             <div class="skill-step">
               <span class="skill-num">{num}</span>
@@ -149,17 +144,12 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <div class="notebook-inner">
         <div class="notebook-text">
-          <span class="eyebrow">The Hidden Layer</span>
-          <h2 class="subheadline">Aaron's design<br />thinking.</h2>
+          <span class="eyebrow">Hidden Layer</span>
+          <h2 class="subheadline">Aaron's notebook.</h2>
           <p class="body-lg">
-            Hidden notebook pages scattered throughout the game reveal
-            how Aaron built Rage Fighters — showing his thinking as he
-            folded real emotional skills into the mechanics.
-          </p>
-          <p class="body-lg">
-            They bridge the fight on screen with the one inside,
-            giving players a window into why the game works the way it does —
-            and why those same moves work in real life.
+            Hidden pages scattered through the game show how Aaron built
+            Rage Fighters, and how he folded real emotional skills into
+            the mechanics.
           </p>
         </div>
       </div>
@@ -170,11 +160,11 @@ import Layout from '../layouts/Layout.astro';
   <section class="section attribution-section">
     <div class="container">
       <div class="attribution-inner">
-        <p class="attribution-label">Made possible by</p>
-        <h3 class="attribution-title">The Caring Masculinities Fund</h3>
+        <span class="eyebrow">Credit</span>
+        <h3 class="attribution-title">Made possible by the Caring Masculinities Fund</h3>
         <p class="attribution-body">
           A fund led by Gary Barker, CEO of Equimundo: Center for Masculinities
-          and Social Justice, to support organizations worldwide in engaging
+          and Social Justice, supporting organizations worldwide that engage
           men and boys to advance gender equality. Equimundo also provided
           visibility and strategic guidance throughout development.
         </p>
@@ -182,16 +172,16 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- Film CTA -->
+  <!-- Next Step -->
   <section class="section-sm film-cta-bar">
     <div class="container">
       <div class="film-cta-inner">
         <div>
-          <span class="tag tag-accent">Companion Experience</span>
-          <h3 class="film-cta-title">See it first<br />in the film.</h3>
-          <p>"Release The Beast" introduces the world before the game takes kids deeper into it.</p>
+          <span class="eyebrow">Next Step</span>
+          <h3 class="film-cta-title">See where it started.</h3>
+          <p>Release the Beast introduces the world before the game takes kids deeper into it.</p>
         </div>
-        <a href="/release-the-beast" class="btn btn-outline btn-lg">Watch the Film →</a>
+        <a href="/release-the-beast" class="btn btn-outline btn-sm">Watch the Film</a>
       </div>
     </div>
   </section>
