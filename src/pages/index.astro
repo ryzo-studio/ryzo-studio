@@ -443,29 +443,7 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
 
   /* ─── Three Principles ─────────────────────────────────────────────────────── */
   .how-section {
-    position: relative;
     background: #080316;
-    overflow: hidden;
-  }
-
-  .how-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('/images/Roblox_UsePause.png') center / cover no-repeat;
-    opacity: 0.45;
-  }
-
-  .how-section::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(8,3,22,0.7) 0%, rgba(8,3,22,0.4) 50%, rgba(8,3,22,0.7) 100%);
-  }
-
-  .how-section > .container {
-    position: relative;
-    z-index: 1;
   }
   .principles-grid {
     display: grid;
