@@ -509,8 +509,29 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
 
   /* ─── Approach ────────────────────────────────────────────────────────────── */
   .approach-section {
-    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+    position: relative;
     border-top: 1px solid rgba(255,255,255,0.07);
+    overflow: hidden;
+  }
+
+  .approach-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('/images/Roblox_UsePause.png') center / cover no-repeat;
+    opacity: 0.18;
+  }
+
+  .approach-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(8,3,22,0.85) 0%, rgba(8,3,22,0.6) 50%, rgba(8,3,22,0.85) 100%);
+  }
+
+  .approach-section > .container {
+    position: relative;
+    z-index: 1;
   }
 
   .approach-header {
