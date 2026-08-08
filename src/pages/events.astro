@@ -5,649 +5,658 @@ const today = new Date();
 
 const allEvents = [
   {
-    id: 'e13',
+    date: new Date('2026-10-03'),
+    type: 'Live Event',
+    audience: 'For Young People',
+    title: 'UnTilted — Mastering the Internal OS with Ryzo',
+    venue: 'Cinema Toast House · Denver, CO',
+  },
+  {
     date: new Date('2026-07-21'),
-    title: 'Panel | Rage Fighters: Building a Roblox Game That Teaches Kids to Channel Their Anger',
-    venue: 'The Sandbox · Games for Change Festival',
     type: 'Panel',
     audience: 'For Creators',
-    details: '2:00 – 2:45 PM · Todd Shaiman (Moderator), Erica Milsom, Tehya Kopp, Rachel Katz',
-    link: 'https://festival.gamesforchange.org/2026-tickets',
+    title: 'Rage Fighters: Building a Roblox Game That Teaches Kids to Channel Their Anger',
+    venue: 'The Sandbox · Games for Change Festival',
   },
   {
-    id: 'e9',
-    date: new Date('2026-03-30'),
-    title: 'Release the Beast — YouTube Premiere Party',
-    venue: 'Virtual Event · Hosted by Ryzo',
-    type: 'Film Premiere',
-    audience: 'For Everyone',
-    link: 'https://luma.com/fl72b5hz',
-  },
-  {
-    id: 'e8',
-    date: new Date('2026-04-15'),
-    title: 'UnTilted — Mastering the Internal OS with Ryzo',
-    venue: 'The Clubhouse Network @ TTC at MACLA',
-    venueLink: 'https://maclaarte.org/programs/ttc/',
-    type: 'Live Event',
-    audience: 'For Young People',
-    link: null,
-  },
-  {
-    id: 'e6',
-    date: new Date('2026-03-18'),
-    title: 'UnTilted — Mastering the Internal OS with Ryzo',
-    venue: 'The Clubhouse Network · The Tech Center @ Boys & Girls Clubs of San Leandro',
-    type: 'Live Event',
-    audience: 'For Young People',
-    link: null,
-  },
-  {
-    id: 'e12',
-    date: new Date('2026-04-29'),
-    title: 'Release the Beast — Virtual Screening & Director Q&A',
-    venue: 'Lexington, MA · Virtual Event',
-    type: 'Film Screening',
-    audience: 'For Everyone',
-    link: null,
-  },
-  {
-    id: 'e4',
     date: new Date('2026-05-05'),
-    title: 'Story into Action: The Making of Rage Fighters',
-    venue: 'The MADE · Oakland, CA',
-    venueLink: 'https://www.themade.org/visit',
     type: 'Talk',
     audience: 'For Creators',
-    link: 'https://www.eventbrite.com/e/story-into-action-the-making-of-rage-fighters-with-erica-milsom-the-ryzo-tickets-1985640418945?aff=ebdsshcopyurl&utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=organizer-profile&utm-share-source=organizer-profile',
+    title: 'Story into Action: The Making of Rage Fighters',
+    venue: 'The MADE · Oakland, CA',
   },
   {
-    id: 'e11',
     date: new Date('2026-04-24'),
+    type: 'Live Event',
+    audience: 'For Young People',
     title: 'UnTilted — Mastering the Internal OS with Ryzo',
     venue: 'Best Buy Teen Tech Center · Grand Street Settlement · New York, NY',
-    type: 'Live Event',
-    audience: 'For Young People',
-    details: '3:30 – 5:00 PM · Sponsored by The Clubhouse Network & Grand Street Settlement',
-    link: null,
   },
   {
-    id: 'e10',
     date: new Date('2026-04-23'),
+    type: 'Live Event',
+    audience: 'For Young People',
     title: 'UnTilted — A Multimedia Live Experience',
     venue: 'Manhattan · Private Event',
-    type: 'Live Event',
-    audience: 'For Young People',
-    details: '6:00 PM · Arrival & Refreshments at 5:30 PM',
-    link: null,
   },
   {
-    id: 'e5',
     date: new Date('2026-04-18'),
+    type: 'Live Event',
+    audience: 'For Young People',
     title: 'UnTilted — Mastering the Internal OS with Ryzo',
     venue: 'The MADE · Oakland, CA',
-    venueLink: 'https://www.themade.org/visit',
+  },
+  {
+    date: new Date('2026-04-15'),
     type: 'Live Event',
     audience: 'For Young People',
-    link: 'https://www.eventbrite.com/e/untilted-with-erica-milsom-founder-of-ryzo-studios-former-pixar-director-tickets-1985640564380?utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=listing&utm-source=cp&aff=ebdsshcopyurl',
+    title: 'UnTilted — Mastering the Internal OS with Ryzo',
+    venue: 'The Clubhouse Network @ TTC at MACLA · San Jose, CA',
   },
   {
-    id: 'e7',
+    date: new Date('2026-03-30'),
+    type: 'Film Premiere',
+    audience: 'For Everyone',
+    title: 'Release the Beast — YouTube Premiere Party',
+    venue: 'Virtual Event · Hosted by Ryzo',
+  },
+  {
+    date: new Date('2026-03-18'),
+    type: 'Live Event',
+    audience: 'For Young People',
+    title: 'UnTilted — Mastering the Internal OS with Ryzo',
+    venue: 'The Clubhouse Network · The Tech Center @ Boys & Girls Clubs of San Leandro',
+  },
+  {
     date: new Date('2026-02-26'),
-    title: 'Understanding Anger in Young Men — feat. Erica Milsom',
-    venue: 'Ever Forward Club · Advocates for Young Men (Skool)',
     type: 'Guest Speaker',
     audience: 'For Creators',
-    link: null,
+    title: 'Understanding Anger in Young Men — feat. Erica Milsom',
+    venue: 'Ever Forward Club · Advocates for Young Men (Skool)',
   },
   {
-    id: 'e3',
-    date: new Date('2025-12-14'),
-    title: 'Release The Beast — Supporter Sneak Peek',
-    venue: 'The Roxie Theater · San Francisco, CA',
-    type: 'Film Screening',
-    audience: 'For Creators',
-    link: null,
-  },
-  {
-    id: 'e1',
     date: new Date('2025-01-09'),
+    type: 'Community Visit',
+    audience: 'For Young People',
     title: 'UnTilted Betatest with the Colorado Clubhouse Network',
     venue: 'Edgewood, CO',
-    type: 'Community Visit',
-    audience: 'For Young People',
-    link: null,
   },
   {
-    id: 'e2',
     date: new Date('2025-01-08'),
-    title: 'UnTilted Betatest with the Colorado Clubhouse Network',
-    venue: 'Lakewood, CO',
     type: 'Community Visit',
     audience: 'For Young People',
-    link: null,
+    title: 'UnTilted Betatest with the Colorado Clubhouse Network',
+    venue: 'Lakewood, CO',
   },
 ];
 
 const upcoming = allEvents.filter(e => e.date >= today).sort((a, b) => a.date.getTime() - b.date.getTime());
 const past = allEvents.filter(e => e.date < today).sort((a, b) => b.date.getTime() - a.date.getTime());
+
+const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+function fmtDate(d: Date) {
+  return `${months[d.getMonth()]} ${d.getDate()}`;
+}
 ---
 
 <Layout
-  title="Events & Activations"
-  description="Where impact comes home — screenings, live events, and community activations that bring kids, families, and educators into the Ryzo story."
+  title="Events — Ryzo Studios"
+  description="UnTilted is a live session where kids watch the film, play the game, and draw what anger actually feels like. Sixteen sessions so far, across five states and DC."
 >
 
-  <!-- Hero -->
-  <section class="act-hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="container hero-content">
-      <span class="eyebrow">Events & Activations</span>
-      <h1 class="hero-title">
-        Designed to<br /><span class="accent-text">draw us together.</span>
-      </h1>
-      <p class="hero-body">
-        Our activations and events bring impact back home — through fun,
-        story-driven experiences that let audiences dive deeper on the themes,
-        play more inside the story, and connect.
+  <!-- 1. Hero -->
+  <section class="ev-hero">
+    <div class="ev-hero-bg">
+      <div class="ev-hero-placeholder" aria-hidden="true"></div>
+    </div>
+    <div class="ev-hero-overlay"></div>
+    <div class="container ev-hero-content">
+      <span class="eyebrow">Live Events</span>
+      <h1 class="display">UnTilted</h1>
+      <p class="ev-hero-desc">
+        Kids watch the film, play the game, then pick up a Sharpie and draw
+        what anger actually feels like. Then they share it out loud.
       </p>
-      <a href="mailto:hello@ryzo.studio?subject=EVENT%20REQUEST" class="btn btn-outline">Invite us to your community →</a>
+      <div class="ev-hero-stats">
+        <span>16 sessions</span>
+        <span class="stat-sep">&middot;</span>
+        <span>5 states and DC</span>
+        <span class="stat-sep">&middot;</span>
+        <span>248 drawings</span>
+      </div>
+      <a href="#booking" class="btn btn-primary">Bring UnTilted to Your Community</a>
     </div>
   </section>
 
-  <!-- Two-column body: activations left, calendar right -->
-  <section class="section body-section">
-    <div class="container body-grid">
+  <!-- 2. What happens in the room -->
+  <section class="section ev-room-section">
+    <div class="container">
+      <span class="eyebrow">What Happens in the Room</span>
+      <h2 class="subheadline">What happens in the room.</h2>
+      <p class="body-lg ev-room-intro">Aaron's tools are a sticky note and a Sharpie. So are ours. Every session runs the same three moves.</p>
 
-      <!-- LEFT: Photo + Audience types -->
-      <aside class="sidebar">
-        <div class="sidebar-sticky">
-          <div class="room-photo">
-            <img src="/images/activation_community_event.jpg" alt="Kids watching a Ryzo screening at a community event" />
+      <div class="ev-panels">
+        <div class="ev-panel">
+          <div class="ev-panel-img">
+            <img src="/images/untilted-watch.webp" alt="Kids watching Release the Beast" loading="lazy" />
           </div>
-          <span class="eyebrow">Built for Your Room</span>
-          <h2 class="sidebar-headline">Ryzo Events can be tooled<br /><span class="accent-text">to your audience.</span></h2>
-          <div class="audience-stack">
-            <div class="audience-card">
-              <div class="audience-header"><span class="audience-icon">🎮</span><h3 class="audience-title">Kids Ages 10–17</h3></div>
-              <p class="audience-body">We bring the full combo — animation, gaming, and art — into a single live experience that meets young people exactly where they are.</p>
-            </div>
-            <div class="audience-card">
-              <div class="audience-header"><span class="audience-icon">⚙️</span><h3 class="audience-title">Adults & Tinkerers</h3></div>
-              <p class="audience-body">We go behind the scenes and talk process — how story and impact get built together inside a digital-forward world. Real talk for people who make things.</p>
-            </div>
-            <div class="audience-card">
-              <div class="audience-header"><span class="audience-icon">🎬</span><h3 class="audience-title">Festivals</h3></div>
-              <p class="audience-body">A short film with big impact. Ryzo brings cinematic storytelling and a conversation worth having — wherever great work is being shown.</p>
-            </div>
-          </div>
-          <div class="sidebar-cta">
-            <p>Want to bring Ryzo to your community?</p>
-            <a href="/connect" class="btn btn-outline btn-sm">Send an Inquiry →</a>
+          <div class="ev-panel-body">
+            <h3 class="ev-panel-label">Watch</h3>
+            <p>Release the Beast. Twelve minutes, and the room goes quiet.</p>
           </div>
         </div>
-      </aside>
 
-      <!-- RIGHT: Calendar -->
-      <div class="calendar">
-        <span class="eyebrow calendar-label">Calendar</span>
-        <h2 class="calendar-headline">Where's Ryzo <span class="accent-text">next?</span></h2>
-
-        {upcoming.length > 0 && (
-          <div class="events-block">
-            {upcoming.map(event => (
-              <div class="event-row">
-                <div class="event-date">
-                  <span class="e-month">{event.date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span>
-                  <span class="e-day">{event.date.getDate()}</span>
-                </div>
-                <div class="event-body">
-                  <div class="event-meta">
-                    <span class="event-type">{event.type}</span>
-                    <span class="event-audience">{event.audience}</span>
-                  </div>
-                  <h3 class="event-title">{event.title}</h3>
-                  <p class="event-venue">
-                    {event.venueLink
-                      ? <a href={event.venueLink} target="_blank" rel="noopener" class="venue-link">{event.venue}</a>
-                      : event.venue}
-                  </p>
-                  {event.details && <p class="event-details">{event.details}</p>}
-                </div>
-                {event.link
-                  ? <a href={event.link} class="btn btn-primary btn-sm" target="_blank" rel="noopener">Get on the List</a>
-                  : <span class="btn btn-sm event-private">Private</span>
-                }
-              </div>
-            ))}
+        <div class="ev-panel">
+          <div class="ev-panel-img">
+            <img src="/images/untilted-play.webp" alt="Kids playing Rage Fighters" loading="lazy" />
           </div>
-        )}
-
-        {past.length > 0 && (
-          <div class="events-block past-block">
-            <div class="past-divider">
-              <span>Past Events</span>
-            </div>
-            {past.map(event => (
-              <div class="event-row is-past">
-                <div class="event-date">
-                  <span class="e-month">{event.date.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span>
-                  <span class="e-day">{event.date.getDate()}</span>
-                </div>
-                <div class="event-body">
-                  <div class="event-meta">
-                    <span class="event-type">{event.type}</span>
-                    <span class="event-audience">{event.audience}</span>
-                  </div>
-                  <h3 class="event-title">{event.title}</h3>
-                  <p class="event-venue">
-                    {event.venueLink
-                      ? <a href={event.venueLink} target="_blank" rel="noopener" class="venue-link">{event.venue}</a>
-                      : event.venue}
-                  </p>
-                </div>
-              </div>
-            ))}
+          <div class="ev-panel-body">
+            <h3 class="ev-panel-label">Play</h3>
+            <p>Rage Fighters. The skills stop being an idea and become buttons.</p>
           </div>
-        )}
+        </div>
+
+        <div class="ev-panel">
+          <div class="ev-panel-img">
+            <img src="/images/untilted-draw.webp" alt="Kids drawing on sticky notes" loading="lazy" />
+          </div>
+          <div class="ev-panel-body">
+            <h3 class="ev-panel-label">Draw</h3>
+            <p>Sticky Stan faces. A Sharpie, a sticky note, and whatever they walked in carrying.</p>
+          </div>
+        </div>
       </div>
-
     </div>
   </section>
 
-  <!-- Live Event Materials -->
-  <section class="live-materials-section">
+  <!-- 3. Designed to draw us together -->
+  <section class="section ev-statement-section">
     <div class="container">
-      <span class="eyebrow">Event Materials</span>
-      <h2 class="live-materials-heading">Live Event <span class="accent-text">Materials</span></h2>
-      <p class="live-materials-sub">Facilitator guides, activity sheets, and supporting assets for Ryzo live events.</p>
-      <a
-        href="https://drive.google.com/drive/folders/1T4C8-G92TzJHGjXUx97_pR8M576yOnmu?usp=drive_link"
-        target="_blank"
-        rel="noopener"
-        class="btn btn-primary"
-      >
-        Open Live Event Materials →
-      </a>
+      <h2 class="ev-statement-headline">Designed to draw us together.</h2>
+      <div class="ev-statement-body">
+        <p class="body-lg">
+          They start by drawing the last time they got angry. Then they talk about
+          what was underneath it, and pick a skill for the next time it happens.
+        </p>
+        <p class="body-lg">
+          We drop one piece of insight into the room partway through: anger never
+          comes alone. Then we ask what else was there. Boys drew embarrassed,
+          left out, small, unseen. Two in five landed on a word that named the
+          feeling underneath the anger.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. What facilitators told us -->
+  <section class="section ev-quotes-section">
+    <div class="container">
+      <span class="eyebrow">What Facilitators Told Us</span>
+      <div class="ev-quotes-grid">
+        <blockquote class="ev-quote">
+          <p>"That boy comes every week. I've never heard him share. Today he talked about his feelings, shared a picture, and told us about something in his life that was challenging."</p>
+          <footer>— Museum programmer, Oakland, CA</footer>
+        </blockquote>
+        <blockquote class="ev-quote">
+          <p>"They were more attentive to this film and game than anything we've ever done. I've never seen the boys share like this, especially about their emotions."</p>
+          <footer>— After-school facilitator, Denver, CO</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Built for your room -->
+  <section class="section ev-formats-section">
+    <div class="container">
+      <span class="eyebrow">Built for Your Room</span>
+      <h2 class="subheadline">Ryzo events can be shaped to your audience.</h2>
+      <div class="ev-formats-grid">
+
+        <div class="ev-format">
+          <div class="ev-format-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="6" width="20" height="12" rx="2"/>
+              <path d="M6 12h.01M10 12h.01"/>
+              <path d="M15 10l2 2-2 2"/>
+            </svg>
+          </div>
+          <h3 class="ev-format-title">Kids 10 and Up</h3>
+          <p>We bring the full combination — animation, gaming, and art — into a single live experience that meets young people where they are.</p>
+        </div>
+
+        <div class="ev-format">
+          <div class="ev-format-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h4l13-13a1.41 1.41 0 0 0-.33-2.29l-1.38-.69a1.41 1.41 0 0 0-1.72.33L4 18v3z"/>
+              <path d="M14.5 5.5l4 4"/>
+              <path d="M12 8l-5-5"/>
+              <path d="M7 3l-4 4"/>
+            </svg>
+          </div>
+          <h3 class="ev-format-title">Adults and Tinkerers</h3>
+          <p>We go behind the scenes and talk process: how story and impact get built together inside a digital-forward world. Real talk for people who make things.</p>
+        </div>
+
+        <div class="ev-format">
+          <div class="ev-format-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="M2 8h20"/>
+              <path d="M10 12l4 2.5-4 2.5v-5z"/>
+            </svg>
+          </div>
+          <h3 class="ev-format-title">Festivals</h3>
+          <p>A short film with big impact, and a conversation worth having, wherever great work is being shown.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Calendar -->
+  <section class="section ev-calendar-section">
+    <div class="container">
+      <span class="eyebrow">Calendar</span>
+      <h2 class="subheadline">Where's Ryzo next?</h2>
+
+      {upcoming.length > 0 && (
+        <div class="ev-cal-group">
+          <h3 class="ev-cal-label">Upcoming</h3>
+          <div class="ev-cal-list">
+            {upcoming.map(ev => (
+              <div class="ev-cal-row">
+                <span class="ev-cal-date">{fmtDate(ev.date)}</span>
+                <span class="ev-cal-type">{ev.type}</span>
+                <span class="ev-cal-audience">{ev.audience}</span>
+                <div class="ev-cal-details">
+                  <span class="ev-cal-title">{ev.title}</span>
+                  <span class="ev-cal-venue">{ev.venue}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div class="ev-cal-group">
+        <h3 class="ev-cal-label">Past</h3>
+        <div class="ev-cal-list">
+          {past.map(ev => (
+            <div class="ev-cal-row">
+              <span class="ev-cal-date">{fmtDate(ev.date)}</span>
+              <span class="ev-cal-type">{ev.type}</span>
+              <span class="ev-cal-audience">{ev.audience}</span>
+              <div class="ev-cal-details">
+                <span class="ev-cal-title">{ev.title}</span>
+                <span class="ev-cal-venue">{ev.venue}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <p class="ev-cal-note">Some sessions were private or run with partners and aren't listed here.</p>
+    </div>
+  </section>
+
+  <!-- 7. Booking -->
+  <section class="section ev-booking-section" id="booking">
+    <div class="container">
+      <h2 class="subheadline">Bring UnTilted to your community.</h2>
+      <p class="body-lg">We'll bring the film, the game, and the materials. You bring the room and the kids.</p>
+      <a href="mailto:hello@ryzo.studio?subject=EVENT%20REQUEST" class="btn btn-primary btn-sm">Send an Inquiry</a>
     </div>
   </section>
 
 </Layout>
 
 <style>
-  /* ── Hero ── */
-  .act-hero {
-    min-height: 72vh;
+  /* ─── Shared ───────────────────────────────────────────────────────────────── */
+  .section {
+    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+  }
+
+  /* ─── 1. Hero ──────────────────────────────────────────────────────────────── */
+  .ev-hero {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding-block: 8rem 5rem;
     position: relative;
     overflow: hidden;
-    text-align: left;
   }
 
-  .hero-bg {
+  .ev-hero-bg {
     position: absolute;
     inset: 0;
-    background-image: url('/images/events-hero.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    filter: brightness(1.2);
   }
 
-  .hero-overlay {
+  .ev-hero-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1c0832 0%, #080316 50%, #2d1a4e 100%);
+  }
+
+  .ev-hero-overlay {
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to right, rgba(8, 3, 22, 0.60) 0%, rgba(8, 3, 22, 0.10) 50%, transparent 100%),
-      linear-gradient(to top, rgba(8, 3, 22, 0.50) 0%, transparent 40%),
-      linear-gradient(to top, rgba(28, 8, 50, 0.85) 0%, transparent 30%);
+      linear-gradient(to right, rgba(8,3,22,0.7) 0%, rgba(8,3,22,0.4) 60%, rgba(8,3,22,0.2) 100%),
+      linear-gradient(to top, rgba(8,3,22,0.85) 0%, rgba(8,3,22,0.2) 40%, transparent 70%);
   }
 
-  .hero-content {
+  .ev-hero-content {
     position: relative;
     z-index: 1;
+    max-width: 640px;
   }
 
-  .hero-content .eyebrow {
+  .ev-hero-content .eyebrow {
+    margin-bottom: 1.25rem;
+    color: var(--accent);
+  }
+
+  .display {
+    font-size: clamp(4rem, 12vw, 10rem);
     margin-bottom: 1.5rem;
   }
 
-  .hero-title {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: clamp(3.5rem, 9vw, 8rem);
-    line-height: 0.95;
-    letter-spacing: -0.04em;
-    margin-bottom: 1.5rem;
-  }
-
-  .accent-text { color: var(--accent); }
-
-  .hero-body {
+  .ev-hero-desc {
     font-size: clamp(1rem, 1.5vw, 1.2rem);
     color: var(--fg-2);
     line-height: 1.7;
-    max-width: 540px;
+    margin-bottom: 1.5rem;
+  }
+
+  .ev-hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.04em;
     margin-bottom: 2rem;
   }
 
-  /* ── Two-column body ── */
-  .body-section {
-    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
+  .stat-sep { color: var(--fg-3); }
+
+  /* ─── 2. What happens in the room ──────────────────────────────────────────── */
+  .ev-room-section {
     border-top: 1px solid rgba(255,255,255,0.07);
   }
 
-  .body-grid {
-    display: grid;
-    grid-template-columns: 340px 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
+  .ev-room-section .eyebrow { margin-bottom: 1rem; }
+  .ev-room-section .subheadline { margin-bottom: 1rem; }
 
-  /* ── Sidebar (left column) ── */
-  .sidebar-sticky {
-    position: sticky;
-    top: 5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .sidebar .eyebrow { margin-bottom: 0; }
-
-  .room-photo img {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    object-position: center center;
-    border-radius: var(--radius-xl);
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .sidebar-headline {
-    font-family: var(--font-display);
-    font-size: clamp(1.1rem, 2vw, 1.5rem);
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    line-height: 1.15;
-  }
-
-  .audience-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .audience-card {
-    background: var(--bg-2);
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: var(--radius-xl);
-    padding: 0.9rem 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .audience-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .audience-icon {
-    font-size: 0.9rem;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .audience-title {
-    font-family: var(--font-display);
-    font-size: var(--text-sm);
-    font-weight: 800;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-    color: var(--fg);
-    margin: 0;
-  }
-
-  .audience-body {
-    font-size: var(--text-xs);
-    color: var(--fg-2);
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  .sidebar-cta {
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding-top: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .sidebar-cta p {
-    font-size: var(--text-sm);
-    color: var(--fg-2);
-    line-height: 1.5;
-  }
-
-  /* ── Calendar (right column) ── */
-  .calendar-label {
-    display: block;
-    margin-bottom: 1rem;
-  }
-
-  .calendar-headline {
-    font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5.5vw, 5rem);
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
+  .ev-room-intro {
     margin-bottom: 2.5rem;
+    max-width: 640px;
   }
 
-  .events-block {
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .event-row {
+  .ev-panels {
     display: grid;
-    grid-template-columns: 70px 1fr auto;
-    gap: 1.75rem;
-    align-items: center;
-    padding: 1.75rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .ev-panel {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
     transition: var(--transition);
   }
 
-  .event-row:not(.is-past) .event-title {
-    color: #fff;
+  .ev-panel:hover {
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
   }
 
-  .event-row:not(.is-past):hover .event-title {
-    color: var(--accent);
+  .ev-panel-img {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: rgba(255,255,255,0.04);
   }
 
-  .event-date {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  .ev-panel-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
-  .e-month {
-    font-family: var(--font-body);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--accent);
-    line-height: 1;
+  .ev-panel-body {
+    padding: 1.25rem 1.5rem 1.5rem;
   }
 
-  .e-day {
+  .ev-panel-label {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 900;
-    letter-spacing: -0.04em;
-    line-height: 1;
-    color: var(--fg);
-  }
-
-  .event-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .event-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-  }
-
-  .event-type {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--fg);
-  }
-
-  .event-audience {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--accent);
-    border: 1px solid rgba(245, 200, 66, 0.35);
-    border-radius: 999px;
-    padding: 0.1em 0.6em;
-  }
-
-  .event-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    font-size: var(--text-lg);
     font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-    transition: color var(--transition);
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
   }
 
-  .event-venue {
+  .ev-panel-body p {
     font-size: var(--text-sm);
     color: var(--fg-2);
-    margin-top: 0.125rem;
+    line-height: 1.65;
   }
 
-  .venue-link {
-    color: var(--fg-2);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-color: rgba(255,255,255,0.25);
-    transition: color 0.2s;
+  /* ─── 3. Designed to draw us together ──────────────────────────────────────── */
+  .ev-statement-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    background: linear-gradient(135deg, #1c0832 0%, #080316 50%, rgba(245,200,66,0.04) 100%);
   }
 
-  .venue-link:hover {
-    color: var(--accent);
-    text-decoration-color: var(--accent);
-  }
-
-  .event-details {
-    font-size: var(--text-xs);
-    color: var(--fg-3);
-    margin-top: 0.125rem;
-  }
-
-  .event-private {
-    background: rgba(255,255,255,0.07);
-    border-color: rgba(255,255,255,0.20);
-    color: rgba(255,255,255,0.40);
-    cursor: default;
-    pointer-events: none;
-  }
-
-  .past-divider {
-    padding: 2rem 0 1rem;
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    margin-top: 1rem;
-  }
-
-  .past-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: rgba(255,255,255,0.05);
-  }
-
-  .past-divider span {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--fg-3);
-    white-space: nowrap;
-  }
-
-  .is-past { opacity: 0.45; }
-  .is-past .e-month { color: rgba(255,255,255,0.40); }
-
-  /* ── Live Materials ── */
-  .live-materials-section {
-    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding-block: clamp(3rem, 6vw, 5rem);
-  }
-
-  .live-materials-section .eyebrow { margin-bottom: 1rem; }
-
-  .live-materials-heading {
+  .ev-statement-headline {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 900;
     letter-spacing: -0.03em;
     line-height: 1.1;
+    margin-bottom: 2rem;
+    color: var(--accent);
+  }
+
+  .ev-statement-body {
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* ─── 4. Quotes ────────────────────────────────────────────────────────────── */
+  .ev-quotes-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .ev-quotes-section .eyebrow { margin-bottom: 2rem; }
+
+  .ev-quotes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .ev-quote {
+    padding: 2rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .ev-quote p {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--fg);
+    font-style: italic;
+  }
+
+  .ev-quote footer {
+    font-size: var(--text-sm);
+    color: var(--fg-3);
+    font-style: normal;
+  }
+
+  /* ─── 5. Built for your room ───────────────────────────────────────────────── */
+  .ev-formats-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .ev-formats-section .eyebrow { margin-bottom: 1rem; }
+  .ev-formats-section .subheadline { margin-bottom: 2.5rem; }
+
+  .ev-formats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .ev-format {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .ev-format-icon {
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+  }
+
+  .ev-format-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 800;
+    color: var(--fg);
+  }
+
+  .ev-format p {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    line-height: 1.65;
+  }
+
+  /* ─── 6. Calendar ──────────────────────────────────────────────────────────── */
+  .ev-calendar-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .ev-calendar-section .eyebrow { margin-bottom: 1rem; }
+  .ev-calendar-section .subheadline { margin-bottom: 2.5rem; }
+
+  .ev-cal-group {
+    margin-bottom: 3rem;
+  }
+
+  .ev-cal-label {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
     margin-bottom: 1rem;
   }
 
-  .live-materials-sub {
-    font-size: var(--text-base);
-    color: var(--fg-2);
-    max-width: 540px;
-    margin-bottom: 2rem;
-    line-height: 1.6;
+  .ev-cal-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(255,255,255,0.07);
   }
 
-  /* ── Responsive ── */
+  .ev-cal-row {
+    display: grid;
+    grid-template-columns: 80px 120px 140px 1fr;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: var(--text-sm);
+  }
+
+  .ev-cal-date {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--fg);
+    white-space: nowrap;
+  }
+
+  .ev-cal-type {
+    color: var(--fg-3);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .ev-cal-audience {
+    font-size: var(--text-xs);
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .ev-cal-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .ev-cal-title {
+    color: var(--fg);
+    font-weight: 600;
+  }
+
+  .ev-cal-venue {
+    color: var(--fg-3);
+    font-size: var(--text-xs);
+  }
+
+  .ev-cal-note {
+    font-size: var(--text-xs);
+    color: var(--fg-3);
+    margin-top: 1rem;
+  }
+
+  /* ─── 7. Booking ───────────────────────────────────────────────────────────── */
+  .ev-booking-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .ev-booking-section .subheadline { margin-bottom: 1rem; }
+
+  .ev-booking-section .body-lg {
+    margin-bottom: 1.5rem;
+    max-width: 560px;
+  }
+
+  /* ─── Responsive ───────────────────────────────────────────────────────────── */
   @media (max-width: 900px) {
-    .body-grid {
+    .ev-panels,
+    .ev-formats-grid {
       grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-    .sidebar-sticky {
-      position: static;
-    }
-    .room-photo img {
-      aspect-ratio: 16 / 9;
     }
   }
 
   @media (max-width: 768px) {
-    .event-row {
-      grid-template-columns: 55px 1fr;
-      gap: 1.25rem;
+    .ev-quotes-grid {
+      grid-template-columns: 1fr;
     }
-    .event-row .btn,
-    .event-row .event-private {
-      grid-column: 2;
+
+    .ev-cal-row {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
     }
-    .e-day { font-size: clamp(1.75rem, 7vw, 2.5rem); }
+
+    .ev-cal-date { font-size: var(--text-sm); }
   }
 </style>
