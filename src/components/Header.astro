@@ -159,12 +159,14 @@ const { pathname } = Astro.url;
     letter-spacing: 0.01em;
   }
 
-  .nav-link:hover {
+  .nav-link:hover,
+  .nav-link.is-active {
     color: var(--fg);
+    background: var(--bg-3);
   }
 
   .nav-link.is-active {
-    color: var(--accent);
+    color: var(--fg);
   }
 
 
