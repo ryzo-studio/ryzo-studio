@@ -117,7 +117,7 @@ import Layout from '../layouts/Layout.astro';
             href="https://secure.lglforms.com/form_engine/s/Vl4n9NT5Rdj2w6OylYlQXw"
             target="_blank"
             rel="noopener"
-            class="btn btn-primary btn-lg"
+            class="btn btn-primary btn-sm"
             style="margin-top: 0.5rem;"
           >Donate Now</a>
           <p class="become-note" style="margin-top: 0.75rem;">
@@ -470,9 +470,14 @@ import Layout from '../layouts/Layout.astro';
 
   .become-note {
     font-size: var(--text-sm);
-    color: #fff;
+    color: rgba(255,255,255,0.85);
     max-width: 400px;
     line-height: 1.6;
+  }
+
+  .become-note strong {
+    color: #fff;
+    font-weight: 600;
   }
 
   .become-note strong {
