@@ -7,6 +7,91 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.2.0] — 2026-08-10
+
+### Homepage (`/`)
+- Added yellow SVG icons (play, gamepad, people) to the three Approach cards
+- Renamed Approach eyebrow to "Approach"
+- Added franchise context paragraph to Approach intro ("Kids are watching YouTube in the back of a car...")
+- Swapped Latest Updates order: video first, impact report second
+- Added Franchise Report cover image as background on impact report card (anchored to top)
+- Darkened video embed with brightness(0.7)
+- Simplified subscribe form to email-only (compact mode) on homepage
+- Added donate column ("Want to support the work?") next to subscribe
+- Moved Principles section to About page
+- Removed "Work with us / Support us / Bring us to your community" CTA section
+- Removed SEL tagline from footer
+- Changed footer background to purple body gradient
+- Fixed missing Proof section background image (was untracked in git)
+
+### About (`/about`)
+- Updated hero copy
+- Added Principles section below hero with heading "How we work."
+- Reordered principles: Entertainment > Franchises > Action (with updated copy)
+- Added hand-drawn style SVG icons to principles
+- Tightened founder bios (dashes to commas, removed extra paragraphs)
+- Updated Erica's title to "Founder / CEO"
+- Moved Leadership section above Advisors, updated bios
+- Renamed Advisors section to "Who we build with." with intro paragraph
+- Added Digital Wellness Lab advisor card
+- Renamed Team to "The Crew", fixed spelling (Pranav, Modeling)
+- Removed "Work with us" / Mission CTA section
+
+### Film (`/release-the-beast`)
+- Removed tagline line from hero
+- Shortened subscribe button to "Subscribe on YouTube"
+- Updated Synopsis copy (periods instead of dashes, tighter language)
+- Rewrote "Our Take on Anger" section with new framing
+- Replaced Themes/Skills + Companion Game sections with simple "Next Step" CTA
+- Simplified Screenings copy, moved above Next Step
+- Pushed Screen the Film text down 12rem to reveal Aaron in background image
+
+### Game (`/rage-fighters`)
+- Fixed duplicate "Live Now" in hero
+- Updated hero tagline to "something unstoppable"
+- Renamed "The Game" eyebrow to "What It Is"
+- Updated copy, ages to "Recommended 10+"
+- Shortened zone descriptions
+- Reduced skills to 3 (Pause, Breathe, Chill) with in game/in life format
+- Simplified "Aaron's notebook" section to single paragraph
+- Enlarged notebook section to 70vh with visible art and gradient overlay
+- Fixed notebook overlay coverage (moved bg to ::before, overlay to ::after)
+- Updated Credit section framing
+- Replaced Companion Experience CTA with "See where it started" / "Watch the Film"
+
+### Events (`/events`) — Full Rebuild
+- Rebuilt as UnTilted hub page with 7 sections: Hero, What happens in the room (3 panels), Designed to draw us together, Facilitator quotes, Built for your room (3 formats), Calendar (Upcoming/Past), Booking CTA
+- Fixed hero alignment, overlay, and headline scale to match homepage
+- Added session photos to Watch and Play panels
+- `/un-tilted` now 301 redirects to `/events`
+- Spelling standardized to "UnTilted" throughout
+
+### Supporters (`/supporters`)
+- Updated hero copy: "Support the work."
+- Changed Partners eyebrow from "With Gratitude" to "Partners"
+- Updated all partner card descriptions
+- Removed "Get Involved" section
+- Updated Giving section copy and layout: Donate Now button + processed info moved to left column
+- Added detailed giving methods: DAF (with fiscal sponsor info), Check, Stock/wire/ACH
+- Added Youth Media Foundation link
+- Brightened giving methods text, made non-linked content white
+
+### Connect (`/connect`)
+- Updated Say Hello copy
+- Shortened "Follow us" to "Follow"
+- Added "Investors and Funders" section with Todd's email
+- Updated subscribe section to "Get updates" with full form (email required, region optional, interests optional)
+
+### Subscribe Form (`SubscribeForm.tsx`)
+- Added `compact` prop: email-only mode for homepage, full form for Connect page
+- Full form includes email, region (optional), interests chips (optional)
+
+### Footer (`Footer.astro`)
+- Removed "Social-emotional learning for the next generation" tagline
+- Changed background to purple body gradient
+
+---
+
 ## [1.1.5] — 2026-03-20
 
 ### feat: Press page — new `/press` route
