@@ -23,13 +23,13 @@ import SubscribeForm from '../components/SubscribeForm';
   <section class="section email-section">
     <div class="container">
       <div class="email-block">
-        <span class="eyebrow">Send a Message</span>
+        <span class="eyebrow">Say Hello</span>
         <h2 class="subheadline">Say hello.</h2>
-        <p class="email-desc">We're real people. Drop us a line for event inquiries, partnerships, press, or anything else.</p>
+        <p class="email-desc">We're real people who love to connect. Drop us a line about events, partnerships, press, or anything else.</p>
         <a href="mailto:hello@ryzo.studio" class="email-link">hello@ryzo.studio</a>
 
         <div class="social-links">
-          <span class="social-label">Follow us</span>
+          <span class="social-label">Follow</span>
           <div class="social-row">
 
             <a href="https://www.youtube.com/channel/UCotWg6gjmIEYXoUfvK_upxQ" class="social-link" target="_blank" rel="noopener" aria-label="YouTube">
@@ -63,14 +63,25 @@ import SubscribeForm from '../components/SubscribeForm';
     </div>
   </section>
 
-  <!-- Stay in Touch -->
+  <!-- Investors -->
+  <section class="section investors-section">
+    <div class="container">
+      <div class="investors-block">
+        <span class="eyebrow">Investors and Funders</span>
+        <p class="investors-desc">We're raising a seed round to scale the first franchise and start the second. Email Todd directly and we'll send the deck.</p>
+        <a href="mailto:Todd@ryzo.studio?subject=Investor%20Inquiry" class="email-link email-link-sm">Todd@ryzo.studio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Updates -->
   <section class="section subscribe-section">
     <div class="container">
       <div class="subscribe-block">
         <div class="subscribe-header">
-          <span class="eyebrow">Stay in Touch</span>
-          <h2 class="subheadline">Get updates<br />that matter to you.</h2>
-          <p class="form-intro">We send event announcements, new resources, and studio news — sorted by what you care about and where you are.</p>
+          <span class="eyebrow">Get Updates</span>
+          <h2 class="subheadline">Get updates.</h2>
+          <p class="form-intro">Events, new resources, and studio news.</p>
         </div>
         <div class="subscribe-form-wrap">
           <SubscribeForm client:load />
@@ -209,6 +220,34 @@ import SubscribeForm from '../components/SubscribeForm';
 
   .social-link svg {
     flex-shrink: 0;
+  }
+
+  /* Investors */
+  .investors-section {
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .investors-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .investors-block .eyebrow { margin-bottom: 0; }
+
+  .investors-desc {
+    font-size: var(--text-base);
+    color: var(--fg-2);
+    line-height: 1.65;
+    max-width: 480px;
+  }
+
+  .email-link-sm {
+    font-size: clamp(1.25rem, 3vw, 2rem);
   }
 
   /* Subscribe block */
