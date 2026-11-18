@@ -62,6 +62,10 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
           the things that sometimes feel too big to handle. Then we show
           them what to do with it. Our first franchise is about boys and anger.
         </p>
+        <p class="hero-investor">
+          Interested to be part of it? Watch our short video to see where we're headed next and opportunities to participate.
+        </p>
+        <a href="/investors" class="btn btn-investor">For Investors</a>
       </div>
       <p class="hero-cred">
         Founded by Pixar veterans.<br />Built alongside clinicians, researchers, and&nbsp;kids.
@@ -349,6 +353,34 @@ const events = await fetchSanity<any[]>(queries.upcomingEvents) ?? [];
     line-height: 1.7;
     max-width: 500px;
     margin-bottom: 2rem;
+  }
+
+  .hero-investor {
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    color: rgba(210, 200, 240, 0.6);
+    line-height: 1.6;
+    max-width: 500px;
+    margin-bottom: 1rem;
+  }
+
+  .btn-investor {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: var(--hero-accent);
+    color: #1a1a2e;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    border-radius: var(--radius);
+    transition: var(--transition);
+    margin-bottom: 2rem;
+  }
+
+  .btn-investor:hover {
+    background: #ffe066;
+    transform: translateY(-1px);
   }
 
   .hero-cred {
