@@ -7,20 +7,7 @@ import Layout from '../layouts/Layout.astro';
   description="See where Ryzo Studios is headed next and opportunities to participate."
 >
 
-  <section class="investor-hero">
-    <div class="container">
-      <span class="eyebrow">For Investors</span>
-      <h1 class="display investor-headline">Where we're headed next.</h1>
-      <p class="investor-intro">
-        We make films, games, and live events for kids 10 and up about
-        the things that sometimes feel too big to handle. Then we show
-        them what to do with it. Watch the short video below to see where
-        we're going and how you can be part of it.
-      </p>
-    </div>
-  </section>
-
-  <section class="investor-video-section">
+  <section class="investor-page">
     <div class="container">
       <div class="video-container">
         <video
@@ -33,19 +20,14 @@ import Layout from '../layouts/Layout.astro';
           Your browser does not support the video tag.
         </video>
       </div>
-    </div>
-  </section>
 
-  <section class="investor-cta-section">
-    <div class="container">
       <div class="cta-box">
-        <h2 class="cta-heading">Want to learn more?</h2>
+        <h2 class="cta-heading">Let's talk.</h2>
         <p class="cta-body">
-          If you're interested in learning more about Ryzo Studios and
-          opportunities to participate, we'd love to hear from you.
+          If you're interested in where Ryzo is headed and want to be part of it, book a time with Erica.
         </p>
-        <a href="mailto:hello@ryzo.studio?subject=Investor%20Inquiry" class="btn btn-primary btn-lg">
-          Get in Touch
+        <a href="https://calendar.app.google/XKDMdVeDkciK6x34A" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+          Schedule a Conversation
         </a>
       </div>
     </div>
@@ -55,34 +37,15 @@ import Layout from '../layouts/Layout.astro';
 
 
 <style>
-  .investor-hero {
-    padding: 10rem 0 4rem;
+  .investor-page {
+    padding: 10rem 0 6rem;
     background: linear-gradient(to right, #080316 0%, #1c0832 100%);
-  }
-
-  .investor-headline {
-    font-size: clamp(2.5rem, 7vw, 5rem);
-    margin-bottom: 1.5rem;
-    line-height: 1;
-    color: #f5f0ff;
-  }
-
-  .investor-intro {
-    font-size: clamp(1rem, 1.4vw, 1.15rem);
-    color: rgba(210, 200, 240, 0.75);
-    line-height: 1.7;
-    max-width: 600px;
-  }
-
-  .investor-video-section {
-    padding: 3rem 0 4rem;
-    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
-    border-top: 1px solid rgba(255,255,255,0.07);
+    min-height: 100vh;
   }
 
   .video-container {
     max-width: 900px;
-    margin: 0 auto;
+    margin: 0 auto 3rem;
     border-radius: var(--radius-lg);
     overflow: hidden;
     border: 1px solid rgba(255,255,255,0.1);
@@ -95,18 +58,14 @@ import Layout from '../layouts/Layout.astro';
     height: auto;
   }
 
-  .investor-cta-section {
-    padding: 4rem 0 6rem;
-    background: linear-gradient(to right, #080316 0%, #1c0832 100%);
-    border-top: 1px solid rgba(255,255,255,0.07);
-  }
-
   .cta-box {
-    max-width: 600px;
+    max-width: 900px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
 
   .cta-heading {
@@ -121,6 +80,7 @@ import Layout from '../layouts/Layout.astro';
     font-size: var(--text-base);
     color: var(--fg-2);
     line-height: 1.7;
+    max-width: 480px;
     margin-bottom: 0.5rem;
   }
 </style>
