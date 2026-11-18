@@ -29,6 +29,7 @@ import Layout from '../layouts/Layout.astro';
         <a href="https://calendar.app.google/XKDMdVeDkciK6x34A" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
           Schedule a Conversation
         </a>
+        <a href="/" class="back-link">Back to Ryzo Studios</a>
       </div>
     </div>
   </section>
@@ -82,5 +83,16 @@ import Layout from '../layouts/Layout.astro';
     line-height: 1.7;
     max-width: 480px;
     margin-bottom: 0.5rem;
+  }
+
+  .back-link {
+    font-size: var(--text-sm);
+    color: var(--fg-3);
+    transition: color var(--transition);
+    margin-top: 0.5rem;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
   }
 </style>
