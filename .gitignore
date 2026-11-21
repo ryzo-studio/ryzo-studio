@@ -27,3 +27,7 @@ Thumbs.db
 *.njsproj
 *.sln
 public/images/Roblox_OpeningVideo_v2.mov
+
+# dropped page packages (not part of the site): keep the folder + its README only
+incoming/*
+!incoming/README.md
