@@ -55,8 +55,11 @@ a{color:#ffffff}a:hover{color:#f5c842}
     </div></div>
 
   <div class="stage st-phone">
-    <div style="position:absolute;left:1.5%;top:23%;width:97%;box-sizing:border-box;padding:calc(var(--u)*7);border-radius:calc(var(--u)*14);background:linear-gradient(150deg,#2b2333,#0b070e);box-shadow:0 calc(var(--u)*18) calc(var(--u)*40) rgba(0,0,0,.7)">
-      <video controls="" preload="none" data-phone-video poster="/images/investors/pitch-poster.jpg" src="/ryzo-pitch.mp4" style="display:block;width:100%;aspect-ratio:16/9;height:auto;border-radius:calc(var(--u)*8);background:#000"></video>
+    <!-- Spotlight: darkens the busy desk in a soft band behind the video so it stands out. -->
+    <div aria-hidden="true" style="position:absolute;left:calc(50% - 50vw);width:100vw;top:15%;height:42%;pointer-events:none;background:linear-gradient(to bottom,rgba(10,4,14,0) 0%,rgba(10,4,14,.82) 24%,rgba(10,4,14,.88) 50%,rgba(10,4,14,.82) 76%,rgba(10,4,14,0) 100%)"></div>
+    <!-- Full-frame video: edge to edge across the screen, no bezel. -->
+    <div style="position:absolute;left:calc(50% - 50vw);width:100vw;top:23%;box-shadow:0 calc(var(--u)*22) calc(var(--u)*50) rgba(0,0,0,.85),0 0 calc(var(--u)*60) rgba(255,176,102,.22);border-top:1px solid rgba(255,255,255,.14);border-bottom:1px solid rgba(255,255,255,.14)">
+      <video controls="" preload="none" data-phone-video poster="/images/investors/pitch-poster.jpg" src="/ryzo-pitch.mp4" style="display:block;width:100%;aspect-ratio:16/9;height:auto;background:#000"></video>
     </div>
     <div style="position:absolute;left:7%;top:51.2%;width:78%;transform:rotate(-1.2deg)">
       <!-- Paper and its shadow sit on their own layer so the text is never inside the filter (some browsers drop text painted inside a drop-shadow filter). -->
